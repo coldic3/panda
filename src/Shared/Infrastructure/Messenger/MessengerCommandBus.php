@@ -24,6 +24,7 @@ final class MessengerCommandBus implements CommandBusInterface
         try {
             return $this->handle($command);
         } catch (HandlerFailedException $e) {
+            /** @psalm-suppress InvalidThrow */
             throw current($e->getNestedExceptions());
         }
     }

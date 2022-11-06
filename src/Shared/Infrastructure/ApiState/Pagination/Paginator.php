@@ -55,6 +55,7 @@ final class Paginator implements PaginatorInterface, \IteratorAggregate
      */
     public function getIterator(): \Traversable
     {
+        /** @psalm-suppress InvalidArgument */
         return new \ArrayIterator($this->items);
     }
 }

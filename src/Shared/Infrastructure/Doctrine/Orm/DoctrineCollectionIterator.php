@@ -85,7 +85,7 @@ final class DoctrineCollectionIterator implements CollectionIteratorInterface
         return clone $this->queryBuilder;
     }
 
-    private function __clone(): void
+    private function __clone()
     {
         $this->queryBuilder = clone $this->queryBuilder;
     }

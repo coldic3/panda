@@ -46,7 +46,7 @@ abstract class DoctrineRepository implements RepositoryInterface
         return clone $this->queryBuilder;
     }
 
-    protected function __clone(): void
+    protected function __clone()
     {
         $this->queryBuilder = clone $this->queryBuilder;
     }

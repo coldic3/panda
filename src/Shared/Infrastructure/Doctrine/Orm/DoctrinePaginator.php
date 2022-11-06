@@ -6,6 +6,7 @@ namespace App\Shared\Infrastructure\Doctrine\Orm;
 
 use App\Shared\Domain\Repository\PaginatorInterface;
 use Doctrine\ORM\Tools\Pagination\Paginator;
+use Webmozart\Assert\Assert;
 
 final class DoctrinePaginator implements PaginatorInterface
 {
@@ -25,6 +26,8 @@ final class DoctrinePaginator implements PaginatorInterface
 
     public function getItemsPerPage(): int
     {
+        Assert::notNull($this->maxResults);
+
         return $this->maxResults;
     }
 
