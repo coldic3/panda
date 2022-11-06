@@ -6,6 +6,7 @@ namespace App\Shared\Domain\Repository;
 
 /**
  * @template T of object
+ *
  * @implements \IteratorAggregate<T>
  */
 interface CollectionIteratorInterface extends \IteratorAggregate, \Countable

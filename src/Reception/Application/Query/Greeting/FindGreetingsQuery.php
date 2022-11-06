@@ -2,7 +2,6 @@
 
 declare(strict_types=1);
 
-
 namespace App\Reception\Application\Query\Greeting;
 
 use App\Shared\Application\Query\QueryInterface;

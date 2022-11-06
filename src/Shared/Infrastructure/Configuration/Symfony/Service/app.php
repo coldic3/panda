@@ -7,8 +7,8 @@ use App\Shared\Application\Query\QueryBusInterface;
 use App\Shared\Infrastructure\Messenger\MessengerCommandBus;
 use App\Shared\Infrastructure\Messenger\MessengerQueryBus;
 use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
-use Symfony\Component\Messenger\MessageBusInterface;
 use function Symfony\Component\DependencyInjection\Loader\Configurator\service;
+use Symfony\Component\Messenger\MessageBusInterface;
 
 return static function (ContainerConfigurator $containerConfigurator): void {
     $services = $containerConfigurator->services();

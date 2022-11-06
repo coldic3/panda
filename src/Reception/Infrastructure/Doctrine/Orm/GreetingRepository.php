@@ -41,7 +41,7 @@ final class GreetingRepository extends DoctrineRepository implements GreetingRep
     public function likeName(string $name): static
     {
         return $this->filter(static function (QueryBuilder $qb) use ($name): void {
-            $qb->where(sprintf('%s.name LIKE :name', self::ALIAS))->setParameter('name', '%' . $name . '%');
+            $qb->where(sprintf('%s.name LIKE :name', self::ALIAS))->setParameter('name', '%'.$name.'%');
         });
     }
 }

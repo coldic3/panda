@@ -72,7 +72,7 @@ final class DoctrineCollectionIterator implements CollectionIteratorInterface
         return $cloned;
     }
 
-    protected function filter(callable $filter): static
+    private function filter(callable $filter): static
     {
         $cloned = clone $this;
         $filter($cloned->queryBuilder);
@@ -80,12 +80,12 @@ final class DoctrineCollectionIterator implements CollectionIteratorInterface
         return $cloned;
     }
 
-    protected function query(): QueryBuilder
+    private function query(): QueryBuilder
     {
         return clone $this->queryBuilder;
     }
 
-    protected function __clone(): void
+    private function __clone(): void
     {
         $this->queryBuilder = clone $this->queryBuilder;
     }

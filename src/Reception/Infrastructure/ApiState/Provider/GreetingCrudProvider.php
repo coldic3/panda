@@ -11,7 +11,6 @@ use ApiPlatform\State\ProviderInterface;
 use App\Reception\Application\Query\Greeting\FindGreetingQuery;
 use App\Reception\Application\Query\Greeting\FindGreetingsQuery;
 use App\Reception\Domain\Model\Greeting;
-use App\Reception\Domain\Repository\GreetingRepositoryInterface;
 use App\Reception\Infrastructure\ApiResource\GreetingResource;
 use App\Shared\Application\Query\QueryBusInterface;
 use App\Shared\Infrastructure\ApiState\Pagination\Paginator;
