@@ -33,7 +33,7 @@ final class GreetingCrudProcesor implements ProcessorInterface
         }
 
         $command = !isset($uriVariables['id'])
-            ? new CreateGreetingCommand($data->name)
+            ? new CreateGreetingCommand((string) $data->name)
             : new UpdateGreetingCommand($uriVariables['id'], $data->name)
         ;
 

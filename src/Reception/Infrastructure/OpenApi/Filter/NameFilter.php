@@ -9,6 +9,9 @@ use Symfony\Component\PropertyInfo\Type;
 
 final class NameFilter implements FilterInterface
 {
+    /**
+     * @return array<string, array<string, mixed>>
+     */
     public function getDescription(string $resourceClass): array
     {
         return [

@@ -8,9 +8,6 @@ use App\Reception\Domain\Model\Greeting;
 use App\Shared\Domain\Repository\RepositoryInterface;
 use Symfony\Component\Uid\Uuid;
 
-/**
- * @extends RepositoryInterface<Greeting>
- */
 interface GreetingRepositoryInterface extends RepositoryInterface
 {
     public function save(Greeting $greeting): void;

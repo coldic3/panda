@@ -41,7 +41,7 @@ final class GreetingCrudProvider implements ProviderInterface
             $limit = $this->pagination->getLimit($operation, $context);
         }
 
-        /** @var DoctrineCollectionIterator $models */
+        /** @var DoctrineCollectionIterator<Greeting> $models */
         $models = $this->queryBus->ask(
             new FindGreetingsQuery(
                 $context['filters']['name'] ?? null,

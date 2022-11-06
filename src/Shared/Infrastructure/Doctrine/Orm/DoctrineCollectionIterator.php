@@ -32,7 +32,11 @@ final class DoctrineCollectionIterator implements CollectionIteratorInterface
 
     public function count(): int
     {
-        return $this->paginator()->count();
+        Assert::notNull(
+            $paginator = $this->paginator()
+        );
+
+        return $paginator->count();
     }
 
     public function paginator(): ?PaginatorInterface
@@ -78,11 +82,6 @@ final class DoctrineCollectionIterator implements CollectionIteratorInterface
         $filter($cloned->queryBuilder);
 
         return $cloned;
-    }
-
-    private function query(): QueryBuilder
-    {
-        return clone $this->queryBuilder;
     }
 
     private function __clone()

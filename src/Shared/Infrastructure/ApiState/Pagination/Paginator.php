@@ -55,7 +55,11 @@ final class Paginator implements PaginatorInterface, \IteratorAggregate
      */
     public function getIterator(): \Traversable
     {
-        /** @psalm-suppress InvalidArgument */
+        /**
+         * @psalm-suppress InvalidArgument
+         *
+         * @phpstan-ignore-next-line
+         */
         return new \ArrayIterator($this->items);
     }
 }

@@ -24,7 +24,11 @@ final class MessengerQueryBus implements QueryBusInterface
         try {
             return $this->handle($query);
         } catch (HandlerFailedException $e) {
-            /** @psalm-suppress InvalidThrow */
+            /**
+             * @psalm-suppress InvalidThrow
+             *
+             * @phpstan-ignore-next-line
+             */
             throw current($e->getNestedExceptions());
         }
     }

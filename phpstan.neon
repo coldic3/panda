@@ -1,0 +1,13 @@
+parameters:
+    level: max
+    paths:
+        - src
+        - tests
+    ignoreErrors:
+        - '/Method App\\\w+\\Infrastructure\\ApiState\\Processor\\\w+Procesor::process\(\) has no return type specified./'
+        - '/Method App\\\w+\\Infrastructure\\ApiState\\Processor\\\w+Procesor::process\(\) has parameter \$(context|uriVariables) with no value type specified in iterable type array./'
+        - '/Method App\\\w+\\Infrastructure\\ApiState\\Processor\\\w+Procesor::process\(\) has parameter \$data with no type specified./'
+        - '/Method App\\\w+\\Infrastructure\\ApiState\\Provider\\\w+Provider::provide\(\) has parameter \$(context|uriVariables) with no value type specified in iterable type array./'
+        - '/Generator expects value type object, mixed given./'
+
+    checkGenericClassInNonGenericObjectType: false

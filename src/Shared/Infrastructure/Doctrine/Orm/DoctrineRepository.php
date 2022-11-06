@@ -8,6 +8,7 @@ use App\Shared\Domain\Repository\CollectionIteratorInterface;
 use App\Shared\Domain\Repository\RepositoryInterface;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\QueryBuilder;
+use Webmozart\Assert\Assert;
 
 abstract class DoctrineRepository implements RepositoryInterface
 {
@@ -30,6 +31,9 @@ abstract class DoctrineRepository implements RepositoryInterface
 
     public function pagination(int $page = null, int $itemsPerPage = null): CollectionIteratorInterface
     {
+        Assert::notNull($page);
+        Assert::notNull($itemsPerPage);
+
         return (new DoctrineCollectionIterator($this->query()))->withPagination($page, $itemsPerPage);
     }
 
