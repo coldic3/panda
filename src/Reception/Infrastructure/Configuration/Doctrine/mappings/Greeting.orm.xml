@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping">
+    <entity name="App\Reception\Domain\Model\Greeting" table="greeting">
+        <id name="id" column="id" type="uuid" />
+
+        <field name="name" column="name" />
+    </entity>
+</doctrine-mapping>

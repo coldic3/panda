@@ -1,0 +1,3 @@
+kernel:
+    resource: ../../../Symfony/Kernel.php
+    type: annotation

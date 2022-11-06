@@ -1,7 +1,10 @@
-controllers:
-    resource: ../src/Controller/
+kernel:
+    resource: ../src/Shared/Infrastructure/Symfony/Kernel.php
     type: annotation
 
-kernel:
-    resource: ../src/Kernel.php
-    type: annotation
+app:
+    resource: ../src/*/Infrastructure/Configuration/Symfony/Route/*
+        
+when@dev:
+    app:
+        resource: ../src/*/Infrastructure/Configuration/Symfony/Route/dev/*
