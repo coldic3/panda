@@ -28,7 +28,7 @@ use Symfony\Component\Validator\Constraints as Assert;
         ),
         new Get(),
         new Post(validationContext: ['groups' => ['create']]),
-        new Put(),
+        new Put(extraProperties: ['standard_put' => true]),
         new Patch(),
         new Delete(),
     ],
