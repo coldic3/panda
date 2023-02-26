@@ -1,5 +1,5 @@
 imports:
-    - { resource: ../../src/*/Infrastructure/Configuration/Doctrine/mapping.yaml }
+    - { resource: ../../../../../*/Infrastructure/Configuration/Doctrine/mapping.yaml }
 
 doctrine:
     dbal:

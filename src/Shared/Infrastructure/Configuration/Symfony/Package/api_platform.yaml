@@ -1,5 +1,5 @@
 imports:
-    - { resource: ../../src/*/Infrastructure/Configuration/ApiPlatform/mapping.yaml }
+    - { resource: ../../../../../*/Infrastructure/Configuration/ApiPlatform/mapping.yaml }
 
 api_platform:
     title: Hello API Platform

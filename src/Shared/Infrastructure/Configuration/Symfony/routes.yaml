@@ -1,0 +1,10 @@
+kernel:
+    resource: ../../../../Shared/Infrastructure/Symfony/Kernel.php
+    type: annotation
+
+app:
+    resource: ../../../../*/Infrastructure/Configuration/Symfony/Route/*
+        
+when@dev:
+    app:
+        resource: ../../../../*/Infrastructure/Configuration/Symfony/Route/dev/*

@@ -4,4 +4,4 @@ parameters:
     locale: en_US
 
 imports:
-    - { resource: ../src/*/Infrastructure/Configuration/Symfony/Service/**/* }
+    - { resource: ../../../../*/Infrastructure/Configuration/Symfony/Service/**/* }
