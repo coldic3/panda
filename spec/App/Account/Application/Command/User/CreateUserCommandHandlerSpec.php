@@ -1,0 +1,59 @@
+<?php
+
+namespace spec\App\Account\Application\Command\User;
+
+use App\Account\Application\Command\User\CreateUserCommand;
+use App\Account\Application\Command\User\CreateUserCommandHandler;
+use App\Account\Domain\Factory\UserFactoryInterface;
+use App\Account\Domain\Model\UserInterface;
+use App\Account\Domain\Repository\UserRepositoryInterface;
+use App\Shared\Application\Command\CommandHandlerInterface;
+use PhpSpec\ObjectBehavior;
+use Prophecy\Argument;
+
+class CreateUserCommandHandlerSpec extends ObjectBehavior
+{
+    function let(UserRepositoryInterface $userRepository, UserFactoryInterface $userFactory)
+    {
+        $this->beConstructedWith($userRepository, $userFactory);
+    }
+
+    function it_is_create_user_command_handler()
+    {
+        $this->shouldHaveType(CreateUserCommandHandler::class);
+        $this->shouldImplement(CommandHandlerInterface::class);
+    }
+
+    function it_creates_new_user(
+        UserRepositoryInterface $userRepository,
+        UserFactoryInterface $userFactory,
+        UserInterface $user,
+    ) {
+        $command = new CreateUserCommand('panda@example.com', 'I<3BambooShoots');
+
+        $userRepository->findByEmail('panda@example.com')->willReturn(null);
+
+        $userFactory->create('panda@example.com', 'I<3BambooShoots')
+            ->willReturn($user)
+            ->shouldBeCalledOnce();
+
+        $userRepository->save($user)->shouldBeCalledOnce();
+
+        $this($command);
+    }
+
+    function it_does_nothing_if_user_already_created(
+        UserRepositoryInterface $userRepository,
+        UserFactoryInterface $userFactory,
+        UserInterface $user,
+    ) {
+        $command = new CreateUserCommand('panda@example.com', 'I<3BambooShoots');
+
+        $userRepository->findByEmail('panda@example.com')->willReturn($user);
+
+        $userFactory->create(Argument::any())->shouldNotBeCalled();
+        $userRepository->save(Argument::any())->shouldNotBeCalled();
+
+        $this($command);
+    }
+}

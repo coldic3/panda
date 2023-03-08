@@ -2,7 +2,6 @@ parameters:
     level: max
     paths:
         - src
-        - tests
     excludePaths:
         - src/Shared/Infrastructure/Symfony/Kernel.php
     ignoreErrors:

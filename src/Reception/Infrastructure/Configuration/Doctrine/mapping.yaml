@@ -1,7 +1,7 @@
 doctrine:
     orm:
         mappings:
-            Resource:
+            Reception:
                 is_bundle: false
                 type: xml
                 dir: '%kernel.project_dir%/src/Reception/Infrastructure/Configuration/Doctrine/mappings'
