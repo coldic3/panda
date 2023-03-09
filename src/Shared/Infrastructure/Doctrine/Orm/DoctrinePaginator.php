@@ -6,28 +6,29 @@ namespace App\Shared\Infrastructure\Doctrine\Orm;
 
 use App\Shared\Domain\Repository\PaginatorInterface;
 use Doctrine\ORM\Tools\Pagination\Paginator;
-use Webmozart\Assert\Assert;
 
 final class DoctrinePaginator implements PaginatorInterface
 {
-    private ?int $firstResult;
-    private ?int $maxResults;
+    private int $firstResult;
+    private int $maxResults;
 
     public function __construct(
-        private Paginator $paginator
+        private readonly Paginator $paginator
     ) {
-        $this->firstResult = $paginator->getQuery()->getFirstResult();
-        $this->maxResults = $paginator->getQuery()->getMaxResults();
+        $query = $paginator->getQuery();
+        $firstResult = $query->getFirstResult();
+        $maxResults = $query->getMaxResults();
 
-        if (null === $this->firstResult || null === $this->maxResults) {
+        if (null === $firstResult || null === $maxResults) {
             throw new \InvalidArgumentException('Missing firstResult and maxResults from the query.');
         }
+
+        $this->firstResult = $firstResult;
+        $this->maxResults = $maxResults;
     }
 
     public function getItemsPerPage(): int
     {
-        Assert::notNull($this->maxResults);
-
         return $this->maxResults;
     }
 
