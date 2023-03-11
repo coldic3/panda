@@ -1,2 +1,4 @@
 *
 !.gitignore
+!private_test.pem
+!public_test.pem

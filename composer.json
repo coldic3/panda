@@ -37,6 +37,7 @@
         "api-platform/schema-generator": "^4.0",
         "friendsofphp/php-cs-fixer": "^3.13",
         "hautelook/alice-bundle": "^2.11",
+        "lchrusciel/api-test-case": "^5.2",
         "phpspec/phpspec": "^7.3",
         "phpspec/prophecy-phpunit": "^2.0",
         "phpstan/phpstan": "^1.9",
