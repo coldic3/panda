@@ -8,7 +8,7 @@ use ApiPlatform\Metadata\ApiProperty;
 use ApiPlatform\Metadata\ApiResource;
 use ApiPlatform\Metadata\Get;
 use ApiPlatform\Metadata\Post;
-use App\Account\Domain\Model\User;
+use App\Account\Domain\Model\UserInterface;
 use App\Account\Infrastructure\ApiState\Processor\UserCreateProcesor;
 use App\Account\Infrastructure\ApiState\Provider\UserProvider;
 use Symfony\Component\Serializer\Annotation\Groups;
@@ -57,7 +57,7 @@ final class UserResource
     ) {
     }
 
-    public static function fromModel(User $user): UserResource
+    public static function fromModel(UserInterface $user): UserResource
     {
         return new self($user->id, $user->getEmail(), $user->getPassword());
     }
