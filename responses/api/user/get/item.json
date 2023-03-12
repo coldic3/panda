@@ -1,0 +1,6 @@
+{
+  "@context": "/contexts/User",
+  "@id": "/users/@uuid@",
+  "@type": "User",
+  "email": "panda@example.com"
+}

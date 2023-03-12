@@ -1,0 +1,7 @@
+parameters:
+    password_hash: '$2y$13$PiPZCpgPCMk1d0B/GPzM/.LkmW2qVtiSu61eM2iXePr.zXNfUTZNe' # The password is 'I<3BambooShoots'.
+
+App\Account\Domain\Model\User:
+    user_panda:
+        __construct: ['panda@example.com']
+        password: <{password_hash}>

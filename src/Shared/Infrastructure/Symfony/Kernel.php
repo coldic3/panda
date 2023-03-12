@@ -19,12 +19,8 @@ class Kernel extends BaseKernel
         $container->import($configDir.'/{Package}/*.{php,yaml}');
         $container->import($configDir.'/{Package}/'.$this->environment.'/*.{php,yaml}');
 
-        if (is_file($configDir.'/services.yaml')) {
-            $container->import($configDir.'/services.yaml');
-            $container->import($configDir.'/{Service}_'.$this->environment.'.yaml');
-        } else {
-            $container->import($configDir.'/{Service}.php');
-        }
+        $container->import($configDir.'/services.yaml');
+        $container->import($configDir.'/services_'.$this->environment.'.yaml', null, true);
     }
 
     private function getConfigDir(): string
