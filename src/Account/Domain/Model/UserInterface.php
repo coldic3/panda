@@ -6,7 +6,11 @@ namespace App\Account\Domain\Model;
 
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface as SymfonyUserInterface;
+use Symfony\Component\Uid\Uuid;
 
+/**
+ * @property Uuid $id
+ */
 interface UserInterface extends SymfonyUserInterface, PasswordAuthenticatedUserInterface
 {
     public function getEmail(): string;
@@ -14,4 +18,6 @@ interface UserInterface extends SymfonyUserInterface, PasswordAuthenticatedUserI
     public function setEmail(string $email): void;
 
     public function setPassword(string $password): void;
+
+    public function compare(UserInterface $user): bool;
 }
