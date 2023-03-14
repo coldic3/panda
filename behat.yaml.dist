@@ -1,0 +1,12 @@
+imports:
+    - tests/Behat/Configuration/suites.yaml
+
+default:
+    extensions:
+        FriendsOfBehat\SymfonyExtension:
+            bootstrap: tests/bootstrap.php
+            kernel:
+                class: App\Shared\Infrastructure\Symfony\Kernel
+                path: src/Shared/Infrastructure/Symfony/Kernel.php
+                environment: test
+                debug: true
