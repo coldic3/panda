@@ -21,6 +21,10 @@ class Kernel extends BaseKernel
 
         $container->import($configDir.'/services.yaml');
         $container->import($configDir.'/services_'.$this->environment.'.yaml', null, true);
+
+        if ('test' === $this->environment) {
+            $container->import($this->getProjectDir().'/tests/Behat/Configuration/services.yaml');
+        }
     }
 
     private function getConfigDir(): string

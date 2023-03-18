@@ -18,8 +18,12 @@
 /phpunit.xml
 ###< symfony/phpunit-bridge ###
 
-
 ###> phpunit/phpunit ###
 /phpunit.xml
 .phpunit.result.cache
 ###< phpunit/phpunit ###
+
+###> friends-of-behat/symfony-extension ###
+/behat.yml
+/behat.yaml
+###< friends-of-behat/symfony-extension ###

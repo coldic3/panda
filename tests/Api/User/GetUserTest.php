@@ -3,7 +3,7 @@
 namespace App\Tests\Api\User;
 
 use App\Account\Domain\Model\User;
-use App\Tests\Util\ApiTestCase;
+use App\Tests\Api\ApiTestCase;
 use App\Tests\Util\HttpMethodEnum;
 use Symfony\Component\HttpFoundation\Response;
 
