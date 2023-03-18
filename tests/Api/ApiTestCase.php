@@ -2,10 +2,11 @@
 
 declare(strict_types=1);
 
-namespace App\Tests\Util;
+namespace App\Tests\Api;
 
 use ApiTestCase\JsonApiTestCase;
 use App\Account\Domain\Model\UserInterface;
+use App\Tests\Util\HttpMethodEnum;
 use Lexik\Bundle\JWTAuthenticationBundle\Encoder\JWTEncoderInterface;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -45,39 +46,6 @@ abstract class ApiTestCase extends JsonApiTestCase
     protected function assertResponseNoContent(Response $response): void
     {
         $this->assertEmpty($response->getContent());
-    }
-
-    protected function assertResponseViolationsCount(Response $response, int $expectedCount): void
-    {
-        $responseContent = json_decode($response->getContent(), true);
-        $this->assertIsArray($responseContent);
-
-        $this->assertCount($expectedCount, $responseContent['violations'] ?? []);
-    }
-
-    /**
-     * @param array<string, int> $propertyPaths
-     */
-    protected function assertResponseViolationsPropertyPaths(
-        Response $response,
-        array $expectedViolatedPropertiesWithCount,
-        bool $strict = true,
-    ): void {
-        if ($strict) {
-            $this->assertResponseViolationsCount($response, count($expectedViolatedPropertiesWithCount));
-        }
-
-        $responseContent = json_decode($response->getContent(), true);
-        $this->assertIsArray($responseContent);
-
-        $violations = $responseContent['violations'] ?? [];
-
-        $actualViolatedPropertiesWithCount = array_count_values(array_column($violations, 'propertyPath'));
-
-        foreach ($expectedViolatedPropertiesWithCount as $property => $count) {
-            $this->assertArrayHasKey($property, $actualViolatedPropertiesWithCount);
-            $this->assertEquals($count, $actualViolatedPropertiesWithCount[$property]);
-        }
     }
 
     protected function assertUnauthorized(Response $response): void
