@@ -1,0 +1,79 @@
+name: App
+
+on:
+    push:
+        branches: [ "master" ]
+    pull_request:
+        branches: [ "master" ]
+
+permissions:
+    contents: read
+
+jobs:
+    app:
+        runs-on: ubuntu-latest
+        
+        env:
+            APP_ENV: test
+            DATABASE_URL: "postgresql://postgres:postgres@127.0.0.1:5432/panda?serverVersion=13&charset=utf8"
+        
+        steps:
+            -
+                uses: shivammathur/setup-php@v2
+                with:
+                    php-version: '8.1'
+
+            -
+                uses: actions/checkout@v3
+
+            -
+                name: Copy .env.test.local
+                run: php -r "file_exists('.env.test.local') || copy('.env.test', '.env.test.local');"
+
+            -
+                name: Setup PostgreSQL
+                uses: harmon758/postgresql-action@v1
+                with:
+                    postgresql version: "13"
+                    postgresql password: "postgres"
+
+            -
+                name: Cache Composer packages
+                id: composer-cache
+                uses: actions/cache@v3
+                with:
+                    path: vendor
+                    key: ${{ runner.os }}-php-${{ hashFiles('**/composer.lock') }}
+                    restore-keys: |
+                        ${{ runner.os }}-php-
+
+            -
+                name: Install dependencies
+                run: composer install -q --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
+
+            -
+                name: Create database
+                run: |
+                    php bin/console doctrine:database:create --if-not-exists
+                    php bin/console doctrine:schema:update --force
+
+            -
+                name: Execute static analysis
+                run: |
+                    vendor/bin/php-cs-fixer fix --dry-run
+                    vendor/bin/phpstan analyse
+                    vendor/bin/psalm
+
+            -
+                name: Execute unit tests
+                run: vendor/bin/phpunit --testsuite unit
+
+            -
+                name: Execute contract tests
+                run: vendor/bin/phpunit --testsuite contract
+                
+            -
+                name: Execute behavioral tests
+                run: |
+                    vendor/bin/phpspec run
+                    vendor/bin/behat --strict --no-interaction -f progress
