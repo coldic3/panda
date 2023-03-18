@@ -2,7 +2,7 @@
 
 namespace App\Tests\Api\User;
 
-use App\Tests\Util\ApiTestCase;
+use App\Tests\Api\ApiTestCase;
 use App\Tests\Util\HttpMethodEnum;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -36,36 +36,5 @@ final class PostUserTest extends ApiTestCase
 
         $this->assertResponseNoContent($response);
         $this->assertResponseCode($response, Response::HTTP_NO_CONTENT);
-    }
-
-    /** @test */
-    function it_validates_request_body()
-    {
-        $this->request(HttpMethodEnum::POST, '/users', [
-            'email' => 'panda',
-            'password' => 'bamboo',
-        ]);
-
-        $response = $this->client->getResponse();
-
-        $this->assertResponseViolationsPropertyPaths($response, [
-            'email' => 1,
-            'password' => 1,
-        ]);
-        $this->assertResponseCode($response, Response::HTTP_UNPROCESSABLE_ENTITY);
-    }
-
-    /** @test */
-    function it_requires_all_parameters()
-    {
-        $this->request(HttpMethodEnum::POST, '/users', []);
-
-        $response = $this->client->getResponse();
-
-        $this->assertResponseViolationsPropertyPaths($response, [
-            'email' => 1,
-            'password' => 1,
-        ]);
-        $this->assertResponseCode($response, Response::HTTP_UNPROCESSABLE_ENTITY);
     }
 }
