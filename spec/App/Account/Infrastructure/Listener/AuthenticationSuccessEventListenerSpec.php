@@ -1,11 +1,11 @@
 <?php
 
-namespace spec\App\Account\Application\Event;
+namespace spec\App\Account\Infrastructure\Listener;
 
 use ApiPlatform\Api\IriConverterInterface;
-use App\Account\Application\Event\AuthenticationSuccessEventListener;
 use App\Account\Domain\Model\User;
 use App\Account\Infrastructure\ApiResource\UserResource;
+use App\Account\Infrastructure\Listener\AuthenticationSuccessEventListener;
 use Lexik\Bundle\JWTAuthenticationBundle\Event\AuthenticationSuccessEvent;
 use PhpSpec\ObjectBehavior;
 
