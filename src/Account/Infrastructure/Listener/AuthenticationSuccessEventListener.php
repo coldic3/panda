@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Account\Application\Event;
+namespace App\Account\Infrastructure\Listener;
 
 use ApiPlatform\Api\IriConverterInterface;
 use App\Account\Domain\Model\UserInterface;
