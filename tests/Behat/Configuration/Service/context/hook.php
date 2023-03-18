@@ -2,6 +2,7 @@
 
 declare(strict_types=1);
 
+use App\Tests\Behat\Context\Hook\ClipboardContext;
 use App\Tests\Behat\Context\Hook\DoctrineOrmContext;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
@@ -14,4 +15,6 @@ return static function (ContainerConfigurator $containerConfigurator): void {
 
     $services->set(DoctrineOrmContext::class)
         ->args([service(EntityManagerInterface::class)]);
+
+    $services->set(ClipboardContext::class);
 };

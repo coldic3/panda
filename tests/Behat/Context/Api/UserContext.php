@@ -5,30 +5,21 @@ declare(strict_types=1);
 namespace App\Tests\Behat\Context\Api;
 
 use App\Account\Domain\Repository\UserRepositoryInterface;
-use App\Tests\Behat\Context\Setup\UserContext as SetupUserContext;
+use App\Tests\Behat\Context\Util\EnableClipboardTrait;
 use App\Tests\Util\HttpMethodEnum;
 use App\Tests\Util\HttpRequestBuilder;
 use Behat\Behat\Context\Context;
-use Behat\Behat\Hook\Scope\BeforeScenarioScope;
 use Symfony\Component\HttpFoundation\Response;
 use Webmozart\Assert\Assert;
 
 class UserContext implements Context
 {
-    private SetupUserContext $setupUserContext;
+    use EnableClipboardTrait;
 
     public function __construct(
         private readonly HttpRequestBuilder $http,
         private readonly UserRepositoryInterface $userRepository,
     ) {
-    }
-
-    /** @BeforeScenario */
-    public function gatherContexts(BeforeScenarioScope $scope): void
-    {
-        $environment = $scope->getEnvironment();
-
-        $this->setupUserContext = $environment->getContext(SetupUserContext::class);
     }
 
     /**
@@ -49,7 +40,7 @@ class UserContext implements Context
         $this->http->initialize(
             HttpMethodEnum::GET,
             sprintf('/users/%s', $user->id),
-            $this->setupUserContext->token
+            $this->clipboard->paste('token')
         );
 
         $this->http->finalize();

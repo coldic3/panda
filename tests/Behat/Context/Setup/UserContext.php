@@ -6,12 +6,13 @@ namespace App\Tests\Behat\Context\Setup;
 
 use App\Account\Domain\Factory\UserFactoryInterface;
 use App\Account\Domain\Repository\UserRepositoryInterface;
+use App\Tests\Behat\Context\Util\EnableClipboardTrait;
 use Behat\Behat\Context\Context;
 use Lexik\Bundle\JWTAuthenticationBundle\Encoder\JWTEncoderInterface;
 
 class UserContext implements Context
 {
-    public ?string $token = null;
+    use EnableClipboardTrait;
 
     public function __construct(
         private readonly UserFactoryInterface $userFactory,
@@ -41,10 +42,13 @@ class UserContext implements Context
         $this->there_is_a_user_with_email_and_password($email);
         $user = $this->userRepository->findByEmail($email);
 
-        $this->token = $this->jwtEncoder->encode([
+        $token = $this->jwtEncoder->encode([
             'username' => $user->getEmail(),
             'roles' => $user->getRoles(),
         ]);
+
+        $this->clipboard->copy('authUser', $user);
+        $this->clipboard->copy('token', $token);
     }
 
     /**
