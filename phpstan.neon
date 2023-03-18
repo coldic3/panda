@@ -14,3 +14,13 @@ parameters:
             path: src/Shared/Infrastructure/Doctrine/Orm/DoctrineCollectionIterator.php
 
     checkGenericClassInNonGenericObjectType: false
+
+services:
+    -
+        class: App\Tests\Architecture\LayersSeparationTest
+        tags:
+            - phpat.test
+    -
+        class: App\Tests\Architecture\BoundedContextsSeparationTest
+        tags:
+            - phpat.test
