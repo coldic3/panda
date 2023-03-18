@@ -1,0 +1,12 @@
+# This file is part of the Sylius package.
+# (c) Paweł Jędrzejewski
+
+default:
+    suites:
+        api_auth:
+            contexts:
+                - App\Tests\Behat\Context\Hook\DoctrineOrmContext
+                - App\Tests\Behat\Context\Setup\UserContext
+                - App\Tests\Behat\Context\Api\AuthContext
+            filters:
+                tags: "@api&&@auth"

@@ -2,10 +2,9 @@
 
 declare(strict_types=1);
 
+use App\Account\Domain\Factory\UserFactoryInterface;
 use App\Account\Domain\Repository\UserRepositoryInterface;
-use App\Tests\Behat\Context\Api\AuthContext;
-use App\Tests\Behat\Context\Api\UserContext;
-use App\Tests\Util\HttpRequestBuilder;
+use App\Tests\Behat\Context\Setup\UserContext;
 use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
 use function Symfony\Component\DependencyInjection\Loader\Configurator\service;
 
@@ -14,12 +13,10 @@ return static function (ContainerConfigurator $containerConfigurator): void {
 
     $services->defaults()->public();
 
-    $services->set(AuthContext::class)
-        ->args([service(HttpRequestBuilder::class)]);
-
     $services->set(UserContext::class)
         ->args([
-            service(HttpRequestBuilder::class),
+            service(UserFactoryInterface::class),
             service(UserRepositoryInterface::class),
+            service('lexik_jwt_authentication.encoder.lcobucci'),
         ]);
 };

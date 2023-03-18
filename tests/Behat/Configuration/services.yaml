@@ -5,3 +5,7 @@ parameters:
 
 imports:
     - { resource: Service/**/* }
+
+services:
+    App\Tests\Util\HttpRequestBuilder:
+        arguments: [ '@test.api_platform.client' ]
