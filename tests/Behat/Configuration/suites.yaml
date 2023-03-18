@@ -1,2 +1,3 @@
 imports:
-    - Suite/app/demo.yaml
+    - Suite/api/auth.yaml
+    - Suite/api/user.yaml
