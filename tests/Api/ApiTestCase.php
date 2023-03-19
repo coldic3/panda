@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace App\Tests\Api;
+namespace Panda\Tests\Api;
 
 use ApiTestCase\JsonApiTestCase;
-use App\Account\Domain\Model\UserInterface;
-use App\Tests\Util\HttpMethodEnum;
 use Lexik\Bundle\JWTAuthenticationBundle\Encoder\JWTEncoderInterface;
+use Panda\Account\Domain\Model\UserInterface;
+use Panda\Tests\Util\HttpMethodEnum;
 use Symfony\Component\HttpFoundation\Response;
 
 abstract class ApiTestCase extends JsonApiTestCase
@@ -18,7 +18,7 @@ abstract class ApiTestCase extends JsonApiTestCase
             method: $method->value,
             uri: $uri,
             server: [
-                'CONTENT_TYPE' => 'application/json',
+                'CONTENT_TYPE' => 'application/ld+json',
                 'HTTP_ACCEPT' => 'application/ld+json',
             ] + $headers,
             content: json_encode($body),

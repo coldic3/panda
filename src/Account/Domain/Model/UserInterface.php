@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Account\Domain\Model;
+namespace Panda\Account\Domain\Model;
 
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface as SymfonyUserInterface;

@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-use App\Reception\Domain\Repository\GreetingRepositoryInterface;
-use App\Reception\Infrastructure\Doctrine\Orm\GreetingRepository;
 use Doctrine\ORM\EntityManagerInterface;
+use Panda\Reception\Domain\Repository\GreetingRepositoryInterface;
+use Panda\Reception\Infrastructure\Doctrine\Orm\GreetingRepository;
 use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
 use function Symfony\Component\DependencyInjection\Loader\Configurator\service;
 

@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace App\Account\Infrastructure\ApiState\Processor;
+namespace Panda\Account\Infrastructure\ApiState\Processor;
 
 use ApiPlatform\Metadata\Operation;
 use ApiPlatform\State\ProcessorInterface;
-use App\Account\Application\Command\User\CreateUserCommand;
-use App\Account\Domain\Model\User;
-use App\Account\Infrastructure\ApiResource\UserResource;
-use App\Shared\Application\Command\CommandBusInterface;
+use Panda\Account\Application\Command\User\CreateUserCommand;
+use Panda\Account\Domain\Model\User;
+use Panda\Account\Infrastructure\ApiResource\UserResource;
+use Panda\Shared\Application\Command\CommandBusInterface;
 use Webmozart\Assert\Assert;
 
 final class UserCreateProcesor implements ProcessorInterface

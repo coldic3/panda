@@ -1,12 +1,12 @@
 <?php
 
-namespace spec\App\Account\Application\Query\User;
+namespace spec\Panda\Account\Application\Query\User;
 
-use App\Account\Application\Query\User\FindUserQuery;
-use App\Account\Application\Query\User\FindUserQueryHandler;
-use App\Account\Domain\Model\UserInterface;
-use App\Account\Domain\Repository\UserRepositoryInterface;
-use App\Shared\Application\Query\QueryHandlerInterface;
+use Panda\Account\Application\Query\User\FindUserQuery;
+use Panda\Account\Application\Query\User\FindUserQueryHandler;
+use Panda\Account\Domain\Model\UserInterface;
+use Panda\Account\Domain\Repository\UserRepositoryInterface;
+use Panda\Shared\Application\Query\QueryHandlerInterface;
 use PhpSpec\ObjectBehavior;
 use Symfony\Bundle\SecurityBundle\Security;
 use Symfony\Component\Uid\Uuid;

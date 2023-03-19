@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Shared\Infrastructure\Symfony;
+namespace Panda\Shared\Infrastructure\Symfony;
 
 use Symfony\Bundle\FrameworkBundle\Kernel\MicroKernelTrait;
 use Symfony\Component\Config\Loader\LoaderInterface;

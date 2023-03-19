@@ -2,17 +2,17 @@
 
 declare(strict_types=1);
 
-namespace App\Reception\Infrastructure\ApiState\Processor;
+namespace Panda\Reception\Infrastructure\ApiState\Processor;
 
 use ApiPlatform\Metadata\DeleteOperationInterface;
 use ApiPlatform\Metadata\Operation;
 use ApiPlatform\State\ProcessorInterface;
-use App\Reception\Application\Command\Greeting\CreateGreetingCommand;
-use App\Reception\Application\Command\Greeting\DeleteGreetingCommand;
-use App\Reception\Application\Command\Greeting\UpdateGreetingCommand;
-use App\Reception\Domain\Model\Greeting;
-use App\Reception\Infrastructure\ApiResource\GreetingResource;
-use App\Shared\Application\Command\CommandBusInterface;
+use Panda\Reception\Application\Command\Greeting\CreateGreetingCommand;
+use Panda\Reception\Application\Command\Greeting\DeleteGreetingCommand;
+use Panda\Reception\Application\Command\Greeting\UpdateGreetingCommand;
+use Panda\Reception\Domain\Model\Greeting;
+use Panda\Reception\Infrastructure\ApiResource\GreetingResource;
+use Panda\Shared\Application\Command\CommandBusInterface;
 use Webmozart\Assert\Assert;
 
 final class GreetingCrudProcesor implements ProcessorInterface

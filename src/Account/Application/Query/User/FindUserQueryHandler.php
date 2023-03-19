@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace App\Account\Application\Query\User;
+namespace Panda\Account\Application\Query\User;
 
-use App\Account\Domain\Model\UserInterface;
-use App\Account\Domain\Repository\UserRepositoryInterface;
-use App\Shared\Application\Query\QueryHandlerInterface;
+use Panda\Account\Domain\Model\UserInterface;
+use Panda\Account\Domain\Repository\UserRepositoryInterface;
+use Panda\Shared\Application\Query\QueryHandlerInterface;
 use Symfony\Bundle\SecurityBundle\Security;
 
 final class FindUserQueryHandler implements QueryHandlerInterface

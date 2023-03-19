@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Reception\Infrastructure\ApiResource;
+namespace Panda\Reception\Infrastructure\ApiResource;
 
 use ApiPlatform\Metadata\ApiProperty;
 use ApiPlatform\Metadata\ApiResource;
@@ -12,10 +12,10 @@ use ApiPlatform\Metadata\GetCollection;
 use ApiPlatform\Metadata\Patch;
 use ApiPlatform\Metadata\Post;
 use ApiPlatform\Metadata\Put;
-use App\Reception\Domain\Model\Greeting;
-use App\Reception\Infrastructure\ApiState\Processor\GreetingCrudProcesor;
-use App\Reception\Infrastructure\ApiState\Provider\GreetingCrudProvider;
-use App\Reception\Infrastructure\OpenApi\Filter\NameFilter;
+use Panda\Reception\Domain\Model\Greeting;
+use Panda\Reception\Infrastructure\ApiState\Processor\GreetingCrudProcesor;
+use Panda\Reception\Infrastructure\ApiState\Provider\GreetingCrudProvider;
+use Panda\Reception\Infrastructure\OpenApi\Filter\NameFilter;
 use Symfony\Component\Serializer\Annotation\Groups;
 use Symfony\Component\Uid\Uuid;
 use Symfony\Component\Validator\Constraints as Assert;

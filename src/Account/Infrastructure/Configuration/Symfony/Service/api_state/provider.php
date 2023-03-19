@@ -2,8 +2,8 @@
 
 declare(strict_types=1);
 
-use App\Account\Infrastructure\ApiState\Provider\UserProvider;
-use App\Shared\Application\Query\QueryBusInterface;
+use Panda\Account\Infrastructure\ApiState\Provider\UserProvider;
+use Panda\Shared\Application\Query\QueryBusInterface;
 use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
 use function Symfony\Component\DependencyInjection\Loader\Configurator\service;
 

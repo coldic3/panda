@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace App\Tests\Behat\Context\Util;
+namespace Panda\Tests\Behat\Context\Util;
 
-use App\Tests\Behat\Context\Hook\ClipboardContext;
 use Behat\Behat\Hook\Scope\BeforeScenarioScope;
+use Panda\Tests\Behat\Context\Hook\ClipboardContext;
 
 trait EnableClipboardTrait
 {

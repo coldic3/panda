@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace App\Tests\Behat\Context\Api;
+namespace Panda\Tests\Behat\Context\Api;
 
-use App\Tests\Util\HttpMethodEnum;
-use App\Tests\Util\HttpRequestBuilder;
 use Behat\Behat\Context\Context;
+use Panda\Tests\Util\HttpMethodEnum;
+use Panda\Tests\Util\HttpRequestBuilder;
 use Symfony\Component\HttpFoundation\Response;
 use Webmozart\Assert\Assert;
 

@@ -1,12 +1,12 @@
 <?php
 
-namespace spec\App\Shared\Infrastructure\Doctrine\Orm;
+namespace spec\Panda\Shared\Infrastructure\Doctrine\Orm;
 
-use App\Shared\Infrastructure\Doctrine\Orm\DoctrinePaginator;
 use Doctrine\ORM\Configuration;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\Query;
 use Doctrine\ORM\Tools\Pagination\Paginator;
+use Panda\Shared\Infrastructure\Doctrine\Orm\DoctrinePaginator;
 use PhpSpec\ObjectBehavior;
 
 class DoctrinePaginatorSpec extends ObjectBehavior

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Tests\Util;
+namespace Panda\Tests\Util;
 
 enum HttpMethodEnum: string
 {

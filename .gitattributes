@@ -15,6 +15,3 @@ composer.lock text eol=lf merge=ours
 
 *.ico binary
 *.png binary
-
-update-deps.sh export-ignore
-

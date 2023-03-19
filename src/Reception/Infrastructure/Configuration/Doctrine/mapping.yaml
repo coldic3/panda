@@ -5,5 +5,5 @@ doctrine:
                 is_bundle: false
                 type: xml
                 dir: '%kernel.project_dir%/src/Reception/Infrastructure/Configuration/Doctrine/mappings'
-                prefix: 'App\Reception\Domain\Model'
+                prefix: 'Panda\Reception\Domain\Model'
                 alias: Reception

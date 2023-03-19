@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace App\Account\Domain\Factory;
+namespace Panda\Account\Domain\Factory;
 
-use App\Account\Domain\Model\User;
-use App\Account\Domain\Model\UserInterface;
+use Panda\Account\Domain\Model\User;
+use Panda\Account\Domain\Model\UserInterface;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
 final class UserFactory implements UserFactoryInterface

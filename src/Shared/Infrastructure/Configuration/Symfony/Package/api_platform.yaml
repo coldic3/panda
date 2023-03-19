@@ -2,17 +2,22 @@ imports:
     - { resource: ../../../../../*/Infrastructure/Configuration/ApiPlatform/mapping.yaml }
 
 api_platform:
-    title: Hello API Platform
-    version: 1.0.0
+    title: PANDA API
+    version: dev
+    show_webby: false
     patch_formats:
         json: ['application/merge-patch+json']
+    formats:
+        jsonld:
+            mime_types: ['application/ld+json']
+        html:
+            mime_types: ['text/html']    
     swagger:
         versions: [3]
         api_keys:
             JWT:
                 name: Authorization
                 type: header
-    # Good cache defaults for REST APIs
     defaults:
         stateless: true
         cache_headers:

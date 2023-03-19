@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace App\Account\Infrastructure\ApiState\Provider;
+namespace Panda\Account\Infrastructure\ApiState\Provider;
 
 use ApiPlatform\Metadata\Operation;
 use ApiPlatform\State\ProviderInterface;
-use App\Account\Application\Query\User\FindUserQuery;
-use App\Account\Domain\Model\User;
-use App\Account\Infrastructure\ApiResource\UserResource;
-use App\Shared\Application\Query\QueryBusInterface;
+use Panda\Account\Application\Query\User\FindUserQuery;
+use Panda\Account\Domain\Model\User;
+use Panda\Account\Infrastructure\ApiResource\UserResource;
+use Panda\Shared\Application\Query\QueryBusInterface;
 
 final class UserProvider implements ProviderInterface
 {

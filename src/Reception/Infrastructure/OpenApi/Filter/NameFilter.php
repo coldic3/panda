@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Reception\Infrastructure\OpenApi\Filter;
+namespace Panda\Reception\Infrastructure\OpenApi\Filter;
 
 use ApiPlatform\Api\FilterInterface;
 use Symfony\Component\PropertyInfo\Type;

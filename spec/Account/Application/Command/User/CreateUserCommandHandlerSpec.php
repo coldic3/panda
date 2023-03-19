@@ -1,13 +1,13 @@
 <?php
 
-namespace spec\App\Account\Application\Command\User;
+namespace spec\Panda\Account\Application\Command\User;
 
-use App\Account\Application\Command\User\CreateUserCommand;
-use App\Account\Application\Command\User\CreateUserCommandHandler;
-use App\Account\Domain\Factory\UserFactoryInterface;
-use App\Account\Domain\Model\UserInterface;
-use App\Account\Domain\Repository\UserRepositoryInterface;
-use App\Shared\Application\Command\CommandHandlerInterface;
+use Panda\Account\Application\Command\User\CreateUserCommand;
+use Panda\Account\Application\Command\User\CreateUserCommandHandler;
+use Panda\Account\Domain\Factory\UserFactoryInterface;
+use Panda\Account\Domain\Model\UserInterface;
+use Panda\Account\Domain\Repository\UserRepositoryInterface;
+use Panda\Shared\Application\Command\CommandHandlerInterface;
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
 

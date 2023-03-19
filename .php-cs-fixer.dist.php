@@ -1,8 +1,6 @@
 <?php
 
-$finder = (new PhpCsFixer\Finder())
-    ->in(__DIR__.'/src')
-;
+$finder = (new PhpCsFixer\Finder())->in(__DIR__.'/src');
 
 return (new PhpCsFixer\Config())
     ->setRules([
@@ -10,5 +8,4 @@ return (new PhpCsFixer\Config())
         'blank_line_between_import_groups' => false,
         'phpdoc_to_comment' => false,
     ])
-    ->setFinder($finder)
-;
+    ->setFinder($finder);

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Shared\Infrastructure\ApiState\Pagination;
+namespace Panda\Shared\Infrastructure\ApiState\Pagination;
 
 use ApiPlatform\State\Pagination\PaginatorInterface;
 

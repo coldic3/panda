@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace App\Reception\Application\Command\Greeting;
+namespace Panda\Reception\Application\Command\Greeting;
 
-use App\Reception\Domain\Model\Greeting;
-use App\Reception\Domain\Repository\GreetingRepositoryInterface;
-use App\Shared\Application\Command\CommandHandlerInterface;
+use Panda\Reception\Domain\Model\Greeting;
+use Panda\Reception\Domain\Repository\GreetingRepositoryInterface;
+use Panda\Shared\Application\Command\CommandHandlerInterface;
 use Webmozart\Assert\Assert;
 
 final class UpdateGreetingCommandHandler implements CommandHandlerInterface

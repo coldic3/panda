@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-use App\Shared\Application\Command\CommandBusInterface;
-use App\Shared\Application\Query\QueryBusInterface;
-use App\Shared\Infrastructure\Messenger\MessengerCommandBus;
-use App\Shared\Infrastructure\Messenger\MessengerQueryBus;
+use Panda\Shared\Application\Command\CommandBusInterface;
+use Panda\Shared\Application\Query\QueryBusInterface;
+use Panda\Shared\Infrastructure\Messenger\MessengerCommandBus;
+use Panda\Shared\Infrastructure\Messenger\MessengerQueryBus;
 use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
 use Symfony\Component\Messenger\MessageBusInterface;
 use function Symfony\Component\DependencyInjection\Loader\Configurator\service;

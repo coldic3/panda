@@ -1,7 +1,7 @@
 parameters:
     password_hash: '$2y$13$1VVPBmUB1pJAnOCf4ivNm.kkwhtw8df8AV.HbD3tpU52Jw0eyBMFm' # The password is 'password'.
 
-App\Account\Domain\Model\User:
+Panda\Account\Domain\Model\User:
     user_{1..10}:
         __construct: [<email()>]
         password: <{password_hash}>

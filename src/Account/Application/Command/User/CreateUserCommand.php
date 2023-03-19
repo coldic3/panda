@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace App\Account\Application\Command\User;
+namespace Panda\Account\Application\Command\User;
 
-use App\Shared\Application\Command\CommandInterface;
+use Panda\Shared\Application\Command\CommandInterface;
 
 final class CreateUserCommand implements CommandInterface
 {

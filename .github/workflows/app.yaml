@@ -60,7 +60,8 @@ jobs:
             -
                 name: Execute static analysis
                 run: |
-                    vendor/bin/php-cs-fixer fix --dry-run
+                    vendor/bin/php-cs-fixer fix --dry-run --config=.php-cs-fixer.dist.php
+                    vendor/bin/php-cs-fixer fix --dry-run --config=.php-cs-fixer.test.dist.php
                     vendor/bin/phpstan analyse
                     vendor/bin/psalm
 

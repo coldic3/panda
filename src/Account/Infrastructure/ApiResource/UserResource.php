@@ -2,15 +2,15 @@
 
 declare(strict_types=1);
 
-namespace App\Account\Infrastructure\ApiResource;
+namespace Panda\Account\Infrastructure\ApiResource;
 
 use ApiPlatform\Metadata\ApiProperty;
 use ApiPlatform\Metadata\ApiResource;
 use ApiPlatform\Metadata\Get;
 use ApiPlatform\Metadata\Post;
-use App\Account\Domain\Model\UserInterface;
-use App\Account\Infrastructure\ApiState\Processor\UserCreateProcesor;
-use App\Account\Infrastructure\ApiState\Provider\UserProvider;
+use Panda\Account\Domain\Model\UserInterface;
+use Panda\Account\Infrastructure\ApiState\Processor\UserCreateProcesor;
+use Panda\Account\Infrastructure\ApiState\Provider\UserProvider;
 use Symfony\Component\Serializer\Annotation\Groups;
 use Symfony\Component\Uid\Uuid;
 use Symfony\Component\Validator\Constraints as Assert;

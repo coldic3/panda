@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-use App\Reception\Infrastructure\OpenApi\Filter\NameFilter;
+use Panda\Reception\Infrastructure\OpenApi\Filter\NameFilter;
 use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
 
 return static function (ContainerConfigurator $containerConfigurator): void {

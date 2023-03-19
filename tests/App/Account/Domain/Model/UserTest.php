@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace App\Tests\App\Account\Domain\Model;
+namespace Panda\Tests\Panda\Account\Domain\Model;
 
-use App\Account\Domain\Model\User;
+use Panda\Account\Domain\Model\User;
 use PHPUnit\Framework\TestCase;
 
 final class UserTest extends TestCase

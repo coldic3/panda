@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Tests\Behat\Context\Hook;
+namespace Panda\Tests\Behat\Context\Hook;
 
 use Behat\Behat\Context\Context;
 

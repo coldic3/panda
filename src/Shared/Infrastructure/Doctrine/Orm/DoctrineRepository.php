@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace App\Shared\Infrastructure\Doctrine\Orm;
+namespace Panda\Shared\Infrastructure\Doctrine\Orm;
 
-use App\Shared\Domain\Repository\CollectionIteratorInterface;
-use App\Shared\Domain\Repository\RepositoryInterface;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\QueryBuilder;
+use Panda\Shared\Domain\Repository\CollectionIteratorInterface;
+use Panda\Shared\Domain\Repository\RepositoryInterface;
 use Webmozart\Assert\Assert;
 
 abstract class DoctrineRepository implements RepositoryInterface

@@ -13,8 +13,8 @@ framework:
             sync: 'sync://'
 
         routing:
-            App\Shared\Application\Command\CommandInterface: sync
-            App\Shared\Application\Query\QueryInterface: sync
+            Panda\Shared\Application\Command\CommandInterface: sync
+            Panda\Shared\Application\Query\QueryInterface: sync
         
         default_bus: command.bus
         
