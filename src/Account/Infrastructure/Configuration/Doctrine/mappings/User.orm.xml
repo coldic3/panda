@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping">
-    <entity name="App\Account\Domain\Model\User" table="panda_user">
+    <entity name="Panda\Account\Domain\Model\User" table="panda_user">
         <id name="id" column="id" type="uuid" />
 
         <field name="email" column="email" length="180" unique="true" />

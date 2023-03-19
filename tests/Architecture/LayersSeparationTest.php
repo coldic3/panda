@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Tests\Architecture;
+namespace Panda\Tests\Architecture;
 
 use PHPat\Selector\Selector;
 use PHPat\Test\Builder\Rule;
@@ -39,7 +39,7 @@ final class LayersSeparationTest
     private function findAllLayers(): void
     {
         $boundedContextsFinder = new Finder();
-        $boundedContextsFinder->directories()->in(__DIR__ . '/../../src')->depth(0);
+        $boundedContextsFinder->directories()->in(__DIR__.'/../../src')->depth(0);
 
         $this->applicationLayerSelectors = [];
         $this->domainLayerSelectors = [];
@@ -47,9 +47,9 @@ final class LayersSeparationTest
 
         /** @var SplFileInfo $boundedContext */
         foreach ($boundedContextsFinder as $boundedContext) {
-            $this->applicationLayerSelectors[] = Selector::namespace(sprintf('App\\%s\\Application', $boundedContext->getRelativePathname()));
-            $this->domainLayerSelectors[] = Selector::namespace(sprintf('App\\%s\\Domain', $boundedContext->getRelativePathname()));
-            $this->infrastructureLayerSelectors[] = Selector::namespace(sprintf('App\\%s\\Infrastructure', $boundedContext->getRelativePathname()));
+            $this->applicationLayerSelectors[] = Selector::namespace(sprintf('Panda\\%s\\Application', $boundedContext->getRelativePathname()));
+            $this->domainLayerSelectors[] = Selector::namespace(sprintf('Panda\\%s\\Domain', $boundedContext->getRelativePathname()));
+            $this->infrastructureLayerSelectors[] = Selector::namespace(sprintf('Panda\\%s\\Infrastructure', $boundedContext->getRelativePathname()));
         }
     }
 }

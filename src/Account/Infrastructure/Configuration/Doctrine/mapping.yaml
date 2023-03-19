@@ -5,5 +5,5 @@ doctrine:
                 is_bundle: false
                 type: xml
                 dir: '%kernel.project_dir%/src/Account/Infrastructure/Configuration/Doctrine/mappings'
-                prefix: 'App\Account\Domain\Model'
+                prefix: 'Panda\Account\Domain\Model'
                 alias: Account

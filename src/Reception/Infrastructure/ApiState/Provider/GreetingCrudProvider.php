@@ -2,19 +2,19 @@
 
 declare(strict_types=1);
 
-namespace App\Reception\Infrastructure\ApiState\Provider;
+namespace Panda\Reception\Infrastructure\ApiState\Provider;
 
 use ApiPlatform\Metadata\CollectionOperationInterface;
 use ApiPlatform\Metadata\Operation;
 use ApiPlatform\State\Pagination\Pagination;
 use ApiPlatform\State\ProviderInterface;
-use App\Reception\Application\Query\Greeting\FindGreetingQuery;
-use App\Reception\Application\Query\Greeting\FindGreetingsQuery;
-use App\Reception\Domain\Model\Greeting;
-use App\Reception\Infrastructure\ApiResource\GreetingResource;
-use App\Shared\Application\Query\QueryBusInterface;
-use App\Shared\Infrastructure\ApiState\Pagination\Paginator;
-use App\Shared\Infrastructure\Doctrine\Orm\DoctrineCollectionIterator;
+use Panda\Reception\Application\Query\Greeting\FindGreetingQuery;
+use Panda\Reception\Application\Query\Greeting\FindGreetingsQuery;
+use Panda\Reception\Domain\Model\Greeting;
+use Panda\Reception\Infrastructure\ApiResource\GreetingResource;
+use Panda\Shared\Application\Query\QueryBusInterface;
+use Panda\Shared\Infrastructure\ApiState\Pagination\Paginator;
+use Panda\Shared\Infrastructure\Doctrine\Orm\DoctrineCollectionIterator;
 use Symfony\Component\Uid\Uuid;
 
 final class GreetingCrudProvider implements ProviderInterface

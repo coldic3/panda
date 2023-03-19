@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-use App\Account\Domain\Repository\UserRepositoryInterface;
-use App\Tests\Behat\Context\Api\AuthContext;
-use App\Tests\Behat\Context\Api\UserContext;
-use App\Tests\Util\HttpRequestBuilder;
+use Panda\Account\Domain\Repository\UserRepositoryInterface;
+use Panda\Tests\Behat\Context\Api\AuthContext;
+use Panda\Tests\Behat\Context\Api\UserContext;
+use Panda\Tests\Util\HttpRequestBuilder;
 use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
 use function Symfony\Component\DependencyInjection\Loader\Configurator\service;
 

@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace App\Tests\Behat\Context\Setup;
+namespace Panda\Tests\Behat\Context\Setup;
 
-use App\Account\Domain\Factory\UserFactoryInterface;
-use App\Account\Domain\Repository\UserRepositoryInterface;
-use App\Tests\Behat\Context\Util\EnableClipboardTrait;
 use Behat\Behat\Context\Context;
 use Lexik\Bundle\JWTAuthenticationBundle\Encoder\JWTEncoderInterface;
+use Panda\Account\Domain\Factory\UserFactoryInterface;
+use Panda\Account\Domain\Repository\UserRepositoryInterface;
+use Panda\Tests\Behat\Context\Util\EnableClipboardTrait;
 
 class UserContext implements Context
 {

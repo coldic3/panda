@@ -1,12 +1,12 @@
 <?php
 
-namespace spec\App\Account\Infrastructure\Listener;
+namespace spec\Panda\Account\Infrastructure\Listener;
 
 use ApiPlatform\Api\IriConverterInterface;
-use App\Account\Domain\Model\User;
-use App\Account\Infrastructure\ApiResource\UserResource;
-use App\Account\Infrastructure\Listener\AuthenticationSuccessEventListener;
 use Lexik\Bundle\JWTAuthenticationBundle\Event\AuthenticationSuccessEvent;
+use Panda\Account\Domain\Model\User;
+use Panda\Account\Infrastructure\ApiResource\UserResource;
+use Panda\Account\Infrastructure\Listener\AuthenticationSuccessEventListener;
 use PhpSpec\ObjectBehavior;
 
 class AuthenticationSuccessEventListenerSpec extends ObjectBehavior

@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace App\Account\Application\Command\User;
+namespace Panda\Account\Application\Command\User;
 
-use App\Account\Domain\Factory\UserFactoryInterface;
-use App\Account\Domain\Model\UserInterface;
-use App\Account\Domain\Repository\UserRepositoryInterface;
-use App\Shared\Application\Command\CommandHandlerInterface;
+use Panda\Account\Domain\Factory\UserFactoryInterface;
+use Panda\Account\Domain\Model\UserInterface;
+use Panda\Account\Domain\Repository\UserRepositoryInterface;
+use Panda\Shared\Application\Command\CommandHandlerInterface;
 
 final class CreateUserCommandHandler implements CommandHandlerInterface
 {

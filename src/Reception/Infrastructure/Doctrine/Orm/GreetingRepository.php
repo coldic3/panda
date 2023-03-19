@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace App\Reception\Infrastructure\Doctrine\Orm;
+namespace Panda\Reception\Infrastructure\Doctrine\Orm;
 
-use App\Reception\Domain\Model\Greeting;
-use App\Reception\Domain\Repository\GreetingRepositoryInterface;
-use App\Shared\Infrastructure\Doctrine\Orm\DoctrineRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\QueryBuilder;
+use Panda\Reception\Domain\Model\Greeting;
+use Panda\Reception\Domain\Repository\GreetingRepositoryInterface;
+use Panda\Shared\Infrastructure\Doctrine\Orm\DoctrineRepository;
 use Symfony\Component\Uid\Uuid;
 
 final class GreetingRepository extends DoctrineRepository implements GreetingRepositoryInterface

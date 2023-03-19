@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace App\Reception\Domain\Repository;
+namespace Panda\Reception\Domain\Repository;
 
-use App\Reception\Domain\Model\Greeting;
-use App\Shared\Domain\Repository\RepositoryInterface;
+use Panda\Reception\Domain\Model\Greeting;
+use Panda\Shared\Domain\Repository\RepositoryInterface;
 use Symfony\Component\Uid\Uuid;
 
 interface GreetingRepositoryInterface extends RepositoryInterface

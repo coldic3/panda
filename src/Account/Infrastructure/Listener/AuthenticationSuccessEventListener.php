@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace App\Account\Infrastructure\Listener;
+namespace Panda\Account\Infrastructure\Listener;
 
 use ApiPlatform\Api\IriConverterInterface;
-use App\Account\Domain\Model\UserInterface;
-use App\Account\Infrastructure\ApiResource\UserResource;
 use Lexik\Bundle\JWTAuthenticationBundle\Event\AuthenticationSuccessEvent;
+use Panda\Account\Domain\Model\UserInterface;
+use Panda\Account\Infrastructure\ApiResource\UserResource;
 
 final class AuthenticationSuccessEventListener
 {

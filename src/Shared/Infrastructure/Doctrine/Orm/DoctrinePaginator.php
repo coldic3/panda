@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace App\Shared\Infrastructure\Doctrine\Orm;
+namespace Panda\Shared\Infrastructure\Doctrine\Orm;
 
-use App\Shared\Domain\Repository\PaginatorInterface;
 use Doctrine\ORM\Tools\Pagination\Paginator;
+use Panda\Shared\Domain\Repository\PaginatorInterface;
 
 final class DoctrinePaginator implements PaginatorInterface
 {

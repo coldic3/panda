@@ -5,10 +5,10 @@ parameters:
     excludePaths:
         - src/Shared/Infrastructure/Symfony/Kernel.php
     ignoreErrors:
-        - '/Method App\\\w+\\Infrastructure\\ApiState\\Processor\\\w+Procesor::process\(\) has no return type specified./'
-        - '/Method App\\\w+\\Infrastructure\\ApiState\\Processor\\\w+Procesor::process\(\) has parameter \$(context|uriVariables) with no value type specified in iterable type array./'
-        - '/Method App\\\w+\\Infrastructure\\ApiState\\Processor\\\w+Procesor::process\(\) has parameter \$data with no type specified./'
-        - '/Method App\\\w+\\Infrastructure\\ApiState\\Provider\\\w+Provider::provide\(\) has parameter \$(context|uriVariables) with no value type specified in iterable type array./'
+        - '/Method Panda\\\w+\\Infrastructure\\ApiState\\Processor\\\w+Procesor::process\(\) has no return type specified./'
+        - '/Method Panda\\\w+\\Infrastructure\\ApiState\\Processor\\\w+Procesor::process\(\) has parameter \$(context|uriVariables) with no value type specified in iterable type array./'
+        - '/Method Panda\\\w+\\Infrastructure\\ApiState\\Processor\\\w+Procesor::process\(\) has parameter \$data with no type specified./'
+        - '/Method Panda\\\w+\\Infrastructure\\ApiState\\Provider\\\w+Provider::provide\(\) has parameter \$(context|uriVariables) with no value type specified in iterable type array./'
         -
             message: '/Generator expects value type object, mixed given./'
             path: src/Shared/Infrastructure/Doctrine/Orm/DoctrineCollectionIterator.php
@@ -17,10 +17,10 @@ parameters:
 
 services:
     -
-        class: App\Tests\Architecture\LayersSeparationTest
+        class: Panda\Tests\Architecture\LayersSeparationTest
         tags:
             - phpat.test
     -
-        class: App\Tests\Architecture\BoundedContextsSeparationTest
+        class: Panda\Tests\Architecture\BoundedContextsSeparationTest
         tags:
             - phpat.test

@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Account\Infrastructure\Doctrine\Orm;
+namespace Panda\Account\Infrastructure\Doctrine\Orm;
 
-use App\Account\Domain\Model\User;
-use App\Account\Domain\Model\UserInterface;
-use App\Account\Domain\Repository\UserRepositoryInterface;
-use App\Shared\Infrastructure\Doctrine\Orm\DoctrineRepository;
 use Doctrine\ORM\EntityManagerInterface;
+use Panda\Account\Domain\Model\User;
+use Panda\Account\Domain\Model\UserInterface;
+use Panda\Account\Domain\Repository\UserRepositoryInterface;
+use Panda\Shared\Infrastructure\Doctrine\Orm\DoctrineRepository;
 use Symfony\Component\Security\Core\Exception\UnsupportedUserException;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Uid\Uuid;

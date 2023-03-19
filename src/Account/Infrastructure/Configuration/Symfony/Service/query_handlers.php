@@ -2,8 +2,8 @@
 
 declare(strict_types=1);
 
-use App\Account\Application\Query\User\FindUserQueryHandler;
-use App\Account\Domain\Repository\UserRepositoryInterface;
+use Panda\Account\Application\Query\User\FindUserQueryHandler;
+use Panda\Account\Domain\Repository\UserRepositoryInterface;
 use Symfony\Bundle\SecurityBundle\Security;
 use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
 use function Symfony\Component\DependencyInjection\Loader\Configurator\service;

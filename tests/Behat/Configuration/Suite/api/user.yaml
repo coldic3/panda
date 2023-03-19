@@ -2,9 +2,9 @@ default:
     suites:
         api_user:
             contexts:
-                - App\Tests\Behat\Context\Hook\ClipboardContext
-                - App\Tests\Behat\Context\Hook\DoctrineOrmContext
-                - App\Tests\Behat\Context\Setup\UserContext
-                - App\Tests\Behat\Context\Api\UserContext
+                - Panda\Tests\Behat\Context\Hook\ClipboardContext
+                - Panda\Tests\Behat\Context\Hook\DoctrineOrmContext
+                - Panda\Tests\Behat\Context\Setup\UserContext
+                - Panda\Tests\Behat\Context\Api\UserContext
             filters:
                 tags: "@api&&@user"

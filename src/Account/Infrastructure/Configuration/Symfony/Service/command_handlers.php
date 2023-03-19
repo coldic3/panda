@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-use App\Account\Application\Command\User\CreateUserCommandHandler;
-use App\Account\Domain\Factory\UserFactoryInterface;
-use App\Account\Domain\Repository\UserRepositoryInterface;
+use Panda\Account\Application\Command\User\CreateUserCommandHandler;
+use Panda\Account\Domain\Factory\UserFactoryInterface;
+use Panda\Account\Domain\Repository\UserRepositoryInterface;
 use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
 use function Symfony\Component\DependencyInjection\Loader\Configurator\service;
 

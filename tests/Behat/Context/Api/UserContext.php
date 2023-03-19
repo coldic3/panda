@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace App\Tests\Behat\Context\Api;
+namespace Panda\Tests\Behat\Context\Api;
 
-use App\Account\Domain\Repository\UserRepositoryInterface;
-use App\Tests\Behat\Context\Util\EnableClipboardTrait;
-use App\Tests\Util\HttpMethodEnum;
-use App\Tests\Util\HttpRequestBuilder;
 use Behat\Behat\Context\Context;
+use Panda\Account\Domain\Repository\UserRepositoryInterface;
+use Panda\Tests\Behat\Context\Util\EnableClipboardTrait;
+use Panda\Tests\Util\HttpMethodEnum;
+use Panda\Tests\Util\HttpRequestBuilder;
 use Symfony\Component\HttpFoundation\Response;
 use Webmozart\Assert\Assert;
 

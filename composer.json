@@ -71,12 +71,12 @@
     },
     "autoload": {
         "psr-4": {
-            "App\\": "src/"
+            "Panda\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "App\\Tests\\": "tests/"
+            "Panda\\Tests\\": "tests/"
         }
     },
     "replace": {

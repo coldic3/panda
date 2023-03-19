@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace App\Shared\Infrastructure\Messenger;
+namespace Panda\Shared\Infrastructure\Messenger;
 
-use App\Shared\Application\Command\CommandBusInterface;
-use App\Shared\Application\Command\CommandInterface;
+use Panda\Shared\Application\Command\CommandBusInterface;
+use Panda\Shared\Application\Command\CommandInterface;
 use Symfony\Component\Messenger\Exception\HandlerFailedException;
 use Symfony\Component\Messenger\HandleTrait;
 use Symfony\Component\Messenger\MessageBusInterface;

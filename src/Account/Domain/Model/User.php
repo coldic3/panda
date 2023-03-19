@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Account\Domain\Model;
+namespace Panda\Account\Domain\Model;
 
 use Symfony\Component\Uid\Uuid;
 

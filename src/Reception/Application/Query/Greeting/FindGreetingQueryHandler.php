@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace App\Reception\Application\Query\Greeting;
+namespace Panda\Reception\Application\Query\Greeting;
 
-use App\Reception\Domain\Model\Greeting;
-use App\Reception\Domain\Repository\GreetingRepositoryInterface;
-use App\Shared\Application\Query\QueryHandlerInterface;
+use Panda\Reception\Domain\Model\Greeting;
+use Panda\Reception\Domain\Repository\GreetingRepositoryInterface;
+use Panda\Shared\Application\Query\QueryHandlerInterface;
 
 final class FindGreetingQueryHandler implements QueryHandlerInterface
 {

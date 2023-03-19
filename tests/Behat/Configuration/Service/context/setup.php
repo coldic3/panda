@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-use App\Account\Domain\Factory\UserFactoryInterface;
-use App\Account\Domain\Repository\UserRepositoryInterface;
-use App\Tests\Behat\Context\Setup\UserContext;
+use Panda\Account\Domain\Factory\UserFactoryInterface;
+use Panda\Account\Domain\Repository\UserRepositoryInterface;
+use Panda\Tests\Behat\Context\Setup\UserContext;
 use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
 use function Symfony\Component\DependencyInjection\Loader\Configurator\service;
 

@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-use App\Tests\Behat\Context\Hook\ClipboardContext;
-use App\Tests\Behat\Context\Hook\DoctrineOrmContext;
 use Doctrine\ORM\EntityManagerInterface;
+use Panda\Tests\Behat\Context\Hook\ClipboardContext;
+use Panda\Tests\Behat\Context\Hook\DoctrineOrmContext;
 use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
 use function Symfony\Component\DependencyInjection\Loader\Configurator\service;
 

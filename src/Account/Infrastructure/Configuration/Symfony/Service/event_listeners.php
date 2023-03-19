@@ -3,7 +3,7 @@
 declare(strict_types=1);
 
 use ApiPlatform\Api\IriConverterInterface;
-use App\Account\Infrastructure\Listener\AuthenticationSuccessEventListener;
+use Panda\Account\Infrastructure\Listener\AuthenticationSuccessEventListener;
 use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
 use function Symfony\Component\DependencyInjection\Loader\Configurator\service;
 

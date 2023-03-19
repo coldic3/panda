@@ -2,8 +2,8 @@
 
 declare(strict_types=1);
 
-use App\Reception\Infrastructure\ApiState\Processor\GreetingCrudProcesor;
-use App\Shared\Application\Command\CommandBusInterface;
+use Panda\Reception\Infrastructure\ApiState\Processor\GreetingCrudProcesor;
+use Panda\Shared\Application\Command\CommandBusInterface;
 use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
 use function Symfony\Component\DependencyInjection\Loader\Configurator\service;
 

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Tests\Util;
+namespace Panda\Tests\Util;
 
 use Symfony\Contracts\HttpClient\HttpClientInterface;
 use Symfony\Contracts\HttpClient\ResponseInterface;
@@ -38,7 +38,10 @@ final class HttpRequestBuilder
 
     public function finalize(): void
     {
-        $headers = [];
+        $headers = [
+            'Accept' => 'application/ld+json',
+            'Content-Type' => 'application/ld+json',
+        ];
 
         if (null !== $this->authToken) {
             $headers['Authorization'] = sprintf('Bearer %s', $this->authToken);

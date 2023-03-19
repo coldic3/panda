@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Tests\Api\Auth;
+namespace Panda\Tests\Api\Auth;
 
-use App\Tests\Api\ApiTestCase;
-use App\Tests\Util\HttpMethodEnum;
+use Panda\Tests\Api\ApiTestCase;
+use Panda\Tests\Util\HttpMethodEnum;
 use Symfony\Component\HttpFoundation\Response;
 
 final class PostAuthTest extends ApiTestCase

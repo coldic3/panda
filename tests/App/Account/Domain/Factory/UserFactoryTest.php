@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace App\Tests\App\Account\Domain\Factory;
+namespace Panda\Tests\App\Account\Domain\Factory;
 
-use App\Account\Domain\Factory\UserFactory;
+use Panda\Account\Domain\Factory\UserFactory;
 use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
 use Prophecy\PhpUnit\ProphecyTrait;

@@ -7,5 +7,5 @@ imports:
     - { resource: Service/**/* }
 
 services:
-    App\Tests\Util\HttpRequestBuilder:
+    Panda\Tests\Util\HttpRequestBuilder:
         arguments: [ '@test.api_platform.client' ]
