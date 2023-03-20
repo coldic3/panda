@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping">
+    <entity name="Panda\Asset\Domain\Model\Asset" table="panda_asset">
+        <id name="id" column="id" type="uuid" />
+
+        <field name="ticker" column="ticker" length="255" />
+        <field name="name" column="name" length="255" />
+    </entity>
+</doctrine-mapping>
