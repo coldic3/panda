@@ -20,6 +20,14 @@ final class BoundedContextsSeparationTest
             ->classes(...$this->findBoundedContextsExcept(['Account', 'Shared']));
     }
 
+    public function test_asset_bounded_context_does_not_depend_on_other_bounded_contexts(): Rule
+    {
+        return PHPat::rule()
+            ->classes(Selector::namespace('Panda\\Asset'))
+            ->shouldNotDependOn()
+            ->classes(...$this->findBoundedContextsExcept(['Asset', 'Shared']));
+    }
+
     public function test_shared_bounded_context_does_not_depend_on_other_bounded_contexts(): Rule
     {
         return PHPat::rule()
