@@ -1,5 +1,6 @@
 # language: pl
 
+@asset
 Potrzeba biznesowa: Usuwanie aktywów
     W celu posiadania aktualnej i przydatnej listy aktywów
     Jako użytkownik
@@ -9,7 +10,8 @@ Potrzeba biznesowa: Usuwanie aktywów
         * jestem zalogowany jako "panda@example.com"
         * posiadam aktywo "ACM" o nazwie "Acme Corporation"
 
+    @api
     Scenariusz: Usuwanie aktywa
         Gdy usuwam aktywo "ACM"
         Wtedy usuwanie aktywa kończy się sukcesem
-        I aktywo zostaje usunięte z listy aktywów
+        I aktywo zostało usunięte z listy aktywów

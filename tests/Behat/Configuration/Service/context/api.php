@@ -3,6 +3,8 @@
 declare(strict_types=1);
 
 use Panda\Account\Domain\Repository\UserRepositoryInterface;
+use Panda\Asset\Domain\Repository\AssetRepositoryInterface;
+use Panda\Tests\Behat\Context\Api\AssetContext;
 use Panda\Tests\Behat\Context\Api\AuthContext;
 use Panda\Tests\Behat\Context\Api\UserContext;
 use Panda\Tests\Util\HttpRequestBuilder;
@@ -21,5 +23,11 @@ return static function (ContainerConfigurator $containerConfigurator): void {
         ->args([
             service(HttpRequestBuilder::class),
             service(UserRepositoryInterface::class),
+        ]);
+
+    $services->set(AssetContext::class)
+        ->args([
+            service(HttpRequestBuilder::class),
+            service(AssetRepositoryInterface::class),
         ]);
 };
