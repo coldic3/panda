@@ -56,4 +56,14 @@ class UserRepository extends DoctrineRepository implements UserRepositoryInterfa
 
         $this->save($user);
     }
+
+    protected function getEntityClass(): string
+    {
+        return self::ENTITY_CLASS;
+    }
+
+    protected function getAlias(): string
+    {
+        return self::ALIAS;
+    }
 }

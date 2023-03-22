@@ -37,6 +37,32 @@ abstract class DoctrineRepository implements RepositoryInterface
         return (new DoctrineCollectionIterator($this->query()))->withPagination($page, $itemsPerPage);
     }
 
+    public function item(): ?object
+    {
+        $item = $this->query()->setMaxResults(1)->getQuery()->getOneOrNullResult();
+
+        if (null === $item) {
+            return null;
+        }
+
+        Assert::isInstanceOf($item, $this->getEntityClass());
+
+        return $item;
+    }
+
+    public function filterBy(string $fieldName, mixed $value, bool $strict = true): static
+    {
+        $alias = $this->getAlias();
+
+        if (!$strict) {
+            $value = '%'.$value.'%';
+        }
+
+        return $this->filter(static function (QueryBuilder $qb) use ($alias, $fieldName, $value): void {
+            $qb->where(sprintf('%s.%s LIKE :value', $alias, $fieldName))->setParameter('value', $value);
+        });
+    }
+
     protected function filter(callable $filter): static
     {
         $cloned = clone $this;
@@ -54,4 +80,9 @@ abstract class DoctrineRepository implements RepositoryInterface
     {
         $this->queryBuilder = clone $this->queryBuilder;
     }
+
+    /** @return class-string */
+    abstract protected function getEntityClass(): string;
+
+    abstract protected function getAlias(): string;
 }

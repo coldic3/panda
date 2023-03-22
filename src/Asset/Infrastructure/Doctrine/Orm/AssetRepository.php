@@ -37,4 +37,14 @@ final class AssetRepository extends DoctrineRepository implements AssetRepositor
     {
         return $this->em->find(self::ENTITY_CLASS, $id);
     }
+
+    protected function getEntityClass(): string
+    {
+        return self::ENTITY_CLASS;
+    }
+
+    protected function getAlias(): string
+    {
+        return self::ALIAS;
+    }
 }

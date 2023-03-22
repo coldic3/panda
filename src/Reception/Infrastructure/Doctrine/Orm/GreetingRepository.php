@@ -44,4 +44,14 @@ final class GreetingRepository extends DoctrineRepository implements GreetingRep
             $qb->where(sprintf('%s.name LIKE :name', self::ALIAS))->setParameter('name', '%'.$name.'%');
         });
     }
+
+    protected function getEntityClass(): string
+    {
+        return self::ENTITY_CLASS;
+    }
+
+    protected function getAlias(): string
+    {
+        return self::ALIAS;
+    }
 }
