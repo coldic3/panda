@@ -13,7 +13,7 @@ use ApiPlatform\Metadata\Patch;
 use ApiPlatform\Metadata\Post;
 use ApiPlatform\Metadata\Put;
 use Panda\Reception\Domain\Model\Greeting;
-use Panda\Reception\Infrastructure\ApiState\Processor\GreetingCrudProcesor;
+use Panda\Reception\Infrastructure\ApiState\Processor\GreetingCrudProcessor;
 use Panda\Reception\Infrastructure\ApiState\Provider\GreetingCrudProvider;
 use Panda\Reception\Infrastructure\OpenApi\Filter\NameFilter;
 use Symfony\Component\Serializer\Annotation\Groups;
@@ -34,7 +34,7 @@ use Symfony\Component\Validator\Constraints as Assert;
     ],
     denormalizationContext: ['groups' => ['create', 'update']],
     provider: GreetingCrudProvider::class,
-    processor: GreetingCrudProcesor::class
+    processor: GreetingCrudProcessor::class
 )]
 final class GreetingResource
 {

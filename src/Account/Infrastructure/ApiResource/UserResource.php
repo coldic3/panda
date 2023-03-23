@@ -9,7 +9,7 @@ use ApiPlatform\Metadata\ApiResource;
 use ApiPlatform\Metadata\Get;
 use ApiPlatform\Metadata\Post;
 use Panda\Account\Domain\Model\UserInterface;
-use Panda\Account\Infrastructure\ApiState\Processor\UserCreateProcesor;
+use Panda\Account\Infrastructure\ApiState\Processor\UserCreateProcessor;
 use Panda\Account\Infrastructure\ApiState\Provider\UserProvider;
 use Symfony\Component\Serializer\Annotation\Groups;
 use Symfony\Component\Uid\Uuid;
@@ -29,7 +29,7 @@ use Symfony\Component\Validator\Constraints as Assert;
             ],
             validationContext: ['groups' => self::WRITABLE_GROUPS],
             output: false,
-            processor: UserCreateProcesor::class,
+            processor: UserCreateProcessor::class,
         ),
     ],
     denormalizationContext: ['groups' => self::WRITABLE_GROUPS],
