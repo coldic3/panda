@@ -2,6 +2,7 @@
 
 declare(strict_types=1);
 
+use ApiPlatform\Api\IriConverterInterface;
 use Panda\Account\Domain\Repository\UserRepositoryInterface;
 use Panda\Asset\Domain\Repository\AssetRepositoryInterface;
 use Panda\Tests\Behat\Context\Api\AssetContext;
@@ -29,5 +30,6 @@ return static function (ContainerConfigurator $containerConfigurator): void {
         ->args([
             service(HttpRequestBuilder::class),
             service(AssetRepositoryInterface::class),
+            service(IriConverterInterface::class),
         ]);
 };

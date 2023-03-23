@@ -4,9 +4,12 @@ declare(strict_types=1);
 
 namespace Panda\Tests\Behat\Context\Api;
 
+use ApiPlatform\Api\IriConverterInterface;
+use ApiPlatform\Exception\ItemNotFoundException;
 use Behat\Behat\Context\Context;
 use Panda\Asset\Domain\Model\AssetInterface;
 use Panda\Asset\Domain\Repository\AssetRepositoryInterface;
+use Panda\Asset\Infrastructure\ApiResource\AssetResource;
 use Panda\Tests\Behat\Context\Util\EnableClipboardTrait;
 use Panda\Tests\Util\HttpMethodEnum;
 use Panda\Tests\Util\HttpRequestBuilder;
@@ -20,6 +23,7 @@ class AssetContext implements Context
     public function __construct(
         private readonly HttpRequestBuilder $http,
         private readonly AssetRepositoryInterface $assetRepository,
+        private readonly IriConverterInterface $iriConverter,
     ) {
     }
 
@@ -41,7 +45,7 @@ class AssetContext implements Context
     function i_edit_the_asset(AssetInterface $asset)
     {
         $this->http->initialize(
-            HttpMethodEnum::PUT,
+            HttpMethodEnum::PATCH,
             sprintf('/assets/%s', $asset->getId()),
             $this->clipboard->paste('token')
         );
@@ -116,9 +120,16 @@ class AssetContext implements Context
 
     /**
      * @Then dodawanie aktywa kończy się sukcesem
-     * @Then edycja aktywa kończy się sukcesem
      */
     function the_asset_creation_ends_with_a_success()
+    {
+        Assert::same($this->http->getResponse()->getStatusCode(), Response::HTTP_CREATED);
+    }
+
+    /**
+     * @Then edycja aktywa kończy się sukcesem
+     */
+    function the_asset_modification_ends_with_a_success()
     {
         Assert::same($this->http->getResponse()->getStatusCode(), Response::HTTP_OK);
     }
@@ -144,16 +155,21 @@ class AssetContext implements Context
      */
     function the_asset_has_been_created()
     {
-        Assert::notNull($this->assetRepository->findById($this->http->getPayloadElement('@id')));
+        /** @var AssetResource $resource */
+        $resource = $this->http->getResource();
+
+        Assert::notNull($this->assetRepository->findById($resource->id));
     }
 
     /**
-     * @Then aktywo nie zostało dodane do listy aktywów
      * @Then aktywo zostało usunięte z listy aktywów
      */
-    function the_asset_has_not_been_created()
+    function the_asset_has_been_deleted()
     {
-        Assert::null($this->assetRepository->findById($this->http->getPayloadElement('@id')));
+        Assert::throws(
+            fn () => $this->iriConverter->getResourceFromIri($this->http->getPath()),
+            ItemNotFoundException::class,
+        );
     }
 
     /**
@@ -161,7 +177,10 @@ class AssetContext implements Context
      */
     function the_asset_changes_its_name_to(string $name)
     {
-        Assert::notNull($asset = $this->assetRepository->findById($this->http->getPayloadElement('@id')));
+        /** @var AssetResource $resource */
+        $resource = $this->http->getResource();
+
+        Assert::notNull($asset = $this->assetRepository->findById($resource->id));
         Assert::same($asset->getName(), $name);
     }
 
@@ -170,7 +189,10 @@ class AssetContext implements Context
      */
     function the_asset_changes_its_ticker_to(string $ticker)
     {
-        Assert::notNull($asset = $this->assetRepository->findById($this->http->getPayloadElement('@id')));
+        /** @var AssetResource $resource */
+        $resource = $this->http->getResource();
+
+        Assert::notNull($asset = $this->assetRepository->findById($resource->id));
         Assert::same($asset->getTicker(), $ticker);
     }
 

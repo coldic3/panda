@@ -23,4 +23,3 @@ Potrzeba biznesowa: Tworzenie aktywów
         Gdy tworzę nowe aktywo
         I nie podaję żadnych danych
         Wtedy dodawanie aktywa kończy się niepowodzeniem
-        I aktywo nie zostało dodane do listy aktywów
