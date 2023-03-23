@@ -1,0 +1,3 @@
+Panda\Asset\Domain\Model\Asset:
+    asset_acme:
+        __construct: ['ACM', 'Acme Corp.']

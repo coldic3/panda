@@ -18,7 +18,9 @@ abstract class ApiTestCase extends JsonApiTestCase
             method: $method->value,
             uri: $uri,
             server: [
-                'CONTENT_TYPE' => 'application/ld+json',
+                'CONTENT_TYPE' => HttpMethodEnum::PATCH === $method
+                    ? 'application/merge-patch+json'
+                    : 'application/ld+json',
                 'HTTP_ACCEPT' => 'application/ld+json',
             ] + $headers,
             content: json_encode($body),

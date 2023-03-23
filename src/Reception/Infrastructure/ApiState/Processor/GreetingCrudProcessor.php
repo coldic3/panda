@@ -15,7 +15,7 @@ use Panda\Reception\Infrastructure\ApiResource\GreetingResource;
 use Panda\Shared\Application\Command\CommandBusInterface;
 use Webmozart\Assert\Assert;
 
-final class GreetingCrudProcesor implements ProcessorInterface
+final class GreetingCrudProcessor implements ProcessorInterface
 {
     public function __construct(
         private readonly CommandBusInterface $commandBus,

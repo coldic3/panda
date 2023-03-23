@@ -1,0 +1,26 @@
+{
+  "@context": "/contexts/Asset",
+  "@id": "/assets",
+  "@type": "hydra:Collection",
+  "hydra:totalItems": 3,
+  "hydra:member": [
+    {
+      "@id": "/assets/@uuid@",
+      "@type": "Asset",
+      "ticker": "@string@",
+      "name": "@string@"
+    },
+    {
+      "@id": "/assets/@uuid@",
+      "@type": "Asset",
+      "ticker": "@string@",
+      "name": "@string@"
+    },
+    {
+      "@id": "/assets/@uuid@",
+      "@type": "Asset",
+      "ticker": "@string@",
+      "name": "@string@"
+    }
+  ]
+}

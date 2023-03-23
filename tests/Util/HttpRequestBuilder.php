@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Panda\Tests\Util;
 
+use ApiPlatform\Api\IriConverterInterface;
 use Symfony\Contracts\HttpClient\HttpClientInterface;
 use Symfony\Contracts\HttpClient\ResponseInterface;
 
@@ -15,8 +16,10 @@ final class HttpRequestBuilder
     private ?string $authToken = null;
     private ResponseInterface $httpResponse;
 
-    public function __construct(private readonly HttpClientInterface $httpClient)
-    {
+    public function __construct(
+        private readonly HttpClientInterface $httpClient,
+        private readonly IriConverterInterface $iriConverter,
+    ) {
     }
 
     public function initialize(HttpMethodEnum $httpMethod, string $httpPath, ?string $authToken = null): void
@@ -40,7 +43,9 @@ final class HttpRequestBuilder
     {
         $headers = [
             'Accept' => 'application/ld+json',
-            'Content-Type' => 'application/ld+json',
+            'Content-Type' => HttpMethodEnum::PATCH === $this->httpMethod
+                ? 'application/merge-patch+json'
+                : 'application/ld+json',
         ];
 
         if (null !== $this->authToken) {
@@ -57,8 +62,18 @@ final class HttpRequestBuilder
         );
     }
 
+    public function getPath(): string
+    {
+        return $this->httpPath;
+    }
+
     public function getResponse(): ResponseInterface
     {
         return $this->httpResponse;
+    }
+
+    public function getResource(): object
+    {
+        return $this->iriConverter->getResourceFromIri($this->httpResponse->toArray()['@id']);
     }
 }

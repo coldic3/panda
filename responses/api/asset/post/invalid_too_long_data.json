@@ -1,0 +1,18 @@
+{
+  "@context": "/contexts/ConstraintViolationList",
+  "@type": "ConstraintViolationList",
+  "hydra:title": "An error occurred",
+  "hydra:description": "@string@",
+  "violations": [
+    {
+      "propertyPath": "ticker",
+      "message": "This value is too long. It should have 255 characters or less.",
+      "code": "@uuid@"
+    },
+    {
+      "propertyPath": "name",
+      "message": "This value is too long. It should have 255 characters or less.",
+      "code": "@uuid@"
+    }
+  ]
+}
