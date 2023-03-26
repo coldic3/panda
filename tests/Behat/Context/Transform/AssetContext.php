@@ -18,7 +18,7 @@ class AssetContext implements Context
     /**
      * @Transform /^aktywo "([^"]+)"$/
      */
-    function asset(string $ticker): AssetInterface
+    public function asset(string $ticker): AssetInterface
     {
         Assert::isInstanceOf(
             $asset = $this->assetRepository->filterBy('ticker', $ticker)->item(),

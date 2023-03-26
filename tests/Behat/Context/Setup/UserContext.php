@@ -26,7 +26,7 @@ class UserContext implements Context
      * @Given istnieje użytkownik :email
      * @Given użytkownik o adresie email :email już istnieje
      */
-    public function there_is_a_user_with_email_and_password(string $email, string $password = 'I<3BambooShoots'): void
+    function there_is_a_user_with_email_and_password(string $email, string $password = 'I<3BambooShoots')
     {
         $user = $this->userFactory->create($email, $password);
 
@@ -37,7 +37,7 @@ class UserContext implements Context
      * @Given jestem zalogowany jako :email
      * @Given jestem zalogowany
      */
-    public function i_am_logged_in(string $email = 'panda@example.com'): void
+    function i_am_logged_in(string $email = 'panda@example.com')
     {
         $this->there_is_a_user_with_email_and_password($email);
         $user = $this->userRepository->findByEmail($email);
@@ -54,7 +54,7 @@ class UserContext implements Context
     /**
      * @Given znam swój identyfikator użytkownika
      */
-    public function blank(): void
+    function blank()
     {
     }
 }

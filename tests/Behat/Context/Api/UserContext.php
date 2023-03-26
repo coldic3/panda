@@ -25,7 +25,7 @@ class UserContext implements Context
     /**
      * @When tworzę nowe konto
      */
-    public function i_create_a_new_account(): void
+    function i_create_a_new_account()
     {
         $this->http->initialize(HttpMethodEnum::POST, '/users');
     }
@@ -33,7 +33,7 @@ class UserContext implements Context
     /**
      * @When wyświetlam informacje o koncie :email
      */
-    public function i_show_account_information(string $email): void
+    function i_show_account_information(string $email)
     {
         $user = $this->userRepository->findByEmail($email);
 
@@ -49,7 +49,7 @@ class UserContext implements Context
     /**
      * @When podaję adres email :email
      */
-    public function i_pass_an_email(string $email): void
+    function i_pass_an_email(string $email)
     {
         $this->http->addToPayload('email', $email);
     }
@@ -57,7 +57,7 @@ class UserContext implements Context
     /**
      * @When podaję hasło :password
      */
-    public function i_pass_a_password(string $password): void
+    function i_pass_a_password(string $password)
     {
         $this->http->addToPayload('password', $password);
     }
@@ -66,7 +66,7 @@ class UserContext implements Context
      * @When zatwierdzam wprowadzone dane
      * @When nie podaję żadnych danych
      */
-    public function i_submit_entered_data(): void
+    function i_submit_entered_data()
     {
         $this->http->finalize();
     }
@@ -74,7 +74,7 @@ class UserContext implements Context
     /**
      * @Then rejestracja kończy się sukcesem
      */
-    public function the_registration_ends_with_a_success(): void
+    function the_registration_ends_with_a_success()
     {
         Assert::same($this->http->getResponse()->getStatusCode(), Response::HTTP_NO_CONTENT);
     }
@@ -82,7 +82,7 @@ class UserContext implements Context
     /**
      * @Then rejestracja kończy się niepowodzeniem
      */
-    public function the_registration_fails(): void
+    function the_registration_fails()
     {
         Assert::same($this->http->getResponse()->getStatusCode(), Response::HTTP_UNPROCESSABLE_ENTITY);
     }
@@ -90,7 +90,7 @@ class UserContext implements Context
     /**
      * @Then nie widzę żadnych dodatkowych informacji
      */
-    public function i_can_not_see_any_additional_information(): void
+    function i_can_not_see_any_additional_information()
     {
         $response = json_decode($this->http->getResponse()->getContent(false), true);
 
@@ -101,7 +101,7 @@ class UserContext implements Context
      * @Then konto zostało utworzone w systemie
      * @Then kolejne konto nie zostało utworzone w systemie
      */
-    public function the_account_has_been_created(): void
+    function the_account_has_been_created()
     {
         Assert::notNull($this->userRepository->findByEmail($this->http->getPayloadElement('email')));
     }
@@ -109,7 +109,7 @@ class UserContext implements Context
     /**
      * @Then konto nie zostało utworzone w systemie
      */
-    public function the_account_has_not_been_created(): void
+    function the_account_has_not_been_created()
     {
         Assert::null($this->userRepository->findByEmail($this->http->getPayloadElement('email')));
     }
@@ -118,7 +118,7 @@ class UserContext implements Context
      * @Then widzę pojedynczy komunikat o niepoprawnym adresie email
      * @Then widzę pojedynczy komunikat o pustym adresie email
      */
-    public function i_see_a_single_entry_about_an_invalid_email_address(): void
+    function i_see_a_single_entry_about_an_invalid_email_address()
     {
         $response = json_decode($this->http->getResponse()->getContent(false), true);
         $violations = $response['violations'] ?? [];
@@ -132,7 +132,7 @@ class UserContext implements Context
      * @Then widzę pojedynczy komunikat o niepoprawnym haśle
      * @Then widzę pojedynczy komunikat o pustym haśle
      */
-    public function i_see_a_single_entry_about_an_invalid_password(): void
+    function i_see_a_single_entry_about_an_invalid_password()
     {
         $response = json_decode($this->http->getResponse()->getContent(false), true);
         $violations = $response['violations'] ?? [];
@@ -145,7 +145,7 @@ class UserContext implements Context
     /**
      * @Then informacje o użytkowniku zostają wyświetlone
      */
-    public function the_user_information_are_showed(): void
+    function the_user_information_are_showed()
     {
         Assert::same($this->http->getResponse()->getStatusCode(), Response::HTTP_OK);
         Assert::notEmpty($this->http->getResponse()->getContent());
@@ -154,7 +154,7 @@ class UserContext implements Context
     /**
      * @Then informacje o użytkowniku nie zostają wyświetlone
      */
-    public function the_user_information_are_not_showed(): void
+    function the_user_information_are_not_showed()
     {
         Assert::same($this->http->getResponse()->getStatusCode(), Response::HTTP_NOT_FOUND);
     }

@@ -19,7 +19,7 @@ class AuthContext implements Context
     /**
      * @When rozpoczynam autoryzację
      */
-    public function i_start_authorization(): void
+    function i_start_authorization()
     {
         $this->http->initialize(HttpMethodEnum::POST, '/auth');
     }
@@ -27,7 +27,7 @@ class AuthContext implements Context
     /**
      * @When podaję adres email :email
      */
-    public function i_pass_an_email(string $email): void
+    function i_pass_an_email(string $email)
     {
         $this->http->addToPayload('email', $email);
     }
@@ -35,7 +35,7 @@ class AuthContext implements Context
     /**
      * @When podaję hasło :password
      */
-    public function i_pass_a_password(string $password): void
+    function i_pass_a_password(string $password)
     {
         $this->http->addToPayload('password', $password);
     }
@@ -43,7 +43,7 @@ class AuthContext implements Context
     /**
      * @When zatwierdzam wprowadzone dane
      */
-    public function i_submit_entered_data(): void
+    function i_submit_entered_data()
     {
         $this->http->finalize();
     }
@@ -51,7 +51,7 @@ class AuthContext implements Context
     /**
      * @Then autoryzacja kończy się sukcesem
      */
-    public function the_authorization_ends_with_a_success(): void
+    function the_authorization_ends_with_a_success()
     {
         Assert::same($this->http->getResponse()->getStatusCode(), Response::HTTP_OK);
     }
@@ -59,7 +59,7 @@ class AuthContext implements Context
     /**
      * @Then autoryzacja kończy się niepowodzeniem
      */
-    public function the_authorization_fails(): void
+    function the_authorization_fails()
     {
         Assert::same($this->http->getResponse()->getStatusCode(), Response::HTTP_UNAUTHORIZED);
     }
@@ -67,7 +67,7 @@ class AuthContext implements Context
     /**
      * @Then otrzymuję token autoryzacyjny
      */
-    public function i_receive_authorization_token(): void
+    function i_receive_authorization_token()
     {
         $response = json_decode($this->http->getResponse()->getContent(false), true);
 
@@ -77,7 +77,7 @@ class AuthContext implements Context
     /**
      * @Then nie otrzymuję tokena autoryzacyjnego
      */
-    public function i_do_not_receive_authorization_token(): void
+    function i_do_not_receive_authorization_token()
     {
         $response = json_decode($this->http->getResponse()->getContent(false), true);
 
