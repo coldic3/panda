@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Panda\Tests\Behat\Context\Setup;
 
 use Behat\Behat\Context\Context;
+use Doctrine\ORM\EntityManagerInterface;
 use Panda\Asset\Domain\Factory\AssetFactoryInterface;
 use Panda\Asset\Domain\Repository\AssetRepositoryInterface;
 
@@ -13,6 +14,7 @@ class AssetContext implements Context
     public function __construct(
         private readonly AssetFactoryInterface $assetFactory,
         private readonly AssetRepositoryInterface $assetRepository,
+        private readonly EntityManagerInterface $entityManager,
     ) {
     }
 
@@ -24,5 +26,6 @@ class AssetContext implements Context
         $asset = $this->assetFactory->create($ticker, $name);
 
         $this->assetRepository->save($asset);
+        $this->entityManager->flush();
     }
 }

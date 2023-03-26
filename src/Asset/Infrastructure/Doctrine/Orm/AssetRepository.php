@@ -24,13 +24,11 @@ final class AssetRepository extends DoctrineRepository implements AssetRepositor
     public function save(AssetInterface $asset): void
     {
         $this->em->persist($asset);
-        $this->em->flush();
     }
 
     public function remove(AssetInterface $asset): void
     {
         $this->em->remove($asset);
-        $this->em->flush();
     }
 
     public function findById(Uuid $id): ?AssetInterface

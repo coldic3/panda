@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Panda\Tests\Behat\Context\Setup;
 
 use Behat\Behat\Context\Context;
+use Doctrine\ORM\EntityManagerInterface;
 use Lexik\Bundle\JWTAuthenticationBundle\Encoder\JWTEncoderInterface;
 use Panda\Account\Domain\Factory\UserFactoryInterface;
 use Panda\Account\Domain\Repository\UserRepositoryInterface;
@@ -17,6 +18,7 @@ class UserContext implements Context
     public function __construct(
         private readonly UserFactoryInterface $userFactory,
         private readonly UserRepositoryInterface $userRepository,
+        private readonly EntityManagerInterface $entityManager,
         private readonly JWTEncoderInterface $jwtEncoder,
     ) {
     }
@@ -31,6 +33,7 @@ class UserContext implements Context
         $user = $this->userFactory->create($email, $password);
 
         $this->userRepository->save($user);
+        $this->entityManager->flush();
     }
 
     /**
