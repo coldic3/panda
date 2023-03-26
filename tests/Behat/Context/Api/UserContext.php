@@ -39,7 +39,7 @@ class UserContext implements Context
 
         $this->http->initialize(
             HttpMethodEnum::GET,
-            sprintf('/users/%s', $user->id),
+            sprintf('/users/%s', $user->getId()),
             $this->clipboard->paste('token')
         );
 

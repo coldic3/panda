@@ -4,14 +4,11 @@ declare(strict_types=1);
 
 namespace Panda\Account\Domain\Model;
 
+use Panda\Shared\Domain\Model\IdentifiableInterface;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface as SymfonyUserInterface;
-use Symfony\Component\Uid\Uuid;
 
-/**
- * @property Uuid $id
- */
-interface UserInterface extends SymfonyUserInterface, PasswordAuthenticatedUserInterface
+interface UserInterface extends IdentifiableInterface, SymfonyUserInterface, PasswordAuthenticatedUserInterface
 {
     public function getEmail(): string;
 

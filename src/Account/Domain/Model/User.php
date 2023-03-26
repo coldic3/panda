@@ -6,13 +6,18 @@ use Symfony\Component\Uid\Uuid;
 
 class User implements UserInterface
 {
-    public readonly Uuid $id;
+    private readonly Uuid $id;
 
     private ?string $password = null;
 
     public function __construct(private string $email)
     {
         $this->id = Uuid::v4();
+    }
+
+    public function getId(): Uuid
+    {
+        return $this->id;
     }
 
     public function getEmail(): string
@@ -51,6 +56,6 @@ class User implements UserInterface
 
     public function compare(UserInterface $user): bool
     {
-        return $this->id === $user->id;
+        return $this->getId() === $user->getId();
     }
 }

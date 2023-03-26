@@ -32,11 +32,11 @@ class AuthenticationSuccessEventListenerSpec extends ObjectBehavior
         $event->getUser()->willReturn($user);
 
         $iriConverter->getIriFromResource(UserResource::fromModel($user))
-            ->willReturn(sprintf('/users/%s', $user->id));
+            ->willReturn(sprintf('/users/%s', $user->getId()));
 
         $event->setData([
             'token' => 'jwtTokenHere!',
-            'user' => sprintf('/users/%s', $user->id),
+            'user' => sprintf('/users/%s', $user->getId()),
         ])->shouldBeCalled();
 
         $this($event->getWrappedObject());
