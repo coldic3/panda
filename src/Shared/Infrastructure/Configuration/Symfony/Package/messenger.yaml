@@ -19,8 +19,13 @@ framework:
         default_bus: command.bus
         
         buses:
-            command.bus: ~
-            query.bus: ~
+            command.bus:
+                middleware:
+                    - validation
+                    - doctrine_transaction
+            query.bus:
+                middleware:
+                    - validation
 
 # when@test:
 #    framework:

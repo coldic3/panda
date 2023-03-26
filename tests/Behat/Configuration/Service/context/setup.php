@@ -2,6 +2,7 @@
 
 declare(strict_types=1);
 
+use Doctrine\ORM\EntityManagerInterface;
 use Panda\Account\Domain\Factory\UserFactoryInterface;
 use Panda\Account\Domain\Repository\UserRepositoryInterface;
 use Panda\Asset\Domain\Factory\AssetFactoryInterface;
@@ -20,6 +21,7 @@ return static function (ContainerConfigurator $containerConfigurator): void {
         ->args([
             service(UserFactoryInterface::class),
             service(UserRepositoryInterface::class),
+            service(EntityManagerInterface::class),
             service('lexik_jwt_authentication.encoder.lcobucci'),
         ]);
 
@@ -27,5 +29,6 @@ return static function (ContainerConfigurator $containerConfigurator): void {
         ->args([
             service(AssetFactoryInterface::class),
             service(AssetRepositoryInterface::class),
+            service(EntityManagerInterface::class),
         ]);
 };

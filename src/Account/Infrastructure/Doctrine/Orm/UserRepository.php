@@ -24,13 +24,11 @@ class UserRepository extends DoctrineRepository implements UserRepositoryInterfa
     public function save(UserInterface $user): void
     {
         $this->em->persist($user);
-        $this->em->flush();
     }
 
     public function remove(UserInterface $user): void
     {
         $this->em->remove($user);
-        $this->em->flush();
     }
 
     public function findById(Uuid $id): ?UserInterface
