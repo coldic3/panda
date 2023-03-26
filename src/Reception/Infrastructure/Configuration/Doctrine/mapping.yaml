@@ -1,9 +1,9 @@
-doctrine:
-    orm:
-        mappings:
-            Reception:
-                is_bundle: false
-                type: xml
-                dir: '%kernel.project_dir%/src/Reception/Infrastructure/Configuration/Doctrine/mappings'
-                prefix: 'Panda\Reception\Domain\Model'
-                alias: Reception
+#doctrine:
+#    orm:
+#        mappings:
+#            Reception:
+#                is_bundle: false
+#                type: xml
+#                dir: '%kernel.project_dir%/src/Reception/Infrastructure/Configuration/Doctrine/mappings'
+#                prefix: 'Panda\Reception\Domain\Model'
+#                alias: Reception
