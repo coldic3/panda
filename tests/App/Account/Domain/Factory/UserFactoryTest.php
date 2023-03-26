@@ -24,7 +24,7 @@ final class UserFactoryTest extends TestCase
         $factory = new UserFactory($userPasswordHasher->reveal());
         $user = $factory->create('panda@example.com', 'I<3BambooShoots');
 
-        Assert::uuid($user->id);
+        Assert::uuid($user->getId());
         $this->assertSame('panda@example.com', $user->getEmail());
         $this->assertSame('khorisa', $user->getPassword());
     }
@@ -37,7 +37,7 @@ final class UserFactoryTest extends TestCase
         $factory = new UserFactory($userPasswordHasher->reveal());
         $user = $factory->create('panda@example.com');
 
-        Assert::uuid($user->id);
+        Assert::uuid($user->getId());
         $this->assertSame('panda@example.com', $user->getEmail());
         $this->assertNull($user->getPassword());
     }

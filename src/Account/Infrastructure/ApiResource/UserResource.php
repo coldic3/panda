@@ -59,6 +59,6 @@ final class UserResource
 
     public static function fromModel(UserInterface $user): UserResource
     {
-        return new self($user->id, $user->getEmail(), $user->getPassword());
+        return new self($user->getId(), $user->getEmail(), $user->getPassword());
     }
 }

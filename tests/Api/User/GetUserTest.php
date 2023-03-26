@@ -17,7 +17,7 @@ final class GetUserTest extends ApiTestCase
         /** @var User $user */
         $user = $fixtures['user_panda'];
 
-        $uri = sprintf('/users/%s', $user->id);
+        $uri = sprintf('/users/%s', $user->getId());
 
         $this->request(HttpMethodEnum::GET, $uri);
 
@@ -32,7 +32,7 @@ final class GetUserTest extends ApiTestCase
         /** @var User $user */
         $user = $fixtures['user_panda'];
 
-        $uri = sprintf('/users/%s', $user->id);
+        $uri = sprintf('/users/%s', $user->getId());
 
         $this->request(HttpMethodEnum::GET, $uri, [], $this->generateAuthorizationHeader($user));
 
@@ -49,7 +49,7 @@ final class GetUserTest extends ApiTestCase
         /** @var User $otherUser */
         $otherUser = $fixtures['user_1'];
 
-        $uri = sprintf('/users/%s', $otherUser->id);
+        $uri = sprintf('/users/%s', $otherUser->getId());
 
         $this->request(HttpMethodEnum::GET, $uri, [], $this->generateAuthorizationHeader($user));
 
