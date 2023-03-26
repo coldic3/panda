@@ -8,19 +8,25 @@
       "@id": "/assets/@uuid@",
       "@type": "Asset",
       "ticker": "@string@",
-      "name": "@string@"
+      "name": "@string@",
+      "createdAt": "@datetime@",
+      "updatedAt": "@datetime@"
     },
     {
       "@id": "/assets/@uuid@",
       "@type": "Asset",
       "ticker": "@string@",
-      "name": "@string@"
+      "name": "@string@",
+      "createdAt": "@datetime@",
+      "updatedAt": "@datetime@"
     },
     {
       "@id": "/assets/@uuid@",
       "@type": "Asset",
       "ticker": "@string@",
-      "name": "@string@"
+      "name": "@string@",
+      "createdAt": "@datetime@",
+      "updatedAt": "@datetime@"
     }
   ]
 }

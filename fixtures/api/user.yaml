@@ -5,3 +5,5 @@ Panda\Account\Domain\Model\User:
     user_panda:
         __construct: ['panda@example.com']
         password: <{password_hash}>
+        createdAt: <(new DateTimeImmutable())>
+        updatedAt: <(new DateTimeImmutable())>

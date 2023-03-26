@@ -4,10 +4,13 @@ declare(strict_types=1);
 
 namespace Panda\Asset\Domain\Model;
 
+use Panda\Shared\Domain\Model\TimestampableTrait;
 use Symfony\Component\Uid\Uuid;
 
 class Asset implements AssetInterface
 {
+    use TimestampableTrait;
+
     public readonly Uuid $id;
 
     public function __construct(private string $ticker, private string $name)

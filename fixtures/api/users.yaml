@@ -5,3 +5,5 @@ Panda\Account\Domain\Model\User:
     user_{1..10}:
         __construct: [<email()>]
         password: <{password_hash}>
+        createdAt: <dateTimeBetween('-200 days', 'now')>
+        updatedAt: <dateTimeBetween($createdAt, 'now')>

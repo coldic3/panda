@@ -2,5 +2,7 @@
   "@context": "/contexts/User",
   "@id": "/users/@uuid@",
   "@type": "User",
-  "email": "panda@example.com"
+  "email": "panda@example.com",
+  "createdAt": "@datetime@",
+  "updatedAt": "@datetime@"
 }

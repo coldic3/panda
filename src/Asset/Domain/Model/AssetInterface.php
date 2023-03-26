@@ -5,8 +5,9 @@ declare(strict_types=1);
 namespace Panda\Asset\Domain\Model;
 
 use Panda\Shared\Domain\Model\IdentifiableInterface;
+use Panda\Shared\Domain\Model\TimestampableInterface;
 
-interface AssetInterface extends IdentifiableInterface
+interface AssetInterface extends IdentifiableInterface, TimestampableInterface
 {
     public function getTicker(): string;
 
