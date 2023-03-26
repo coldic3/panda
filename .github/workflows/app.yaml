@@ -54,8 +54,12 @@ jobs:
             -
                 name: Create database
                 run: |
-                    php bin/console doctrine:database:create --if-not-exists
-                    php bin/console doctrine:schema:update --force
+                    bin/console doctrine:database:create --if-not-exists
+                    bin/console doctrine:migrations:migrate --no-interaction
+
+            -
+                name: Execute database schema validation
+                run: bin/console doctrine:schema:validate --skip-sync --no-interaction
 
             -
                 name: Execute static analysis
