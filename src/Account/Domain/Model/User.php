@@ -2,10 +2,13 @@
 
 namespace Panda\Account\Domain\Model;
 
+use Panda\Shared\Domain\Model\TimestampableTrait;
 use Symfony\Component\Uid\Uuid;
 
 class User implements UserInterface
 {
+    use TimestampableTrait;
+
     private readonly Uuid $id;
 
     private ?string $password = null;

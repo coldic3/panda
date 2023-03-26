@@ -5,10 +5,11 @@ declare(strict_types=1);
 namespace Panda\Account\Domain\Model;
 
 use Panda\Shared\Domain\Model\IdentifiableInterface;
+use Panda\Shared\Domain\Model\TimestampableInterface;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface as SymfonyUserInterface;
 
-interface UserInterface extends IdentifiableInterface, SymfonyUserInterface, PasswordAuthenticatedUserInterface
+interface UserInterface extends IdentifiableInterface, TimestampableInterface, SymfonyUserInterface, PasswordAuthenticatedUserInterface
 {
     public function getEmail(): string;
 

@@ -1,3 +1,5 @@
 Panda\Asset\Domain\Model\Asset:
     asset_{1..3}:
         __construct: [<lexify(???)>, <company()>]
+        createdAt: <dateTimeBetween('-200 days', 'now')>
+        updatedAt: <dateTimeBetween($createdAt, 'now')>

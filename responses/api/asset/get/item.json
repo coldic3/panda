@@ -3,5 +3,7 @@
   "@id": "/assets/@uuid@",
   "@type": "Asset",
   "ticker": "ACM",
-  "name": "Acme Corp."
+  "name": "Acme Corp.",
+  "createdAt": "@datetime@",
+  "updatedAt": "@datetime@"
 }

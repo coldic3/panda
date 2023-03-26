@@ -32,10 +32,12 @@ use Symfony\Component\Validator\Constraints as Assert;
             processor: UserCreateProcessor::class,
         ),
     ],
+    normalizationContext: ['groups' => self::READABLE_GROUPS],
     denormalizationContext: ['groups' => self::WRITABLE_GROUPS],
 )]
 final class UserResource
 {
+    private const READABLE_GROUPS = ['read'];
     private const WRITABLE_GROUPS = ['create'];
 
     public function __construct(
@@ -46,7 +48,7 @@ final class UserResource
         #[Assert\NotBlank(groups: self::WRITABLE_GROUPS)]
         #[Assert\Length(max: 180, groups: self::WRITABLE_GROUPS)]
         #[Assert\Email(groups: self::WRITABLE_GROUPS)]
-        #[Groups(self::WRITABLE_GROUPS)]
+        #[Groups([...self::READABLE_GROUPS, ...self::WRITABLE_GROUPS])]
         public ?string $email = null,
 
         #[ApiProperty(readable: false, default: 'password')]
@@ -54,11 +56,25 @@ final class UserResource
         #[Assert\Length(min: 8, groups: self::WRITABLE_GROUPS)]
         #[Groups(self::WRITABLE_GROUPS)]
         public ?string $password = null,
+
+        #[ApiProperty(writable: false)]
+        #[Groups(self::READABLE_GROUPS)]
+        public ?\DateTimeInterface $createdAt = null,
+
+        #[ApiProperty(writable: false)]
+        #[Groups(self::READABLE_GROUPS)]
+        public ?\DateTimeInterface $updatedAt = null,
     ) {
     }
 
     public static function fromModel(UserInterface $user): UserResource
     {
-        return new self($user->getId(), $user->getEmail(), $user->getPassword());
+        return new self(
+            $user->getId(),
+            $user->getEmail(),
+            $user->getPassword(),
+            $user->getCreatedAt(),
+            $user->getUpdatedAt()
+        );
     }
 }

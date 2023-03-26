@@ -52,11 +52,25 @@ final class AssetResource
         #[Assert\Length(max: 255, groups: self::WRITABLE_GROUPS)]
         #[Groups([...self::READABLE_GROUPS, ...self::WRITABLE_GROUPS])]
         public ?string $name = null,
+
+        #[ApiProperty(writable: false)]
+        #[Groups(self::READABLE_GROUPS)]
+        public ?\DateTimeInterface $createdAt = null,
+
+        #[ApiProperty(writable: false)]
+        #[Groups(self::READABLE_GROUPS)]
+        public ?\DateTimeInterface $updatedAt = null,
     ) {
     }
 
     public static function fromModel(AssetInterface $asset): AssetResource
     {
-        return new self($asset->getId(), $asset->getTicker(), $asset->getName());
+        return new self(
+            $asset->getId(),
+            $asset->getTicker(),
+            $asset->getName(),
+            $asset->getCreatedAt(),
+            $asset->getUpdatedAt(),
+        );
     }
 }
