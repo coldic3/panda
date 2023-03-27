@@ -7,9 +7,11 @@ namespace Panda\Tests\Behat\Context\Setup;
 use Behat\Behat\Context\Context;
 use Doctrine\ORM\EntityManagerInterface;
 use Lexik\Bundle\JWTAuthenticationBundle\Encoder\JWTEncoderInterface;
+use Lexik\Bundle\JWTAuthenticationBundle\Security\Authentication\Token\JWTUserToken;
 use Panda\Account\Domain\Factory\UserFactoryInterface;
 use Panda\Account\Domain\Repository\UserRepositoryInterface;
 use Panda\Tests\Behat\Context\Util\EnableClipboardTrait;
+use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 
 class UserContext implements Context
 {
@@ -20,6 +22,7 @@ class UserContext implements Context
         private readonly UserRepositoryInterface $userRepository,
         private readonly EntityManagerInterface $entityManager,
         private readonly JWTEncoderInterface $jwtEncoder,
+        private readonly TokenStorageInterface $tokenStorage,
     ) {
     }
 
@@ -49,6 +52,8 @@ class UserContext implements Context
             'username' => $user->getEmail(),
             'roles' => $user->getRoles(),
         ]);
+
+        $this->tokenStorage->setToken(new JWTUserToken($user->getRoles(), $user, $token));
 
         $this->clipboard->copy('authUser', $user);
         $this->clipboard->copy('token', $token);

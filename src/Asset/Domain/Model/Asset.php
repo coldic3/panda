@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Panda\Asset\Domain\Model;
 
+use Panda\Contract\AggregateRoot\Owner\OwnerInterface;
 use Panda\Shared\Domain\Model\TimestampableTrait;
 use Symfony\Component\Uid\Uuid;
 
@@ -12,6 +13,8 @@ class Asset implements AssetInterface
     use TimestampableTrait;
 
     public readonly Uuid $id;
+
+    private ?OwnerInterface $owner = null;
 
     public function __construct(private string $ticker, private string $name)
     {
@@ -41,5 +44,15 @@ class Asset implements AssetInterface
     public function setName(string $name): void
     {
         $this->name = $name;
+    }
+
+    public function getOwnedBy(): ?OwnerInterface
+    {
+        return $this->owner;
+    }
+
+    public function setOwnedBy(OwnerInterface $owner): void
+    {
+        $this->owner = $owner;
     }
 }

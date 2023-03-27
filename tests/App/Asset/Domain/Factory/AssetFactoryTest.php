@@ -4,16 +4,25 @@ declare(strict_types=1);
 
 namespace Panda\Tests\App\Asset\Domain\Factory;
 
+use Panda\Account\Domain\Model\UserInterface;
 use Panda\Asset\Domain\Factory\AssetFactory;
 use PHPUnit\Framework\TestCase;
+use Prophecy\PhpUnit\ProphecyTrait;
+use Symfony\Bundle\SecurityBundle\Security;
 use Webmozart\Assert\Assert;
 
 final class AssetFactoryTest extends TestCase
 {
+    use ProphecyTrait;
+
     /** @test */
     function it_creates_asset()
     {
-        $factory = new AssetFactory();
+        $security = $this->prophesize(Security::class);
+        $owner = $this->prophesize(UserInterface::class);
+        $security->getUser()->willReturn($owner);
+
+        $factory = new AssetFactory($security->reveal());
         $asset = $factory->create('AAPL', 'Apple Inc.');
 
         Assert::uuid($asset->getId());
@@ -24,7 +33,11 @@ final class AssetFactoryTest extends TestCase
     /** @test */
     function it_creates_asset_without_name()
     {
-        $factory = new AssetFactory();
+        $security = $this->prophesize(Security::class);
+        $owner = $this->prophesize(UserInterface::class);
+        $security->getUser()->willReturn($owner);
+
+        $factory = new AssetFactory($security->reveal());
         $asset = $factory->create('AAPL');
 
         Assert::uuid($asset->getId());

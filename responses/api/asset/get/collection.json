@@ -2,8 +2,16 @@
   "@context": "/contexts/Asset",
   "@id": "/assets",
   "@type": "hydra:Collection",
-  "hydra:totalItems": 3,
+  "hydra:totalItems": 4,
   "hydra:member": [
+    {
+      "@id": "/assets/@uuid@",
+      "@type": "Asset",
+      "ticker": "@string@",
+      "name": "@string@",
+      "createdAt": "@datetime@",
+      "updatedAt": "@datetime@"
+    },
     {
       "@id": "/assets/@uuid@",
       "@type": "Asset",
