@@ -16,13 +16,19 @@ final class AssetFactory implements AssetFactoryInterface
     {
     }
 
-    public function create(string $ticker, ?string $name = null): AssetInterface
+    public function create(string $ticker, ?string $name = null, ?OwnerInterface $owner = null): AssetInterface
     {
         if (null === $name) {
             $name = $ticker;
         }
 
         $asset = new Asset($ticker, $name);
+
+        if (null !== $owner) {
+            $asset->setOwnedBy($owner);
+
+            return $asset;
+        }
 
         Assert::isInstanceOf(
             $owner = $this->security->getUser(),

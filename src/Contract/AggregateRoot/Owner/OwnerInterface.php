@@ -4,6 +4,9 @@ declare(strict_types=1);
 
 namespace Panda\Contract\AggregateRoot\Owner;
 
-interface OwnerInterface
+use Panda\Shared\Domain\Model\IdentifiableInterface;
+
+interface OwnerInterface extends IdentifiableInterface
 {
+    public function compare(OwnerInterface $owner): bool;
 }

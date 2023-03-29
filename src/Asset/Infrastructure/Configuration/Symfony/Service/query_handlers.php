@@ -12,13 +12,19 @@ return static function (ContainerConfigurator $containerConfigurator): void {
     $services = $containerConfigurator->services();
 
     $services->set(FindAssetQueryHandler::class)
-        ->args([service(AssetRepositoryInterface::class)])
+        ->args([
+            service(AssetRepositoryInterface::class),
+            service('security.helper'),
+        ])
         ->tag('messenger.message_handler', [
             'bus_name' => 'query.bus',
         ]);
 
     $services->set(FindAssetsQueryHandler::class)
-        ->args([service(AssetRepositoryInterface::class)])
+        ->args([
+            service(AssetRepositoryInterface::class),
+            service('security.helper'),
+        ])
         ->tag('messenger.message_handler', [
             'bus_name' => 'query.bus',
         ]);
