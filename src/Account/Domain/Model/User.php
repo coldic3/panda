@@ -2,6 +2,7 @@
 
 namespace Panda\Account\Domain\Model;
 
+use Panda\Contract\AggregateRoot\Owner\OwnerInterface;
 use Panda\Shared\Domain\Model\TimestampableTrait;
 use Symfony\Component\Uid\Uuid;
 
@@ -57,8 +58,8 @@ class User implements UserInterface
     {
     }
 
-    public function compare(UserInterface $user): bool
+    public function compare(OwnerInterface $owner): bool
     {
-        return $this->getId() === $user->getId();
+        return $this->getId() === $owner->getId();
     }
 }

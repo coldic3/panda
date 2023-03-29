@@ -54,12 +54,16 @@ abstract class DoctrineRepository implements RepositoryInterface
     {
         $alias = $this->getAlias();
 
+        $operator = '=';
+
         if (!$strict) {
             $value = '%'.$value.'%';
+            $operator = 'LIKE';
         }
 
-        return $this->filter(static function (QueryBuilder $qb) use ($alias, $fieldName, $value): void {
-            $qb->where(sprintf('%s.%s LIKE :value', $alias, $fieldName))->setParameter('value', $value);
+        return $this->filter(static function (QueryBuilder $qb) use ($alias, $fieldName, $operator, $value): void {
+            $qb->where(sprintf('%s.%s %s :value', $alias, $fieldName, $operator))
+                ->setParameter('value', $value);
         });
     }
 

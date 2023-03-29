@@ -23,6 +23,7 @@ return static function (ContainerConfigurator $containerConfigurator): void {
             service(UserRepositoryInterface::class),
             service(EntityManagerInterface::class),
             service('lexik_jwt_authentication.encoder.lcobucci'),
+            service('security.token_storage'),
         ]);
 
     $services->set(AssetContext::class)

@@ -205,4 +205,12 @@ class AssetContext implements Context
         Assert::same($this->http->getResponse()->getStatusCode(), Response::HTTP_OK);
         Assert::notEmpty($this->http->getResponse()->getContent());
     }
+
+    /**
+     * @Then informacje o aktywie nie zostają wyświetlane
+     */
+    function the_user_information_are_not_showed()
+    {
+        Assert::same($this->http->getResponse()->getStatusCode(), Response::HTTP_NOT_FOUND);
+    }
 }

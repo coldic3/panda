@@ -2,8 +2,10 @@
 
 declare(strict_types=1);
 
+use Panda\Account\Domain\Repository\UserRepositoryInterface;
 use Panda\Asset\Domain\Repository\AssetRepositoryInterface;
 use Panda\Tests\Behat\Context\Transform\AssetContext;
+use Panda\Tests\Behat\Context\Transform\UserContext;
 use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
 use function Symfony\Component\DependencyInjection\Loader\Configurator\service;
 
@@ -14,4 +16,7 @@ return static function (ContainerConfigurator $containerConfigurator): void {
 
     $services->set(AssetContext::class)
         ->args([service(AssetRepositoryInterface::class)]);
+
+    $services->set(UserContext::class)
+        ->args([service(UserRepositoryInterface::class)]);
 };

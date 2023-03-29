@@ -1,8 +1,11 @@
+include:
+    - 'user.yaml'
+
 parameters:
     password_hash: '$2y$13$1VVPBmUB1pJAnOCf4ivNm.kkwhtw8df8AV.HbD3tpU52Jw0eyBMFm' # The password is 'password'.
 
 Panda\Account\Domain\Model\User:
-    user_{1..10}:
+    user_{1..3}:
         __construct: [<email()>]
         password: <{password_hash}>
         createdAt: <dateTimeBetween('-200 days', 'now')>

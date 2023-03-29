@@ -31,7 +31,7 @@ final class PatchAssetTest extends ApiTestCase
     /** @test */
     function it_updates_an_asset()
     {
-        $fixtures = $this->loadFixturesFromFiles(['user.yaml', 'asset.yaml']);
+        $fixtures = $this->loadFixturesFromFile('asset.yaml');
 
         /** @var User $user */
         $user = $fixtures['user_panda'];
@@ -50,7 +50,7 @@ final class PatchAssetTest extends ApiTestCase
     /** @test */
     function it_validates_for_empty_data()
     {
-        $fixtures = $this->loadFixturesFromFiles(['user.yaml', 'asset.yaml']);
+        $fixtures = $this->loadFixturesFromFile('asset.yaml');
 
         /** @var User $user */
         $user = $fixtures['user_panda'];
@@ -73,7 +73,7 @@ final class PatchAssetTest extends ApiTestCase
     /** @test */
     function it_validates_for_too_long_data()
     {
-        $fixtures = $this->loadFixturesFromFiles(['user.yaml', 'asset.yaml']);
+        $fixtures = $this->loadFixturesFromFile('asset.yaml');
 
         /** @var User $user */
         $user = $fixtures['user_panda'];

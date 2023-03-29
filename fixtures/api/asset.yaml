@@ -1,5 +1,9 @@
+include:
+    - 'user.yaml'
+
 Panda\Asset\Domain\Model\Asset:
     asset_acme:
         __construct: ['ACM', 'Acme Corp.']
+        ownedBy: '@user_panda'
         createdAt: <(new DateTimeImmutable())>
         updatedAt: <(new DateTimeImmutable())>

@@ -30,7 +30,7 @@ final class DeleteAssetTest extends ApiTestCase
     /** @test */
     function it_deletes_an_asset()
     {
-        $fixtures = $this->loadFixturesFromFiles(['user.yaml', 'asset.yaml']);
+        $fixtures = $this->loadFixturesFromFile('asset.yaml');
 
         /** @var User $user */
         $user = $fixtures['user_panda'];

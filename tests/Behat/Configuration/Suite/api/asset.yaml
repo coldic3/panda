@@ -8,5 +8,6 @@ default:
                 - Panda\Tests\Behat\Context\Setup\UserContext
                 - Panda\Tests\Behat\Context\Api\AssetContext
                 - Panda\Tests\Behat\Context\Transform\AssetContext
+                - Panda\Tests\Behat\Context\Transform\UserContext
             filters:
                 tags: "@api&&@asset"

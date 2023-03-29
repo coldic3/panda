@@ -28,7 +28,7 @@ final class GetAssetTest extends ApiTestCase
     /** @test */
     function it_gets_an_asset_item()
     {
-        $fixtures = $this->loadFixturesFromFiles(['user.yaml', 'asset.yaml']);
+        $fixtures = $this->loadFixturesFromFile('asset.yaml');
 
         /** @var User $user */
         $user = $fixtures['user_panda'];
@@ -45,7 +45,7 @@ final class GetAssetTest extends ApiTestCase
     /** @test */
     function it_gets_an_asset_collection()
     {
-        $fixtures = $this->loadFixturesFromFiles(['user.yaml', 'assets.yaml']);
+        $fixtures = $this->loadFixturesFromFile('assets.yaml');
 
         /** @var User $user */
         $user = $fixtures['user_panda'];

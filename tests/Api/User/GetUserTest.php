@@ -42,7 +42,7 @@ final class GetUserTest extends ApiTestCase
     /** @test */
     function it_does_not_get_other_user()
     {
-        $fixtures = $this->loadFixturesFromFiles(['user.yaml', 'users.yaml']);
+        $fixtures = $this->loadFixturesFromFile('users.yaml');
 
         /** @var User $user */
         $user = $fixtures['user_panda'];
