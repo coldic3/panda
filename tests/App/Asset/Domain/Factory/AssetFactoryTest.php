@@ -44,4 +44,19 @@ final class AssetFactoryTest extends TestCase
         $this->assertSame('AAPL', $asset->getTicker());
         $this->assertSame('AAPL', $asset->getName());
     }
+
+    /** @test */
+    function it_creates_asset_with_owner()
+    {
+        $security = $this->prophesize(Security::class);
+        $owner = $this->prophesize(UserInterface::class);
+
+        $factory = new AssetFactory($security->reveal());
+        $asset = $factory->create('AAPL', 'Apple Inc.', $owner->reveal());
+
+        Assert::uuid($asset->getId());
+        $this->assertSame('AAPL', $asset->getTicker());
+        $this->assertSame('Apple Inc.', $asset->getName());
+        $this->assertSame($owner->reveal(), $asset->getOwnedBy());
+    }
 }
