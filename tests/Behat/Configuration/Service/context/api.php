@@ -7,6 +7,7 @@ use Panda\Account\Domain\Repository\UserRepositoryInterface;
 use Panda\Asset\Domain\Repository\AssetRepositoryInterface;
 use Panda\Tests\Behat\Context\Api\AssetContext;
 use Panda\Tests\Behat\Context\Api\AuthContext;
+use Panda\Tests\Behat\Context\Api\TransactionContext;
 use Panda\Tests\Behat\Context\Api\UserContext;
 use Panda\Tests\Util\HttpRequestBuilder;
 use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
@@ -30,6 +31,12 @@ return static function (ContainerConfigurator $containerConfigurator): void {
         ->args([
             service(HttpRequestBuilder::class),
             service(AssetRepositoryInterface::class),
+            service(IriConverterInterface::class),
+        ]);
+
+    $services->set(TransactionContext::class)
+        ->args([
+            service(HttpRequestBuilder::class),
             service(IriConverterInterface::class),
         ]);
 };

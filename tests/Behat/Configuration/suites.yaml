@@ -1,4 +1,5 @@
 imports:
     - Suite/api/asset.yaml
     - Suite/api/auth.yaml
+    - Suite/api/transaction.yaml
     - Suite/api/user.yaml
