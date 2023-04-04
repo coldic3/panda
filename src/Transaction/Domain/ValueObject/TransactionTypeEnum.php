@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Panda\Transaction\Domain\Enum;
+namespace Panda\Transaction\Domain\ValueObject;
 
 enum TransactionTypeEnum: string
 {
