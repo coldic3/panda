@@ -4,19 +4,15 @@ declare(strict_types=1);
 
 namespace Panda\Transaction\Domain\ValueObject;
 
-use Panda\Contract\AggregateRoot\Resource\ResourceInterface;
-
 final readonly class Operation implements OperationInterface
 {
-    public function __construct(
-        private ResourceInterface $resource,
-        private int $quantity,
-    ) {
+    public function __construct(private string $resourceId, private int $quantity)
+    {
     }
 
-    public function getResource(): ResourceInterface
+    public function getResourceId(): string
     {
-        return $this->resource;
+        return $this->resourceId;
     }
 
     public function getQuantity(): int
