@@ -1,0 +1,23 @@
+{
+  "@context": "/contexts/ConstraintViolationList",
+  "@type": "ConstraintViolationList",
+  "hydra:title": "An error occurred",
+  "hydra:description": "@string@",
+  "violations": [
+    {
+      "propertyPath": "fromOperation.quantity",
+      "message": "This value should be 1 or more.",
+      "code": "@uuid@"
+    },
+    {
+      "propertyPath": "toOperation.quantity",
+      "message": "This value should be 1 or more.",
+      "code": "@uuid@"
+    },
+    {
+      "propertyPath": "adjustmentOperations[0].quantity",
+      "message": "This value should be 1 or more.",
+      "code": "@uuid@"
+    }
+  ]
+}

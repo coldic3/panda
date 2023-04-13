@@ -5,9 +5,9 @@ declare(strict_types=1);
 namespace Panda\Transaction\Domain\Factory;
 
 use Panda\Contract\AggregateRoot\Owner\OwnerInterface;
+use Panda\Transaction\Domain\Model\OperationInterface;
 use Panda\Transaction\Domain\Model\Transaction;
 use Panda\Transaction\Domain\Model\TransactionInterface;
-use Panda\Transaction\Domain\ValueObject\OperationInterface;
 use Panda\Transaction\Domain\ValueObject\TransactionTypeEnum;
 use Symfony\Bundle\SecurityBundle\Security;
 use Webmozart\Assert\Assert;
@@ -81,23 +81,6 @@ final class TransactionFactory implements TransactionFactoryInterface
             TransactionTypeEnum::WITHDRAW,
             $from,
             null,
-            $adjustments,
-            $concludedAt,
-        );
-
-        return $this->enrichWithOwner($transaction, $owner);
-    }
-
-    public function createTransfer(
-        OperationInterface $to,
-        array $adjustments,
-        \DateTimeInterface $concludedAt,
-        ?OwnerInterface $owner = null,
-    ): TransactionInterface {
-        $transaction = new Transaction(
-            TransactionTypeEnum::TRANSFER,
-            null,
-            $to,
             $adjustments,
             $concludedAt,
         );

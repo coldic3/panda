@@ -12,12 +12,14 @@ use Symfony\Component\Finder\SplFileInfo;
 
 final class BoundedContextsSeparationTest
 {
+    private const COUPLING_ALLOWED = ['AntiCorruptionLayer', 'Contract', 'Shared'];
+
     public function test_account_bounded_context_does_not_depend_on_other_bounded_contexts(): Rule
     {
         return PHPat::rule()
             ->classes(Selector::namespace('Panda\\Account'))
             ->shouldNotDependOn()
-            ->classes(...$this->findBoundedContextsExcept(['Account', 'Contract', 'Shared']));
+            ->classes(...$this->findBoundedContextsExcept(['Account', ...self::COUPLING_ALLOWED]));
     }
 
     public function test_asset_bounded_context_does_not_depend_on_other_bounded_contexts(): Rule
@@ -25,7 +27,16 @@ final class BoundedContextsSeparationTest
         return PHPat::rule()
             ->classes(Selector::namespace('Panda\\Asset'))
             ->shouldNotDependOn()
-            ->classes(...$this->findBoundedContextsExcept(['Asset', 'Contract', 'Shared']));
+            ->classes(...$this->findBoundedContextsExcept(['Asset', ...self::COUPLING_ALLOWED]));
+    }
+
+    public function test_transaction_bounded_context_does_not_depend_on_other_bounded_contexts(): Rule
+    {
+        return PHPat::rule()
+            ->classes(Selector::namespace('Panda\\Transaction'))
+            ->excluding(Selector::classname('Panda\Transaction\Infrastructure\ApiResource\OperationResource'))
+            ->shouldNotDependOn()
+            ->classes(...$this->findBoundedContextsExcept(['Transaction', ...self::COUPLING_ALLOWED]));
     }
 
     public function test_shared_bounded_context_does_not_depend_on_other_bounded_contexts(): Rule

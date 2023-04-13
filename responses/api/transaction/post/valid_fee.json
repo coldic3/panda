@@ -1,0 +1,15 @@
+{
+  "@context": "/contexts/Transaction",
+  "@id": "/transactions/@uuid@",
+  "@type": "Transaction",
+  "type": "fee",
+  "adjustmentOperations": [
+    {
+      "@id": "/operations/@uuid@",
+      "@type": "Operation",
+      "resource": "/assets/@uuid@",
+      "quantity": "@integer@.greaterThan(0)"
+    }
+  ],
+  "concludedAt": "@datetime@"
+}

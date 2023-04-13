@@ -14,7 +14,7 @@ Potrzeba biznesowa: Pobranie opłaty
     @api
     Scenariusz: Pobranie opłaty
         Gdy rozpoczynam nową transakcję
-        I wybieram typ transakcji "transfer"
+        I wybieram typ transakcji "fee"
         I dodaję opłatę w wysokości 456.74 PLN
         I podaję datę oraz czas zawarcia transakcji
         I zatwierdzam transakcję

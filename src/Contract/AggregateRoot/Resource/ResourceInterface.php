@@ -8,4 +8,5 @@ use Panda\Shared\Domain\Model\IdentifiableInterface;
 
 interface ResourceInterface extends IdentifiableInterface
 {
+    public function compare(ResourceInterface $resource): bool;
 }

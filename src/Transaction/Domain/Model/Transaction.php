@@ -7,7 +7,6 @@ namespace Panda\Transaction\Domain\Model;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Panda\Contract\AggregateRoot\Owner\OwnerInterface;
-use Panda\Transaction\Domain\ValueObject\OperationInterface;
 use Panda\Transaction\Domain\ValueObject\TransactionTypeEnum;
 use Symfony\Component\Uid\Uuid;
 
@@ -17,8 +16,12 @@ final class Transaction implements TransactionInterface
 
     private ?OwnerInterface $owner = null;
 
-    /** @var Collection<array-key, OperationInterface> */
-    private readonly Collection $adjustmentOperations;
+    /**
+     * @var Collection<array-key, OperationInterface>
+     *
+     * @readonly but Doctrine needs to be able to add to it
+     */
+    private Collection $adjustmentOperations;
 
     /**
      * @param OperationInterface[] $adjustmentOperations

@@ -7,7 +7,7 @@ namespace Panda\Tests\App\Transaction\Domain\Factory;
 use Panda\Account\Domain\Model\UserInterface;
 use Panda\Contract\AggregateRoot\Resource\ResourceInterface;
 use Panda\Transaction\Domain\Factory\TransactionFactory;
-use Panda\Transaction\Domain\ValueObject\Operation;
+use Panda\Transaction\Domain\Model\Operation;
 use Panda\Transaction\Domain\ValueObject\TransactionTypeEnum;
 use PHPUnit\Framework\TestCase;
 use Prophecy\PhpUnit\ProphecyTrait;
@@ -135,34 +135,6 @@ final class TransactionFactoryTest extends TestCase
     }
 
     /** @test */
-    function it_creates_transfer_transaction()
-    {
-        $security = $this->prophesize(Security::class);
-        $owner = $this->prophesize(UserInterface::class);
-        $firstResource = $this->prophesize(ResourceInterface::class);
-        $secondResource = $this->prophesize(ResourceInterface::class);
-        $thirdResource = $this->prophesize(ResourceInterface::class);
-        $security->getUser()->willReturn($owner);
-
-        $factory = new TransactionFactory($security->reveal());
-        $transaction = $factory->createTransfer(
-            new Operation($firstResource->reveal(), 245),
-            [
-                new Operation($secondResource->reveal(), 10),
-                new Operation($thirdResource->reveal(), 20),
-            ],
-            new \DateTimeImmutable('2023-04-04 23:02:37'),
-        );
-
-        Assert::uuid($transaction->getId());
-        $this->assertSame(TransactionTypeEnum::TRANSFER, $transaction->getType());
-        $this->assertNull($transaction->getFromOperation());
-        $this->assertSame(245, $transaction->getToOperation()->getQuantity());
-        $this->assertSame(10, $transaction->getAdjustmentOperations()->get(0)->getQuantity());
-        $this->assertSame(20, $transaction->getAdjustmentOperations()->get(1)->getQuantity());
-    }
-
-    /** @test */
     function it_creates_fee_transaction()
     {
         $security = $this->prophesize(Security::class);
@@ -246,17 +218,6 @@ final class TransactionFactoryTest extends TestCase
         );
         $this->assertSame($owner->reveal(), $transaction->getOwnedBy());
 
-        $transaction = $factory->createTransfer(
-            new Operation($firstResource->reveal(), 245),
-            [
-                new Operation($secondResource->reveal(), 10),
-                new Operation($thirdResource->reveal(), 20),
-            ],
-            new \DateTimeImmutable('2023-04-04 23:02:37'),
-            $owner->reveal(),
-        );
-        $this->assertSame($owner->reveal(), $transaction->getOwnedBy());
-
         $transaction = $factory->createFee(
             [
                 new Operation($firstResource->reveal(), 10),
@@ -303,13 +264,6 @@ final class TransactionFactoryTest extends TestCase
         Assert::uuid($transaction->getId());
 
         $transaction = $factory->createWithdraw(
-            new Operation($firstResource->reveal(), 245),
-            [],
-            new \DateTimeImmutable('2023-04-04 23:02:37'),
-        );
-        Assert::uuid($transaction->getId());
-
-        $transaction = $factory->createTransfer(
             new Operation($firstResource->reveal(), 245),
             [],
             new \DateTimeImmutable('2023-04-04 23:02:37'),
