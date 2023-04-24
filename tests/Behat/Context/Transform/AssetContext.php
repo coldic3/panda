@@ -17,6 +17,10 @@ class AssetContext implements Context
 
     /**
      * @Transform /^aktywo "([^"]+)"$/
+     * @Transform /^spółki "([^"]+)"$/
+     * @Transform :asset
+     * @Transform :grossAsset
+     * @Transform :netAsset
      */
     public function asset(string $ticker): AssetInterface
     {

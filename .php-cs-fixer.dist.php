@@ -7,5 +7,6 @@ return (new PhpCsFixer\Config())
         '@Symfony' => true,
         'blank_line_between_import_groups' => false,
         'phpdoc_to_comment' => false,
+        'phpdoc_align' => false,
     ])
     ->setFinder($finder);

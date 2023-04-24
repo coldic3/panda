@@ -1,0 +1,9 @@
+doctrine:
+    orm:
+        mappings:
+            Transaction:
+                is_bundle: false
+                type: xml
+                dir: '%kernel.project_dir%/src/Transaction/Infrastructure/Configuration/Doctrine/mappings'
+                prefix: 'Panda\Transaction\Domain\Model'
+                alias: Transaction

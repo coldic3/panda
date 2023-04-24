@@ -5,10 +5,10 @@ declare(strict_types=1);
 namespace Panda\Asset\Domain\Model;
 
 use Panda\Contract\AggregateRoot\Owner\OwnershipInterface;
-use Panda\Shared\Domain\Model\IdentifiableInterface;
+use Panda\Contract\AggregateRoot\Resource\ResourceInterface;
 use Panda\Shared\Domain\Model\TimestampableInterface;
 
-interface AssetInterface extends IdentifiableInterface, TimestampableInterface, OwnershipInterface
+interface AssetInterface extends ResourceInterface, TimestampableInterface, OwnershipInterface
 {
     public function getTicker(): string;
 

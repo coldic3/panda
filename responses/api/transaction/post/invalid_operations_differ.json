@@ -1,0 +1,6 @@
+{
+  "@context": "/contexts/Error",
+  "@type": "hydra:Error",
+  "hydra:title": "An error occurred",
+  "hydra:description": "The from and to operations must not belong to the same resource."
+}

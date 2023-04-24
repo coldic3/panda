@@ -7,8 +7,8 @@ namespace Panda\Shared\Infrastructure\Messenger;
 use Panda\Shared\Application\Query\QueryBusInterface;
 use Panda\Shared\Application\Query\QueryInterface;
 use Symfony\Component\Messenger\Exception\HandlerFailedException;
-use Symfony\Component\Messenger\HandleTrait;
 use Symfony\Component\Messenger\MessageBusInterface;
+use Symfony\Component\Messenger\Stamp\ValidationStamp;
 
 final class MessengerQueryBus implements QueryBusInterface
 {
@@ -22,7 +22,7 @@ final class MessengerQueryBus implements QueryBusInterface
     public function ask(QueryInterface $query): mixed
     {
         try {
-            return $this->handle($query);
+            return $this->handle($query, [new ValidationStamp(['panda'])]);
         } catch (HandlerFailedException $e) {
             /**
              * @psalm-suppress InvalidThrow

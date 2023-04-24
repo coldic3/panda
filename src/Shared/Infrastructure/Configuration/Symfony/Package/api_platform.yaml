@@ -22,3 +22,5 @@ api_platform:
         stateless: true
         cache_headers:
             vary: ['Content-Type', 'Authorization', 'Origin']
+    exception_to_status:
+        Panda\Shared\Application\Exception\MessengerViolationFailedCompoundException: 422
