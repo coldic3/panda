@@ -1,0 +1,9 @@
+doctrine:
+    orm:
+        mappings:
+            Trade:
+                is_bundle: false
+                type: xml
+                dir: '%kernel.project_dir%/src/Trade/Infrastructure/Configuration/Doctrine/mappings'
+                prefix: 'Panda\Trade\Domain\Model'
+                alias: Trade
