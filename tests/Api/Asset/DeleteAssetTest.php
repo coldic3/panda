@@ -3,9 +3,9 @@
 namespace Panda\Tests\Api\Asset;
 
 use Panda\Account\Domain\Model\User;
-use Panda\Asset\Domain\Model\Asset;
 use Panda\Tests\Api\ApiTestCase;
 use Panda\Tests\Util\HttpMethodEnum;
+use Panda\Trade\Domain\Model\Asset\Asset;
 use Symfony\Component\HttpFoundation\Response;
 
 final class DeleteAssetTest extends ApiTestCase

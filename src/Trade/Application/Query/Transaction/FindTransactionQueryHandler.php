@@ -6,7 +6,7 @@ namespace Panda\Trade\Application\Query\Transaction;
 
 use Panda\Contract\AggregateRoot\Owner\OwnerInterface;
 use Panda\Shared\Application\Query\QueryHandlerInterface;
-use Panda\Trade\Domain\Model\TransactionInterface;
+use Panda\Trade\Domain\Model\Transaction\TransactionInterface;
 use Panda\Trade\Domain\Repository\TransactionRepositoryInterface;
 use Symfony\Bundle\SecurityBundle\Security;
 

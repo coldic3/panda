@@ -7,7 +7,7 @@ namespace Panda\Tests\App\Trade\Domain\Factory;
 use Panda\Account\Domain\Model\UserInterface;
 use Panda\Contract\AggregateRoot\Resource\ResourceInterface;
 use Panda\Trade\Domain\Factory\TransactionFactory;
-use Panda\Trade\Domain\Model\Operation;
+use Panda\Trade\Domain\Model\Transaction\Operation;
 use Panda\Trade\Domain\ValueObject\TransactionTypeEnum;
 use PHPUnit\Framework\TestCase;
 use Prophecy\PhpUnit\ProphecyTrait;

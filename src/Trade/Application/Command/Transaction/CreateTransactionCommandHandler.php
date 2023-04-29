@@ -6,7 +6,7 @@ namespace Panda\Trade\Application\Command\Transaction;
 
 use Panda\Shared\Application\Command\CommandHandlerInterface;
 use Panda\Trade\Domain\Factory\TransactionFactoryInterface;
-use Panda\Trade\Domain\Model\TransactionInterface;
+use Panda\Trade\Domain\Model\Transaction\TransactionInterface;
 use Panda\Trade\Domain\Repository\TransactionRepositoryInterface;
 use Panda\Trade\Domain\ValueObject\TransactionTypeEnum;
 use Webmozart\Assert\Assert;

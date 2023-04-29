@@ -7,8 +7,8 @@ namespace Panda\Tests\Behat\Context\Setup;
 use Behat\Behat\Context\Context;
 use Doctrine\ORM\EntityManagerInterface;
 use Panda\Account\Domain\Model\UserInterface;
-use Panda\Asset\Domain\Factory\AssetFactoryInterface;
-use Panda\Asset\Domain\Repository\AssetRepositoryInterface;
+use Panda\Trade\Domain\Factory\AssetFactoryInterface;
+use Panda\Trade\Domain\Repository\AssetRepositoryInterface;
 
 class AssetContext implements Context
 {

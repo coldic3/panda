@@ -6,9 +6,8 @@ namespace Panda\Trade\Infrastructure\ApiResource;
 
 use ApiPlatform\Metadata\ApiProperty;
 use ApiPlatform\Metadata\ApiResource;
-use Panda\Asset\Domain\Model\AssetInterface;
-use Panda\Asset\Infrastructure\ApiResource\AssetResource;
-use Panda\Trade\Domain\Model\OperationInterface;
+use Panda\Trade\Domain\Model\Asset\AssetInterface;
+use Panda\Trade\Domain\Model\Transaction\OperationInterface;
 use Symfony\Component\Serializer\Annotation\Groups;
 use Symfony\Component\Uid\Uuid;
 use Symfony\Component\Validator\Constraints as Assert;

@@ -6,7 +6,7 @@ use Panda\Contract\AggregateRoot\Resource\ResourceInterface;
 use Panda\Trade\Application\Command\Transaction\CreateTransactionCommand;
 use Panda\Trade\Application\Validator\Command\TransactionOperationsDiffer;
 use Panda\Trade\Application\Validator\Command\TransactionOperationsDifferValidation;
-use Panda\Trade\Domain\Model\OperationInterface;
+use Panda\Trade\Domain\Model\Transaction\OperationInterface;
 use Panda\Trade\Domain\ValueObject\TransactionTypeEnum;
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;

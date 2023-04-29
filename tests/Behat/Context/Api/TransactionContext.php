@@ -6,11 +6,11 @@ namespace Panda\Tests\Behat\Context\Api;
 
 use ApiPlatform\Api\IriConverterInterface;
 use Behat\Behat\Context\Context;
-use Panda\Asset\Domain\Model\AssetInterface;
-use Panda\Asset\Infrastructure\ApiResource\AssetResource;
 use Panda\Tests\Behat\Context\Util\EnableClipboardTrait;
 use Panda\Tests\Util\HttpMethodEnum;
 use Panda\Tests\Util\HttpRequestBuilder;
+use Panda\Trade\Domain\Model\Asset\AssetInterface;
+use Panda\Trade\Infrastructure\ApiResource\AssetResource;
 use Symfony\Component\HttpFoundation\Response;
 use Webmozart\Assert\Assert;
 

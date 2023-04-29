@@ -13,7 +13,7 @@ use Panda\Shared\Infrastructure\ApiState\Pagination\Paginator;
 use Panda\Shared\Infrastructure\Doctrine\Orm\DoctrineCollectionIterator;
 use Panda\Trade\Application\Query\Transaction\FindTransactionQuery;
 use Panda\Trade\Application\Query\Transaction\FindTransactionsQuery;
-use Panda\Trade\Domain\Model\Transaction;
+use Panda\Trade\Domain\Model\Transaction\Transaction;
 use Panda\Trade\Infrastructure\ApiResource\TransactionResource;
 use Symfony\Component\Uid\Uuid;
 

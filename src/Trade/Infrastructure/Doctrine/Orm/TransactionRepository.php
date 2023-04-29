@@ -6,8 +6,8 @@ namespace Panda\Trade\Infrastructure\Doctrine\Orm;
 
 use Doctrine\ORM\EntityManagerInterface;
 use Panda\Shared\Infrastructure\Doctrine\Orm\DoctrineRepository;
-use Panda\Trade\Domain\Model\Transaction;
-use Panda\Trade\Domain\Model\TransactionInterface;
+use Panda\Trade\Domain\Model\Transaction\Transaction;
+use Panda\Trade\Domain\Model\Transaction\TransactionInterface;
 use Panda\Trade\Domain\Repository\TransactionRepositoryInterface;
 use Symfony\Component\Uid\Uuid;
 

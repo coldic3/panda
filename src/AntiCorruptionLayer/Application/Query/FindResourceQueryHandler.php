@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace Panda\AntiCorruptionLayer\Application\Query;
 
-use Panda\Asset\Application\Query\Asset\FindAssetQuery;
 use Panda\Contract\AggregateRoot\Resource\ResourceInterface;
 use Panda\Shared\Application\Query\QueryBusInterface;
 use Panda\Shared\Application\Query\QueryHandlerInterface;
+use Panda\Trade\Application\Query\Asset\FindAssetQuery;
 
 final class FindResourceQueryHandler implements QueryHandlerInterface
 {

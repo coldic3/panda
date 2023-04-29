@@ -1,7 +1,7 @@
 include:
     - 'user.yaml'
 
-Panda\Asset\Domain\Model\Asset:
+Panda\Trade\Domain\Model\Asset\Asset:
     asset_acme:
         __construct: ['ACM', 'Acme Corp.']
         ownedBy: '@user_panda'

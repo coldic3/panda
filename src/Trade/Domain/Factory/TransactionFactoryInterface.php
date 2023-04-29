@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace Panda\Trade\Domain\Factory;
 
 use Panda\Contract\AggregateRoot\Owner\OwnerInterface;
-use Panda\Trade\Domain\Model\OperationInterface;
-use Panda\Trade\Domain\Model\TransactionInterface;
+use Panda\Trade\Domain\Model\Transaction\OperationInterface;
+use Panda\Trade\Domain\Model\Transaction\TransactionInterface;
 
 interface TransactionFactoryInterface
 {

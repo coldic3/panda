@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping">
+    <entity name="Panda\Trade\Domain\Model\Transaction\Operation" table="panda_operation">
+        <id name="id" column="id" type="uuid" />
+
+        <field name="quantity" column="quantity" type="integer" />
+
+        <many-to-one field="resource" target-entity="Panda\Trade\Domain\Model\Asset\Asset" />
+    </entity>
+</doctrine-mapping>
