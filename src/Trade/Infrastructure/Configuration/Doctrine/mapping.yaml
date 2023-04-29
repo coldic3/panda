@@ -1,0 +1,15 @@
+doctrine:
+    orm:
+        mappings:
+            Asset:
+                is_bundle: false
+                type: xml
+                dir: '%kernel.project_dir%/src/Trade/Infrastructure/Configuration/Doctrine/mappings/Asset'
+                prefix: 'Panda\Trade\Domain\Model\Asset'
+                alias: Asset
+            Transaction:
+                is_bundle: false
+                type: xml
+                dir: '%kernel.project_dir%/src/Trade/Infrastructure/Configuration/Doctrine/mappings/Transaction'
+                prefix: 'Panda\Trade\Domain\Model\Transaction'
+                alias: Transaction

@@ -6,14 +6,14 @@
   "toOperation": {
     "@id": "/operations/@uuid@",
     "@type": "Operation",
-    "resource": "/assets/@uuid@",
+    "asset": "/assets/@uuid@",
     "quantity": "@integer@.greaterThan(0)"
   },
   "adjustmentOperations": [
     {
       "@id": "/operations/@uuid@",
       "@type": "Operation",
-      "resource": "/assets/@uuid@",
+      "asset": "/assets/@uuid@",
       "quantity": "@integer@.greaterThan(0)"
     }
   ],

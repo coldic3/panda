@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace Panda\Tests\Behat\Context\Transform;
 
 use Behat\Behat\Context\Context;
-use Panda\Asset\Domain\Model\AssetInterface;
-use Panda\Asset\Domain\Repository\AssetRepositoryInterface;
+use Panda\Trade\Domain\Model\Asset\AssetInterface;
+use Panda\Trade\Domain\Repository\AssetRepositoryInterface;
 use Webmozart\Assert\Assert;
 
 class AssetContext implements Context

@@ -22,21 +22,12 @@ final class BoundedContextsSeparationTest
             ->classes(...$this->findBoundedContextsExcept(['Account', ...self::COUPLING_ALLOWED]));
     }
 
-    public function test_asset_bounded_context_does_not_depend_on_other_bounded_contexts(): Rule
+    public function test_trade_bounded_context_does_not_depend_on_other_bounded_contexts(): Rule
     {
         return PHPat::rule()
-            ->classes(Selector::namespace('Panda\\Asset'))
+            ->classes(Selector::namespace('Panda\\Trade'))
             ->shouldNotDependOn()
-            ->classes(...$this->findBoundedContextsExcept(['Asset', ...self::COUPLING_ALLOWED]));
-    }
-
-    public function test_transaction_bounded_context_does_not_depend_on_other_bounded_contexts(): Rule
-    {
-        return PHPat::rule()
-            ->classes(Selector::namespace('Panda\\Transaction'))
-            ->excluding(Selector::classname('Panda\Transaction\Infrastructure\ApiResource\OperationResource'))
-            ->shouldNotDependOn()
-            ->classes(...$this->findBoundedContextsExcept(['Transaction', ...self::COUPLING_ALLOWED]));
+            ->classes(...$this->findBoundedContextsExcept(['Trade', ...self::COUPLING_ALLOWED]));
     }
 
     public function test_shared_bounded_context_does_not_depend_on_other_bounded_contexts(): Rule

@@ -1,9 +1,0 @@
-doctrine:
-    orm:
-        mappings:
-            Asset:
-                is_bundle: false
-                type: xml
-                dir: '%kernel.project_dir%/src/Asset/Infrastructure/Configuration/Doctrine/mappings'
-                prefix: 'Panda\Asset\Domain\Model'
-                alias: Asset

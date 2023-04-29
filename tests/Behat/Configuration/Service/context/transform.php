@@ -3,9 +3,9 @@
 declare(strict_types=1);
 
 use Panda\Account\Domain\Repository\UserRepositoryInterface;
-use Panda\Asset\Domain\Repository\AssetRepositoryInterface;
 use Panda\Tests\Behat\Context\Transform\AssetContext;
 use Panda\Tests\Behat\Context\Transform\UserContext;
+use Panda\Trade\Domain\Repository\AssetRepositoryInterface;
 use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
 use function Symfony\Component\DependencyInjection\Loader\Configurator\service;
 

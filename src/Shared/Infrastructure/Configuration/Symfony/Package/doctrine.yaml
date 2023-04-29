@@ -14,4 +14,3 @@ doctrine:
         auto_mapping: true
         resolve_target_entities:
             Panda\Contract\AggregateRoot\Owner\OwnerInterface: Panda\Account\Domain\Model\User
-            Panda\Contract\AggregateRoot\Resource\ResourceInterface: Panda\Asset\Domain\Model\Asset

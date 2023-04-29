@@ -5,11 +5,11 @@ declare(strict_types=1);
 use Doctrine\ORM\EntityManagerInterface;
 use Panda\Account\Domain\Factory\UserFactoryInterface;
 use Panda\Account\Domain\Repository\UserRepositoryInterface;
-use Panda\Asset\Domain\Factory\AssetFactoryInterface;
-use Panda\Asset\Domain\Repository\AssetRepositoryInterface;
 use Panda\Tests\Behat\Context\Setup\AssetContext;
 use Panda\Tests\Behat\Context\Setup\UserContext;
 use Panda\Tests\Behat\Context\Setup\WalletContext;
+use Panda\Trade\Domain\Factory\AssetFactoryInterface;
+use Panda\Trade\Domain\Repository\AssetRepositoryInterface;
 use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
 use function Symfony\Component\DependencyInjection\Loader\Configurator\service;
 
