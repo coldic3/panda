@@ -2,10 +2,10 @@
 
 namespace spec\Panda\Trade\Application\Validator\Command;
 
-use Panda\Contract\AggregateRoot\Resource\ResourceInterface;
 use Panda\Trade\Application\Command\Transaction\CreateTransactionCommand;
 use Panda\Trade\Application\Validator\Command\TransactionOperationsDiffer;
 use Panda\Trade\Application\Validator\Command\TransactionOperationsDifferValidation;
+use Panda\Trade\Domain\Model\Asset\AssetInterface;
 use Panda\Trade\Domain\Model\Transaction\OperationInterface;
 use Panda\Trade\Domain\ValueObject\TransactionTypeEnum;
 use PhpSpec\ObjectBehavior;
@@ -56,9 +56,9 @@ class TransactionOperationsDifferValidationSpec extends ObjectBehavior
 
     function it_does_nothing_if_from_operation_resource_is_null(
         OperationInterface $toOperation,
-        ResourceInterface $toOperationResource,
+        AssetInterface $toOperationResource,
     ) {
-        $toOperation->getResource()->willReturn($toOperationResource);
+        $toOperation->getAsset()->willReturn($toOperationResource);
 
         $this->validate(new CreateTransactionCommand(
             TransactionTypeEnum::ASK,
@@ -71,9 +71,9 @@ class TransactionOperationsDifferValidationSpec extends ObjectBehavior
 
     function it_does_nothing_if_to_operation_resource_is_null(
         OperationInterface $fromOperation,
-        ResourceInterface $fromOperationResource,
+        AssetInterface $fromOperationResource,
     ) {
-        $fromOperation->getResource()->willReturn($fromOperationResource);
+        $fromOperation->getAsset()->willReturn($fromOperationResource);
 
         $this->validate(new CreateTransactionCommand(
             TransactionTypeEnum::ASK,
@@ -98,11 +98,11 @@ class TransactionOperationsDifferValidationSpec extends ObjectBehavior
     function it_does_nothing_if_both_from_and_to_operations_resources_differ(
         OperationInterface $fromOperation,
         OperationInterface $toOperation,
-        ResourceInterface $fromOperationResource,
-        ResourceInterface $toOperationResource,
+        AssetInterface $fromOperationResource,
+        AssetInterface $toOperationResource,
     ) {
-        $fromOperation->getResource()->willReturn($fromOperationResource);
-        $toOperation->getResource()->willReturn($toOperationResource);
+        $fromOperation->getAsset()->willReturn($fromOperationResource);
+        $toOperation->getAsset()->willReturn($toOperationResource);
 
         $fromOperationResource->compare($toOperationResource)->willReturn(false);
 
@@ -120,11 +120,11 @@ class TransactionOperationsDifferValidationSpec extends ObjectBehavior
         ConstraintViolationBuilderInterface $constraintViolationBuilder,
         OperationInterface $fromOperation,
         OperationInterface $toOperation,
-        ResourceInterface $fromOperationResource,
-        ResourceInterface $toOperationResource,
+        AssetInterface $fromOperationResource,
+        AssetInterface $toOperationResource,
     ) {
-        $fromOperation->getResource()->willReturn($fromOperationResource);
-        $toOperation->getResource()->willReturn($toOperationResource);
+        $fromOperation->getAsset()->willReturn($fromOperationResource);
+        $toOperation->getAsset()->willReturn($toOperationResource);
 
         $fromOperationResource->compare($toOperationResource)->willReturn(true);
 

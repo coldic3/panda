@@ -22,15 +22,15 @@ final class TransactionOperationAdjustmentsMatchValidation extends ConstraintVal
             throw new UnexpectedValueException($value, CreateTransactionCommand::class);
         }
 
-        $fromResource = $value->fromOperation?->getResource();
-        $toResource = $value->toOperation?->getResource();
+        $fromAsset = $value->fromOperation?->getAsset();
+        $toAsset = $value->toOperation?->getAsset();
 
         // If both from and to operations are set, then the adjustment operations must match one of them.
-        if (null !== $fromResource && null !== $toResource) {
+        if (null !== $fromAsset && null !== $toAsset) {
             foreach ($value->adjustmentOperations as $adjustmentOperation) {
                 if (
-                    !$adjustmentOperation->getResource()->compare($fromResource)
-                    && !$adjustmentOperation->getResource()->compare($toResource)
+                    !$adjustmentOperation->getAsset()->compare($fromAsset)
+                    && !$adjustmentOperation->getAsset()->compare($toAsset)
                 ) {
                     $this->context->buildViolation($constraint->message)->addViolation();
 
@@ -42,9 +42,9 @@ final class TransactionOperationAdjustmentsMatchValidation extends ConstraintVal
         }
 
         // If only the from operation is set, then the adjustment operations must match it.
-        if (null !== $fromResource) {
+        if (null !== $fromAsset) {
             foreach ($value->adjustmentOperations as $adjustmentOperation) {
-                if (!$adjustmentOperation->getResource()->compare($fromResource)) {
+                if (!$adjustmentOperation->getAsset()->compare($fromAsset)) {
                     $this->context->buildViolation($constraint->message)->addViolation();
 
                     return;
@@ -53,9 +53,9 @@ final class TransactionOperationAdjustmentsMatchValidation extends ConstraintVal
         }
 
         // If only the to operation is set, then the adjustment operations must match it.
-        if (null !== $toResource) {
+        if (null !== $toAsset) {
             foreach ($value->adjustmentOperations as $adjustmentOperation) {
-                if (!$adjustmentOperation->getResource()->compare($toResource)) {
+                if (!$adjustmentOperation->getAsset()->compare($toAsset)) {
                     $this->context->buildViolation($constraint->message)->addViolation();
 
                     return;

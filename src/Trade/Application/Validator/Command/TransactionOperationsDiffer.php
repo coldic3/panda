@@ -8,7 +8,7 @@ use Symfony\Component\Validator\Constraint;
 
 final class TransactionOperationsDiffer extends Constraint
 {
-    public string $message = 'The from and to operations must not belong to the same resource.';
+    public string $message = 'The from and to operations must not belong to the same asset.';
 
     public function validatedBy(): string
     {

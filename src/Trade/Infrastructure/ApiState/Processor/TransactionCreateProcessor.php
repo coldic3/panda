@@ -6,12 +6,12 @@ namespace Panda\Trade\Infrastructure\ApiState\Processor;
 
 use ApiPlatform\Metadata\Operation;
 use ApiPlatform\State\ProcessorInterface;
-use Panda\AntiCorruptionLayer\Application\Query\FindResourceQuery;
-use Panda\Contract\AggregateRoot\Resource\ResourceInterface;
 use Panda\Shared\Application\Command\CommandBusInterface;
 use Panda\Shared\Application\Query\QueryBusInterface;
 use Panda\Trade\Application\Command\Transaction\CreateTransactionCommand;
+use Panda\Trade\Application\Query\Asset\FindAssetQuery;
 use Panda\Trade\Domain\Factory\OperationFactoryInterface;
+use Panda\Trade\Domain\Model\Asset\AssetInterface;
 use Panda\Trade\Domain\Model\Transaction\OperationInterface;
 use Panda\Trade\Domain\Model\Transaction\TransactionInterface;
 use Panda\Trade\Domain\ValueObject\TransactionTypeEnum;
@@ -59,15 +59,15 @@ final class TransactionCreateProcessor implements ProcessorInterface
 
     private function findOperation(?OperationResource $operationResource): ?OperationInterface
     {
-        if (null === $operationResource?->resource?->id) {
+        if (null === $operationResource?->asset?->id) {
             return null;
         }
 
         Assert::isInstanceOf(
-            $resource = $this->queryBus->ask(new FindResourceQuery($operationResource->resource->id)),
-            ResourceInterface::class
+            $asset = $this->queryBus->ask(new FindAssetQuery($operationResource->asset->id)),
+            AssetInterface::class
         );
 
-        return $this->operationFactory->create($resource, (int) $operationResource->quantity);
+        return $this->operationFactory->create($asset, (int) $operationResource->quantity);
     }
 }

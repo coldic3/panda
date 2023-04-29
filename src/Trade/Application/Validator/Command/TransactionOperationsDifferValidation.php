@@ -22,10 +22,10 @@ final class TransactionOperationsDifferValidation extends ConstraintValidator
             throw new UnexpectedValueException($value, CreateTransactionCommand::class);
         }
 
-        $fromResource = $value->fromOperation?->getResource();
-        $toResource = $value->toOperation?->getResource();
+        $fromAsset = $value->fromOperation?->getAsset();
+        $toAsset = $value->toOperation?->getAsset();
 
-        if (null !== $fromResource && null !== $toResource && $fromResource->compare($toResource)) {
+        if (null !== $fromAsset && null !== $toAsset && $fromAsset->compare($toAsset)) {
             $this->context->buildViolation($constraint->message)->addViolation();
         }
     }

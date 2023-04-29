@@ -23,16 +23,16 @@ final class PostTransactionTest extends ApiTestCase
         $this->request(HttpMethodEnum::POST, '/transactions', [
             'type' => 'ask',
             'fromOperation' => [
-                'resource' => sprintf('/assets/%s', $firstAsset->getId()->toRfc4122()),
+                'asset' => sprintf('/assets/%s', $firstAsset->getId()->toRfc4122()),
                 'quantity' => 19,
             ],
             'toOperation' => [
-                'resource' => sprintf('/assets/%s', $secondAsset->getId()->toRfc4122()),
+                'asset' => sprintf('/assets/%s', $secondAsset->getId()->toRfc4122()),
                 'quantity' => 2,
             ],
             'adjustmentOperations' => [
                 [
-                    'resource' => sprintf('/assets/%s', $firstAsset->getId()->toRfc4122()),
+                    'asset' => sprintf('/assets/%s', $firstAsset->getId()->toRfc4122()),
                     'quantity' => 1,
                 ],
             ],
@@ -57,16 +57,16 @@ final class PostTransactionTest extends ApiTestCase
         $this->request(HttpMethodEnum::POST, '/transactions', [
             'type' => 'ask',
             'fromOperation' => [
-                'resource' => sprintf('/assets/%s', $firstAsset->getId()->toRfc4122()),
+                'asset' => sprintf('/assets/%s', $firstAsset->getId()->toRfc4122()),
                 'quantity' => 19,
             ],
             'toOperation' => [
-                'resource' => sprintf('/assets/%s', $secondAsset->getId()->toRfc4122()),
+                'asset' => sprintf('/assets/%s', $secondAsset->getId()->toRfc4122()),
                 'quantity' => 2,
             ],
             'adjustmentOperations' => [
                 [
-                    'resource' => sprintf('/assets/%s', $firstAsset->getId()->toRfc4122()),
+                    'asset' => sprintf('/assets/%s', $firstAsset->getId()->toRfc4122()),
                     'quantity' => 1,
                 ],
             ],
@@ -91,16 +91,16 @@ final class PostTransactionTest extends ApiTestCase
         $this->request(HttpMethodEnum::POST, '/transactions', [
             'type' => 'bid',
             'fromOperation' => [
-                'resource' => sprintf('/assets/%s', $firstAsset->getId()->toRfc4122()),
+                'asset' => sprintf('/assets/%s', $firstAsset->getId()->toRfc4122()),
                 'quantity' => 19,
             ],
             'toOperation' => [
-                'resource' => sprintf('/assets/%s', $secondAsset->getId()->toRfc4122()),
+                'asset' => sprintf('/assets/%s', $secondAsset->getId()->toRfc4122()),
                 'quantity' => 2,
             ],
             'adjustmentOperations' => [
                 [
-                    'resource' => sprintf('/assets/%s', $firstAsset->getId()->toRfc4122()),
+                    'asset' => sprintf('/assets/%s', $firstAsset->getId()->toRfc4122()),
                     'quantity' => 1,
                 ],
             ],
@@ -123,12 +123,12 @@ final class PostTransactionTest extends ApiTestCase
         $this->request(HttpMethodEnum::POST, '/transactions', [
             'type' => 'deposit',
             'toOperation' => [
-                'resource' => sprintf('/assets/%s', $firstAsset->getId()->toRfc4122()),
+                'asset' => sprintf('/assets/%s', $firstAsset->getId()->toRfc4122()),
                 'quantity' => 200,
             ],
             'adjustmentOperations' => [
                 [
-                    'resource' => sprintf('/assets/%s', $firstAsset->getId()->toRfc4122()),
+                    'asset' => sprintf('/assets/%s', $firstAsset->getId()->toRfc4122()),
                     'quantity' => 1,
                 ],
             ],
@@ -151,12 +151,12 @@ final class PostTransactionTest extends ApiTestCase
         $this->request(HttpMethodEnum::POST, '/transactions', [
             'type' => 'withdraw',
             'fromOperation' => [
-                'resource' => sprintf('/assets/%s', $firstAsset->getId()->toRfc4122()),
+                'asset' => sprintf('/assets/%s', $firstAsset->getId()->toRfc4122()),
                 'quantity' => 200,
             ],
             'adjustmentOperations' => [
                 [
-                    'resource' => sprintf('/assets/%s', $firstAsset->getId()->toRfc4122()),
+                    'asset' => sprintf('/assets/%s', $firstAsset->getId()->toRfc4122()),
                     'quantity' => 1,
                 ],
             ],
@@ -180,7 +180,7 @@ final class PostTransactionTest extends ApiTestCase
             'type' => 'fee',
             'adjustmentOperations' => [
                 [
-                    'resource' => sprintf('/assets/%s', $firstAsset->getId()->toRfc4122()),
+                    'asset' => sprintf('/assets/%s', $firstAsset->getId()->toRfc4122()),
                     'quantity' => 2,
                 ],
             ],
@@ -205,20 +205,20 @@ final class PostTransactionTest extends ApiTestCase
         $this->request(HttpMethodEnum::POST, '/transactions', [
             'type' => 'ask',
             'fromOperation' => [
-                'resource' => sprintf('/assets/%s', $firstAsset->getId()->toRfc4122()),
+                'asset' => sprintf('/assets/%s', $firstAsset->getId()->toRfc4122()),
                 'quantity' => 19,
             ],
             'toOperation' => [
-                'resource' => sprintf('/assets/%s', $secondAsset->getId()->toRfc4122()),
+                'asset' => sprintf('/assets/%s', $secondAsset->getId()->toRfc4122()),
                 'quantity' => 2,
             ],
             'adjustmentOperations' => [
                 [
-                    'resource' => sprintf('/assets/%s', $firstAsset->getId()->toRfc4122()),
+                    'asset' => sprintf('/assets/%s', $firstAsset->getId()->toRfc4122()),
                     'quantity' => 1,
                 ],
                 [
-                    'resource' => sprintf('/assets/%s', $secondAsset->getId()->toRfc4122()),
+                    'asset' => sprintf('/assets/%s', $secondAsset->getId()->toRfc4122()),
                     'quantity' => 1,
                 ],
             ],
@@ -249,16 +249,16 @@ final class PostTransactionTest extends ApiTestCase
         $this->request(HttpMethodEnum::POST, '/transactions', [
             'type' => 'ask',
             'fromOperation' => [
-                'resource' => sprintf('/assets/%s', $firstAsset->getId()->toRfc4122()),
+                'asset' => sprintf('/assets/%s', $firstAsset->getId()->toRfc4122()),
                 'quantity' => 19,
             ],
             'toOperation' => [
-                'resource' => sprintf('/assets/%s', $secondAsset->getId()->toRfc4122()),
+                'asset' => sprintf('/assets/%s', $secondAsset->getId()->toRfc4122()),
                 'quantity' => 2,
             ],
             'adjustmentOperations' => [
                 [
-                    'resource' => sprintf('/assets/%s', $thirdAsset->getId()->toRfc4122()),
+                    'asset' => sprintf('/assets/%s', $thirdAsset->getId()->toRfc4122()),
                     'quantity' => 1,
                 ],
             ],
@@ -285,16 +285,16 @@ final class PostTransactionTest extends ApiTestCase
         $this->request(HttpMethodEnum::POST, '/transactions', [
             'type' => 'ask',
             'fromOperation' => [
-                'resource' => sprintf('/assets/%s', $firstAsset->getId()->toRfc4122()),
+                'asset' => sprintf('/assets/%s', $firstAsset->getId()->toRfc4122()),
                 'quantity' => 19,
             ],
             'toOperation' => [
-                'resource' => sprintf('/assets/%s', $firstAsset->getId()->toRfc4122()),
+                'asset' => sprintf('/assets/%s', $firstAsset->getId()->toRfc4122()),
                 'quantity' => 2,
             ],
             'adjustmentOperations' => [
                 [
-                    'resource' => sprintf('/assets/%s', $firstAsset->getId()->toRfc4122()),
+                    'asset' => sprintf('/assets/%s', $firstAsset->getId()->toRfc4122()),
                     'quantity' => 1,
                 ],
             ],
@@ -323,16 +323,16 @@ final class PostTransactionTest extends ApiTestCase
         $this->request(HttpMethodEnum::POST, '/transactions', [
             'type' => 'ask',
             'fromOperation' => [
-                'resource' => sprintf('/assets/%s', $firstAsset->getId()->toRfc4122()),
+                'asset' => sprintf('/assets/%s', $firstAsset->getId()->toRfc4122()),
                 'quantity' => -19,
             ],
             'toOperation' => [
-                'resource' => sprintf('/assets/%s', $secondAsset->getId()->toRfc4122()),
+                'asset' => sprintf('/assets/%s', $secondAsset->getId()->toRfc4122()),
                 'quantity' => -2,
             ],
             'adjustmentOperations' => [
                 [
-                    'resource' => sprintf('/assets/%s', $firstAsset->getId()->toRfc4122()),
+                    'asset' => sprintf('/assets/%s', $firstAsset->getId()->toRfc4122()),
                     'quantity' => -1,
                 ],
             ],

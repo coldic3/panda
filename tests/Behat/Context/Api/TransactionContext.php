@@ -52,7 +52,7 @@ class TransactionContext implements Context
     function i_pass_to_operation(int $quantity, AssetInterface $asset)
     {
         $this->http->addToPayload('toOperation', [
-            'resource' => $this->iriConverter->getIriFromResource(AssetResource::fromModel($asset)),
+            'asset' => $this->iriConverter->getIriFromResource(AssetResource::fromModel($asset)),
             'quantity' => $quantity,
         ]);
     }
@@ -65,7 +65,7 @@ class TransactionContext implements Context
     function i_pass_from_operation(int $quantity, AssetInterface $asset)
     {
         $this->http->addToPayload('fromOperation', [
-            'resource' => $this->iriConverter->getIriFromResource(AssetResource::fromModel($asset)),
+            'asset' => $this->iriConverter->getIriFromResource(AssetResource::fromModel($asset)),
             'quantity' => $quantity,
         ]);
     }
@@ -82,7 +82,7 @@ class TransactionContext implements Context
         }
 
         $this->http->addToPayload('adjustmentOperations', [[
-            'resource' => $this->iriConverter->getIriFromResource(AssetResource::fromModel($asset)),
+            'asset' => $this->iriConverter->getIriFromResource(AssetResource::fromModel($asset)),
             'quantity' => $quantity,
         ]]);
     }

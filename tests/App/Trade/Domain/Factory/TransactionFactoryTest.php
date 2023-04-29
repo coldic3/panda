@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace Panda\Tests\App\Trade\Domain\Factory;
 
 use Panda\Account\Domain\Model\UserInterface;
-use Panda\Contract\AggregateRoot\Resource\ResourceInterface;
 use Panda\Trade\Domain\Factory\TransactionFactory;
+use Panda\Trade\Domain\Model\Asset\AssetInterface;
 use Panda\Trade\Domain\Model\Transaction\Operation;
 use Panda\Trade\Domain\ValueObject\TransactionTypeEnum;
 use PHPUnit\Framework\TestCase;
@@ -23,10 +23,10 @@ final class TransactionFactoryTest extends TestCase
     {
         $security = $this->prophesize(Security::class);
         $owner = $this->prophesize(UserInterface::class);
-        $firstResource = $this->prophesize(ResourceInterface::class);
-        $secondResource = $this->prophesize(ResourceInterface::class);
-        $thirdResource = $this->prophesize(ResourceInterface::class);
-        $fourthResource = $this->prophesize(ResourceInterface::class);
+        $firstResource = $this->prophesize(AssetInterface::class);
+        $secondResource = $this->prophesize(AssetInterface::class);
+        $thirdResource = $this->prophesize(AssetInterface::class);
+        $fourthResource = $this->prophesize(AssetInterface::class);
         $security->getUser()->willReturn($owner);
 
         $factory = new TransactionFactory($security->reveal());
@@ -53,10 +53,10 @@ final class TransactionFactoryTest extends TestCase
     {
         $security = $this->prophesize(Security::class);
         $owner = $this->prophesize(UserInterface::class);
-        $firstResource = $this->prophesize(ResourceInterface::class);
-        $secondResource = $this->prophesize(ResourceInterface::class);
-        $thirdResource = $this->prophesize(ResourceInterface::class);
-        $fourthResource = $this->prophesize(ResourceInterface::class);
+        $firstResource = $this->prophesize(AssetInterface::class);
+        $secondResource = $this->prophesize(AssetInterface::class);
+        $thirdResource = $this->prophesize(AssetInterface::class);
+        $fourthResource = $this->prophesize(AssetInterface::class);
         $security->getUser()->willReturn($owner);
 
         $factory = new TransactionFactory($security->reveal());
@@ -83,9 +83,9 @@ final class TransactionFactoryTest extends TestCase
     {
         $security = $this->prophesize(Security::class);
         $owner = $this->prophesize(UserInterface::class);
-        $firstResource = $this->prophesize(ResourceInterface::class);
-        $secondResource = $this->prophesize(ResourceInterface::class);
-        $thirdResource = $this->prophesize(ResourceInterface::class);
+        $firstResource = $this->prophesize(AssetInterface::class);
+        $secondResource = $this->prophesize(AssetInterface::class);
+        $thirdResource = $this->prophesize(AssetInterface::class);
         $security->getUser()->willReturn($owner);
 
         $factory = new TransactionFactory($security->reveal());
@@ -111,9 +111,9 @@ final class TransactionFactoryTest extends TestCase
     {
         $security = $this->prophesize(Security::class);
         $owner = $this->prophesize(UserInterface::class);
-        $firstResource = $this->prophesize(ResourceInterface::class);
-        $secondResource = $this->prophesize(ResourceInterface::class);
-        $thirdResource = $this->prophesize(ResourceInterface::class);
+        $firstResource = $this->prophesize(AssetInterface::class);
+        $secondResource = $this->prophesize(AssetInterface::class);
+        $thirdResource = $this->prophesize(AssetInterface::class);
         $security->getUser()->willReturn($owner);
 
         $factory = new TransactionFactory($security->reveal());
@@ -139,8 +139,8 @@ final class TransactionFactoryTest extends TestCase
     {
         $security = $this->prophesize(Security::class);
         $owner = $this->prophesize(UserInterface::class);
-        $firstResource = $this->prophesize(ResourceInterface::class);
-        $secondResource = $this->prophesize(ResourceInterface::class);
+        $firstResource = $this->prophesize(AssetInterface::class);
+        $secondResource = $this->prophesize(AssetInterface::class);
         $security->getUser()->willReturn($owner);
 
         $factory = new TransactionFactory($security->reveal());
@@ -165,10 +165,10 @@ final class TransactionFactoryTest extends TestCase
     {
         $security = $this->prophesize(Security::class);
         $owner = $this->prophesize(UserInterface::class);
-        $firstResource = $this->prophesize(ResourceInterface::class);
-        $secondResource = $this->prophesize(ResourceInterface::class);
-        $thirdResource = $this->prophesize(ResourceInterface::class);
-        $fourthResource = $this->prophesize(ResourceInterface::class);
+        $firstResource = $this->prophesize(AssetInterface::class);
+        $secondResource = $this->prophesize(AssetInterface::class);
+        $thirdResource = $this->prophesize(AssetInterface::class);
+        $fourthResource = $this->prophesize(AssetInterface::class);
 
         $factory = new TransactionFactory($security->reveal());
 
@@ -234,8 +234,8 @@ final class TransactionFactoryTest extends TestCase
     {
         $security = $this->prophesize(Security::class);
         $owner = $this->prophesize(UserInterface::class);
-        $firstResource = $this->prophesize(ResourceInterface::class);
-        $secondResource = $this->prophesize(ResourceInterface::class);
+        $firstResource = $this->prophesize(AssetInterface::class);
+        $secondResource = $this->prophesize(AssetInterface::class);
         $security->getUser()->willReturn($owner);
 
         $factory = new TransactionFactory($security->reveal());

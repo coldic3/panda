@@ -2,10 +2,10 @@
 
 namespace spec\Panda\Trade\Application\Validator\Command;
 
-use Panda\Contract\AggregateRoot\Resource\ResourceInterface;
 use Panda\Trade\Application\Command\Transaction\CreateTransactionCommand;
 use Panda\Trade\Application\Validator\Command\TransactionOperationAdjustmentsMatch;
 use Panda\Trade\Application\Validator\Command\TransactionOperationAdjustmentsMatchValidation;
+use Panda\Trade\Domain\Model\Asset\AssetInterface;
 use Panda\Trade\Domain\Model\Transaction\OperationInterface;
 use Panda\Trade\Domain\ValueObject\TransactionTypeEnum;
 use PhpSpec\ObjectBehavior;
@@ -59,15 +59,15 @@ class TransactionOperationAdjustmentsMatchValidationSpec extends ObjectBehavior
         OperationInterface $toOperation,
         OperationInterface $firstAdjustmentOperation,
         OperationInterface $secondAdjustmentOperation,
-        ResourceInterface $fromOperationResource,
-        ResourceInterface $toOperationResource,
-        ResourceInterface $firstAdjustmentOperationResource,
-        ResourceInterface $secondAdjustmentOperationResource,
+        AssetInterface $fromOperationResource,
+        AssetInterface $toOperationResource,
+        AssetInterface $firstAdjustmentOperationResource,
+        AssetInterface $secondAdjustmentOperationResource,
     ) {
-        $fromOperation->getResource()->willReturn($fromOperationResource);
-        $toOperation->getResource()->willReturn($toOperationResource);
-        $firstAdjustmentOperation->getResource()->willReturn($firstAdjustmentOperationResource);
-        $secondAdjustmentOperation->getResource()->willReturn($secondAdjustmentOperationResource);
+        $fromOperation->getAsset()->willReturn($fromOperationResource);
+        $toOperation->getAsset()->willReturn($toOperationResource);
+        $firstAdjustmentOperation->getAsset()->willReturn($firstAdjustmentOperationResource);
+        $secondAdjustmentOperation->getAsset()->willReturn($secondAdjustmentOperationResource);
 
         $firstAdjustmentOperationResource->compare($fromOperationResource)->willReturn(true);
         $firstAdjustmentOperationResource->compare($toOperationResource)->willReturn(true);
@@ -91,15 +91,15 @@ class TransactionOperationAdjustmentsMatchValidationSpec extends ObjectBehavior
         OperationInterface $toOperation,
         OperationInterface $firstAdjustmentOperation,
         OperationInterface $secondAdjustmentOperation,
-        ResourceInterface $fromOperationResource,
-        ResourceInterface $toOperationResource,
-        ResourceInterface $firstAdjustmentOperationResource,
-        ResourceInterface $secondAdjustmentOperationResource,
+        AssetInterface $fromOperationResource,
+        AssetInterface $toOperationResource,
+        AssetInterface $firstAdjustmentOperationResource,
+        AssetInterface $secondAdjustmentOperationResource,
     ) {
-        $fromOperation->getResource()->willReturn($fromOperationResource);
-        $toOperation->getResource()->willReturn($toOperationResource);
-        $firstAdjustmentOperation->getResource()->willReturn($firstAdjustmentOperationResource);
-        $secondAdjustmentOperation->getResource()->willReturn($secondAdjustmentOperationResource);
+        $fromOperation->getAsset()->willReturn($fromOperationResource);
+        $toOperation->getAsset()->willReturn($toOperationResource);
+        $firstAdjustmentOperation->getAsset()->willReturn($firstAdjustmentOperationResource);
+        $secondAdjustmentOperation->getAsset()->willReturn($secondAdjustmentOperationResource);
 
         $firstAdjustmentOperationResource->compare($fromOperationResource)->willReturn(true);
         $firstAdjustmentOperationResource->compare($toOperationResource)->willReturn(false);
@@ -121,11 +121,11 @@ class TransactionOperationAdjustmentsMatchValidationSpec extends ObjectBehavior
     function it_does_nothing_if_both_from_and_to_operations_are_not_present(
         OperationInterface $firstAdjustmentOperation,
         OperationInterface $secondAdjustmentOperation,
-        ResourceInterface $firstAdjustmentOperationResource,
-        ResourceInterface $secondAdjustmentOperationResource,
+        AssetInterface $firstAdjustmentOperationResource,
+        AssetInterface $secondAdjustmentOperationResource,
     ) {
-        $firstAdjustmentOperation->getResource()->willReturn($firstAdjustmentOperationResource);
-        $secondAdjustmentOperation->getResource()->willReturn($secondAdjustmentOperationResource);
+        $firstAdjustmentOperation->getAsset()->willReturn($firstAdjustmentOperationResource);
+        $secondAdjustmentOperation->getAsset()->willReturn($secondAdjustmentOperationResource);
 
         $this->validate(new CreateTransactionCommand(
             TransactionTypeEnum::ASK,
@@ -146,15 +146,15 @@ class TransactionOperationAdjustmentsMatchValidationSpec extends ObjectBehavior
         OperationInterface $toOperation,
         OperationInterface $firstAdjustmentOperation,
         OperationInterface $secondAdjustmentOperation,
-        ResourceInterface $fromOperationResource,
-        ResourceInterface $toOperationResource,
-        ResourceInterface $firstAdjustmentOperationResource,
-        ResourceInterface $secondAdjustmentOperationResource,
+        AssetInterface $fromOperationResource,
+        AssetInterface $toOperationResource,
+        AssetInterface $firstAdjustmentOperationResource,
+        AssetInterface $secondAdjustmentOperationResource,
     ) {
-        $fromOperation->getResource()->willReturn($fromOperationResource);
-        $toOperation->getResource()->willReturn($toOperationResource);
-        $firstAdjustmentOperation->getResource()->willReturn($firstAdjustmentOperationResource);
-        $secondAdjustmentOperation->getResource()->willReturn($secondAdjustmentOperationResource);
+        $fromOperation->getAsset()->willReturn($fromOperationResource);
+        $toOperation->getAsset()->willReturn($toOperationResource);
+        $firstAdjustmentOperation->getAsset()->willReturn($firstAdjustmentOperationResource);
+        $secondAdjustmentOperation->getAsset()->willReturn($secondAdjustmentOperationResource);
 
         $firstAdjustmentOperationResource->compare($fromOperationResource)->willReturn(false);
         $firstAdjustmentOperationResource->compare($toOperationResource)->willReturn(false);
@@ -182,13 +182,13 @@ class TransactionOperationAdjustmentsMatchValidationSpec extends ObjectBehavior
         OperationInterface $fromOperation,
         OperationInterface $firstAdjustmentOperation,
         OperationInterface $secondAdjustmentOperation,
-        ResourceInterface $fromOperationResource,
-        ResourceInterface $firstAdjustmentOperationResource,
-        ResourceInterface $secondAdjustmentOperationResource,
+        AssetInterface $fromOperationResource,
+        AssetInterface $firstAdjustmentOperationResource,
+        AssetInterface $secondAdjustmentOperationResource,
     ) {
-        $fromOperation->getResource()->willReturn($fromOperationResource);
-        $firstAdjustmentOperation->getResource()->willReturn($firstAdjustmentOperationResource);
-        $secondAdjustmentOperation->getResource()->willReturn($secondAdjustmentOperationResource);
+        $fromOperation->getAsset()->willReturn($fromOperationResource);
+        $firstAdjustmentOperation->getAsset()->willReturn($firstAdjustmentOperationResource);
+        $secondAdjustmentOperation->getAsset()->willReturn($secondAdjustmentOperationResource);
 
         $firstAdjustmentOperationResource->compare($fromOperationResource)->willReturn(false);
         $secondAdjustmentOperationResource->compare($fromOperationResource)->willReturn(true);
@@ -214,13 +214,13 @@ class TransactionOperationAdjustmentsMatchValidationSpec extends ObjectBehavior
         OperationInterface $toOperation,
         OperationInterface $firstAdjustmentOperation,
         OperationInterface $secondAdjustmentOperation,
-        ResourceInterface $toOperationResource,
-        ResourceInterface $firstAdjustmentOperationResource,
-        ResourceInterface $secondAdjustmentOperationResource,
+        AssetInterface $toOperationResource,
+        AssetInterface $firstAdjustmentOperationResource,
+        AssetInterface $secondAdjustmentOperationResource,
     ) {
-        $toOperation->getResource()->willReturn($toOperationResource);
-        $firstAdjustmentOperation->getResource()->willReturn($firstAdjustmentOperationResource);
-        $secondAdjustmentOperation->getResource()->willReturn($secondAdjustmentOperationResource);
+        $toOperation->getAsset()->willReturn($toOperationResource);
+        $firstAdjustmentOperation->getAsset()->willReturn($firstAdjustmentOperationResource);
+        $secondAdjustmentOperation->getAsset()->willReturn($secondAdjustmentOperationResource);
 
         $firstAdjustmentOperationResource->compare($toOperationResource)->willReturn(false);
         $secondAdjustmentOperationResource->compare($toOperationResource)->willReturn(true);

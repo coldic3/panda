@@ -27,7 +27,7 @@ final class OperationResource
         #[ApiProperty]
         #[Assert\NotBlank(allowNull: true, groups: ['create'])]
         #[Groups([TransactionResource::READ_GROUP, TransactionResource::CREATE_GROUP])]
-        public ?AssetResource $resource = null,
+        public ?AssetResource $asset = null,
 
         #[ApiProperty]
         #[Assert\NotBlank(groups: ['create'])]
@@ -40,7 +40,7 @@ final class OperationResource
     public static function fromModel(OperationInterface $operation): OperationResource
     {
         \Webmozart\Assert\Assert::isInstanceOf(
-            $asset = $operation->getResource(),
+            $asset = $operation->getAsset(),
             AssetInterface::class,
         );
 

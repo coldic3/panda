@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Panda\Trade\Domain\Model\Asset;
 
 use Panda\Contract\AggregateRoot\Owner\OwnerInterface;
-use Panda\Contract\AggregateRoot\Resource\ResourceInterface;
 use Panda\Shared\Domain\Model\TimestampableTrait;
 use Symfony\Component\Uid\Uuid;
 
@@ -57,8 +56,8 @@ class Asset implements AssetInterface
         $this->owner = $owner;
     }
 
-    public function compare(ResourceInterface $resource): bool
+    public function compare(AssetInterface $asset): bool
     {
-        return $this->getId() === $resource->getId();
+        return $this->getId() === $asset->getId();
     }
 }

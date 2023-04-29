@@ -6,6 +6,6 @@
 
         <field name="quantity" column="quantity" type="integer" />
 
-        <many-to-one field="resource" target-entity="Panda\Trade\Domain\Model\Asset\Asset" />
+        <many-to-one field="asset" target-entity="Panda\Trade\Domain\Model\Asset\Asset" />
     </entity>
 </doctrine-mapping>
