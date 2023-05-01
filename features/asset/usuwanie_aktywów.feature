@@ -15,3 +15,10 @@ Potrzeba biznesowa: Usuwanie aktywów
         Gdy usuwam aktywo "ACM"
         Wtedy usuwanie aktywa kończy się sukcesem
         I aktywo zostało usunięte z listy aktywów
+
+    @api
+    Scenariusz: Usuwanie aktywa należącego do innego użytkownika
+        Zakładając, że istnieje użytkownik "bear@example.com"
+        I użytkownik "bear@example.com" posiada aktywo "XYZ" o nazwie "XYZ Corp."
+        Gdy usuwam aktywo "XYZ"
+        Wtedy usuwanie aktywa kończy się niepowodzeniem

@@ -25,3 +25,12 @@ Potrzeba biznesowa: Modyfikowanie aktywów
         I zatwierdzam wprowadzone dane
         Wtedy edycja aktywa kończy się sukcesem
         I aktywo zmienia swój ticker na "ACME"
+
+    @api
+    Scenariusz: Zmiana aktywa należącego do innego użytkownika
+        Zakładając, że istnieje użytkownik "bear@example.com"
+        I użytkownik "bear@example.com" posiada aktywo "XYZ" o nazwie "XYZ Corp."
+        Gdy modyfikuję aktywo "XYZ"
+        I podaję nazwę "XYZ Inc."
+        I zatwierdzam wprowadzone dane
+        Wtedy edycja aktywa kończy się niepowodzeniem

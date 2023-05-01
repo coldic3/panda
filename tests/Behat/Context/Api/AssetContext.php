@@ -151,6 +151,15 @@ class AssetContext implements Context
     }
 
     /**
+     * @Then edycja aktywa kończy się niepowodzeniem
+     * @Then usuwanie aktywa kończy się niepowodzeniem
+     */
+    function the_asset_edition_fails()
+    {
+        Assert::same($this->http->getResponse()->getStatusCode(), Response::HTTP_NOT_FOUND);
+    }
+
+    /**
      * @Then aktywo zostało dodane do listy aktywów
      */
     function the_asset_has_been_created()
