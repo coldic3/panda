@@ -6,26 +6,24 @@ namespace Panda\Account\Application\Query\User;
 
 use Panda\Account\Domain\Model\UserInterface;
 use Panda\Account\Domain\Repository\UserRepositoryInterface;
+use Panda\AccountOHS\Domain\Exception\AuthorizedUserNotFoundExceptionInterface;
+use Panda\AccountOHS\Domain\Provider\AuthorizedUserProviderInterface;
 use Panda\Shared\Application\Query\QueryHandlerInterface;
-use Symfony\Bundle\SecurityBundle\Security;
 
 final class FindUserQueryHandler implements QueryHandlerInterface
 {
     public function __construct(
         private readonly UserRepositoryInterface $repository,
-        private readonly Security $security,
+        private readonly AuthorizedUserProviderInterface $authorizedUserProvider,
     ) {
     }
 
+    /**
+     * @throws AuthorizedUserNotFoundExceptionInterface
+     */
     public function __invoke(FindUserQuery $query): ?UserInterface
     {
-        /** @var UserInterface|null $authorizedUser */
-        $authorizedUser = $this->security->getUser();
-
-        if (null === $authorizedUser) {
-            return null;
-        }
-
+        $authorizedUser = $this->authorizedUserProvider->provide();
         $user = $this->repository->findById($query->id);
 
         if (null !== $user && !$user->compare($authorizedUser)) {

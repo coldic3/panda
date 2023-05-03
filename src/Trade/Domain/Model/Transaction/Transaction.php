@@ -6,7 +6,7 @@ namespace Panda\Trade\Domain\Model\Transaction;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
-use Panda\Contract\AggregateRoot\Owner\OwnerInterface;
+use Panda\AccountOHS\Domain\Model\Owner\OwnerInterface;
 use Panda\Trade\Domain\ValueObject\TransactionTypeEnum;
 use Symfony\Component\Uid\Uuid;
 

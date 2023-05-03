@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Panda\Trade\Domain\Model\Asset;
 
-use Panda\Contract\AggregateRoot\Owner\OwnershipInterface;
+use Panda\AccountOHS\Domain\Model\Owner\OwnershipInterface;
 use Panda\Shared\Domain\Model\IdentifiableInterface;
 use Panda\Shared\Domain\Model\TimestampableInterface;
 

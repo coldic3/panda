@@ -2,6 +2,7 @@
 
 declare(strict_types=1);
 
+use Panda\AccountOHS\Domain\Provider\AuthorizedUserProviderInterface;
 use Panda\Trade\Application\Query\Asset\FindAssetQueryHandler;
 use Panda\Trade\Application\Query\Asset\FindAssetsQueryHandler;
 use Panda\Trade\Application\Query\Transaction\FindTransactionQueryHandler;
@@ -17,7 +18,7 @@ return static function (ContainerConfigurator $containerConfigurator): void {
     $services->set(FindAssetQueryHandler::class)
         ->args([
             service(AssetRepositoryInterface::class),
-            service('security.helper'),
+            service(AuthorizedUserProviderInterface::class),
         ])
         ->tag('messenger.message_handler', [
             'bus_name' => 'query.bus',
@@ -26,7 +27,7 @@ return static function (ContainerConfigurator $containerConfigurator): void {
     $services->set(FindAssetsQueryHandler::class)
         ->args([
             service(AssetRepositoryInterface::class),
-            service('security.helper'),
+            service(AuthorizedUserProviderInterface::class),
         ])
         ->tag('messenger.message_handler', [
             'bus_name' => 'query.bus',
@@ -35,7 +36,7 @@ return static function (ContainerConfigurator $containerConfigurator): void {
     $services->set(FindTransactionQueryHandler::class)
         ->args([
             service(TransactionRepositoryInterface::class),
-            service('security.helper'),
+            service(AuthorizedUserProviderInterface::class),
         ])
         ->tag('messenger.message_handler', [
             'bus_name' => 'query.bus',
@@ -44,7 +45,7 @@ return static function (ContainerConfigurator $containerConfigurator): void {
     $services->set(FindTransactionsQueryHandler::class)
         ->args([
             service(TransactionRepositoryInterface::class),
-            service('security.helper'),
+            service(AuthorizedUserProviderInterface::class),
         ])
         ->tag('messenger.message_handler', [
             'bus_name' => 'query.bus',

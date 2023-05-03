@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Panda\Trade\Domain\Model\Asset;
 
-use Panda\Contract\AggregateRoot\Owner\OwnerInterface;
+use Panda\AccountOHS\Domain\Model\Owner\OwnerInterface;
 use Panda\Shared\Domain\Model\TimestampableTrait;
 use Symfony\Component\Uid\Uuid;
 

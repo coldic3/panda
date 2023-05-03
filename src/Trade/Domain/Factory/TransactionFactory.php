@@ -4,17 +4,17 @@ declare(strict_types=1);
 
 namespace Panda\Trade\Domain\Factory;
 
-use Panda\Contract\AggregateRoot\Owner\OwnerInterface;
+use Panda\AccountOHS\Domain\Model\Owner\OwnerInterface;
+use Panda\AccountOHS\Domain\Provider\AuthorizedUserProviderInterface;
 use Panda\Trade\Domain\Model\Transaction\OperationInterface;
 use Panda\Trade\Domain\Model\Transaction\Transaction;
 use Panda\Trade\Domain\Model\Transaction\TransactionInterface;
 use Panda\Trade\Domain\ValueObject\TransactionTypeEnum;
-use Symfony\Bundle\SecurityBundle\Security;
 use Webmozart\Assert\Assert;
 
 final class TransactionFactory implements TransactionFactoryInterface
 {
-    public function __construct(private readonly Security $security)
+    public function __construct(private AuthorizedUserProviderInterface $authorizedUserProvider)
     {
     }
 
@@ -114,12 +114,7 @@ final class TransactionFactory implements TransactionFactoryInterface
             return $transaction;
         }
 
-        Assert::isInstanceOf(
-            $owner = $this->security->getUser(),
-            OwnerInterface::class
-        );
-
-        $transaction->setOwnedBy($owner);
+        $transaction->setOwnedBy($this->authorizedUserProvider->provide());
 
         return $transaction;
     }
