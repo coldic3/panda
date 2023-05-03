@@ -5,13 +5,13 @@ declare(strict_types=1);
 namespace Panda\Tests\App\Trade\Domain\Factory;
 
 use Panda\Account\Domain\Model\UserInterface;
+use Panda\AccountOHS\Domain\Provider\AuthorizedUserProviderInterface;
 use Panda\Trade\Domain\Factory\TransactionFactory;
 use Panda\Trade\Domain\Model\Asset\AssetInterface;
 use Panda\Trade\Domain\Model\Transaction\Operation;
 use Panda\Trade\Domain\ValueObject\TransactionTypeEnum;
 use PHPUnit\Framework\TestCase;
 use Prophecy\PhpUnit\ProphecyTrait;
-use Symfony\Bundle\SecurityBundle\Security;
 use Webmozart\Assert\Assert;
 
 final class TransactionFactoryTest extends TestCase
@@ -21,15 +21,15 @@ final class TransactionFactoryTest extends TestCase
     /** @test */
     function it_creates_ask_transaction()
     {
-        $security = $this->prophesize(Security::class);
+        $authorizedUserProvider = $this->prophesize(AuthorizedUserProviderInterface::class);
         $owner = $this->prophesize(UserInterface::class);
         $firstResource = $this->prophesize(AssetInterface::class);
         $secondResource = $this->prophesize(AssetInterface::class);
         $thirdResource = $this->prophesize(AssetInterface::class);
         $fourthResource = $this->prophesize(AssetInterface::class);
-        $security->getUser()->willReturn($owner);
+        $authorizedUserProvider->provide()->willReturn($owner);
 
-        $factory = new TransactionFactory($security->reveal());
+        $factory = new TransactionFactory($authorizedUserProvider->reveal());
         $transaction = $factory->createAsk(
             new Operation($firstResource->reveal(), 100),
             new Operation($secondResource->reveal(), 245),
@@ -51,15 +51,15 @@ final class TransactionFactoryTest extends TestCase
     /** @test */
     function it_creates_bid_transaction()
     {
-        $security = $this->prophesize(Security::class);
+        $authorizedUserProvider = $this->prophesize(AuthorizedUserProviderInterface::class);
         $owner = $this->prophesize(UserInterface::class);
         $firstResource = $this->prophesize(AssetInterface::class);
         $secondResource = $this->prophesize(AssetInterface::class);
         $thirdResource = $this->prophesize(AssetInterface::class);
         $fourthResource = $this->prophesize(AssetInterface::class);
-        $security->getUser()->willReturn($owner);
+        $authorizedUserProvider->provide()->willReturn($owner);
 
-        $factory = new TransactionFactory($security->reveal());
+        $factory = new TransactionFactory($authorizedUserProvider->reveal());
         $transaction = $factory->createBid(
             new Operation($firstResource->reveal(), 100),
             new Operation($secondResource->reveal(), 245),
@@ -81,14 +81,14 @@ final class TransactionFactoryTest extends TestCase
     /** @test */
     function it_creates_deposit_transaction()
     {
-        $security = $this->prophesize(Security::class);
+        $authorizedUserProvider = $this->prophesize(AuthorizedUserProviderInterface::class);
         $owner = $this->prophesize(UserInterface::class);
         $firstResource = $this->prophesize(AssetInterface::class);
         $secondResource = $this->prophesize(AssetInterface::class);
         $thirdResource = $this->prophesize(AssetInterface::class);
-        $security->getUser()->willReturn($owner);
+        $authorizedUserProvider->provide()->willReturn($owner);
 
-        $factory = new TransactionFactory($security->reveal());
+        $factory = new TransactionFactory($authorizedUserProvider->reveal());
         $transaction = $factory->createDeposit(
             new Operation($firstResource->reveal(), 245),
             [
@@ -109,14 +109,14 @@ final class TransactionFactoryTest extends TestCase
     /** @test */
     function it_creates_withdraw_transaction()
     {
-        $security = $this->prophesize(Security::class);
+        $authorizedUserProvider = $this->prophesize(AuthorizedUserProviderInterface::class);
         $owner = $this->prophesize(UserInterface::class);
         $firstResource = $this->prophesize(AssetInterface::class);
         $secondResource = $this->prophesize(AssetInterface::class);
         $thirdResource = $this->prophesize(AssetInterface::class);
-        $security->getUser()->willReturn($owner);
+        $authorizedUserProvider->provide()->willReturn($owner);
 
-        $factory = new TransactionFactory($security->reveal());
+        $factory = new TransactionFactory($authorizedUserProvider->reveal());
         $transaction = $factory->createWithdraw(
             new Operation($firstResource->reveal(), 245),
             [
@@ -137,13 +137,13 @@ final class TransactionFactoryTest extends TestCase
     /** @test */
     function it_creates_fee_transaction()
     {
-        $security = $this->prophesize(Security::class);
+        $authorizedUserProvider = $this->prophesize(AuthorizedUserProviderInterface::class);
         $owner = $this->prophesize(UserInterface::class);
         $firstResource = $this->prophesize(AssetInterface::class);
         $secondResource = $this->prophesize(AssetInterface::class);
-        $security->getUser()->willReturn($owner);
+        $authorizedUserProvider->provide()->willReturn($owner);
 
-        $factory = new TransactionFactory($security->reveal());
+        $factory = new TransactionFactory($authorizedUserProvider->reveal());
         $transaction = $factory->createFee(
             [
                 new Operation($firstResource->reveal(), 10),
@@ -163,14 +163,14 @@ final class TransactionFactoryTest extends TestCase
     /** @test */
     function it_creates_transaction_with_owner()
     {
-        $security = $this->prophesize(Security::class);
+        $authorizedUserProvider = $this->prophesize(AuthorizedUserProviderInterface::class);
         $owner = $this->prophesize(UserInterface::class);
         $firstResource = $this->prophesize(AssetInterface::class);
         $secondResource = $this->prophesize(AssetInterface::class);
         $thirdResource = $this->prophesize(AssetInterface::class);
         $fourthResource = $this->prophesize(AssetInterface::class);
 
-        $factory = new TransactionFactory($security->reveal());
+        $factory = new TransactionFactory($authorizedUserProvider->reveal());
 
         $transaction = $factory->createAsk(
             new Operation($firstResource->reveal(), 100),
@@ -232,13 +232,13 @@ final class TransactionFactoryTest extends TestCase
     /** @test */
     function it_does_not_require_adjustment_operations_for_all_transactions_except_fee_transaction()
     {
-        $security = $this->prophesize(Security::class);
+        $authorizedUserProvider = $this->prophesize(AuthorizedUserProviderInterface::class);
         $owner = $this->prophesize(UserInterface::class);
         $firstResource = $this->prophesize(AssetInterface::class);
         $secondResource = $this->prophesize(AssetInterface::class);
-        $security->getUser()->willReturn($owner);
+        $authorizedUserProvider->provide()->willReturn($owner);
 
-        $factory = new TransactionFactory($security->reveal());
+        $factory = new TransactionFactory($authorizedUserProvider->reveal());
 
         $transaction = $factory->createAsk(
             new Operation($firstResource->reveal(), 100),

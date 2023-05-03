@@ -4,15 +4,14 @@ declare(strict_types=1);
 
 namespace Panda\Trade\Domain\Factory;
 
-use Panda\Contract\AggregateRoot\Owner\OwnerInterface;
+use Panda\AccountOHS\Domain\Model\Owner\OwnerInterface;
+use Panda\AccountOHS\Domain\Provider\AuthorizedUserProviderInterface;
 use Panda\Trade\Domain\Model\Asset\Asset;
 use Panda\Trade\Domain\Model\Asset\AssetInterface;
-use Symfony\Bundle\SecurityBundle\Security;
-use Webmozart\Assert\Assert;
 
 final class AssetFactory implements AssetFactoryInterface
 {
-    public function __construct(private Security $security)
+    public function __construct(private AuthorizedUserProviderInterface $authorizedUserProvider)
     {
     }
 
@@ -30,10 +29,7 @@ final class AssetFactory implements AssetFactoryInterface
             return $asset;
         }
 
-        Assert::isInstanceOf(
-            $owner = $this->security->getUser(),
-            OwnerInterface::class
-        );
+        $owner = $this->authorizedUserProvider->provide();
 
         $asset->setOwnedBy($owner);
 

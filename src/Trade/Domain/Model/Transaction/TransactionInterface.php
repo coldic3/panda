@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Panda\Trade\Domain\Model\Transaction;
 
 use Doctrine\Common\Collections\Collection;
-use Panda\Contract\AggregateRoot\Owner\OwnershipInterface;
+use Panda\AccountOHS\Domain\Model\Owner\OwnershipInterface;
 use Panda\Shared\Domain\Model\IdentifiableInterface;
 use Panda\Trade\Domain\ValueObject\TransactionTypeEnum;
 

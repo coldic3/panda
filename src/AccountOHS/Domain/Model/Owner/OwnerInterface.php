@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Panda\Contract\AggregateRoot\Owner;
+namespace Panda\AccountOHS\Domain\Model\Owner;
 
 use Panda\Shared\Domain\Model\IdentifiableInterface;
 

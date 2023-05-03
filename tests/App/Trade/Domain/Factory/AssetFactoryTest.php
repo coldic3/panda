@@ -5,10 +5,10 @@ declare(strict_types=1);
 namespace Panda\Tests\App\Trade\Domain\Factory;
 
 use Panda\Account\Domain\Model\UserInterface;
+use Panda\AccountOHS\Domain\Provider\AuthorizedUserProviderInterface;
 use Panda\Trade\Domain\Factory\AssetFactory;
 use PHPUnit\Framework\TestCase;
 use Prophecy\PhpUnit\ProphecyTrait;
-use Symfony\Bundle\SecurityBundle\Security;
 use Webmozart\Assert\Assert;
 
 final class AssetFactoryTest extends TestCase
@@ -18,11 +18,11 @@ final class AssetFactoryTest extends TestCase
     /** @test */
     function it_creates_asset()
     {
-        $security = $this->prophesize(Security::class);
+        $authorizedUserProvider = $this->prophesize(AuthorizedUserProviderInterface::class);
         $owner = $this->prophesize(UserInterface::class);
-        $security->getUser()->willReturn($owner);
+        $authorizedUserProvider->provide()->willReturn($owner);
 
-        $factory = new AssetFactory($security->reveal());
+        $factory = new AssetFactory($authorizedUserProvider->reveal());
         $asset = $factory->create('AAPL', 'Apple Inc.');
 
         Assert::uuid($asset->getId());
@@ -33,11 +33,11 @@ final class AssetFactoryTest extends TestCase
     /** @test */
     function it_creates_asset_without_name()
     {
-        $security = $this->prophesize(Security::class);
+        $authorizedUserProvider = $this->prophesize(AuthorizedUserProviderInterface::class);
         $owner = $this->prophesize(UserInterface::class);
-        $security->getUser()->willReturn($owner);
+        $authorizedUserProvider->provide()->willReturn($owner);
 
-        $factory = new AssetFactory($security->reveal());
+        $factory = new AssetFactory($authorizedUserProvider->reveal());
         $asset = $factory->create('AAPL');
 
         Assert::uuid($asset->getId());
@@ -48,10 +48,10 @@ final class AssetFactoryTest extends TestCase
     /** @test */
     function it_creates_asset_with_owner()
     {
-        $security = $this->prophesize(Security::class);
+        $authorizedUserProvider = $this->prophesize(AuthorizedUserProviderInterface::class);
         $owner = $this->prophesize(UserInterface::class);
 
-        $factory = new AssetFactory($security->reveal());
+        $factory = new AssetFactory($authorizedUserProvider->reveal());
         $asset = $factory->create('AAPL', 'Apple Inc.', $owner->reveal());
 
         Assert::uuid($asset->getId());

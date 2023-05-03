@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Panda\Tests\Architecture;
 
+use PHPat\Selector\ClassNamespace;
 use PHPat\Selector\Selector;
 use PHPat\Test\Builder\Rule;
 use PHPat\Test\PHPat;
@@ -12,33 +13,38 @@ use Symfony\Component\Finder\SplFileInfo;
 
 final class BoundedContextsSeparationTest
 {
-    private const COUPLING_ALLOWED = ['AntiCorruptionLayer', 'Contract', 'Shared'];
+    private const COUPLING_ALLOWED = ['Shared'];
 
     public function test_account_bounded_context_does_not_depend_on_other_bounded_contexts(): Rule
     {
         return PHPat::rule()
-            ->classes(Selector::namespace('Panda\\Account'))
+            ->classes($this->getBoundedContextClassNamespace('Account'))
             ->shouldNotDependOn()
-            ->classes(...$this->findBoundedContextsExcept(['Account', ...self::COUPLING_ALLOWED]));
+            ->classes(...$this->findBoundedContextsExcept(['Account', 'AccountOHS', ...self::COUPLING_ALLOWED]));
     }
 
     public function test_trade_bounded_context_does_not_depend_on_other_bounded_contexts(): Rule
     {
         return PHPat::rule()
-            ->classes(Selector::namespace('Panda\\Trade'))
+            ->classes($this->getBoundedContextClassNamespace('Trade'))
             ->shouldNotDependOn()
-            ->classes(...$this->findBoundedContextsExcept(['Trade', ...self::COUPLING_ALLOWED]));
+            ->classes(...$this->findBoundedContextsExcept(['Trade', 'AccountOHS', ...self::COUPLING_ALLOWED]));
     }
 
     public function test_shared_bounded_context_does_not_depend_on_other_bounded_contexts(): Rule
     {
         return PHPat::rule()
-            ->classes(Selector::namespace('Panda\\Shared'))
+            ->classes($this->getBoundedContextClassNamespace('Shared'))
             ->shouldNotDependOn()
             ->classes(...$this->findBoundedContextsExcept(['Shared']));
     }
 
-    private function findBoundedContextsExcept(array $exceptions): array
+    private function getBoundedContextClassNamespace(string $context): ClassNamespace
+    {
+        return Selector::namespace(sprintf('/^Panda\\\%s(\\\.*|)$/', $context), true);
+    }
+
+    private function findBoundedContextsExcept(array $exceptions = []): array
     {
         $boundedContextsFinder = new Finder();
         $boundedContextsFinder->directories()->in(__DIR__.'/../../src')->depth(0);
@@ -51,7 +57,8 @@ final class BoundedContextsSeparationTest
                 continue;
             }
 
-            $boundedContextSelectors[] = Selector::namespace(sprintf('Panda\\%s', $boundedContext->getRelativePathname()));
+            $boundedContextSelectors[] = Selector::namespace(sprintf('/^Panda\\\%s$/', $boundedContext->getRelativePathname()), true);
+            $boundedContextSelectors[] = Selector::namespace(sprintf('/^Panda\\\%s\\\/', $boundedContext->getRelativePathname()), true);
         }
 
         return $boundedContextSelectors;

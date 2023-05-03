@@ -2,6 +2,7 @@
 
 declare(strict_types=1);
 
+use Panda\AccountOHS\Domain\Provider\AuthorizedUserProviderInterface;
 use Panda\Trade\Domain\Factory\AssetFactory;
 use Panda\Trade\Domain\Factory\AssetFactoryInterface;
 use Panda\Trade\Domain\Factory\OperationFactory;
@@ -16,11 +17,11 @@ return static function (ContainerConfigurator $containerConfigurator): void {
 
     $services->set(AssetFactoryInterface::class)
         ->class(AssetFactory::class)
-        ->args([service('security.helper')]);
+        ->args([service(AuthorizedUserProviderInterface::class)]);
 
     $services->set(TransactionFactoryInterface::class)
         ->class(TransactionFactory::class)
-        ->args([service('security.helper')]);
+        ->args([service(AuthorizedUserProviderInterface::class)]);
 
     $services->set(OperationFactoryInterface::class)
         ->class(OperationFactory::class);

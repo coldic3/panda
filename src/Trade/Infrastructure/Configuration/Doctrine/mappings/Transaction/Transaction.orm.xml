@@ -32,7 +32,7 @@
             <cascade><cascade-persist /></cascade>
         </many-to-many>
 
-        <many-to-one field="owner" target-entity="Panda\Contract\AggregateRoot\Owner\OwnerInterface">
+        <many-to-one field="owner" target-entity="Panda\AccountOHS\Domain\Model\Owner\OwnerInterface">
             <join-column name="owner_id" nullable="false" />
         </many-to-one>
     </entity>
