@@ -100,6 +100,22 @@
         ],
         "post-update-cmd": [
             "@auto-scripts"
+        ],
+        "static-analyze:code-style": [
+            "vendor/bin/php-cs-fixer fix --dry-run --config=.php-cs-fixer.dist.php",
+            "vendor/bin/php-cs-fixer fix --dry-run --config=.php-cs-fixer.test.dist.php"
+        ],
+        "static-analyze:phpstan": ["vendor/bin/phpstan analyse"],
+        "static-analyze:psalm": ["vendor/bin/psalm"],
+        "test:unit": ["vendor/bin/phpunit --testsuite unit"],
+        "test:contract": ["vendor/bin/phpunit --testsuite contract"],
+        "test:behavioral": [
+            "vendor/bin/phpspec run",
+            "vendor/bin/behat --strict --no-interaction -f progress"
+        ],
+        "fix:code-style": [
+            "vendor/bin/php-cs-fixer fix --config=.php-cs-fixer.dist.php",
+            "vendor/bin/php-cs-fixer fix --config=.php-cs-fixer.test.dist.php"
         ]
     },
     "conflict": {

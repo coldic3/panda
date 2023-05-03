@@ -64,21 +64,18 @@ jobs:
             -
                 name: Execute static analysis
                 run: |
-                    vendor/bin/php-cs-fixer fix --dry-run --config=.php-cs-fixer.dist.php
-                    vendor/bin/php-cs-fixer fix --dry-run --config=.php-cs-fixer.test.dist.php
-                    vendor/bin/phpstan analyse
-                    vendor/bin/psalm
+                    composer run-script static-analyze:code-style
+                    composer run-script static-analyze:phpstan
+                    composer run-script static-analyze:psalm
 
             -
                 name: Execute unit tests
-                run: vendor/bin/phpunit --testsuite unit
+                run: composer run-script test:unit
 
             -
                 name: Execute contract tests
-                run: vendor/bin/phpunit --testsuite contract
+                run: composer run-script test:contract
                 
             -
                 name: Execute behavioral tests
-                run: |
-                    vendor/bin/phpspec run
-                    vendor/bin/behat --strict --no-interaction -f progress
+                run: composer run-script test:behavioral
