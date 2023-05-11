@@ -1,0 +1,15 @@
+include:
+    - 'user.yaml'
+    - 'assets.yaml'
+    
+Panda\Trade\Domain\Model\Transaction\Transaction:
+    transaction_ask:
+        __factory: {'Panda\Tests\Fixture\Factory\TransactionFactory::createAsk': ['@asset_1', 1000, '@asset_2', 5, '@asset_1', 10, <(new DateTimeImmutable('now -1 seconds'))>, '@user_panda'] }
+    transaction_bid:
+        __factory: {'Panda\Tests\Fixture\Factory\TransactionFactory::createBid': ['@asset_2', 5, '@asset_1', 1000, '@asset_1', 10, <(new DateTimeImmutable('now -2 seconds'))>, '@user_panda'] }
+    transaction_deposit:
+        __factory: {'Panda\Tests\Fixture\Factory\TransactionFactory::createDeposit': ['@asset_1', 1000, '@asset_1', 10, <(new DateTimeImmutable('now -4 seconds'))>, '@user_panda'] }
+    transaction_withdraw:
+        __factory: {'Panda\Tests\Fixture\Factory\TransactionFactory::createWithdraw': ['@asset_1', 1000, '@asset_1', 10, <(new DateTimeImmutable('now -8 seconds'))>, '@user_panda'] }
+    transaction_fee:
+        __factory: {'Panda\Tests\Fixture\Factory\TransactionFactory::createFee': ['@asset_1', 10, <(new DateTimeImmutable('now -16 seconds'))>, '@user_panda'] }

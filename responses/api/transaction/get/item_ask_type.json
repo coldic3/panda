@@ -2,7 +2,13 @@
   "@context": "/contexts/Transaction",
   "@id": "/transactions/@uuid@",
   "@type": "Transaction",
-  "type": "transfer",
+  "type": "ask",
+  "fromOperation": {
+    "@id": "/operations/@uuid@",
+    "@type": "Operation",
+    "asset": "/assets/@uuid@",
+    "quantity": "@integer@.greaterThan(0)"
+  },
   "toOperation": {
     "@id": "/operations/@uuid@",
     "@type": "Operation",

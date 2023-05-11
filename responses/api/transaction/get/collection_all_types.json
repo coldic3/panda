@@ -1,0 +1,114 @@
+{
+  "@context": "/contexts/Transaction",
+  "@id": "/transactions",
+  "@type": "hydra:Collection",
+  "hydra:totalItems": 5,
+  "hydra:member": [
+    {
+      "@id": "/transactions/@uuid@",
+      "@type": "Transaction",
+      "type": "ask",
+      "fromOperation": {
+        "@id": "/operations/@uuid@",
+        "@type": "Operation",
+        "asset": "/assets/@uuid@",
+        "quantity": "@integer@.greaterThan(0)"
+      },
+      "toOperation": {
+        "@id": "/operations/@uuid@",
+        "@type": "Operation",
+        "asset": "/assets/@uuid@",
+        "quantity": "@integer@.greaterThan(0)"
+      },
+      "adjustmentOperations": [
+        {
+          "@id": "/operations/@uuid@",
+          "@type": "Operation",
+          "asset": "/assets/@uuid@",
+          "quantity": "@integer@.greaterThan(0)"
+        }
+      ],
+      "concludedAt": "@datetime@"
+    },
+    {
+      "@id": "/transactions/@uuid@",
+      "@type": "Transaction",
+      "type": "bid",
+      "fromOperation": {
+        "@id": "/operations/@uuid@",
+        "@type": "Operation",
+        "asset": "/assets/@uuid@",
+        "quantity": "@integer@.greaterThan(0)"
+      },
+      "toOperation": {
+        "@id": "/operations/@uuid@",
+        "@type": "Operation",
+        "asset": "/assets/@uuid@",
+        "quantity": "@integer@.greaterThan(0)"
+      },
+      "adjustmentOperations": [
+        {
+          "@id": "/operations/@uuid@",
+          "@type": "Operation",
+          "asset": "/assets/@uuid@",
+          "quantity": "@integer@.greaterThan(0)"
+        }
+      ],
+      "concludedAt": "@datetime@"
+    },
+    {
+      "@id": "/transactions/@uuid@",
+      "@type": "Transaction",
+      "type": "deposit",
+      "toOperation": {
+        "@id": "/operations/@uuid@",
+        "@type": "Operation",
+        "asset": "/assets/@uuid@",
+        "quantity": "@integer@.greaterThan(0)"
+      },
+      "adjustmentOperations": [
+        {
+          "@id": "/operations/@uuid@",
+          "@type": "Operation",
+          "asset": "/assets/@uuid@",
+          "quantity": "@integer@.greaterThan(0)"
+        }
+      ],
+      "concludedAt": "@datetime@"
+    },
+    {
+      "@id": "/transactions/@uuid@",
+      "@type": "Transaction",
+      "type": "withdraw",
+      "fromOperation": {
+        "@id": "/operations/@uuid@",
+        "@type": "Operation",
+        "asset": "/assets/@uuid@",
+        "quantity": "@integer@.greaterThan(0)"
+      },
+      "adjustmentOperations": [
+        {
+          "@id": "/operations/@uuid@",
+          "@type": "Operation",
+          "asset": "/assets/@uuid@",
+          "quantity": "@integer@.greaterThan(0)"
+        }
+      ],
+      "concludedAt": "@datetime@"
+    },
+    {
+      "@id": "/transactions/@uuid@",
+      "@type": "Transaction",
+      "type": "fee",
+      "adjustmentOperations": [
+        {
+          "@id": "/operations/@uuid@",
+          "@type": "Operation",
+          "asset": "/assets/@uuid@",
+          "quantity": "@integer@.greaterThan(0)"
+        }
+      ],
+      "concludedAt": "@datetime@"
+    }
+  ]
+}

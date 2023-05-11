@@ -1,0 +1,7 @@
+include:
+    - 'user.yaml'
+    - 'assets.yaml'
+
+Panda\Trade\Domain\Model\Transaction\Transaction:
+    transaction_ask:
+        __factory: {'Panda\Tests\Fixture\Factory\TransactionFactory::createAsk': ['@asset_1', 1000, '@asset_2', 5, '@asset_3', 10, <(new DateTimeImmutable())>, '@user_panda'] }
