@@ -12,8 +12,7 @@ class Asset implements AssetInterface
 {
     use TimestampableTrait;
 
-    public readonly Uuid $id;
-
+    private Uuid $id;
     private ?OwnerInterface $owner = null;
 
     public function __construct(private string $ticker, private string $name)

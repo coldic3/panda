@@ -10,17 +10,13 @@ use Panda\AccountOHS\Domain\Model\Owner\OwnerInterface;
 use Panda\Trade\Domain\ValueObject\TransactionTypeEnum;
 use Symfony\Component\Uid\Uuid;
 
-final class Transaction implements TransactionInterface
+/** @readonly */
+class Transaction implements TransactionInterface
 {
-    public readonly Uuid $id;
-
+    private Uuid $id;
     private ?OwnerInterface $owner = null;
 
-    /**
-     * @var Collection<array-key, OperationInterface>
-     *
-     * @readonly but Doctrine needs to be able to add to it
-     */
+    /** @var Collection<array-key, OperationInterface> */
     private Collection $adjustmentOperations;
 
     /**

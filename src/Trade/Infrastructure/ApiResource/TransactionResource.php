@@ -6,12 +6,16 @@ namespace Panda\Trade\Infrastructure\ApiResource;
 
 use ApiPlatform\Metadata\ApiProperty;
 use ApiPlatform\Metadata\ApiResource;
+use ApiPlatform\Metadata\Get;
+use ApiPlatform\Metadata\GetCollection;
 use ApiPlatform\Metadata\Post;
 use Panda\Trade\Domain\Model\Transaction\OperationInterface;
 use Panda\Trade\Domain\Model\Transaction\TransactionInterface;
 use Panda\Trade\Domain\ValueObject\TransactionTypeEnum;
 use Panda\Trade\Infrastructure\ApiState\Processor\TransactionCreateProcessor;
 use Panda\Trade\Infrastructure\ApiState\Provider\TransactionProvider;
+use Panda\Trade\Infrastructure\OpenApi\Filter\ConcludedAtFilter;
+use Panda\Trade\Infrastructure\OpenApi\Filter\OperationAssetFilter;
 use Symfony\Component\Serializer\Annotation\Groups;
 use Symfony\Component\Uid\Uuid;
 use Symfony\Component\Validator\Constraints as Assert;
@@ -19,6 +23,8 @@ use Symfony\Component\Validator\Constraints as Assert;
 #[ApiResource(
     shortName: 'Transaction',
     operations: [
+        new GetCollection(filters: [ConcludedAtFilter::class, OperationAssetFilter::class]),
+        new Get(),
         new Post(validationContext: ['groups' => ['create']], processor: TransactionCreateProcessor::class),
     ],
     normalizationContext: ['groups' => [self::READ_GROUP]],

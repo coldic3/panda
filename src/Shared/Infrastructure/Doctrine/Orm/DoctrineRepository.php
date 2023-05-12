@@ -75,6 +75,11 @@ abstract class DoctrineRepository implements RepositoryInterface
         return $cloned;
     }
 
+    protected function buildOnto(callable $buildOnto): static
+    {
+        return $this->filter($buildOnto);
+    }
+
     protected function query(): QueryBuilder
     {
         return clone $this->queryBuilder;

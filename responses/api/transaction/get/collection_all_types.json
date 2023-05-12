@@ -110,5 +110,36 @@
       ],
       "concludedAt": "@datetime@"
     }
-  ]
+  ],
+  "hydra:search": {
+    "@type": "hydra:IriTemplate",
+    "hydra:template": "/transactions{?concludedAt[after],concludedAt[before],fromOperation.asset.id,toOperation.asset.id}",
+    "hydra:variableRepresentation": "BasicRepresentation",
+    "hydra:mapping": [
+      {
+        "@type": "IriTemplateMapping",
+        "variable": "concludedAt[after]",
+        "property": "concludedAt[after]",
+        "required": false
+      },
+      {
+        "@type": "IriTemplateMapping",
+        "variable": "concludedAt[before]",
+        "property": "concludedAt[before]",
+        "required": false
+      },
+      {
+        "@type": "IriTemplateMapping",
+        "variable": "fromOperation.asset.id",
+        "property": "fromOperation.asset.id",
+        "required": false
+      },
+      {
+        "@type": "IriTemplateMapping",
+        "variable": "toOperation.asset.id",
+        "property": "toOperation.asset.id",
+        "required": false
+      }
+    ]
+  }
 }
