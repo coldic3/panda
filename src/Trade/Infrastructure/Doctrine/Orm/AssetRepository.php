@@ -5,6 +5,8 @@ declare(strict_types=1);
 namespace Panda\Trade\Infrastructure\Doctrine\Orm;
 
 use Doctrine\ORM\EntityManagerInterface;
+use Panda\AccountOHS\Domain\Model\Owner\OwnerInterface;
+use Panda\Shared\Domain\Repository\QueryInterface;
 use Panda\Shared\Infrastructure\Doctrine\Orm\DoctrineRepository;
 use Panda\Trade\Domain\Model\Asset\Asset;
 use Panda\Trade\Domain\Model\Asset\AssetInterface;
@@ -34,6 +36,11 @@ final class AssetRepository extends DoctrineRepository implements AssetRepositor
     public function findById(Uuid $id): ?AssetInterface
     {
         return $this->em->find(self::ENTITY_CLASS, $id);
+    }
+
+    public function defaultQuery(OwnerInterface $owner): QueryInterface
+    {
+        return new Query\DefaultAssetQuery($owner);
     }
 
     protected function getEntityClass(): string

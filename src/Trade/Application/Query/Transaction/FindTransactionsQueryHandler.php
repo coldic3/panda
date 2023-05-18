@@ -25,7 +25,7 @@ final class FindTransactionsQueryHandler implements QueryHandlerInterface
     {
         $authorizedUser = $this->authorizedUserProvider->provide();
 
-        $transactionRepository = $this->transactionRepository->buildComplexQuery(
+        $transactionQuery = $this->transactionRepository->defaultQuery(
             $authorizedUser,
             $query->fromOperationAssetId,
             $query->toOperationAssetId,
@@ -34,9 +34,9 @@ final class FindTransactionsQueryHandler implements QueryHandlerInterface
         );
 
         if (null !== $query->page && null !== $query->itemsPerPage) {
-            return $transactionRepository->pagination($query->page, $query->itemsPerPage);
+            return $this->transactionRepository->pagination($transactionQuery, $query->page, $query->itemsPerPage);
         }
 
-        return $transactionRepository->collection();
+        return $this->transactionRepository->collection($transactionQuery);
     }
 }

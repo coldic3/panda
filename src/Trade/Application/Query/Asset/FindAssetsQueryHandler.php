@@ -24,12 +24,13 @@ final class FindAssetsQueryHandler implements QueryHandlerInterface
     public function __invoke(FindAssetsQuery $query): ?CollectionIteratorInterface
     {
         $authorizedUser = $this->authorizedUserProvider->provide();
-        $assetRepository = $this->assetRepository->filterBy('owner', $authorizedUser);
+
+        $assetQuery = $this->assetRepository->defaultQuery($authorizedUser);
 
         if (null !== $query->page && null !== $query->itemsPerPage) {
-            return $assetRepository->pagination($query->page, $query->itemsPerPage);
+            return $this->assetRepository->pagination($assetQuery, $query->page, $query->itemsPerPage);
         }
 
-        return $assetRepository->collection();
+        return $this->assetRepository->collection($assetQuery);
     }
 }

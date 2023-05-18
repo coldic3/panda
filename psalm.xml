@@ -12,4 +12,12 @@
             <directory name="vendor" />
         </ignoreFiles>
     </projectFiles>
+
+    <issueHandlers>
+        <InaccessibleProperty>
+            <errorLevel type="info">
+                <file name="src/Shared/Domain/Repository/QueryBuilderAwareTrait.php" />
+            </errorLevel>
+        </InaccessibleProperty>
+    </issueHandlers>
 </psalm>

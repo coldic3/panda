@@ -5,13 +5,14 @@ declare(strict_types=1);
 namespace Panda\Tests\Behat\Context\Transform;
 
 use Behat\Behat\Context\Context;
+use Doctrine\ORM\EntityManagerInterface;
+use Panda\Trade\Domain\Model\Asset\Asset;
 use Panda\Trade\Domain\Model\Asset\AssetInterface;
-use Panda\Trade\Domain\Repository\AssetRepositoryInterface;
 use Webmozart\Assert\Assert;
 
 class AssetContext implements Context
 {
-    public function __construct(private readonly AssetRepositoryInterface $assetRepository)
+    public function __construct(private readonly EntityManagerInterface $entityManager)
     {
     }
 
@@ -28,7 +29,7 @@ class AssetContext implements Context
     public function asset(string $ticker): AssetInterface
     {
         Assert::isInstanceOf(
-            $asset = $this->assetRepository->filterBy('ticker', $ticker)->item(),
+            $asset = $this->entityManager->getRepository(Asset::class)->findOneBy(['ticker' => $ticker]),
             AssetInterface::class
         );
 
