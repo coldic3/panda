@@ -34,6 +34,12 @@ final class HttpRequestBuilder
         $this->httpPayload[$key] = $value;
     }
 
+    public function addQueryParameter(string $key, mixed $value): void
+    {
+        $this->httpPath .= str_contains($this->httpPath, '?') ? '&' : '?';
+        $this->httpPath .= sprintf('%s=%s', $key, $value);
+    }
+
     public function getPayloadElement(string $key): mixed
     {
         return $this->httpPayload[$key] ?? null;

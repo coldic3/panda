@@ -1,0 +1,145 @@
+{
+  "@context": "/contexts/Transaction",
+  "@id": "/transactions",
+  "@type": "hydra:Collection",
+  "hydra:totalItems": 5,
+  "hydra:member": [
+    {
+      "@id": "/transactions/@uuid@",
+      "@type": "Transaction",
+      "type": "ask",
+      "fromOperation": {
+        "@id": "/operations/@uuid@",
+        "@type": "Operation",
+        "asset": "/assets/@uuid@",
+        "quantity": "@integer@.greaterThan(0)"
+      },
+      "toOperation": {
+        "@id": "/operations/@uuid@",
+        "@type": "Operation",
+        "asset": "/assets/@uuid@",
+        "quantity": "@integer@.greaterThan(0)"
+      },
+      "adjustmentOperations": [
+        {
+          "@id": "/operations/@uuid@",
+          "@type": "Operation",
+          "asset": "/assets/@uuid@",
+          "quantity": "@integer@.greaterThan(0)"
+        }
+      ],
+      "concludedAt": "@datetime@"
+    },
+    {
+      "@id": "/transactions/@uuid@",
+      "@type": "Transaction",
+      "type": "bid",
+      "fromOperation": {
+        "@id": "/operations/@uuid@",
+        "@type": "Operation",
+        "asset": "/assets/@uuid@",
+        "quantity": "@integer@.greaterThan(0)"
+      },
+      "toOperation": {
+        "@id": "/operations/@uuid@",
+        "@type": "Operation",
+        "asset": "/assets/@uuid@",
+        "quantity": "@integer@.greaterThan(0)"
+      },
+      "adjustmentOperations": [
+        {
+          "@id": "/operations/@uuid@",
+          "@type": "Operation",
+          "asset": "/assets/@uuid@",
+          "quantity": "@integer@.greaterThan(0)"
+        }
+      ],
+      "concludedAt": "@datetime@"
+    },
+    {
+      "@id": "/transactions/@uuid@",
+      "@type": "Transaction",
+      "type": "deposit",
+      "toOperation": {
+        "@id": "/operations/@uuid@",
+        "@type": "Operation",
+        "asset": "/assets/@uuid@",
+        "quantity": "@integer@.greaterThan(0)"
+      },
+      "adjustmentOperations": [
+        {
+          "@id": "/operations/@uuid@",
+          "@type": "Operation",
+          "asset": "/assets/@uuid@",
+          "quantity": "@integer@.greaterThan(0)"
+        }
+      ],
+      "concludedAt": "@datetime@"
+    },
+    {
+      "@id": "/transactions/@uuid@",
+      "@type": "Transaction",
+      "type": "withdraw",
+      "fromOperation": {
+        "@id": "/operations/@uuid@",
+        "@type": "Operation",
+        "asset": "/assets/@uuid@",
+        "quantity": "@integer@.greaterThan(0)"
+      },
+      "adjustmentOperations": [
+        {
+          "@id": "/operations/@uuid@",
+          "@type": "Operation",
+          "asset": "/assets/@uuid@",
+          "quantity": "@integer@.greaterThan(0)"
+        }
+      ],
+      "concludedAt": "@datetime@"
+    },
+    {
+      "@id": "/transactions/@uuid@",
+      "@type": "Transaction",
+      "type": "fee",
+      "adjustmentOperations": [
+        {
+          "@id": "/operations/@uuid@",
+          "@type": "Operation",
+          "asset": "/assets/@uuid@",
+          "quantity": "@integer@.greaterThan(0)"
+        }
+      ],
+      "concludedAt": "@datetime@"
+    }
+  ],
+  "hydra:search": {
+    "@type": "hydra:IriTemplate",
+    "hydra:template": "/transactions{?concludedAt[after],concludedAt[before],fromOperation.asset.id,toOperation.asset.id}",
+    "hydra:variableRepresentation": "BasicRepresentation",
+    "hydra:mapping": [
+      {
+        "@type": "IriTemplateMapping",
+        "variable": "concludedAt[after]",
+        "property": "concludedAt[after]",
+        "required": false
+      },
+      {
+        "@type": "IriTemplateMapping",
+        "variable": "concludedAt[before]",
+        "property": "concludedAt[before]",
+        "required": false
+      },
+      {
+        "@type": "IriTemplateMapping",
+        "variable": "fromOperation.asset.id",
+        "property": "fromOperation.asset.id",
+        "required": false
+      },
+      {
+        "@type": "IriTemplateMapping",
+        "variable": "toOperation.asset.id",
+        "property": "toOperation.asset.id",
+        "required": false
+      }
+    ]
+  }
+}

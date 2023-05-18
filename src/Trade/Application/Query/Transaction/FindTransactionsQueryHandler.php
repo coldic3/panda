@@ -24,12 +24,19 @@ final class FindTransactionsQueryHandler implements QueryHandlerInterface
     public function __invoke(FindTransactionsQuery $query): ?CollectionIteratorInterface
     {
         $authorizedUser = $this->authorizedUserProvider->provide();
-        $transactionRepository = $this->transactionRepository->filterBy('owner', $authorizedUser);
+
+        $transactionQuery = $this->transactionRepository->defaultQuery(
+            $authorizedUser,
+            $query->fromOperationAssetId,
+            $query->toOperationAssetId,
+            $query->afterConcludedAt,
+            $query->beforeConcludedAt,
+        );
 
         if (null !== $query->page && null !== $query->itemsPerPage) {
-            return $transactionRepository->pagination($query->page, $query->itemsPerPage);
+            return $this->transactionRepository->pagination($transactionQuery, $query->page, $query->itemsPerPage);
         }
 
-        return $transactionRepository->collection();
+        return $this->transactionRepository->collection($transactionQuery);
     }
 }

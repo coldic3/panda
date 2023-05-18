@@ -41,8 +41,24 @@ final class TransactionProvider implements ProviderInterface
             $limit = $this->pagination->getLimit($operation, $context);
         }
 
+        $afterConcludedAt = \DateTimeImmutable::createFromFormat(
+            'U',
+            (string) ($context['filters']['concludedAt']['after'] ?? null)
+        );
+        $beforeConcludedAt = \DateTimeImmutable::createFromFormat(
+            'U',
+            (string) ($context['filters']['concludedAt']['before'] ?? null)
+        );
+
         /** @var DoctrineCollectionIterator<Transaction> $models */
-        $models = $this->queryBus->ask(new FindTransactionsQuery($offset, $limit));
+        $models = $this->queryBus->ask(new FindTransactionsQuery(
+            $context['filters']['fromOperation.asset.id'] ?? null,
+            $context['filters']['toOperation.asset.id'] ?? null,
+            false === $afterConcludedAt ? null : $afterConcludedAt,
+            false === $beforeConcludedAt ? null : $beforeConcludedAt,
+            $offset,
+            $limit
+        ));
 
         $resources = [];
 

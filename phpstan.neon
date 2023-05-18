@@ -10,6 +10,8 @@ parameters:
         - '/^Method Panda\\\w+\\Infrastructure\\ApiState\\Processor\\\w+Processor::process\(\) has parameter \$data with no type specified\.$/'
         - '/^Method Panda\\\w+\\Infrastructure\\ApiState\\Provider\\\w+Provider::provide\(\) has parameter \$(context|uriVariables) with no value type specified in iterable type array\.$/'
         - '/^Property .*Exception::\$message has no type specified\.$/'
+        - '/^Class Panda\\\w+\\Infrastructure\\Doctrine\\Orm\\Query\\\w+Query has an uninitialized readonly property \$queryBuilder\. Assign it in the constructor\.$/'
+        - '/^Readonly property Panda\\\w+\\Infrastructure\\Doctrine\\Orm\\Query\\\w+Query::\$queryBuilder is assigned outside of the constructor\.$/'
         -
             message: '/^Generator expects value type object, mixed given\.$/'
             path: src/Shared/Infrastructure/Doctrine/Orm/DoctrineCollectionIterator.php

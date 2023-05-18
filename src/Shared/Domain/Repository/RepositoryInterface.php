@@ -6,11 +6,9 @@ namespace Panda\Shared\Domain\Repository;
 
 interface RepositoryInterface
 {
-    public function collection(): CollectionIteratorInterface;
+    public function collection(QueryInterface $query = null): CollectionIteratorInterface;
 
-    public function pagination(int $page = null, int $itemsPerPage = null): CollectionIteratorInterface;
+    public function pagination(QueryInterface $query = null, int $page = null, int $itemsPerPage = null): CollectionIteratorInterface;
 
-    public function item(): ?object;
-
-    public function filterBy(string $fieldName, mixed $value, bool $strict = true): static;
+    public function item(QueryInterface $query = null): ?object;
 }

@@ -7,13 +7,14 @@ namespace Panda\Trade\Domain\Model\Transaction;
 use Panda\Trade\Domain\Model\Asset\AssetInterface;
 use Symfony\Component\Uid\Uuid;
 
-final readonly class Operation implements OperationInterface
+/** @readonly */
+class Operation implements OperationInterface
 {
     private Uuid $id;
 
     public function __construct(
-        private AssetInterface $asset,
-        private int $quantity,
+        private readonly AssetInterface $asset,
+        private readonly int $quantity,
     ) {
         $this->id = Uuid::v4();
     }

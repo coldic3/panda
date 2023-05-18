@@ -5,6 +5,8 @@ declare(strict_types=1);
 namespace Panda\Trade\Infrastructure\Doctrine\Orm;
 
 use Doctrine\ORM\EntityManagerInterface;
+use Panda\AccountOHS\Domain\Model\Owner\OwnerInterface;
+use Panda\Shared\Domain\Repository\QueryInterface;
 use Panda\Shared\Infrastructure\Doctrine\Orm\DoctrineRepository;
 use Panda\Trade\Domain\Model\Transaction\Transaction;
 use Panda\Trade\Domain\Model\Transaction\TransactionInterface;
@@ -34,6 +36,22 @@ final class TransactionRepository extends DoctrineRepository implements Transact
     public function findById(Uuid $id): ?TransactionInterface
     {
         return $this->em->find(self::ENTITY_CLASS, $id);
+    }
+
+    public function defaultQuery(
+        OwnerInterface $owner,
+        ?string $fromOperationAssetId = null,
+        ?string $toOperationAssetId = null,
+        ?\DateTimeImmutable $afterConcludedAt = null,
+        ?\DateTimeImmutable $beforeConcludedAt = null,
+    ): QueryInterface {
+        return new Query\DefaultTransactionQuery(
+            $owner,
+            $fromOperationAssetId,
+            $toOperationAssetId,
+            $afterConcludedAt,
+            $beforeConcludedAt
+        );
     }
 
     protected function getEntityClass(): string
