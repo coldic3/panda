@@ -12,10 +12,10 @@ use Panda\Account\Infrastructure\ApiResource\UserResource;
 use Panda\Shared\Application\Command\CommandBusInterface;
 use Webmozart\Assert\Assert;
 
-final class UserCreateProcessor implements ProcessorInterface
+final readonly class UserCreateProcessor implements ProcessorInterface
 {
     public function __construct(
-        private readonly CommandBusInterface $commandBus,
+        private CommandBusInterface $commandBus,
     ) {
     }
 

@@ -10,11 +10,11 @@ use Panda\Shared\Application\Query\QueryHandlerInterface;
 use Panda\Trade\Domain\Model\Asset\AssetInterface;
 use Panda\Trade\Domain\Repository\AssetRepositoryInterface;
 
-final class FindAssetQueryHandler implements QueryHandlerInterface
+final readonly class FindAssetQueryHandler implements QueryHandlerInterface
 {
     public function __construct(
-        private readonly AssetRepositoryInterface $assetRepository,
-        private readonly AuthorizedUserProviderInterface $authorizedUserProvider,
+        private AssetRepositoryInterface $assetRepository,
+        private AuthorizedUserProviderInterface $authorizedUserProvider,
     ) {
     }
 

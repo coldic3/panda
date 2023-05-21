@@ -17,11 +17,11 @@ use Panda\Trade\Domain\Model\Asset\Asset;
 use Panda\Trade\Infrastructure\ApiResource\AssetResource;
 use Symfony\Component\Uid\Uuid;
 
-final class AssetProvider implements ProviderInterface
+final readonly class AssetProvider implements ProviderInterface
 {
     public function __construct(
-        private readonly QueryBusInterface $queryBus,
-        private readonly Pagination $pagination,
+        private QueryBusInterface $queryBus,
+        private Pagination $pagination,
     ) {
     }
 

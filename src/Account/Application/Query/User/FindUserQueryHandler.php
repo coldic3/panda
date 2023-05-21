@@ -10,11 +10,11 @@ use Panda\AccountOHS\Domain\Exception\AuthorizedUserNotFoundExceptionInterface;
 use Panda\AccountOHS\Domain\Provider\AuthorizedUserProviderInterface;
 use Panda\Shared\Application\Query\QueryHandlerInterface;
 
-final class FindUserQueryHandler implements QueryHandlerInterface
+final readonly class FindUserQueryHandler implements QueryHandlerInterface
 {
     public function __construct(
-        private readonly UserRepositoryInterface $repository,
-        private readonly AuthorizedUserProviderInterface $authorizedUserProvider,
+        private UserRepositoryInterface $repository,
+        private AuthorizedUserProviderInterface $authorizedUserProvider,
     ) {
     }
 

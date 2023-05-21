@@ -9,11 +9,11 @@ use Panda\Trade\Domain\Factory\AssetFactoryInterface;
 use Panda\Trade\Domain\Model\Asset\AssetInterface;
 use Panda\Trade\Domain\Repository\AssetRepositoryInterface;
 
-final class CreateAssetCommandHandler implements CommandHandlerInterface
+final readonly class CreateAssetCommandHandler implements CommandHandlerInterface
 {
     public function __construct(
-        private readonly AssetRepositoryInterface $assetRepository,
-        private readonly AssetFactoryInterface $assetFactory,
+        private AssetRepositoryInterface $assetRepository,
+        private AssetFactoryInterface $assetFactory,
     ) {
     }
 

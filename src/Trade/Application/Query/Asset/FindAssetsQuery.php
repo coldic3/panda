@@ -6,11 +6,11 @@ namespace Panda\Trade\Application\Query\Asset;
 
 use Panda\Shared\Application\Query\QueryInterface;
 
-final class FindAssetsQuery implements QueryInterface
+final readonly class FindAssetsQuery implements QueryInterface
 {
     public function __construct(
-        public readonly ?int $page = null,
-        public readonly ?int $itemsPerPage = null,
+        public ?int $page = null,
+        public ?int $itemsPerPage = null,
     ) {
     }
 }

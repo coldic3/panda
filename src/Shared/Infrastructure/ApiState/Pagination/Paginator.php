@@ -11,17 +11,17 @@ use ApiPlatform\State\Pagination\PaginatorInterface;
  *
  * @implements \IteratorAggregate<T>
  */
-final class Paginator implements PaginatorInterface, \IteratorAggregate
+final readonly class Paginator implements PaginatorInterface, \IteratorAggregate
 {
     /**
      * @param iterable<T> $items
      */
     public function __construct(
-        private readonly iterable $items,
-        private readonly int $currentPage,
-        private readonly int $itemsPerPage,
-        private readonly int $lastPage,
-        private readonly int $totalItems,
+        private iterable $items,
+        private int $currentPage,
+        private int $itemsPerPage,
+        private int $lastPage,
+        private int $totalItems,
     ) {
     }
 

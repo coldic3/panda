@@ -11,9 +11,9 @@ use Panda\Account\Domain\Model\User;
 use Panda\Account\Infrastructure\ApiResource\UserResource;
 use Panda\Shared\Application\Query\QueryBusInterface;
 
-final class UserProvider implements ProviderInterface
+final readonly class UserProvider implements ProviderInterface
 {
-    public function __construct(private readonly QueryBusInterface $queryBus)
+    public function __construct(private QueryBusInterface $queryBus)
     {
     }
 

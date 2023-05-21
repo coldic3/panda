@@ -9,11 +9,11 @@ use Panda\Account\Domain\Model\UserInterface;
 use Panda\Account\Domain\Repository\UserRepositoryInterface;
 use Panda\Shared\Application\Command\CommandHandlerInterface;
 
-final class CreateUserCommandHandler implements CommandHandlerInterface
+final readonly class CreateUserCommandHandler implements CommandHandlerInterface
 {
     public function __construct(
-        private readonly UserRepositoryInterface $userRepository,
-        private readonly UserFactoryInterface $userFactory,
+        private UserRepositoryInterface $userRepository,
+        private UserFactoryInterface $userFactory,
     ) {
     }
 

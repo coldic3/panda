@@ -19,12 +19,12 @@ use Panda\Trade\Infrastructure\ApiResource\OperationResource;
 use Panda\Trade\Infrastructure\ApiResource\TransactionResource;
 use Webmozart\Assert\Assert;
 
-final class TransactionCreateProcessor implements ProcessorInterface
+final readonly class TransactionCreateProcessor implements ProcessorInterface
 {
     public function __construct(
-        private readonly CommandBusInterface $commandBus,
-        private readonly QueryBusInterface $queryBus,
-        private readonly OperationFactoryInterface $operationFactory,
+        private CommandBusInterface $commandBus,
+        private QueryBusInterface $queryBus,
+        private OperationFactoryInterface $operationFactory,
     ) {
     }
 

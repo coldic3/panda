@@ -15,10 +15,10 @@ use Panda\Trade\Domain\Model\Asset\AssetInterface;
 use Panda\Trade\Infrastructure\ApiResource\AssetResource;
 use Webmozart\Assert\Assert;
 
-final class AssetProcessor implements ProcessorInterface
+final readonly class AssetProcessor implements ProcessorInterface
 {
     public function __construct(
-        private readonly CommandBusInterface $commandBus,
+        private CommandBusInterface $commandBus,
     ) {
     }
 
