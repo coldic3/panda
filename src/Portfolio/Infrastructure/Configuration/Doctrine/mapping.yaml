@@ -1,0 +1,9 @@
+doctrine:
+    orm:
+        mappings:
+            Portfolio:
+                is_bundle: false
+                type: xml
+                dir: '%kernel.project_dir%/src/Portfolio/Infrastructure/Configuration/Doctrine/mappings'
+                prefix: 'Panda\Portfolio\Domain'
+                alias: Portfolio
