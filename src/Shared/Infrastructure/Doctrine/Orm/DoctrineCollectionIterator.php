@@ -4,10 +4,11 @@ declare(strict_types=1);
 
 namespace Panda\Shared\Infrastructure\Doctrine\Orm;
 
-use Doctrine\ORM\QueryBuilder;
 use Doctrine\ORM\Tools\Pagination\Paginator;
 use Panda\Shared\Domain\Repository\CollectionIteratorInterface;
 use Panda\Shared\Domain\Repository\PaginatorInterface;
+use Panda\Shared\Domain\Repository\QueryBuilderInterface;
+use Panda\Shared\Infrastructure\Doctrine\Orm\Query\DoctrineQueryBuilder;
 use Webmozart\Assert\Assert;
 
 final class DoctrineCollectionIterator implements CollectionIteratorInterface
@@ -15,7 +16,7 @@ final class DoctrineCollectionIterator implements CollectionIteratorInterface
     private ?int $page = null;
     private ?int $itemsPerPage = null;
 
-    public function __construct(private QueryBuilder $queryBuilder)
+    public function __construct(private DoctrineQueryBuilder $queryBuilder)
     {
     }
 
@@ -48,11 +49,13 @@ final class DoctrineCollectionIterator implements CollectionIteratorInterface
         $firstResult = $this->page * $this->itemsPerPage;
         $maxResults = $this->itemsPerPage;
 
-        $repository = $this->filter(static function (QueryBuilder $qb) use ($firstResult, $maxResults) {
-            $qb->setFirstResult($firstResult)->setMaxResults($maxResults);
+        $repository = $this->filter(static function (QueryBuilderInterface $qb) use ($firstResult, $maxResults) {
+            $qb->offset($firstResult)->limit($maxResults);
         });
 
-        return new DoctrinePaginator(new Paginator($repository->queryBuilder->getQuery()));
+        $query = $repository->queryBuilder->getQuery();
+
+        return new DoctrinePaginator(new Paginator($query));
     }
 
     public function withoutPagination(): static

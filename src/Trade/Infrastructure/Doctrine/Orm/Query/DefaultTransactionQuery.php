@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Panda\Trade\Infrastructure\Doctrine\Orm\Query;
 
-use Doctrine\ORM\QueryBuilder;
 use Panda\AccountOHS\Domain\Model\Owner\OwnerInterface;
 use Panda\Shared\Domain\Repository\QueryBuilderAwareTrait;
+use Panda\Shared\Domain\Repository\QueryBuilderInterface;
 use Panda\Shared\Domain\Repository\QueryInterface;
 use Panda\Shared\Domain\Repository\SortDirectionEnum;
 
@@ -23,21 +23,21 @@ final readonly class DefaultTransactionQuery implements QueryInterface
     ) {
     }
 
-    public function buildQuery(string $alias): QueryBuilder
+    public function buildQuery(string $alias): QueryBuilderInterface
     {
         $queryBuilder = $this->queryBuilder
-            ->addSelect([
+            ->addSelect(
                 'fromOperation',
                 'fromOperationAsset',
                 'toOperation',
                 'toOperationAsset',
-            ])
+            )
             ->leftJoin($alias.'.fromOperation', 'fromOperation')
             ->leftJoin('fromOperation.asset', 'fromOperationAsset')
             ->leftJoin($alias.'.toOperation', 'toOperation')
             ->leftJoin('toOperation.asset', 'toOperationAsset')
             ->andWhere($alias.'.owner = :owner')
-            ->addOrderBy($alias.'.concludedAt', SortDirectionEnum::DESC->value)
+            ->addOrderBy($alias.'.concludedAt', SortDirectionEnum::DESC)
             ->setParameter('owner', $this->owner);
 
         if (null !== $this->fromOperationAssetId) {
