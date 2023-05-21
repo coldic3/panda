@@ -9,9 +9,9 @@ use Lexik\Bundle\JWTAuthenticationBundle\Event\AuthenticationSuccessEvent;
 use Panda\Account\Domain\Model\UserInterface;
 use Panda\Account\Infrastructure\ApiResource\UserResource;
 
-final class AuthenticationSuccessEventListener
+final readonly class AuthenticationSuccessEventListener
 {
-    public function __construct(private readonly IriConverterInterface $iriConverter)
+    public function __construct(private IriConverterInterface $iriConverter)
     {
     }
 

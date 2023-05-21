@@ -7,10 +7,10 @@ namespace Panda\Account\Application\Query\User;
 use Panda\Shared\Application\Query\QueryInterface;
 use Symfony\Component\Uid\Uuid;
 
-final class FindUserQuery implements QueryInterface
+final readonly class FindUserQuery implements QueryInterface
 {
     public function __construct(
-        public readonly Uuid $id,
+        public Uuid $id,
     ) {
     }
 }

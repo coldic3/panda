@@ -10,11 +10,11 @@ use Panda\Shared\Application\Query\QueryHandlerInterface;
 use Panda\Shared\Domain\Repository\CollectionIteratorInterface;
 use Panda\Trade\Domain\Repository\TransactionRepositoryInterface;
 
-final class FindTransactionsQueryHandler implements QueryHandlerInterface
+final readonly class FindTransactionsQueryHandler implements QueryHandlerInterface
 {
     public function __construct(
-        private readonly TransactionRepositoryInterface $transactionRepository,
-        private readonly AuthorizedUserProviderInterface $authorizedUserProvider,
+        private TransactionRepositoryInterface $transactionRepository,
+        private AuthorizedUserProviderInterface $authorizedUserProvider,
     ) {
     }
 

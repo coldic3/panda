@@ -10,11 +10,11 @@ use Panda\Shared\Application\Query\QueryHandlerInterface;
 use Panda\Shared\Domain\Repository\CollectionIteratorInterface;
 use Panda\Trade\Domain\Repository\AssetRepositoryInterface;
 
-final class FindAssetsQueryHandler implements QueryHandlerInterface
+final readonly class FindAssetsQueryHandler implements QueryHandlerInterface
 {
     public function __construct(
-        private readonly AssetRepositoryInterface $assetRepository,
-        private readonly AuthorizedUserProviderInterface $authorizedUserProvider,
+        private AssetRepositoryInterface $assetRepository,
+        private AuthorizedUserProviderInterface $authorizedUserProvider,
     ) {
     }
 

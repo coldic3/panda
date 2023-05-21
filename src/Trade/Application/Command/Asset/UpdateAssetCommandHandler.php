@@ -9,9 +9,9 @@ use Panda\Trade\Domain\Model\Asset\AssetInterface;
 use Panda\Trade\Domain\Repository\AssetRepositoryInterface;
 use Webmozart\Assert\Assert;
 
-final class UpdateAssetCommandHandler implements CommandHandlerInterface
+final readonly class UpdateAssetCommandHandler implements CommandHandlerInterface
 {
-    public function __construct(private readonly AssetRepositoryInterface $assetRepository)
+    public function __construct(private AssetRepositoryInterface $assetRepository)
     {
     }
 

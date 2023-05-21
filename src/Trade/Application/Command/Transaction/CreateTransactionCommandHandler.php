@@ -11,11 +11,11 @@ use Panda\Trade\Domain\Repository\TransactionRepositoryInterface;
 use Panda\Trade\Domain\ValueObject\TransactionTypeEnum;
 use Webmozart\Assert\Assert;
 
-final class CreateTransactionCommandHandler implements CommandHandlerInterface
+final readonly class CreateTransactionCommandHandler implements CommandHandlerInterface
 {
     public function __construct(
-        private readonly TransactionRepositoryInterface $transactionRepository,
-        private readonly TransactionFactoryInterface $transactionFactory,
+        private TransactionRepositoryInterface $transactionRepository,
+        private TransactionFactoryInterface $transactionFactory,
     ) {
     }
 
