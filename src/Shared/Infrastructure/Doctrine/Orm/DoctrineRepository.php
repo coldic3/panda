@@ -5,10 +5,11 @@ declare(strict_types=1);
 namespace Panda\Shared\Infrastructure\Doctrine\Orm;
 
 use Doctrine\ORM\EntityManagerInterface;
-use Doctrine\ORM\QueryBuilder;
 use Panda\Shared\Domain\Repository\CollectionIteratorInterface;
 use Panda\Shared\Domain\Repository\QueryInterface;
 use Panda\Shared\Domain\Repository\RepositoryInterface;
+use Panda\Shared\Infrastructure\Doctrine\Orm\Query\DoctrineQueryBuilder;
+use Panda\Shared\Infrastructure\Doctrine\Orm\Query\NullQuery;
 use Webmozart\Assert\Assert;
 
 abstract class DoctrineRepository implements RepositoryInterface
@@ -25,7 +26,7 @@ abstract class DoctrineRepository implements RepositoryInterface
 
     public function collection(QueryInterface $query = null): CollectionIteratorInterface
     {
-        return (new DoctrineCollectionIterator($this->queryBuilder($query)))->withoutPagination();
+        return (new DoctrineCollectionIterator($this->prepareQueryBuilder($query)))->withoutPagination();
     }
 
     public function pagination(QueryInterface $query = null, int $page = null, int $itemsPerPage = null): CollectionIteratorInterface
@@ -33,12 +34,12 @@ abstract class DoctrineRepository implements RepositoryInterface
         Assert::notNull($page);
         Assert::notNull($itemsPerPage);
 
-        return (new DoctrineCollectionIterator($this->queryBuilder($query)))->withPagination($page, $itemsPerPage);
+        return (new DoctrineCollectionIterator($this->prepareQueryBuilder($query)))->withPagination($page, $itemsPerPage);
     }
 
     public function item(QueryInterface $query = null): ?object
     {
-        $item = $this->queryBuilder($query)->setMaxResults(1)->getQuery()->getOneOrNullResult();
+        $item = $this->prepareQueryBuilder($query)->limit(1)->getQuery()->getOneOrNullResult();
 
         if (null === $item) {
             return null;
@@ -49,16 +50,19 @@ abstract class DoctrineRepository implements RepositoryInterface
         return $item;
     }
 
-    protected function queryBuilder(QueryInterface $query = null): QueryBuilder
+    protected function prepareQueryBuilder(QueryInterface $query = null): DoctrineQueryBuilder
     {
         $queryBuilder = $this->em->createQueryBuilder()
             ->select($this->alias)
             ->from($this->entityClass, $this->alias);
 
-        if (null !== $query) {
-            $query->setQueryBuilder($queryBuilder);
-            $queryBuilder = $query->buildQuery($this->alias);
+        if (null === $query) {
+            $query = new NullQuery();
         }
+
+        $query->setQueryBuilder(new DoctrineQueryBuilder($queryBuilder));
+        /** @var DoctrineQueryBuilder $queryBuilder */
+        $queryBuilder = $query->buildQuery($this->alias);
 
         return $queryBuilder;
     }

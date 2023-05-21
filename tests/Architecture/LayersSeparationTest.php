@@ -26,6 +26,22 @@ final class LayersSeparationTest
             ->classes(...$this->applicationLayerSelectors, ...$this->infrastructureLayerSelectors);
     }
 
+    public function test_domain_does_not_depend_on_doctrine(): Rule
+    {
+        $this->findAllLayers();
+
+        return PHPat::rule()
+            ->classes(...$this->domainLayerSelectors)
+            ->shouldNotDependOn()
+            ->classes(Selector::namespace('Doctrine'))
+
+            // FIXME: requires too much effort to get rid of these dependencies for now
+            ->excluding(
+                Selector::classname('Doctrine\Common\Collections\ArrayCollection'),
+                Selector::classname('Doctrine\Common\Collections\Collection'),
+            );
+    }
+
     public function test_application_does_not_depend_on_infrastructure_layer(): Rule
     {
         $this->findAllLayers();
