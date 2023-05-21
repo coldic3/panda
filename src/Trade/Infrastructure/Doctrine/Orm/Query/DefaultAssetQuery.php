@@ -8,7 +8,7 @@ use Doctrine\ORM\QueryBuilder;
 use Panda\AccountOHS\Domain\Model\Owner\OwnerInterface;
 use Panda\Shared\Domain\Repository\QueryBuilderAwareTrait;
 use Panda\Shared\Domain\Repository\QueryInterface;
-use Panda\Shared\Domain\Repository\SortDirection;
+use Panda\Shared\Domain\Repository\SortDirectionEnum;
 
 final readonly class DefaultAssetQuery implements QueryInterface
 {
@@ -22,7 +22,7 @@ final readonly class DefaultAssetQuery implements QueryInterface
     {
         return $this->queryBuilder
             ->andWhere($alias.'.owner = :owner')
-            ->addOrderBy($alias.'.createdAt', SortDirection::DESC->value)
+            ->addOrderBy($alias.'.createdAt', SortDirectionEnum::DESC->value)
             ->setParameter('owner', $this->owner);
     }
 }

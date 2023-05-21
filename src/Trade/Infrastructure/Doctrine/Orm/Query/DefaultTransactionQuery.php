@@ -8,7 +8,7 @@ use Doctrine\ORM\QueryBuilder;
 use Panda\AccountOHS\Domain\Model\Owner\OwnerInterface;
 use Panda\Shared\Domain\Repository\QueryBuilderAwareTrait;
 use Panda\Shared\Domain\Repository\QueryInterface;
-use Panda\Shared\Domain\Repository\SortDirection;
+use Panda\Shared\Domain\Repository\SortDirectionEnum;
 
 final readonly class DefaultTransactionQuery implements QueryInterface
 {
@@ -37,7 +37,7 @@ final readonly class DefaultTransactionQuery implements QueryInterface
             ->leftJoin($alias.'.toOperation', 'toOperation')
             ->leftJoin('toOperation.asset', 'toOperationAsset')
             ->andWhere($alias.'.owner = :owner')
-            ->addOrderBy($alias.'.concludedAt', SortDirection::DESC->value)
+            ->addOrderBy($alias.'.concludedAt', SortDirectionEnum::DESC->value)
             ->setParameter('owner', $this->owner);
 
         if (null !== $this->fromOperationAssetId) {
