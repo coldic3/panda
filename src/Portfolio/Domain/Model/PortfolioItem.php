@@ -15,7 +15,8 @@ class PortfolioItem implements PortfolioItemInterface
     use TimestampableTrait;
 
     private Uuid $id;
-    private int $quantity = 0;
+    private int $longQuantity = 0;
+    private int $shortQuantity = 0;
 
     public function __construct(
         private ResourceInterface $resource,
@@ -39,31 +40,58 @@ class PortfolioItem implements PortfolioItemInterface
         $this->resource = $resource;
     }
 
-    public function getQuantity(): int
+    public function getLongQuantity(): int
     {
-        return $this->quantity;
+        return $this->longQuantity;
     }
 
-    public function addQuantity(int $quantity): void
+    public function addLongQuantity(int $quantity): void
     {
         if ($quantity < 0) {
             throw new NegativeQuantityException($quantity);
         }
 
-        $this->quantity += $quantity;
+        $this->longQuantity += $quantity;
     }
 
-    public function removeQuantity(int $quantity): void
+    public function removeLongQuantity(int $quantity): void
     {
         if ($quantity < 0) {
             throw new NegativeQuantityException($quantity);
         }
 
-        if ($quantity > $this->quantity) {
+        if ($quantity > $this->longQuantity) {
             throw new NegativeTotalQuantityException($quantity);
         }
 
-        $this->quantity -= $quantity;
+        $this->longQuantity -= $quantity;
+    }
+
+    public function getShortQuantity(): int
+    {
+        return $this->shortQuantity;
+    }
+
+    public function addShortQuantity(int $quantity): void
+    {
+        if ($quantity < 0) {
+            throw new NegativeQuantityException($quantity);
+        }
+
+        $this->shortQuantity += $quantity;
+    }
+
+    public function removeShortQuantity(int $quantity): void
+    {
+        if ($quantity < 0) {
+            throw new NegativeQuantityException($quantity);
+        }
+
+        if ($quantity > $this->shortQuantity) {
+            throw new NegativeTotalQuantityException($quantity);
+        }
+
+        $this->shortQuantity -= $quantity;
     }
 
     public function getPortfolio(): PortfolioInterface

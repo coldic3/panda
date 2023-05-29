@@ -4,7 +4,8 @@
     <entity name="Panda\Portfolio\Domain\Model\PortfolioItem" table="panda_portfolio_item">
         <id name="id" column="id" type="uuid" />
 
-        <field name="quantity" column="quantity" type="integer" />
+        <field name="longQuantity" column="long_quantity" type="integer" />
+        <field name="shortQuantity" column="short_quantity" type="integer" />
 
         <embedded name="resource" class="Panda\Portfolio\Domain\ValueObject\Resource" />
 

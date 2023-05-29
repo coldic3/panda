@@ -24,7 +24,8 @@ final class PortfolioItemTest extends TestCase
             $this->prophesize(PortfolioInterface::class)->reveal(),
         );
 
-        $this->assertSame(0, $portfolioItem->getQuantity());
+        $this->assertSame(0, $portfolioItem->getLongQuantity());
+        $this->assertSame(0, $portfolioItem->getShortQuantity());
     }
 
     /** @test */
@@ -35,14 +36,22 @@ final class PortfolioItemTest extends TestCase
             $this->prophesize(PortfolioInterface::class)->reveal(),
         );
 
-        $portfolioItem->addQuantity(10);
-        $portfolioItem->addQuantity(0);
-        $portfolioItem->addQuantity(5);
-        $portfolioItem->removeQuantity(2);
-        $portfolioItem->removeQuantity(0);
-        $portfolioItem->addQuantity(1);
+        $portfolioItem->addLongQuantity(10);
+        $portfolioItem->addLongQuantity(0);
+        $portfolioItem->addLongQuantity(5);
+        $portfolioItem->removeLongQuantity(2);
+        $portfolioItem->removeLongQuantity(0);
+        $portfolioItem->addLongQuantity(1);
 
-        $this->assertSame(14, $portfolioItem->getQuantity());
+        $portfolioItem->addShortQuantity(10);
+        $portfolioItem->addShortQuantity(0);
+        $portfolioItem->addShortQuantity(5);
+        $portfolioItem->removeShortQuantity(2);
+        $portfolioItem->removeShortQuantity(0);
+        $portfolioItem->addShortQuantity(1);
+
+        $this->assertSame(14, $portfolioItem->getLongQuantity());
+        $this->assertSame(14, $portfolioItem->getShortQuantity());
     }
 
     /** @test */
@@ -53,14 +62,18 @@ final class PortfolioItemTest extends TestCase
             $this->prophesize(PortfolioInterface::class)->reveal(),
         );
 
-        $portfolioItem->addQuantity(10);
-        $portfolioItem->removeQuantity(10);
+        $portfolioItem->addLongQuantity(10);
+        $portfolioItem->removeLongQuantity(10);
 
-        $this->assertSame(0, $portfolioItem->getQuantity());
+        $portfolioItem->addShortQuantity(10);
+        $portfolioItem->removeShortQuantity(10);
+
+        $this->assertSame(0, $portfolioItem->getLongQuantity());
+        $this->assertSame(0, $portfolioItem->getShortQuantity());
     }
 
     /** @test */
-    function it_throws_exception_if_negative_quantity_added()
+    function it_throws_exception_if_negative_long_quantity_added()
     {
         $this->expectException(NegativeQuantityException::class);
 
@@ -69,11 +82,11 @@ final class PortfolioItemTest extends TestCase
             $this->prophesize(PortfolioInterface::class)->reveal(),
         );
 
-        $portfolioItem->addQuantity(-1);
+        $portfolioItem->addLongQuantity(-1);
     }
 
     /** @test */
-    function it_throws_exception_if_negative_quantity_removed()
+    function it_throws_exception_if_negative_short_quantity_added()
     {
         $this->expectException(NegativeQuantityException::class);
 
@@ -82,11 +95,37 @@ final class PortfolioItemTest extends TestCase
             $this->prophesize(PortfolioInterface::class)->reveal(),
         );
 
-        $portfolioItem->removeQuantity(-1);
+        $portfolioItem->addShortQuantity(-1);
     }
 
     /** @test */
-    function it_throws_exception_if_total_quantity_is_negative()
+    function it_throws_exception_if_negative_long_quantity_removed()
+    {
+        $this->expectException(NegativeQuantityException::class);
+
+        $portfolioItem = new PortfolioItem(
+            $this->prophesize(ResourceInterface::class)->reveal(),
+            $this->prophesize(PortfolioInterface::class)->reveal(),
+        );
+
+        $portfolioItem->removeLongQuantity(-1);
+    }
+
+    /** @test */
+    function it_throws_exception_if_negative_short_quantity_removed()
+    {
+        $this->expectException(NegativeQuantityException::class);
+
+        $portfolioItem = new PortfolioItem(
+            $this->prophesize(ResourceInterface::class)->reveal(),
+            $this->prophesize(PortfolioInterface::class)->reveal(),
+        );
+
+        $portfolioItem->removeShortQuantity(-1);
+    }
+
+    /** @test */
+    function it_throws_exception_if_total_long_quantity_is_negative()
     {
         $this->expectException(NegativeTotalQuantityException::class);
 
@@ -95,7 +134,21 @@ final class PortfolioItemTest extends TestCase
             $this->prophesize(PortfolioInterface::class)->reveal(),
         );
 
-        $portfolioItem->addQuantity(10);
-        $portfolioItem->removeQuantity(11);
+        $portfolioItem->addLongQuantity(10);
+        $portfolioItem->removeLongQuantity(11);
+    }
+
+    /** @test */
+    function it_throws_exception_if_total_short_quantity_is_negative()
+    {
+        $this->expectException(NegativeTotalQuantityException::class);
+
+        $portfolioItem = new PortfolioItem(
+            $this->prophesize(ResourceInterface::class)->reveal(),
+            $this->prophesize(PortfolioInterface::class)->reveal(),
+        );
+
+        $portfolioItem->addShortQuantity(10);
+        $portfolioItem->removeShortQuantity(11);
     }
 }

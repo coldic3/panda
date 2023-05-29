@@ -20,7 +20,7 @@ final class Version20230521123753 extends AbstractMigration
         $this->addSql('CREATE INDEX IDX_89BDA67C7E3C61F9 ON panda_portfolio (owner_id)');
         $this->addSql('COMMENT ON COLUMN panda_portfolio.id IS \'(DC2Type:uuid)\'');
         $this->addSql('COMMENT ON COLUMN panda_portfolio.owner_id IS \'(DC2Type:uuid)\'');
-        $this->addSql('CREATE TABLE panda_portfolio_item (id UUID NOT NULL, portfolio_id UUID NOT NULL, quantity INT NOT NULL, resource_ticker VARCHAR(255) NOT NULL, resource_name VARCHAR(255) NOT NULL, PRIMARY KEY(id))');
+        $this->addSql('CREATE TABLE panda_portfolio_item (id UUID NOT NULL, portfolio_id UUID NOT NULL, long_quantity INT NOT NULL, short_quantity INT NOT NULL, resource_ticker VARCHAR(255) NOT NULL, resource_name VARCHAR(255) NOT NULL, PRIMARY KEY(id))');
         $this->addSql('CREATE INDEX IDX_31DB5053B96B5643 ON panda_portfolio_item (portfolio_id)');
         $this->addSql('COMMENT ON COLUMN panda_portfolio_item.id IS \'(DC2Type:uuid)\'');
         $this->addSql('COMMENT ON COLUMN panda_portfolio_item.portfolio_id IS \'(DC2Type:uuid)\'');

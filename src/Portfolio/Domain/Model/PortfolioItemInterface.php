@@ -14,11 +14,17 @@ interface PortfolioItemInterface extends IdentifiableInterface, TimestampableInt
 
     public function setResource(ResourceInterface $resource): void;
 
-    public function getQuantity(): int;
+    public function getLongQuantity(): int;
 
-    public function addQuantity(int $quantity): void;
+    public function addLongQuantity(int $quantity): void;
 
-    public function removeQuantity(int $quantity): void;
+    public function removeLongQuantity(int $quantity): void;
+
+    public function getShortQuantity(): int;
+
+    public function addShortQuantity(int $quantity): void;
+
+    public function removeShortQuantity(int $quantity): void;
 
     public function getPortfolio(): PortfolioInterface;
 }
