@@ -5,9 +5,9 @@ default:
                 - Panda\Tests\Behat\Context\Hook\ClipboardContext
                 - Panda\Tests\Behat\Context\Hook\DoctrineOrmContext
                 - Panda\Tests\Behat\Context\Setup\AssetContext
+                - Panda\Tests\Behat\Context\Setup\PortfolioContext
                 - Panda\Tests\Behat\Context\Setup\TransactionContext
                 - Panda\Tests\Behat\Context\Setup\UserContext
-                - Panda\Tests\Behat\Context\Setup\WalletContext
                 - Panda\Tests\Behat\Context\Api\TransactionContext
                 - Panda\Tests\Behat\Context\Transform\AssetContext
                 - Panda\Tests\Behat\Context\Transform\DateTimeContext
