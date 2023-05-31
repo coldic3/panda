@@ -23,6 +23,8 @@ class PortfolioItem implements PortfolioItemInterface
         private PortfolioInterface $portfolio,
     ) {
         $this->id = Uuid::v4();
+
+        $this->portfolio->addItem($this);
     }
 
     public function getId(): Uuid
