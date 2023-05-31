@@ -16,7 +16,7 @@ final class Version20230521123753 extends AbstractMigration
 
     public function up(Schema $schema): void
     {
-        $this->addSql('CREATE TABLE panda_portfolio (id UUID NOT NULL, owner_id UUID NOT NULL, name VARCHAR(255) NOT NULL, "default" BOOLEAN NOT NULL, created_at TIMESTAMP(0) WITHOUT TIME ZONE NOT NULL, updated_at TIMESTAMP(0) WITHOUT TIME ZONE NOT NULL, PRIMARY KEY(id))');
+        $this->addSql('CREATE TABLE panda_portfolio (id UUID NOT NULL, owner_id UUID NOT NULL, name VARCHAR(255) NOT NULL, default_ BOOLEAN NOT NULL, created_at TIMESTAMP(0) WITHOUT TIME ZONE NOT NULL, updated_at TIMESTAMP(0) WITHOUT TIME ZONE NOT NULL, PRIMARY KEY(id))');
         $this->addSql('CREATE INDEX IDX_89BDA67C7E3C61F9 ON panda_portfolio (owner_id)');
         $this->addSql('COMMENT ON COLUMN panda_portfolio.id IS \'(DC2Type:uuid)\'');
         $this->addSql('COMMENT ON COLUMN panda_portfolio.owner_id IS \'(DC2Type:uuid)\'');
