@@ -26,6 +26,8 @@ class PortfolioContext implements Context
 
     /**
      * @Given posiadam portfel o nazwie :name
+     * @Given posiadam już domyślny portfel :name
+     * @Given posiadam domyślny portfel o nazwie :name
      */
     function there_is_an_portfolio_with_name(string $name)
     {

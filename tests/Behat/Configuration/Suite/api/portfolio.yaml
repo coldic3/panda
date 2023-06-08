@@ -8,5 +8,6 @@ default:
                 - Panda\Tests\Behat\Context\Setup\PortfolioContext
                 - Panda\Tests\Behat\Context\Setup\UserContext
                 - Panda\Tests\Behat\Context\Api\PortfolioContext
+                - Panda\Tests\Behat\Context\Transform\PortfolioContext
             filters:
                 tags: "@api&&@portfolio"

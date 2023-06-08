@@ -6,9 +6,11 @@ namespace Panda\Tests\Behat\Context\Api;
 
 use ApiPlatform\Api\IriConverterInterface;
 use Behat\Behat\Context\Context;
+use Panda\Portfolio\Domain\Model\PortfolioInterface;
 use Panda\Tests\Behat\Context\Util\EnableClipboardTrait;
 use Panda\Tests\Util\HttpMethodEnum;
 use Panda\Tests\Util\HttpRequestBuilder;
+use Symfony\Component\HttpFoundation\Response;
 use Webmozart\Assert\Assert;
 
 class PortfolioContext implements Context
@@ -33,6 +35,125 @@ class PortfolioContext implements Context
         );
 
         $this->http->finalize();
+    }
+
+    /**
+     * @When tworzę nowy portfel
+     */
+    function i_create_a_new_portfolio()
+    {
+        $this->http->initialize(
+            HttpMethodEnum::POST,
+            '/portfolios',
+            $this->clipboard->paste('token')
+        );
+    }
+
+    /**
+     * @When /^modyfikuję (portfel "[^"]+")$/
+     */
+    function i_edit_the_portfolio(PortfolioInterface $portfolio)
+    {
+        $this->http->initialize(
+            HttpMethodEnum::POST,
+            sprintf('/portfolios/%s', $portfolio->getId()),
+            $this->clipboard->paste('token')
+        );
+    }
+
+    /**
+     * @When /^wybieram (portfel "[^"]+") jako domyślny$/
+     */
+    function i_change_default_portfolio(PortfolioInterface $portfolio)
+    {
+        $this->http->initialize(
+            HttpMethodEnum::POST,
+            sprintf('/portfolios/%s/default', $portfolio->getId()),
+            $this->clipboard->paste('token')
+        );
+    }
+
+    /**
+     * @When podaję nazwę :name
+     */
+    function i_pass_a_name(string $name)
+    {
+        $this->http->addToPayload('name', $name);
+    }
+
+    /**
+     * @When zaznaczam, że portfel ma być domyślny
+     */
+    function i_mark_portfolio_as_default()
+    {
+        $this->http->addToPayload('default', true);
+    }
+
+    /**
+     * @When zatwierdzam wprowadzone dane
+     */
+    function i_submit_entered_data()
+    {
+        $this->http->finalize();
+    }
+
+    /**
+     * @Then dodawanie portfela kończy się sukcesem
+     */
+    function the_portfolio_creation_ends_with_a_success()
+    {
+        Assert::same($this->http->getResponse()->getStatusCode(), Response::HTTP_CREATED);
+    }
+
+    /**
+     * @Then edycja portfela kończy się sukcesem
+     * @Then zmiana portfela domyślnego kończy się sukcesem
+     */
+    function the_portfolio_modification_ends_with_a_success()
+    {
+        Assert::same($this->http->getResponse()->getStatusCode(), Response::HTTP_OK);
+    }
+
+    /**
+     * @Then widzę, że portfel jest portfelem domyślnym
+     */
+    function i_see_portfolio_is_a_default_one()
+    {
+        $response = json_decode($this->http->getResponse()->getContent(false), true);
+
+        Assert::true($response['default']);
+    }
+
+    /**
+     * @Then widzę, że portfel nie jest portfelem domyślnym
+     * @Then /^widzę, że (portfel "[^"]+") nie jest już portfelem domyślnym$/
+     */
+    function i_see_portfolio_is_not_a_default_one(PortfolioInterface $portfolio = null)
+    {
+        if (null !== $portfolio) {
+            Assert::false($portfolio->isDefault());
+
+            return;
+        }
+
+        $response = json_decode($this->http->getResponse()->getContent(false), true);
+        Assert::isInstanceOf(
+            $portfolio = $this->iriConverter->getResourceFromIri($response['@id']),
+            PortfolioInterface::class,
+        );
+
+        Assert::false($response['default']);
+        Assert::false($portfolio->isDefault());
+    }
+
+    /**
+     * @Then widzę, że portfel ma nazwę :name
+     */
+    function i_see_portfolio_is_named(string $name)
+    {
+        $response = json_decode($this->http->getResponse()->getContent(false), true);
+
+        Assert::same($response['name'], $name);
     }
 
     /**
