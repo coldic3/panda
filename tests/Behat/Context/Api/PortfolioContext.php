@@ -7,6 +7,7 @@ namespace Panda\Tests\Behat\Context\Api;
 use ApiPlatform\Api\IriConverterInterface;
 use Behat\Behat\Context\Context;
 use Panda\Portfolio\Domain\Model\PortfolioInterface;
+use Panda\Portfolio\Infrastructure\ApiResource\PortfolioResource;
 use Panda\Tests\Behat\Context\Util\EnableClipboardTrait;
 use Panda\Tests\Util\HttpMethodEnum;
 use Panda\Tests\Util\HttpRequestBuilder;
@@ -30,7 +31,7 @@ class PortfolioContext implements Context
     {
         $this->http->initialize(
             HttpMethodEnum::GET,
-            sprintf('/portfolio/%s', $this->clipboard->paste('portfolio')->getId()),
+            sprintf('/portfolios/%s', $this->clipboard->paste('portfolio')->getId()),
             $this->clipboard->paste('token')
         );
 
@@ -55,7 +56,7 @@ class PortfolioContext implements Context
     function i_edit_the_portfolio(PortfolioInterface $portfolio)
     {
         $this->http->initialize(
-            HttpMethodEnum::POST,
+            HttpMethodEnum::PATCH,
             sprintf('/portfolios/%s', $portfolio->getId()),
             $this->clipboard->paste('token')
         );
@@ -67,7 +68,7 @@ class PortfolioContext implements Context
     function i_change_default_portfolio(PortfolioInterface $portfolio)
     {
         $this->http->initialize(
-            HttpMethodEnum::POST,
+            HttpMethodEnum::PATCH,
             sprintf('/portfolios/%s/default', $portfolio->getId()),
             $this->clipboard->paste('token')
         );
@@ -79,14 +80,6 @@ class PortfolioContext implements Context
     function i_pass_a_name(string $name)
     {
         $this->http->addToPayload('name', $name);
-    }
-
-    /**
-     * @When zaznaczam, że portfel ma być domyślny
-     */
-    function i_mark_portfolio_as_default()
-    {
-        $this->http->addToPayload('default', true);
     }
 
     /**
@@ -139,11 +132,11 @@ class PortfolioContext implements Context
         $response = json_decode($this->http->getResponse()->getContent(false), true);
         Assert::isInstanceOf(
             $portfolio = $this->iriConverter->getResourceFromIri($response['@id']),
-            PortfolioInterface::class,
+            PortfolioResource::class,
         );
 
         Assert::false($response['default']);
-        Assert::false($portfolio->isDefault());
+        Assert::false($portfolio->default);
     }
 
     /**
@@ -163,16 +156,16 @@ class PortfolioContext implements Context
     {
         $response = json_decode($this->http->getResponse()->getContent(false), true);
 
-        Assert::same($response['hydra:totalItems'], $count);
+        Assert::count($response['items'], $count);
     }
 
     /**
-     * @Then /^widzę (aktywo "[^"]+") o nazwie "([^"]+)" w ilości ((-?)\d+)$/
+     * @Then /^widzę aktywo "([^"]+)" o nazwie "([^"]+)" w ilości ((-?)\d+)$/
      */
     function i_see_the_asset_with_name_and_quantity(string $ticker, string $name, int $quantity)
     {
         $response = json_decode($this->http->getResponse()->getContent(false), true);
-        $items = $response['hydra:member']['items'];
+        $items = $response['items'];
 
         $itemFound = false;
 
@@ -185,7 +178,11 @@ class PortfolioContext implements Context
 
             Assert::same($item['resource']['ticker'], $ticker);
             Assert::same($item['resource']['name'], $name);
-            Assert::same($item['quantity'][$quantity >= 0 ? 'long' : 'short'], abs($quantity));
+            Assert::same(
+                // FIXME: This is a temporary solution for currencies with fractional units.
+                $item['quantity'][$quantity >= 0 ? 'long' : 'short'] / ('PLN' === $ticker ? 100 : 1),
+                abs($quantity)
+            );
         }
 
         Assert::true($itemFound);

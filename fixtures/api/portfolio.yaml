@@ -21,4 +21,4 @@ Panda\Portfolio\Domain\Model\PortfolioItem:
     portfolio_default_item_3:
         __factory: {'Panda\Tests\Fixture\Factory\PortfolioItemFactory::create': ['XYZ', 'XYZ Corp.', '@portfolio_default'] }
     portfolio_additional_item_1:
-        __factory: {'Panda\Tests\Fixture\Factory\PortfolioItemFactory::create': ['EXT', 'Extra Tower Inc.', '@portfolio_default'] }
+        __factory: {'Panda\Tests\Fixture\Factory\PortfolioItemFactory::create': ['EXT', 'Extra Tower Inc.', '@portfolio_additional'] }

@@ -41,7 +41,7 @@ final class PatchPortfolioTest extends ApiTestCase
         $uri = sprintf('/portfolios/%s', $portfolio->getId());
 
         $this->request(HttpMethodEnum::PATCH, $uri, [
-            'name' => 'Fancy portfolio',
+            'name' => 'Fancy Portfolio',
         ], $this->generateAuthorizationHeader($user));
 
         $this->assertResponse($this->client->getResponse(), 'portfolio/patch/rename', Response::HTTP_OK);

@@ -8,10 +8,11 @@ use Panda\Account\Domain\Repository\UserRepositoryInterface;
 use Panda\Portfolio\Domain\Factory\PortfolioFactoryInterface;
 use Panda\Portfolio\Domain\Factory\PortfolioItemFactoryInterface;
 use Panda\Portfolio\Domain\Repository\PortfolioRepositoryInterface;
+use Panda\Shared\Application\Command\CommandBusInterface;
 use Panda\Tests\Behat\Context\Setup\AssetContext;
+use Panda\Tests\Behat\Context\Setup\PortfolioContext;
 use Panda\Tests\Behat\Context\Setup\TransactionContext;
 use Panda\Tests\Behat\Context\Setup\UserContext;
-use Panda\Tests\Behat\Context\Setup\PortfolioContext;
 use Panda\Trade\Domain\Factory\AssetFactoryInterface;
 use Panda\Trade\Domain\Factory\OperationFactoryInterface;
 use Panda\Trade\Domain\Factory\TransactionFactoryInterface;
@@ -55,6 +56,7 @@ return static function (ContainerConfigurator $containerConfigurator): void {
             service(PortfolioFactoryInterface::class),
             service(PortfolioItemFactoryInterface::class),
             service(PortfolioRepositoryInterface::class),
+            service(CommandBusInterface::class),
             service(EntityManagerInterface::class),
         ]);
 };

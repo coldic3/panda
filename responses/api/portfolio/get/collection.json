@@ -11,34 +11,40 @@
       "default": true,
       "items": [
         {
-          "@id": "/portfolio-items/@uuid@",
+          "@id": "/portfolio_items/@uuid@",
           "@type": "PortfolioItem",
           "resource": {
             "ticker": "@string@",
             "name": "@string@"
           },
-          "longQuantity": "@integer@",
-          "shortQuantity": "@integer@"
+          "quantity": {
+            "long": "@integer@",
+            "short": "@integer@"
+          }
         },
         {
-          "@id": "/portfolio-items/@uuid@",
+          "@id": "/portfolio_items/@uuid@",
           "@type": "PortfolioItem",
           "resource": {
             "ticker": "@string@",
             "name": "@string@"
           },
-          "longQuantity": "@integer@",
-          "shortQuantity": "@integer@"
+          "quantity": {
+            "long": "@integer@",
+            "short": "@integer@"
+          }
         },
         {
-          "@id": "/portfolio-items/@uuid@",
+          "@id": "/portfolio_items/@uuid@",
           "@type": "PortfolioItem",
           "resource": {
             "ticker": "@string@",
             "name": "@string@"
           },
-          "longQuantity": "@integer@",
-          "shortQuantity": "@integer@"
+          "quantity": {
+            "long": "@integer@",
+            "short": "@integer@"
+          }
         }
       ],
       "createdAt": "@datetime@",
@@ -51,14 +57,16 @@
       "default": false,
       "items": [
         {
-          "@id": "/portfolio-items/@uuid@",
+          "@id": "/portfolio_items/@uuid@",
           "@type": "PortfolioItem",
           "resource": {
             "ticker": "@string@",
             "name": "@string@"
           },
-          "longQuantity": "@integer@",
-          "shortQuantity": "@integer@"
+          "quantity": {
+            "long": "@integer@",
+            "short": "@integer@"
+          }
         }
       ],
       "createdAt": "@datetime@",

@@ -6,10 +6,14 @@ namespace Panda\Tests\Behat\Context\Setup;
 
 use Behat\Behat\Context\Context;
 use Doctrine\ORM\EntityManagerInterface;
+use Panda\Portfolio\Application\Command\Portfolio\CreatePortfolioCommand;
 use Panda\Portfolio\Domain\Factory\PortfolioFactoryInterface;
 use Panda\Portfolio\Domain\Factory\PortfolioItemFactoryInterface;
+use Panda\Portfolio\Domain\Model\PortfolioInterface;
 use Panda\Portfolio\Domain\Repository\PortfolioRepositoryInterface;
+use Panda\Shared\Application\Command\CommandBusInterface;
 use Panda\Tests\Behat\Context\Util\EnableClipboardTrait;
+use Webmozart\Assert\Assert;
 
 class PortfolioContext implements Context
 {
@@ -20,6 +24,7 @@ class PortfolioContext implements Context
         private readonly PortfolioFactoryInterface $portfolioFactory,
         private readonly PortfolioItemFactoryInterface $portfolioItemFactory,
         private readonly PortfolioRepositoryInterface $portfolioRepository,
+        private readonly CommandBusInterface $commandBus,
         private readonly EntityManagerInterface $entityManager,
     ) {
     }
@@ -31,12 +36,12 @@ class PortfolioContext implements Context
      */
     function there_is_an_portfolio_with_name(string $name)
     {
-        $portfolio = $this->portfolioFactory->create($name, true);
+        Assert::isInstanceOf(
+            $portfolio = $this->commandBus->dispatch(new CreatePortfolioCommand($name)),
+            PortfolioInterface::class,
+        );
 
         $this->clipboard->copy('portfolio', $portfolio);
-
-        $this->portfolioRepository->save($portfolio);
-        $this->entityManager->flush();
     }
 
     /**

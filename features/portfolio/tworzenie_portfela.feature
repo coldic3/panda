@@ -25,14 +25,3 @@ Potrzeba biznesowa: Tworzenie portfela
         I zatwierdzam wprowadzone dane
         Wtedy dodawanie portfela kończy się sukcesem
         I widzę, że portfel nie jest portfelem domyślnym
-
-    @api
-    Scenariusz: Tworzenie kolejnego portfela jako portfel domyślny
-        Zakładając, że posiadam już domyślny portfel "Inwestycje długoterminowe"
-        Gdy tworzę nowy portfel
-        I podaję nazwę "Inwestycje krótkoterminowe"
-        I zaznaczam, że portfel ma być domyślny
-        I zatwierdzam wprowadzone dane
-        Wtedy dodawanie portfela kończy się sukcesem
-        I widzę, że portfel jest portfelem domyślnym
-        I widzę, że portfel "Inwestycje długoterminowe" nie jest już portfelem domyślnym

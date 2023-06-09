@@ -4,18 +4,7 @@
   "@type": "Portfolio",
   "name": "My Portfolio",
   "default": true,
-  "items": [
-    {
-      "@id": "/portfolio-items/@uuid@",
-      "@type": "PortfolioItem",
-      "resource": {
-        "ticker": "@string@",
-        "name": "@string@"
-      },
-      "longQuantity": "@integer@",
-      "shortQuantity": "@integer@"
-    }
-  ],
+  "items": [],
   "createdAt": "@datetime@",
   "updatedAt": "@datetime@"
 }
