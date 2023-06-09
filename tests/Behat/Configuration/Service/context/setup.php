@@ -5,10 +5,14 @@ declare(strict_types=1);
 use Doctrine\ORM\EntityManagerInterface;
 use Panda\Account\Domain\Factory\UserFactoryInterface;
 use Panda\Account\Domain\Repository\UserRepositoryInterface;
+use Panda\Portfolio\Domain\Factory\PortfolioFactoryInterface;
+use Panda\Portfolio\Domain\Factory\PortfolioItemFactoryInterface;
+use Panda\Portfolio\Domain\Repository\PortfolioRepositoryInterface;
+use Panda\Shared\Application\Command\CommandBusInterface;
 use Panda\Tests\Behat\Context\Setup\AssetContext;
+use Panda\Tests\Behat\Context\Setup\PortfolioContext;
 use Panda\Tests\Behat\Context\Setup\TransactionContext;
 use Panda\Tests\Behat\Context\Setup\UserContext;
-use Panda\Tests\Behat\Context\Setup\WalletContext;
 use Panda\Trade\Domain\Factory\AssetFactoryInterface;
 use Panda\Trade\Domain\Factory\OperationFactoryInterface;
 use Panda\Trade\Domain\Factory\TransactionFactoryInterface;
@@ -46,8 +50,13 @@ return static function (ContainerConfigurator $containerConfigurator): void {
             service(EntityManagerInterface::class),
         ]);
 
-    $services->set(WalletContext::class)
+    $services->set(PortfolioContext::class)
         ->args([
             service(AssetContext::class),
+            service(PortfolioFactoryInterface::class),
+            service(PortfolioItemFactoryInterface::class),
+            service(PortfolioRepositoryInterface::class),
+            service(CommandBusInterface::class),
+            service(EntityManagerInterface::class),
         ]);
 };

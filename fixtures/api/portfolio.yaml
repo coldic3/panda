@@ -1,0 +1,24 @@
+include:
+    - 'user.yaml'
+
+Panda\Portfolio\Domain\Model\Portfolio:
+    portfolio_default:
+        __construct: ['Default Portfolio', true]
+        ownedBy: '@user_panda'
+        createdAt: <(new DateTimeImmutable())>
+        updatedAt: <(new DateTimeImmutable())>
+    portfolio_additional:
+        __construct: ['Additional Portfolio', false]
+        ownedBy: '@user_panda'
+        createdAt: <(new DateTimeImmutable())>
+        updatedAt: <(new DateTimeImmutable())>
+
+Panda\Portfolio\Domain\Model\PortfolioItem:
+    portfolio_default_item_1:
+        __factory: {'Panda\Tests\Fixture\Factory\PortfolioItemFactory::create': ['ACM', 'Acme Corp.', '@portfolio_default'] }
+    portfolio_default_item_2:
+        __factory: {'Panda\Tests\Fixture\Factory\PortfolioItemFactory::create': ['EXT', 'Extra Tower Inc.', '@portfolio_default'] }
+    portfolio_default_item_3:
+        __factory: {'Panda\Tests\Fixture\Factory\PortfolioItemFactory::create': ['XYZ', 'XYZ Corp.', '@portfolio_default'] }
+    portfolio_additional_item_1:
+        __factory: {'Panda\Tests\Fixture\Factory\PortfolioItemFactory::create': ['EXT', 'Extra Tower Inc.', '@portfolio_additional'] }

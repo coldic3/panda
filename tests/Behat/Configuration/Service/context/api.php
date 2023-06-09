@@ -6,6 +6,7 @@ use ApiPlatform\Api\IriConverterInterface;
 use Panda\Account\Domain\Repository\UserRepositoryInterface;
 use Panda\Tests\Behat\Context\Api\AssetContext;
 use Panda\Tests\Behat\Context\Api\AuthContext;
+use Panda\Tests\Behat\Context\Api\PortfolioContext;
 use Panda\Tests\Behat\Context\Api\TransactionContext;
 use Panda\Tests\Behat\Context\Api\UserContext;
 use Panda\Tests\Util\HttpRequestBuilder;
@@ -35,6 +36,12 @@ return static function (ContainerConfigurator $containerConfigurator): void {
         ]);
 
     $services->set(TransactionContext::class)
+        ->args([
+            service(HttpRequestBuilder::class),
+            service(IriConverterInterface::class),
+        ]);
+
+    $services->set(PortfolioContext::class)
         ->args([
             service(HttpRequestBuilder::class),
             service(IriConverterInterface::class),

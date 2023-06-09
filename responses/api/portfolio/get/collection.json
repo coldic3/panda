@@ -1,0 +1,76 @@
+{
+  "@context": "/contexts/Portfolio",
+  "@id": "/portfolios",
+  "@type": "hydra:Collection",
+  "hydra:totalItems": 2,
+  "hydra:member": [
+    {
+      "@id": "/portfolios/@uuid@",
+      "@type": "Portfolio",
+      "name": "Default Portfolio",
+      "default": true,
+      "items": [
+        {
+          "@id": "/portfolio_items/@uuid@",
+          "@type": "PortfolioItem",
+          "resource": {
+            "ticker": "@string@",
+            "name": "@string@"
+          },
+          "quantity": {
+            "long": "@integer@",
+            "short": "@integer@"
+          }
+        },
+        {
+          "@id": "/portfolio_items/@uuid@",
+          "@type": "PortfolioItem",
+          "resource": {
+            "ticker": "@string@",
+            "name": "@string@"
+          },
+          "quantity": {
+            "long": "@integer@",
+            "short": "@integer@"
+          }
+        },
+        {
+          "@id": "/portfolio_items/@uuid@",
+          "@type": "PortfolioItem",
+          "resource": {
+            "ticker": "@string@",
+            "name": "@string@"
+          },
+          "quantity": {
+            "long": "@integer@",
+            "short": "@integer@"
+          }
+        }
+      ],
+      "createdAt": "@datetime@",
+      "updatedAt": "@datetime@"
+    },
+    {
+      "@id": "/portfolios/@uuid@",
+      "@type": "Portfolio",
+      "name": "Additional Portfolio",
+      "default": false,
+      "items": [
+        {
+          "@id": "/portfolio_items/@uuid@",
+          "@type": "PortfolioItem",
+          "resource": {
+            "ticker": "@string@",
+            "name": "@string@"
+          },
+          "quantity": {
+            "long": "@integer@",
+            "short": "@integer@"
+          }
+        }
+      ],
+      "createdAt": "@datetime@",
+      "updatedAt": "@datetime@"
+    }
+  ]
+}

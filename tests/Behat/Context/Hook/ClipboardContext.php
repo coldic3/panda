@@ -17,6 +17,6 @@ final class ClipboardContext implements Context
 
     public function paste(string $key): mixed
     {
-        return $this->clipboard[$key];
+        return $this->clipboard[$key] ?? null;
     }
 }

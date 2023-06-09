@@ -1,0 +1,47 @@
+{
+  "@context": "/contexts/Portfolio",
+  "@id": "/portfolios/@uuid@",
+  "@type": "Portfolio",
+  "name": "Default Portfolio",
+  "default": true,
+  "items": [
+    {
+      "@id": "/portfolio_items/@uuid@",
+      "@type": "PortfolioItem",
+      "resource": {
+        "ticker": "@string@",
+        "name": "@string@"
+      },
+      "quantity": {
+        "long": "@integer@",
+        "short": "@integer@"
+      }
+    },
+    {
+      "@id": "/portfolio_items/@uuid@",
+      "@type": "PortfolioItem",
+      "resource": {
+        "ticker": "@string@",
+        "name": "@string@"
+      },
+      "quantity": {
+        "long": "@integer@",
+        "short": "@integer@"
+      }
+    },
+    {
+      "@id": "/portfolio_items/@uuid@",
+      "@type": "PortfolioItem",
+      "resource": {
+        "ticker": "@string@",
+        "name": "@string@"
+      },
+      "quantity": {
+        "long": "@integer@",
+        "short": "@integer@"
+      }
+    }
+  ],
+  "createdAt": "@datetime@",
+  "updatedAt": "@datetime@"
+}
