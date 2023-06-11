@@ -5,24 +5,22 @@ declare(strict_types=1);
 namespace Panda\Shared\Infrastructure\Messenger;
 
 use Panda\Shared\Application\Event\EventBusInterface;
+use Panda\Shared\Application\Exception\MessengerViolationFailedCompoundException;
 use Panda\Shared\Domain\Event\EventInterface;
 use Symfony\Component\Messenger\Exception\HandlerFailedException;
+use Symfony\Component\Messenger\Exception\ValidationFailedException;
 use Symfony\Component\Messenger\MessageBusInterface;
-use Symfony\Component\Messenger\Stamp\ValidationStamp;
 
-final class MessengerEventBus implements EventBusInterface
+final readonly class MessengerEventBus implements EventBusInterface
 {
-    use HandleTrait;
-
-    public function __construct(MessageBusInterface $messageBus)
+    public function __construct(private MessageBusInterface $eventBus)
     {
-        $this->messageBus = $messageBus;
     }
 
-    public function dispatch(EventInterface $event): mixed
+    public function dispatch(EventInterface $event): void
     {
         try {
-            return $this->handle($event, [new ValidationStamp(['panda'])]);
+            $this->eventBus->dispatch($event);
         } catch (HandlerFailedException $e) {
             /**
              * @psalm-suppress InvalidThrow
@@ -30,6 +28,8 @@ final class MessengerEventBus implements EventBusInterface
              * @phpstan-ignore-next-line
              */
             throw current($e->getNestedExceptions());
+        } catch (ValidationFailedException $e) {
+            throw new MessengerViolationFailedCompoundException($e);
         }
     }
 }

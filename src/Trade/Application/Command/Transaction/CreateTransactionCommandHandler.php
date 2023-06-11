@@ -5,6 +5,8 @@ declare(strict_types=1);
 namespace Panda\Trade\Application\Command\Transaction;
 
 use Panda\Shared\Application\Command\CommandHandlerInterface;
+use Panda\Shared\Application\Event\EventBusInterface;
+use Panda\Trade\Domain\Events\TransactionCreatedEvent;
 use Panda\Trade\Domain\Factory\TransactionFactoryInterface;
 use Panda\Trade\Domain\Model\Transaction\TransactionInterface;
 use Panda\Trade\Domain\Repository\TransactionRepositoryInterface;
@@ -16,6 +18,7 @@ final readonly class CreateTransactionCommandHandler implements CommandHandlerIn
     public function __construct(
         private TransactionRepositoryInterface $transactionRepository,
         private TransactionFactoryInterface $transactionFactory,
+        private EventBusInterface $eventBus,
     ) {
     }
 
@@ -73,6 +76,8 @@ final readonly class CreateTransactionCommandHandler implements CommandHandlerIn
         }
 
         $this->transactionRepository->save($transaction);
+
+        $this->eventBus->dispatch(new TransactionCreatedEvent($transaction->getId()));
 
         return $transaction;
     }

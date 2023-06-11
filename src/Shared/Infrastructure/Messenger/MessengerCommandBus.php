@@ -16,9 +16,9 @@ final class MessengerCommandBus implements CommandBusInterface
 {
     use HandleTrait;
 
-    public function __construct(MessageBusInterface $messageBus)
+    public function __construct(MessageBusInterface $commandBus)
     {
-        $this->messageBus = $messageBus;
+        $this->messageBus = $commandBus;
     }
 
     public function dispatch(CommandInterface $command): mixed

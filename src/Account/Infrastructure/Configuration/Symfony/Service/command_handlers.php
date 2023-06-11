@@ -17,6 +17,6 @@ return static function (ContainerConfigurator $containerConfigurator): void {
             service(UserFactoryInterface::class),
         ])
         ->tag('messenger.message_handler', [
-            'bus_name' => 'command.bus',
+            'bus' => 'command.bus',
         ]);
 };

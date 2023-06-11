@@ -19,18 +19,18 @@ return static function (ContainerConfigurator $containerConfigurator): void {
             service(PortfolioFactoryInterface::class),
         ])
         ->tag('messenger.message_handler', [
-            'bus_name' => 'command.bus',
+            'bus' => 'command.bus',
         ]);
 
     $services->set(UpdatePortfolioCommandHandler::class)
         ->args([service(PortfolioRepositoryInterface::class)])
         ->tag('messenger.message_handler', [
-            'bus_name' => 'command.bus',
+            'bus' => 'command.bus',
         ]);
 
     $services->set(ChangeDefaultPortfolioCommandHandler::class)
         ->args([service(PortfolioRepositoryInterface::class)])
         ->tag('messenger.message_handler', [
-            'bus_name' => 'command.bus',
+            'bus' => 'command.bus',
         ]);
 };

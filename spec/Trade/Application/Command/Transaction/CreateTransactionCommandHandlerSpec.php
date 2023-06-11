@@ -3,20 +3,26 @@
 namespace spec\Panda\Trade\Application\Command\Transaction;
 
 use Panda\Shared\Application\Command\CommandHandlerInterface;
+use Panda\Shared\Application\Event\EventBusInterface;
 use Panda\Trade\Application\Command\Transaction\CreateTransactionCommand;
 use Panda\Trade\Application\Command\Transaction\CreateTransactionCommandHandler;
+use Panda\Trade\Domain\Events\TransactionCreatedEvent;
 use Panda\Trade\Domain\Factory\TransactionFactoryInterface;
 use Panda\Trade\Domain\Model\Transaction\OperationInterface;
 use Panda\Trade\Domain\Model\Transaction\TransactionInterface;
 use Panda\Trade\Domain\Repository\TransactionRepositoryInterface;
 use Panda\Trade\Domain\ValueObject\TransactionTypeEnum;
 use PhpSpec\ObjectBehavior;
+use Symfony\Component\Uid\Uuid;
 
 class CreateTransactionCommandHandlerSpec extends ObjectBehavior
 {
-    function let(TransactionRepositoryInterface $transactionRepository, TransactionFactoryInterface $transactionFactory)
-    {
-        $this->beConstructedWith($transactionRepository, $transactionFactory);
+    function let(
+        TransactionRepositoryInterface $transactionRepository,
+        TransactionFactoryInterface $transactionFactory,
+        EventBusInterface $eventBus,
+    ) {
+        $this->beConstructedWith($transactionRepository, $transactionFactory, $eventBus);
     }
 
     function it_is_create_transaction_command_handler()
@@ -28,9 +34,11 @@ class CreateTransactionCommandHandlerSpec extends ObjectBehavior
     function it_creates_ask_transaction(
         TransactionRepositoryInterface $transactionRepository,
         TransactionFactoryInterface $transactionFactory,
+        EventBusInterface $eventBus,
         OperationInterface $fromOperation,
         OperationInterface $toOperation,
         TransactionInterface $transaction,
+        Uuid $transactionId,
     ) {
         $command = new CreateTransactionCommand(
             TransactionTypeEnum::ASK,
@@ -50,7 +58,11 @@ class CreateTransactionCommandHandlerSpec extends ObjectBehavior
             ->willReturn($transaction)
             ->shouldBeCalledOnce();
 
+        $transaction->getId()->willReturn($transactionId);
+
         $transactionRepository->save($transaction)->shouldBeCalledOnce();
+
+        $eventBus->dispatch(new TransactionCreatedEvent($transactionId->getWrappedObject()))->shouldBeCalledOnce();
 
         $this($command);
     }
@@ -58,9 +70,11 @@ class CreateTransactionCommandHandlerSpec extends ObjectBehavior
     function it_creates_bid_transaction(
         TransactionRepositoryInterface $transactionRepository,
         TransactionFactoryInterface $transactionFactory,
+        EventBusInterface $eventBus,
         OperationInterface $fromOperation,
         OperationInterface $toOperation,
         TransactionInterface $transaction,
+        Uuid $transactionId,
     ) {
         $command = new CreateTransactionCommand(
             TransactionTypeEnum::BID,
@@ -80,7 +94,11 @@ class CreateTransactionCommandHandlerSpec extends ObjectBehavior
             ->willReturn($transaction)
             ->shouldBeCalledOnce();
 
+        $transaction->getId()->willReturn($transactionId);
+
         $transactionRepository->save($transaction)->shouldBeCalledOnce();
+
+        $eventBus->dispatch(new TransactionCreatedEvent($transactionId->getWrappedObject()))->shouldBeCalledOnce();
 
         $this($command);
     }
@@ -88,8 +106,10 @@ class CreateTransactionCommandHandlerSpec extends ObjectBehavior
     function it_creates_deposit_transaction(
         TransactionRepositoryInterface $transactionRepository,
         TransactionFactoryInterface $transactionFactory,
+        EventBusInterface $eventBus,
         OperationInterface $toOperation,
         TransactionInterface $transaction,
+        Uuid $transactionId,
     ) {
         $command = new CreateTransactionCommand(
             TransactionTypeEnum::DEPOSIT,
@@ -108,7 +128,11 @@ class CreateTransactionCommandHandlerSpec extends ObjectBehavior
             ->willReturn($transaction)
             ->shouldBeCalledOnce();
 
+        $transaction->getId()->willReturn($transactionId);
+
         $transactionRepository->save($transaction)->shouldBeCalledOnce();
+
+        $eventBus->dispatch(new TransactionCreatedEvent($transactionId->getWrappedObject()))->shouldBeCalledOnce();
 
         $this($command);
     }
@@ -116,8 +140,10 @@ class CreateTransactionCommandHandlerSpec extends ObjectBehavior
     function it_creates_withdraw_transaction(
         TransactionRepositoryInterface $transactionRepository,
         TransactionFactoryInterface $transactionFactory,
+        EventBusInterface $eventBus,
         OperationInterface $fromOperation,
         TransactionInterface $transaction,
+        Uuid $transactionId,
     ) {
         $command = new CreateTransactionCommand(
             TransactionTypeEnum::WITHDRAW,
@@ -136,7 +162,11 @@ class CreateTransactionCommandHandlerSpec extends ObjectBehavior
             ->willReturn($transaction)
             ->shouldBeCalledOnce();
 
+        $transaction->getId()->willReturn($transactionId);
+
         $transactionRepository->save($transaction)->shouldBeCalledOnce();
+
+        $eventBus->dispatch(new TransactionCreatedEvent($transactionId->getWrappedObject()))->shouldBeCalledOnce();
 
         $this($command);
     }
@@ -144,7 +174,9 @@ class CreateTransactionCommandHandlerSpec extends ObjectBehavior
     function it_creates_fee_transaction(
         TransactionRepositoryInterface $transactionRepository,
         TransactionFactoryInterface $transactionFactory,
+        EventBusInterface $eventBus,
         TransactionInterface $transaction,
+        Uuid $transactionId,
     ) {
         $command = new CreateTransactionCommand(
             TransactionTypeEnum::FEE,
@@ -162,7 +194,11 @@ class CreateTransactionCommandHandlerSpec extends ObjectBehavior
             ->willReturn($transaction)
             ->shouldBeCalledOnce();
 
+        $transaction->getId()->willReturn($transactionId);
+
         $transactionRepository->save($transaction)->shouldBeCalledOnce();
+
+        $eventBus->dispatch(new TransactionCreatedEvent($transactionId->getWrappedObject()))->shouldBeCalledOnce();
 
         $this($command);
     }

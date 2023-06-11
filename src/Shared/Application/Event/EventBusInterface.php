@@ -8,5 +8,5 @@ use Panda\Shared\Domain\Event\EventInterface;
 
 interface EventBusInterface
 {
-    public function dispatch(EventInterface $event): mixed;
+    public function dispatch(EventInterface $event): void;
 }

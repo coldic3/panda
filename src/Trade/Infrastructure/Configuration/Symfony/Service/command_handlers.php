@@ -2,6 +2,7 @@
 
 declare(strict_types=1);
 
+use Panda\Shared\Application\Event\EventBusInterface;
 use Panda\Trade\Application\Command\Asset\CreateAssetCommandHandler;
 use Panda\Trade\Application\Command\Asset\DeleteAssetCommandHandler;
 use Panda\Trade\Application\Command\Asset\UpdateAssetCommandHandler;
@@ -22,27 +23,28 @@ return static function (ContainerConfigurator $containerConfigurator): void {
             service(AssetFactoryInterface::class),
         ])
         ->tag('messenger.message_handler', [
-            'bus_name' => 'command.bus',
+            'bus' => 'command.bus',
         ]);
 
     $services->set(UpdateAssetCommandHandler::class)
         ->args([service(AssetRepositoryInterface::class)])
         ->tag('messenger.message_handler', [
-            'bus_name' => 'command.bus',
+            'bus' => 'command.bus',
         ]);
 
     $services->set(DeleteAssetCommandHandler::class)
         ->args([service(AssetRepositoryInterface::class)])
         ->tag('messenger.message_handler', [
-            'bus_name' => 'command.bus',
+            'bus' => 'command.bus',
         ]);
 
     $services->set(CreateTransactionCommandHandler::class)
         ->args([
             service(TransactionRepositoryInterface::class),
             service(TransactionFactoryInterface::class),
+            service(EventBusInterface::class),
         ])
         ->tag('messenger.message_handler', [
-            'bus_name' => 'command.bus',
+            'bus' => 'command.bus',
         ]);
 };
