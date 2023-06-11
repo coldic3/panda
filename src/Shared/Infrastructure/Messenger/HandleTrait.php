@@ -9,9 +9,6 @@ use Symfony\Component\Messenger\MessageBusInterface;
 use Symfony\Component\Messenger\Stamp\HandledStamp;
 use Symfony\Component\Messenger\Stamp\StampInterface;
 
-/**
- * @mixin MessengerCommandBus|MessengerQueryBus
- */
 trait HandleTrait
 {
     use \Symfony\Component\Messenger\HandleTrait;

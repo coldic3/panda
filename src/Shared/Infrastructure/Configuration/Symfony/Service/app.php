@@ -3,9 +3,11 @@
 declare(strict_types=1);
 
 use Panda\Shared\Application\Command\CommandBusInterface;
+use Panda\Shared\Application\Event\EventBusInterface;
 use Panda\Shared\Application\Query\QueryBusInterface;
 use Panda\Shared\Infrastructure\Doctrine\Listener\PostgresGenerateSchemaListener;
 use Panda\Shared\Infrastructure\Messenger\MessengerCommandBus;
+use Panda\Shared\Infrastructure\Messenger\MessengerEventBus;
 use Panda\Shared\Infrastructure\Messenger\MessengerQueryBus;
 use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
 use Symfony\Component\Messenger\MessageBusInterface;
@@ -16,6 +18,10 @@ return static function (ContainerConfigurator $containerConfigurator): void {
 
     $services->set(CommandBusInterface::class)
         ->class(MessengerCommandBus::class)
+        ->args([service(MessageBusInterface::class)]);
+
+    $services->set(EventBusInterface::class)
+        ->class(MessengerEventBus::class)
         ->args([service(MessageBusInterface::class)]);
 
     $services->set(QueryBusInterface::class)
