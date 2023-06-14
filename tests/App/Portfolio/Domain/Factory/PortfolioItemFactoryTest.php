@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Panda\Tests\App\Portfolio\Factory;
+namespace Panda\Tests\App\Portfolio\Domain\Factory;
 
 use Panda\Portfolio\Domain\Factory\PortfolioItemFactory;
 use Panda\Portfolio\Domain\Model\PortfolioInterface;
