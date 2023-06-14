@@ -4,4 +4,5 @@ parameters:
     locale: en_US
 
 imports:
-    - { resource: ../../../../*/Infrastructure/Configuration/Symfony/Service/**/* }
+    - { resource: ../../../../*/Infrastructure/Configuration/Symfony/Service/**/* } # Bounded Contexts
+    - { resource: ../../../../*/*/Configuration/Symfony/Service/**/* } # Anti-Corruption Layers
