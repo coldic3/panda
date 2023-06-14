@@ -6,7 +6,7 @@ namespace Panda\Trade\Domain\Model\Transaction;
 
 use Doctrine\Common\Collections\Collection;
 use Panda\AccountOHS\Domain\Model\Owner\OwnershipInterface;
-use Panda\Shared\Domain\Model\IdentifiableInterface;
+use Panda\Core\Domain\Model\IdentifiableInterface;
 use Panda\Trade\Domain\ValueObject\TransactionTypeEnum;
 
 interface TransactionInterface extends IdentifiableInterface, OwnershipInterface

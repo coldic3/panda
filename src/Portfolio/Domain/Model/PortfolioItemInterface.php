@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Panda\Portfolio\Domain\Model;
 
+use Panda\Core\Domain\Model\IdentifiableInterface;
+use Panda\Core\Domain\Model\TimestampableInterface;
 use Panda\Portfolio\Domain\ValueObject\ResourceInterface;
-use Panda\Shared\Domain\Model\IdentifiableInterface;
-use Panda\Shared\Domain\Model\TimestampableInterface;
 
 interface PortfolioItemInterface extends IdentifiableInterface, TimestampableInterface
 {

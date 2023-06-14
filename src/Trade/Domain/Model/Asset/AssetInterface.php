@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace Panda\Trade\Domain\Model\Asset;
 
 use Panda\AccountOHS\Domain\Model\Owner\OwnershipInterface;
-use Panda\Shared\Domain\Model\IdentifiableInterface;
-use Panda\Shared\Domain\Model\TimestampableInterface;
+use Panda\Core\Domain\Model\IdentifiableInterface;
+use Panda\Core\Domain\Model\TimestampableInterface;
 
 interface AssetInterface extends IdentifiableInterface, TimestampableInterface, OwnershipInterface
 {

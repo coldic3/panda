@@ -6,8 +6,8 @@ namespace Panda\Portfolio\Domain\Model;
 
 use Doctrine\Common\Collections\Collection;
 use Panda\AccountOHS\Domain\Model\Owner\OwnershipInterface;
-use Panda\Shared\Domain\Model\IdentifiableInterface;
-use Panda\Shared\Domain\Model\TimestampableInterface;
+use Panda\Core\Domain\Model\IdentifiableInterface;
+use Panda\Core\Domain\Model\TimestampableInterface;
 
 interface PortfolioInterface extends IdentifiableInterface, TimestampableInterface, OwnershipInterface
 {

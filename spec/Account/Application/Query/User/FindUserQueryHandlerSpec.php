@@ -8,7 +8,7 @@ use Panda\Account\Domain\Exception\AuthorizedUserNotFoundException;
 use Panda\Account\Domain\Model\UserInterface;
 use Panda\Account\Domain\Repository\UserRepositoryInterface;
 use Panda\AccountOHS\Domain\Provider\AuthorizedUserProviderInterface;
-use Panda\Shared\Application\Query\QueryHandlerInterface;
+use Panda\Core\Application\Query\QueryHandlerInterface;
 use PhpSpec\ObjectBehavior;
 use Symfony\Component\Uid\Uuid;
 

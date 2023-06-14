@@ -2,8 +2,8 @@
 
 namespace spec\Panda\Trade\Application\Command\Transaction;
 
-use Panda\Shared\Application\Command\CommandHandlerInterface;
-use Panda\Shared\Application\Event\EventBusInterface;
+use Panda\Core\Application\Command\CommandHandlerInterface;
+use Panda\Core\Application\Event\EventBusInterface;
 use Panda\Trade\Application\Command\Transaction\CreateTransactionCommand;
 use Panda\Trade\Application\Command\Transaction\CreateTransactionCommandHandler;
 use Panda\Trade\Domain\Events\TransactionCreatedEvent;

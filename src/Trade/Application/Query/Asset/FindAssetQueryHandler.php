@@ -6,7 +6,7 @@ namespace Panda\Trade\Application\Query\Asset;
 
 use Panda\AccountOHS\Domain\Exception\AuthorizedUserNotFoundExceptionInterface;
 use Panda\AccountOHS\Domain\Provider\AuthorizedUserProviderInterface;
-use Panda\Shared\Application\Query\QueryHandlerInterface;
+use Panda\Core\Application\Query\QueryHandlerInterface;
 use Panda\Trade\Domain\Model\Asset\AssetInterface;
 use Panda\Trade\Domain\Repository\AssetRepositoryInterface;
 

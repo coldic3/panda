@@ -9,7 +9,7 @@ use ApiPlatform\State\ProviderInterface;
 use Panda\Account\Application\Query\User\FindUserQuery;
 use Panda\Account\Domain\Model\User;
 use Panda\Account\Infrastructure\ApiResource\UserResource;
-use Panda\Shared\Application\Query\QueryBusInterface;
+use Panda\Core\Application\Query\QueryBusInterface;
 
 final readonly class UserProvider implements ProviderInterface
 {

@@ -3,6 +3,7 @@
 namespace spec\Panda\Portfolio\Application\Command\Portfolio;
 
 use Doctrine\Common\Collections\ArrayCollection;
+use Panda\Core\Application\Command\CommandHandlerInterface;
 use Panda\Portfolio\Application\Command\Portfolio\ChangePortfolioItemLongQuantityCommand;
 use Panda\Portfolio\Application\Command\Portfolio\ChangePortfolioItemLongQuantityCommandHandler;
 use Panda\Portfolio\Domain\Factory\PortfolioItemFactoryInterface;
@@ -10,7 +11,6 @@ use Panda\Portfolio\Domain\Model\PortfolioInterface;
 use Panda\Portfolio\Domain\Model\PortfolioItemInterface;
 use Panda\Portfolio\Domain\Repository\PortfolioRepositoryInterface;
 use Panda\Portfolio\Domain\ValueObject\ResourceInterface;
-use Panda\Shared\Application\Command\CommandHandlerInterface;
 use PhpSpec\ObjectBehavior;
 
 class ChangePortfolioItemLongQuantityCommandHandlerSpec extends ObjectBehavior

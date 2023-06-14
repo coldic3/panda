@@ -16,7 +16,7 @@
     <issueHandlers>
         <InaccessibleProperty>
             <errorLevel type="info">
-                <file name="src/Shared/Domain/Repository/QueryBuilderAwareTrait.php" />
+                <file name="src/Core/Domain/Repository/QueryBuilderAwareTrait.php" />
             </errorLevel>
         </InaccessibleProperty>
     </issueHandlers>

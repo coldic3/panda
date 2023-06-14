@@ -6,8 +6,8 @@ namespace Panda\Trade\Application\Query\Asset;
 
 use Panda\AccountOHS\Domain\Exception\AuthorizedUserNotFoundExceptionInterface;
 use Panda\AccountOHS\Domain\Provider\AuthorizedUserProviderInterface;
-use Panda\Shared\Application\Query\QueryHandlerInterface;
-use Panda\Shared\Domain\Repository\CollectionIteratorInterface;
+use Panda\Core\Application\Query\QueryHandlerInterface;
+use Panda\Core\Domain\Repository\CollectionIteratorInterface;
 use Panda\Trade\Domain\Repository\AssetRepositoryInterface;
 
 final readonly class FindAssetsQueryHandler implements QueryHandlerInterface

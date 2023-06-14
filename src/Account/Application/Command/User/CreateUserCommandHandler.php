@@ -7,7 +7,7 @@ namespace Panda\Account\Application\Command\User;
 use Panda\Account\Domain\Factory\UserFactoryInterface;
 use Panda\Account\Domain\Model\UserInterface;
 use Panda\Account\Domain\Repository\UserRepositoryInterface;
-use Panda\Shared\Application\Command\CommandHandlerInterface;
+use Panda\Core\Application\Command\CommandHandlerInterface;
 
 final readonly class CreateUserCommandHandler implements CommandHandlerInterface
 {

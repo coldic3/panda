@@ -6,11 +6,11 @@ namespace Panda\Portfolio\Infrastructure\Doctrine\Orm;
 
 use Doctrine\ORM\EntityManagerInterface;
 use Panda\AccountOHS\Domain\Model\Owner\OwnerInterface;
+use Panda\Core\Domain\Repository\QueryInterface;
+use Panda\Core\Infrastructure\Doctrine\Orm\DoctrineRepository;
 use Panda\Portfolio\Domain\Model\Portfolio;
 use Panda\Portfolio\Domain\Model\PortfolioInterface;
 use Panda\Portfolio\Domain\Repository\PortfolioRepositoryInterface;
-use Panda\Shared\Domain\Repository\QueryInterface;
-use Panda\Shared\Infrastructure\Doctrine\Orm\DoctrineRepository;
 use Symfony\Component\Uid\Uuid;
 use Webmozart\Assert\Assert;
 

@@ -1,6 +1,6 @@
 <?php
 
-use Panda\Shared\Infrastructure\Symfony\Kernel;
+use Panda\Core\Infrastructure\Symfony\Kernel;
 
 require_once dirname(__DIR__).'/vendor/autoload_runtime.php';
 

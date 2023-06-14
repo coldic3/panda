@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace Panda\Portfolio\Application\Command\Portfolio;
 
+use Panda\Core\Application\Command\CommandHandlerInterface;
 use Panda\Portfolio\Domain\Factory\PortfolioItemFactoryInterface;
 use Panda\Portfolio\Domain\Model\PortfolioInterface;
 use Panda\Portfolio\Domain\Model\PortfolioItemInterface;
 use Panda\Portfolio\Domain\Repository\PortfolioRepositoryInterface;
-use Panda\Shared\Application\Command\CommandHandlerInterface;
 
 final readonly class ChangePortfolioItemLongQuantityCommandHandler implements CommandHandlerInterface
 {

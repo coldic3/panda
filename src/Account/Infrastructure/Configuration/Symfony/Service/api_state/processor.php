@@ -3,7 +3,7 @@
 declare(strict_types=1);
 
 use Panda\Account\Infrastructure\ApiState\Processor\UserCreateProcessor;
-use Panda\Shared\Application\Command\CommandBusInterface;
+use Panda\Core\Application\Command\CommandBusInterface;
 use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
 use function Symfony\Component\DependencyInjection\Loader\Configurator\service;
 

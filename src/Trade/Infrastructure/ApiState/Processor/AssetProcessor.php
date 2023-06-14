@@ -7,7 +7,7 @@ namespace Panda\Trade\Infrastructure\ApiState\Processor;
 use ApiPlatform\Metadata\DeleteOperationInterface;
 use ApiPlatform\Metadata\Operation;
 use ApiPlatform\State\ProcessorInterface;
-use Panda\Shared\Application\Command\CommandBusInterface;
+use Panda\Core\Application\Command\CommandBusInterface;
 use Panda\Trade\Application\Command\Asset\CreateAssetCommand;
 use Panda\Trade\Application\Command\Asset\DeleteAssetCommand;
 use Panda\Trade\Application\Command\Asset\UpdateAssetCommand;

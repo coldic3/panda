@@ -6,7 +6,7 @@ use Doctrine\ORM\EntityManagerInterface;
 use Panda\Account\Domain\Model\User;
 use Panda\Account\Domain\Model\UserInterface;
 use Panda\Account\Domain\Repository\UserRepositoryInterface;
-use Panda\Shared\Infrastructure\Doctrine\Orm\DoctrineRepository;
+use Panda\Core\Infrastructure\Doctrine\Orm\DoctrineRepository;
 use Symfony\Component\Security\Core\Exception\UnsupportedUserException;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Uid\Uuid;

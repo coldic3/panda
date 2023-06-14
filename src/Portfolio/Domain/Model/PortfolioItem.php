@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace Panda\Portfolio\Domain\Model;
 
+use Panda\Core\Domain\Model\TimestampableTrait;
 use Panda\Portfolio\Domain\Exception\NegativeQuantityException;
 use Panda\Portfolio\Domain\Exception\NegativeTotalQuantityException;
 use Panda\Portfolio\Domain\ValueObject\ResourceInterface;
-use Panda\Shared\Domain\Model\TimestampableTrait;
 use Symfony\Component\Uid\Uuid;
 
 class PortfolioItem implements PortfolioItemInterface

@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Panda\AccountOHS\Domain\Model\Owner;
 
-use Panda\Shared\Domain\Model\IdentifiableInterface;
+use Panda\Core\Domain\Model\IdentifiableInterface;
 
 interface OwnerInterface extends IdentifiableInterface
 {

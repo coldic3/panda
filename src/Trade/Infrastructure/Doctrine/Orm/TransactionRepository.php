@@ -6,8 +6,8 @@ namespace Panda\Trade\Infrastructure\Doctrine\Orm;
 
 use Doctrine\ORM\EntityManagerInterface;
 use Panda\AccountOHS\Domain\Model\Owner\OwnerInterface;
-use Panda\Shared\Domain\Repository\QueryInterface;
-use Panda\Shared\Infrastructure\Doctrine\Orm\DoctrineRepository;
+use Panda\Core\Domain\Repository\QueryInterface;
+use Panda\Core\Infrastructure\Doctrine\Orm\DoctrineRepository;
 use Panda\Trade\Domain\Model\Transaction\Transaction;
 use Panda\Trade\Domain\Model\Transaction\TransactionInterface;
 use Panda\Trade\Domain\Repository\TransactionRepositoryInterface;

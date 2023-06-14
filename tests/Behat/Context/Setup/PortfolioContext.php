@@ -6,12 +6,12 @@ namespace Panda\Tests\Behat\Context\Setup;
 
 use Behat\Behat\Context\Context;
 use Doctrine\ORM\EntityManagerInterface;
+use Panda\Core\Application\Command\CommandBusInterface;
 use Panda\Portfolio\Application\Command\Portfolio\CreatePortfolioCommand;
 use Panda\Portfolio\Domain\Factory\PortfolioFactoryInterface;
 use Panda\Portfolio\Domain\Factory\PortfolioItemFactoryInterface;
 use Panda\Portfolio\Domain\Model\PortfolioInterface;
 use Panda\Portfolio\Domain\Repository\PortfolioRepositoryInterface;
-use Panda\Shared\Application\Command\CommandBusInterface;
 use Panda\Tests\Behat\Context\Util\EnableClipboardTrait;
 use Webmozart\Assert\Assert;
 

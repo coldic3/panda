@@ -8,7 +8,7 @@ use Panda\Account\Domain\Model\UserInterface;
 use Panda\Account\Domain\Repository\UserRepositoryInterface;
 use Panda\AccountOHS\Domain\Exception\AuthorizedUserNotFoundExceptionInterface;
 use Panda\AccountOHS\Domain\Provider\AuthorizedUserProviderInterface;
-use Panda\Shared\Application\Query\QueryHandlerInterface;
+use Panda\Core\Application\Query\QueryHandlerInterface;
 
 final readonly class FindUserQueryHandler implements QueryHandlerInterface
 {

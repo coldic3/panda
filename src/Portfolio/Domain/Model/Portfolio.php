@@ -7,7 +7,7 @@ namespace Panda\Portfolio\Domain\Model;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Panda\AccountOHS\Domain\Model\Owner\OwnerInterface;
-use Panda\Shared\Domain\Model\TimestampableTrait;
+use Panda\Core\Domain\Model\TimestampableTrait;
 use Symfony\Component\Uid\Uuid;
 
 class Portfolio implements PortfolioInterface

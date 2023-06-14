@@ -3,8 +3,8 @@
 declare(strict_types=1);
 
 use ApiPlatform\State\Pagination\Pagination;
+use Panda\Core\Application\Query\QueryBusInterface;
 use Panda\Portfolio\Infrastructure\ApiState\Provider\PortfolioProvider;
-use Panda\Shared\Application\Query\QueryBusInterface;
 use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
 use function Symfony\Component\DependencyInjection\Loader\Configurator\service;
 
