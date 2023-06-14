@@ -8,6 +8,7 @@ Potrzeba biznesowa: Sprzedaż aktywów
 
     Założenia:
         * jestem zalogowany jako "panda@example.com"
+        * posiadam portfel inwestycyjny
         * posiadam 1000 PLN w portfelu inwestycyjnym
         * posiadam 10 akcji spółki "ACM" o nazwie "Acme Corporation"
 

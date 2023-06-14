@@ -8,6 +8,7 @@ Potrzeba biznesowa: Wycofanie aktywów
 
     Założenia:
         * jestem zalogowany jako "panda@example.com"
+        * posiadam portfel inwestycyjny
         * posiadam 1000 PLN w portfelu inwestycyjnym
 
     @api
@@ -20,4 +21,4 @@ Potrzeba biznesowa: Wycofanie aktywów
         I zatwierdzam transakcję
         Wtedy transakcja kończy się sukcesem
         I widzę, że wycofałem aktywa o kwocie 900 PLN brutto oraz 899.01 PLN netto
-        I posiadam teraz 100 PLN w portfelu inwestycyjnym
+        I posiadam teraz 99.01 PLN w portfelu inwestycyjnym

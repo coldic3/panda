@@ -18,6 +18,14 @@ class TransactionContext implements Context
      */
     public function quantity(float $quantity): int
     {
-        return (int) ($quantity * self::PRECISION);
+        return (int) $quantity;
+    }
+
+    /**
+     * @Transform :preciseQuantity
+     */
+    public function money(float $preciseQuantity): int
+    {
+        return (int) ($preciseQuantity * self::PRECISION);
     }
 }

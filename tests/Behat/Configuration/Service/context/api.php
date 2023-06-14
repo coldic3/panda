@@ -3,6 +3,7 @@
 declare(strict_types=1);
 
 use ApiPlatform\Api\IriConverterInterface;
+use Doctrine\ORM\EntityManagerInterface;
 use Panda\Account\Domain\Repository\UserRepositoryInterface;
 use Panda\Tests\Behat\Context\Api\AssetContext;
 use Panda\Tests\Behat\Context\Api\AuthContext;
@@ -39,6 +40,7 @@ return static function (ContainerConfigurator $containerConfigurator): void {
         ->args([
             service(HttpRequestBuilder::class),
             service(IriConverterInterface::class),
+            service(EntityManagerInterface::class),
         ]);
 
     $services->set(PortfolioContext::class)

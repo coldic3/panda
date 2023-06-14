@@ -8,6 +8,7 @@ Potrzeba biznesowa: Zdeponowanie aktywów
 
     Założenia:
         * jestem zalogowany jako "panda@example.com"
+        * posiadam portfel inwestycyjny
         * posiadam aktywo "ACM" o nazwie "Acme Corporation"
         * posiadam 1000 PLN w portfelu inwestycyjnym
 

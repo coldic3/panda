@@ -6,6 +6,9 @@ namespace Panda\Tests\Behat\Context\Api;
 
 use ApiPlatform\Api\IriConverterInterface;
 use Behat\Behat\Context\Context;
+use Doctrine\ORM\EntityManagerInterface;
+use Panda\Portfolio\Domain\Model\PortfolioInterface;
+use Panda\Portfolio\Domain\Model\PortfolioItemInterface;
 use Panda\Tests\Behat\Context\Util\EnableClipboardTrait;
 use Panda\Tests\Util\HttpMethodEnum;
 use Panda\Tests\Util\HttpRequestBuilder;
@@ -23,6 +26,7 @@ class TransactionContext implements Context
     public function __construct(
         private readonly HttpRequestBuilder $http,
         private readonly IriConverterInterface $iriConverter,
+        private readonly EntityManagerInterface $entityManager,
     ) {
     }
 
@@ -98,44 +102,39 @@ class TransactionContext implements Context
 
     /**
      * @When /^wybieram do zakupu (\d+) akcj(?:|i|e) (spółki "[^"]+")$/
-     * @When cena sprzedaży akcji wynosi :quantity :asset
-     * @When wybieram do zdeponowania :quantity :asset
+     * @When cena sprzedaży akcji wynosi :preciseQuantity :asset
+     * @When wybieram do zdeponowania :preciseQuantity :asset
      */
-    function i_pass_to_operation(int $quantity, AssetInterface $asset)
+    function i_pass_to_operation(int $preciseQuantity, AssetInterface $asset)
     {
         $this->http->addToPayload('toOperation', [
             'asset' => $this->iriConverter->getIriFromResource(AssetResource::fromModel($asset)),
-            'quantity' => $quantity,
+            'quantity' => $preciseQuantity,
         ]);
     }
 
     /**
-     * @When wybieram do zapłaty :quantity :asset
+     * @When wybieram do zapłaty :preciseQuantity :asset
      * @When /^wybieram do sprzedaży (\d+) akcj(?:|i|e) (spółki "[^"]+")$/
-     * @When wybieram do wypłaty :quantity :asset
+     * @When wybieram do wypłaty :preciseQuantity :asset
      */
-    function i_pass_from_operation(int $quantity, AssetInterface $asset)
+    function i_pass_from_operation(int $preciseQuantity, AssetInterface $asset)
     {
         $this->http->addToPayload('fromOperation', [
             'asset' => $this->iriConverter->getIriFromResource(AssetResource::fromModel($asset)),
-            'quantity' => $quantity,
+            'quantity' => $preciseQuantity,
         ]);
     }
 
     /**
-     * @When za transakcję płacę :quantity :asset prowizji
-     * @When dodaję opłatę w wysokości :quantity :asset
+     * @When za transakcję płacę :preciseQuantity :asset prowizji
+     * @When dodaję opłatę w wysokości :preciseQuantity :asset
      */
-    function i_pass_adjustment_operations(float $quantity, AssetInterface $asset)
+    function i_pass_adjustment_operations(int $preciseQuantity, AssetInterface $asset)
     {
-        // FIXME: This is a temporary solution for currencies with fractional units.
-        if ('PLN' === $asset->getTicker()) {
-            $quantity = (int) ($quantity * 100);
-        }
-
         $this->http->addToPayload('adjustmentOperations', [[
             'asset' => $this->iriConverter->getIriFromResource(AssetResource::fromModel($asset)),
-            'quantity' => $quantity,
+            'quantity' => $preciseQuantity,
         ]]);
     }
 
@@ -174,11 +173,23 @@ class TransactionContext implements Context
     }
 
     /**
-     * @Then posiadam teraz :quantity :asset w portfelu inwestycyjnym
+     * @Then posiadam teraz :preciseQuantity :asset w portfelu inwestycyjnym
      * @Then /^posiadam teraz (\d+) akcji (spółki "[^"]+")$/
      */
-    function i_own_a_quantity_of_assets_now(int $quantity, AssetInterface $asset)
+    function i_own_a_quantity_of_assets_now(int $preciseQuantity, AssetInterface $asset)
     {
+        /** @var PortfolioInterface $portfolio */
+        $portfolio = $this->clipboard->paste('portfolio');
+
+        $this->entityManager->refresh($portfolio);
+
+        $portfolioItem = $portfolio->getItems()->filter(function (PortfolioItemInterface $item) use ($asset) {
+            return $item->getResource()->getTicker() === $asset->getTicker();
+        })->first();
+
+        Assert::notFalse($portfolioItem);
+
+        Assert::same($portfolioItem->getLongQuantity(), $preciseQuantity);
     }
 
     /**
