@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Panda\Tests\App\Portfolio\Factory;
+namespace Panda\Tests\App\Portfolio\Domain\Factory;
 
 use Panda\Account\Domain\Model\UserInterface;
 use Panda\AccountOHS\Domain\Provider\AuthorizedUserProviderInterface;
