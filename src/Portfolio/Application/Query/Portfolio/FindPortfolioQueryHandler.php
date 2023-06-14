@@ -6,9 +6,9 @@ namespace Panda\Portfolio\Application\Query\Portfolio;
 
 use Panda\AccountOHS\Domain\Exception\AuthorizedUserNotFoundExceptionInterface;
 use Panda\AccountOHS\Domain\Provider\AuthorizedUserProviderInterface;
+use Panda\Core\Application\Query\QueryHandlerInterface;
 use Panda\Portfolio\Domain\Model\PortfolioInterface;
 use Panda\Portfolio\Domain\Repository\PortfolioRepositoryInterface;
-use Panda\Shared\Application\Query\QueryHandlerInterface;
 
 final readonly class FindPortfolioQueryHandler implements QueryHandlerInterface
 {

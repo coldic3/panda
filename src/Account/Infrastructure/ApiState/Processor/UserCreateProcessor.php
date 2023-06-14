@@ -9,7 +9,7 @@ use ApiPlatform\State\ProcessorInterface;
 use Panda\Account\Application\Command\User\CreateUserCommand;
 use Panda\Account\Domain\Model\User;
 use Panda\Account\Infrastructure\ApiResource\UserResource;
-use Panda\Shared\Application\Command\CommandBusInterface;
+use Panda\Core\Application\Command\CommandBusInterface;
 use Webmozart\Assert\Assert;
 
 final readonly class UserCreateProcessor implements ProcessorInterface

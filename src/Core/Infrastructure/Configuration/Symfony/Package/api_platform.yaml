@@ -1,0 +1,26 @@
+imports:
+    - { resource: ../../../../../*/Infrastructure/Configuration/ApiPlatform/mapping.yaml }
+
+api_platform:
+    title: PANDA API
+    version: dev
+    show_webby: false
+    patch_formats:
+        json: ['application/merge-patch+json']
+    formats:
+        jsonld:
+            mime_types: ['application/ld+json']
+        html:
+            mime_types: ['text/html']    
+    swagger:
+        versions: [3]
+        api_keys:
+            JWT:
+                name: Authorization
+                type: header
+    defaults:
+        stateless: true
+        cache_headers:
+            vary: ['Content-Type', 'Authorization', 'Origin']
+    exception_to_status:
+        Panda\Core\Application\Exception\MessengerViolationFailedCompoundException: 422

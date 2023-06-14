@@ -6,8 +6,8 @@ namespace Panda\Trade\Infrastructure\ApiState\Processor;
 
 use ApiPlatform\Metadata\Operation;
 use ApiPlatform\State\ProcessorInterface;
-use Panda\Shared\Application\Command\CommandBusInterface;
-use Panda\Shared\Application\Query\QueryBusInterface;
+use Panda\Core\Application\Command\CommandBusInterface;
+use Panda\Core\Application\Query\QueryBusInterface;
 use Panda\Trade\Application\Command\Transaction\CreateTransactionCommand;
 use Panda\Trade\Application\Query\Asset\FindAssetQuery;
 use Panda\Trade\Domain\Factory\OperationFactoryInterface;

@@ -5,9 +5,9 @@ declare(strict_types=1);
 namespace Panda\Portfolio\Domain\Repository;
 
 use Panda\AccountOHS\Domain\Model\Owner\OwnerInterface;
+use Panda\Core\Domain\Repository\QueryInterface;
+use Panda\Core\Domain\Repository\RepositoryInterface;
 use Panda\Portfolio\Domain\Model\PortfolioInterface;
-use Panda\Shared\Domain\Repository\QueryInterface;
-use Panda\Shared\Domain\Repository\RepositoryInterface;
 use Symfony\Component\Uid\Uuid;
 
 interface PortfolioRepositoryInterface extends RepositoryInterface

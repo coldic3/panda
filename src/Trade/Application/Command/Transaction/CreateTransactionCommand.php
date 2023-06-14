@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Panda\Trade\Application\Command\Transaction;
 
-use Panda\Shared\Application\Command\CommandInterface;
+use Panda\Core\Application\Command\CommandInterface;
 use Panda\Trade\Domain\Model\Transaction\OperationInterface;
 use Panda\Trade\Domain\ValueObject\TransactionTypeEnum;
 

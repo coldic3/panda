@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Panda\Trade\Application\Query\Asset;
 
-use Panda\Shared\Application\Query\QueryInterface;
+use Panda\Core\Application\Query\QueryInterface;
 
 final readonly class FindAssetsQuery implements QueryInterface
 {

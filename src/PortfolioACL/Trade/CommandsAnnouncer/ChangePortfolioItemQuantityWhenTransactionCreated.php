@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Panda\PortfolioACL\Trade\CommandsAnnouncer;
 
+use Panda\Core\Application\Command\CommandBusInterface;
+use Panda\Core\Application\Query\QueryBusInterface;
 use Panda\Portfolio\Application\Command\Portfolio\ChangePortfolioItemLongQuantityCommand;
-use Panda\Shared\Application\Command\CommandBusInterface;
-use Panda\Shared\Application\Query\QueryBusInterface;
 use Panda\Trade\Application\Query\Transaction\FindTransactionQuery;
 use Panda\Trade\Domain\Events\TransactionCreatedEvent;
 use Panda\Trade\Domain\Model\Transaction\TransactionInterface;

@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Panda\Account\Domain\Model;
 
 use Panda\AccountOHS\Domain\Model\Owner\OwnerInterface;
-use Panda\Shared\Domain\Model\TimestampableInterface;
+use Panda\Core\Domain\Model\TimestampableInterface;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface as SymfonyUserInterface;
 

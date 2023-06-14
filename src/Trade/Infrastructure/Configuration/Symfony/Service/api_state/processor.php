@@ -2,8 +2,8 @@
 
 declare(strict_types=1);
 
-use Panda\Shared\Application\Command\CommandBusInterface;
-use Panda\Shared\Application\Query\QueryBusInterface;
+use Panda\Core\Application\Command\CommandBusInterface;
+use Panda\Core\Application\Query\QueryBusInterface;
 use Panda\Trade\Domain\Factory\OperationFactoryInterface;
 use Panda\Trade\Infrastructure\ApiState\Processor\AssetProcessor;
 use Panda\Trade\Infrastructure\ApiState\Processor\TransactionCreateProcessor;

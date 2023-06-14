@@ -13,7 +13,7 @@ use Symfony\Component\Finder\SplFileInfo;
 
 final class BoundedContextsSeparationTest
 {
-    private const COUPLING_ALLOWED = ['Shared'];
+    private const COUPLING_ALLOWED = ['Core'];
 
     public function test_account_bounded_context_does_not_depend_on_other_bounded_contexts(): Rule
     {
@@ -39,12 +39,12 @@ final class BoundedContextsSeparationTest
             ->classes(...$this->findBoundedContextsExcept(['Trade', 'AccountOHS', ...self::COUPLING_ALLOWED]));
     }
 
-    public function test_shared_bounded_context_does_not_depend_on_other_bounded_contexts(): Rule
+    public function test_core_bounded_context_does_not_depend_on_other_bounded_contexts(): Rule
     {
         return PHPat::rule()
-            ->classes($this->getBoundedContextClassNamespace('Shared'))
+            ->classes($this->getBoundedContextClassNamespace('Core'))
             ->shouldNotDependOn()
-            ->classes(...$this->findBoundedContextsExcept(['Shared']));
+            ->classes(...$this->findBoundedContextsExcept(['Core']));
     }
 
     private function getBoundedContextClassNamespace(string $context): ClassNamespace

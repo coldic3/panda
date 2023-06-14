@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Panda\Trade\Application\Command\Asset;
 
-use Panda\Shared\Application\Command\CommandInterface;
+use Panda\Core\Application\Command\CommandInterface;
 
 final readonly class CreateAssetCommand implements CommandInterface
 {

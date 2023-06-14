@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-use Panda\Shared\Application\Event\EventBusInterface;
+use Panda\Core\Application\Event\EventBusInterface;
 use Panda\Trade\Application\Command\Asset\CreateAssetCommandHandler;
 use Panda\Trade\Application\Command\Asset\DeleteAssetCommandHandler;
 use Panda\Trade\Application\Command\Asset\UpdateAssetCommandHandler;

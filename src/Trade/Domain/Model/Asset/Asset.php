@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Panda\Trade\Domain\Model\Asset;
 
 use Panda\AccountOHS\Domain\Model\Owner\OwnerInterface;
-use Panda\Shared\Domain\Model\TimestampableTrait;
+use Panda\Core\Domain\Model\TimestampableTrait;
 use Symfony\Component\Uid\Uuid;
 
 class Asset implements AssetInterface

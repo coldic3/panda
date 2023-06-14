@@ -5,9 +5,9 @@ declare(strict_types=1);
 namespace Panda\Portfolio\Infrastructure\Doctrine\Orm\Query;
 
 use Panda\AccountOHS\Domain\Model\Owner\OwnerInterface;
-use Panda\Shared\Domain\Repository\QueryBuilderAwareTrait;
-use Panda\Shared\Domain\Repository\QueryBuilderInterface;
-use Panda\Shared\Domain\Repository\QueryInterface;
+use Panda\Core\Domain\Repository\QueryBuilderAwareTrait;
+use Panda\Core\Domain\Repository\QueryBuilderInterface;
+use Panda\Core\Domain\Repository\QueryInterface;
 
 final readonly class DefaultPortfolioQuery implements QueryInterface
 {

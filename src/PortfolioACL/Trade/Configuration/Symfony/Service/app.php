@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
+use Panda\Core\Application\Command\CommandBusInterface;
+use Panda\Core\Application\Query\QueryBusInterface;
 use Panda\PortfolioACL\Trade\CommandsAnnouncer\ChangePortfolioItemQuantityWhenTransactionCreated;
-use Panda\Shared\Application\Command\CommandBusInterface;
-use Panda\Shared\Application\Query\QueryBusInterface;
 use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
 use function Symfony\Component\DependencyInjection\Loader\Configurator\service;
 

@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Panda\Portfolio\Application\Query\Portfolio;
 
-use Panda\Shared\Application\Query\QueryInterface;
+use Panda\Core\Application\Query\QueryInterface;
 use Symfony\Component\Uid\Uuid;
 
 final readonly class FindPortfolioQuery implements QueryInterface

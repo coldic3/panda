@@ -6,10 +6,10 @@ namespace Panda\Portfolio\Infrastructure\ApiState\Processor;
 
 use ApiPlatform\Metadata\Operation;
 use ApiPlatform\State\ProcessorInterface;
+use Panda\Core\Application\Command\CommandBusInterface;
 use Panda\Portfolio\Application\Command\Portfolio\CreatePortfolioCommand;
 use Panda\Portfolio\Domain\Model\PortfolioInterface;
 use Panda\Portfolio\Infrastructure\ApiResource\PortfolioResource;
-use Panda\Shared\Application\Command\CommandBusInterface;
 use Webmozart\Assert\Assert;
 
 final readonly class PortfolioCreateProcessor implements ProcessorInterface

@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Panda\Trade\Application\Command\Transaction;
 
-use Panda\Shared\Application\Command\CommandHandlerInterface;
-use Panda\Shared\Application\Event\EventBusInterface;
+use Panda\Core\Application\Command\CommandHandlerInterface;
+use Panda\Core\Application\Event\EventBusInterface;
 use Panda\Trade\Domain\Events\TransactionCreatedEvent;
 use Panda\Trade\Domain\Factory\TransactionFactoryInterface;
 use Panda\Trade\Domain\Model\Transaction\TransactionInterface;

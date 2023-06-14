@@ -8,13 +8,13 @@ use ApiPlatform\Metadata\CollectionOperationInterface;
 use ApiPlatform\Metadata\Operation;
 use ApiPlatform\State\Pagination\Pagination;
 use ApiPlatform\State\ProviderInterface;
+use Panda\Core\Application\Query\QueryBusInterface;
+use Panda\Core\Infrastructure\ApiState\Pagination\Paginator;
+use Panda\Core\Infrastructure\Doctrine\Orm\DoctrineCollectionIterator;
 use Panda\Portfolio\Application\Query\Portfolio\FindPortfolioQuery;
 use Panda\Portfolio\Application\Query\Portfolio\FindPortfoliosQuery;
 use Panda\Portfolio\Domain\Model\Portfolio;
 use Panda\Portfolio\Infrastructure\ApiResource\PortfolioResource;
-use Panda\Shared\Application\Query\QueryBusInterface;
-use Panda\Shared\Infrastructure\ApiState\Pagination\Paginator;
-use Panda\Shared\Infrastructure\Doctrine\Orm\DoctrineCollectionIterator;
 use Symfony\Component\Uid\Uuid;
 
 final readonly class PortfolioProvider implements ProviderInterface

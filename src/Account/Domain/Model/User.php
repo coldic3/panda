@@ -3,7 +3,7 @@
 namespace Panda\Account\Domain\Model;
 
 use Panda\AccountOHS\Domain\Model\Owner\OwnerInterface;
-use Panda\Shared\Domain\Model\TimestampableTrait;
+use Panda\Core\Domain\Model\TimestampableTrait;
 use Symfony\Component\Uid\Uuid;
 
 class User implements UserInterface
