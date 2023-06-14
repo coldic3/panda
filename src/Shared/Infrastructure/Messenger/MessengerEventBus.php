@@ -4,27 +4,23 @@ declare(strict_types=1);
 
 namespace Panda\Shared\Infrastructure\Messenger;
 
-use Panda\Shared\Application\Command\CommandBusInterface;
-use Panda\Shared\Application\Command\CommandInterface;
+use Panda\Shared\Application\Event\EventBusInterface;
 use Panda\Shared\Application\Exception\MessengerViolationFailedCompoundException;
+use Panda\Shared\Domain\Event\EventInterface;
 use Symfony\Component\Messenger\Exception\HandlerFailedException;
 use Symfony\Component\Messenger\Exception\ValidationFailedException;
 use Symfony\Component\Messenger\MessageBusInterface;
-use Symfony\Component\Messenger\Stamp\ValidationStamp;
 
-final class MessengerCommandBus implements CommandBusInterface
+final readonly class MessengerEventBus implements EventBusInterface
 {
-    use HandleTrait;
-
-    public function __construct(MessageBusInterface $commandBus)
+    public function __construct(private MessageBusInterface $eventBus)
     {
-        $this->messageBus = $commandBus;
     }
 
-    public function dispatch(CommandInterface $command): mixed
+    public function dispatch(EventInterface $event): void
     {
         try {
-            return $this->handle($command, [new ValidationStamp(['panda'])]);
+            $this->eventBus->dispatch($event);
         } catch (HandlerFailedException $e) {
             /**
              * @psalm-suppress InvalidThrow

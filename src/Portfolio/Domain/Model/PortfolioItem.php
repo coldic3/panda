@@ -63,7 +63,7 @@ class PortfolioItem implements PortfolioItemInterface
         }
 
         if ($quantity > $this->longQuantity) {
-            throw new NegativeTotalQuantityException($quantity);
+            throw new NegativeTotalQuantityException($quantity, $this->longQuantity);
         }
 
         $this->longQuantity -= $quantity;
@@ -90,7 +90,7 @@ class PortfolioItem implements PortfolioItemInterface
         }
 
         if ($quantity > $this->shortQuantity) {
-            throw new NegativeTotalQuantityException($quantity);
+            throw new NegativeTotalQuantityException($quantity, $this->shortQuantity);
         }
 
         $this->shortQuantity -= $quantity;

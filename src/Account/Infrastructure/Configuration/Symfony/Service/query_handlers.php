@@ -17,6 +17,6 @@ return static function (ContainerConfigurator $containerConfigurator): void {
             service(AuthorizedUserProviderInterface::class),
         ])
         ->tag('messenger.message_handler', [
-            'bus_name' => 'query.bus',
+            'bus' => 'query.bus',
         ]);
 };
