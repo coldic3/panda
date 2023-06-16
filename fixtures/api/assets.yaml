@@ -4,12 +4,17 @@ include:
 
 Panda\Trade\Domain\Model\Asset\Asset:
     asset_{1..3}:
-        __construct: [<lexify(???)>, <company()>]
+        __construct: [TCK<current()>, <company()>]
         ownedBy: '@user_panda'
         createdAt: <dateTimeBetween('-200 days', 'now')>
         updatedAt: <dateTimeBetween($createdAt, 'now')>
     asset_{4..6}:
-        __construct: [<lexify(???)>, <company()>]
+        __construct: [TCK<current()>, <company()>]
         ownedBy: '@user_<numberBetween(1, 3)>'
         createdAt: <dateTimeBetween('-200 days', 'now')>
         updatedAt: <dateTimeBetween($createdAt, 'now')>
+
+Panda\Portfolio\Domain\Model\PortfolioItem:
+    portfolio_item_{1..6}:
+        __factory: {'Panda\Tests\Fixture\Factory\PortfolioItemFactory::create': [TCK<current()>, <company()>, '@portfolio_default'] }
+        addLongQuantity: 300

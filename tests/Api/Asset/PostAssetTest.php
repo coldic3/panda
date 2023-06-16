@@ -24,7 +24,7 @@ final class PostAssetTest extends ApiTestCase
     /** @test */
     function it_creates_an_asset()
     {
-        $fixtures = $this->loadFixturesFromFile('user.yaml');
+        $fixtures = $this->loadFixturesFromFiles(['user.yaml', 'portfolio.yaml']);
 
         /** @var User $user */
         $user = $fixtures['user_panda'];
@@ -40,7 +40,7 @@ final class PostAssetTest extends ApiTestCase
     /** @test */
     function it_validates_for_empty_data()
     {
-        $fixtures = $this->loadFixturesFromFile('user.yaml');
+        $fixtures = $this->loadFixturesFromFiles(['user.yaml', 'portfolio.yaml']);
 
         /** @var User $user */
         $user = $fixtures['user_panda'];
@@ -60,7 +60,7 @@ final class PostAssetTest extends ApiTestCase
     /** @test */
     function it_validates_for_no_data()
     {
-        $fixtures = $this->loadFixturesFromFile('user.yaml');
+        $fixtures = $this->loadFixturesFromFiles(['user.yaml', 'portfolio.yaml']);
 
         /** @var User $user */
         $user = $fixtures['user_panda'];
@@ -79,7 +79,7 @@ final class PostAssetTest extends ApiTestCase
     /** @test */
     function it_validates_for_too_long_data()
     {
-        $fixtures = $this->loadFixturesFromFile('user.yaml');
+        $fixtures = $this->loadFixturesFromFiles(['user.yaml', 'portfolio.yaml']);
 
         /** @var User $user */
         $user = $fixtures['user_panda'];
