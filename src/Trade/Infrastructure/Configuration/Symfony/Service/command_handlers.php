@@ -21,13 +21,17 @@ return static function (ContainerConfigurator $containerConfigurator): void {
         ->args([
             service(AssetRepositoryInterface::class),
             service(AssetFactoryInterface::class),
+            service(EventBusInterface::class),
         ])
         ->tag('messenger.message_handler', [
             'bus' => 'command.bus',
         ]);
 
     $services->set(UpdateAssetCommandHandler::class)
-        ->args([service(AssetRepositoryInterface::class)])
+        ->args([
+            service(AssetRepositoryInterface::class),
+            service(EventBusInterface::class),
+        ])
         ->tag('messenger.message_handler', [
             'bus' => 'command.bus',
         ]);
