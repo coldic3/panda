@@ -7,15 +7,17 @@ namespace Panda\Tests\Behat\Context\Setup;
 use Behat\Behat\Context\Context;
 use Doctrine\ORM\EntityManagerInterface;
 use Panda\Account\Domain\Model\UserInterface;
-use Panda\Trade\Domain\Factory\AssetFactoryInterface;
+use Panda\Core\Application\Command\CommandBusInterface;
+use Panda\Trade\Application\Command\Asset\CreateAssetCommand;
+use Panda\Trade\Domain\Model\Asset\AssetInterface;
 use Panda\Trade\Domain\Repository\AssetRepositoryInterface;
 
-class AssetContext implements Context
+readonly class AssetContext implements Context
 {
     public function __construct(
-        private readonly AssetFactoryInterface $assetFactory,
-        private readonly AssetRepositoryInterface $assetRepository,
-        private readonly EntityManagerInterface $entityManager,
+        private AssetRepositoryInterface $assetRepository,
+        private EntityManagerInterface $entityManager,
+        private CommandBusInterface $commandBus,
     ) {
     }
 
@@ -24,10 +26,7 @@ class AssetContext implements Context
      */
     function there_is_an_asset_with_ticker_and_name(string $ticker, string $name)
     {
-        $asset = $this->assetFactory->create($ticker, $name);
-
-        $this->assetRepository->save($asset);
-        $this->entityManager->flush();
+        $this->commandBus->dispatch(new CreateAssetCommand($ticker, $name));
     }
 
     /**
@@ -35,7 +34,10 @@ class AssetContext implements Context
      */
     function the_user_has_an_asset_with_ticker_and_name(UserInterface $user, string $ticker, string $name)
     {
-        $asset = $this->assetFactory->create($ticker, $name, $user);
+        /** @var AssetInterface $asset */
+        $asset = $this->commandBus->dispatch(new CreateAssetCommand($ticker, $name));
+
+        $asset->setOwnedBy($user);
 
         $this->assetRepository->save($asset);
         $this->entityManager->flush();

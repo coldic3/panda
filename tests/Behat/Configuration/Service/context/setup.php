@@ -13,7 +13,6 @@ use Panda\Tests\Behat\Context\Setup\AssetContext;
 use Panda\Tests\Behat\Context\Setup\PortfolioContext;
 use Panda\Tests\Behat\Context\Setup\TransactionContext;
 use Panda\Tests\Behat\Context\Setup\UserContext;
-use Panda\Trade\Domain\Factory\AssetFactoryInterface;
 use Panda\Trade\Domain\Factory\OperationFactoryInterface;
 use Panda\Trade\Domain\Factory\TransactionFactoryInterface;
 use Panda\Trade\Domain\Repository\AssetRepositoryInterface;
@@ -37,9 +36,9 @@ return static function (ContainerConfigurator $containerConfigurator): void {
 
     $services->set(AssetContext::class)
         ->args([
-            service(AssetFactoryInterface::class),
             service(AssetRepositoryInterface::class),
             service(EntityManagerInterface::class),
+            service(CommandBusInterface::class),
         ]);
 
     $services->set(TransactionContext::class)

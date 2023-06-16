@@ -8,7 +8,6 @@ use Panda\Portfolio\Application\Command\Portfolio\ChangePortfolioItemLongQuantit
 use Panda\Portfolio\Application\Command\Portfolio\ChangePortfolioItemLongQuantityCommandHandler;
 use Panda\Portfolio\Application\Exception\DefaultPortfolioNotFoundException;
 use Panda\Portfolio\Application\Exception\PortfolioItemWithTickerNotFoundException;
-use Panda\Portfolio\Domain\Factory\PortfolioItemFactoryInterface;
 use Panda\Portfolio\Domain\Model\PortfolioInterface;
 use Panda\Portfolio\Domain\Model\PortfolioItemInterface;
 use Panda\Portfolio\Domain\Repository\PortfolioRepositoryInterface;
