@@ -8,6 +8,7 @@ Potrzeba biznesowa: Usuwanie aktywów
 
     Założenia:
         * jestem zalogowany jako "panda@example.com"
+        * posiadam portfel inwestycyjny
         * posiadam aktywo "ACM" o nazwie "Acme Corporation"
 
     @api

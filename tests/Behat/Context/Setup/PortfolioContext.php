@@ -11,6 +11,7 @@ use Panda\Portfolio\Application\Command\Portfolio\CreatePortfolioCommand;
 use Panda\Portfolio\Domain\Factory\PortfolioFactoryInterface;
 use Panda\Portfolio\Domain\Factory\PortfolioItemFactoryInterface;
 use Panda\Portfolio\Domain\Model\PortfolioInterface;
+use Panda\Portfolio\Domain\Model\PortfolioItemInterface;
 use Panda\Portfolio\Domain\Repository\PortfolioRepositoryInterface;
 use Panda\Tests\Behat\Context\Util\EnableClipboardTrait;
 use Webmozart\Assert\Assert;
@@ -53,17 +54,22 @@ class PortfolioContext implements Context
     {
         $this->assetContext->there_is_an_asset_with_ticker_and_name($ticker, $name ?? $ticker);
 
-        $portfolio = $this->clipboard->paste('portfolio');
+        Assert::nullOrIsInstanceOf(
+            $portfolio = $this->clipboard->paste('portfolio'),
+            PortfolioInterface::class,
+        );
 
         if (null === $portfolio) {
             return;
         }
 
-        $portfolioItem = $this->portfolioItemFactory->create($ticker, $name ?? $ticker, $portfolio);
+        $portfolioItem = $portfolio->getItems()->filter(
+            fn (PortfolioItemInterface $item) => $item->getResource()->getTicker() === $ticker
+        )->first();
 
         // FIXME: This is a temporary solution for currencies with fractional units.
         if ('PLN' === $ticker) {
-            $quantity = ($quantity * 100);
+            $quantity = (int) ($quantity * 100);
         }
 
         $quantity = (int) $quantity;
@@ -88,11 +94,18 @@ class PortfolioContext implements Context
     {
         $this->assetContext->there_is_an_asset_with_ticker_and_name($ticker, $name);
 
-        $portfolioItem = $this->portfolioItemFactory->create(
-            $ticker,
-            $name,
-            $portfolio = $this->clipboard->paste('portfolio')
+        Assert::nullOrIsInstanceOf(
+            $portfolio = $this->clipboard->paste('portfolio'),
+            PortfolioInterface::class,
         );
+
+        if (null === $portfolio) {
+            return;
+        }
+
+        $portfolioItem = $portfolio->getItems()->filter(
+            fn (PortfolioItemInterface $item) => $item->getResource()->getTicker() === $ticker
+        )->first();
 
         // FIXME: This is a temporary solution for currencies with fractional units.
         if ('PLN' === $ticker) {

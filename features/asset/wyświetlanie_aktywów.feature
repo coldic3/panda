@@ -8,6 +8,7 @@ Potrzeba biznesowa: Wyświetlanie aktywów
 
     Założenia:
         * jestem zalogowany jako "panda@example.com"
+        * posiadam portfel inwestycyjny
         * posiadam aktywo "ACM" o nazwie "Acme Corp."
         * posiadam aktywo "EXT" o nazwie "Extra Tower Inc."
         * istnieje użytkownik "bear@example.com"

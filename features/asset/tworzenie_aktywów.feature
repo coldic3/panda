@@ -8,6 +8,7 @@ Potrzeba biznesowa: Tworzenie aktywów
 
     Założenia:
         * jestem zalogowany jako "panda@example.com"
+        * posiadam portfel inwestycyjny
 
     @api
     Scenariusz: Tworzenie nowego aktywa

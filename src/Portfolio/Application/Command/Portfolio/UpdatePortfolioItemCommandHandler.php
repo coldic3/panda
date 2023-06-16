@@ -7,17 +7,17 @@ namespace Panda\Portfolio\Application\Command\Portfolio;
 use Panda\Core\Application\Command\CommandHandlerInterface;
 use Panda\Portfolio\Application\Exception\DefaultPortfolioNotFoundException;
 use Panda\Portfolio\Application\Exception\PortfolioItemWithTickerNotFoundException;
-use Panda\Portfolio\Domain\Model\PortfolioInterface;
 use Panda\Portfolio\Domain\Model\PortfolioItemInterface;
 use Panda\Portfolio\Domain\Repository\PortfolioRepositoryInterface;
+use Panda\Portfolio\Domain\ValueObject\Resource;
 
-final readonly class ChangePortfolioItemLongQuantityCommandHandler implements CommandHandlerInterface
+final readonly class UpdatePortfolioItemCommandHandler implements CommandHandlerInterface
 {
     public function __construct(private PortfolioRepositoryInterface $portfolioRepository)
     {
     }
 
-    public function __invoke(ChangePortfolioItemLongQuantityCommand $command): ?PortfolioInterface
+    public function __invoke(UpdatePortfolioItemCommand $command): PortfolioItemInterface
     {
         if (null === $portfolio = $this->portfolioRepository->findDefault()) {
             throw new DefaultPortfolioNotFoundException();
@@ -32,14 +32,10 @@ final readonly class ChangePortfolioItemLongQuantityCommandHandler implements Co
             throw new PortfolioItemWithTickerNotFoundException($command->ticker);
         }
 
-        if ($command->quantityAdjustment > 0) {
-            $portfolioItem->addLongQuantity($command->quantityAdjustment);
-        } else {
-            $portfolioItem->removeLongQuantity(-$command->quantityAdjustment);
-        }
+        $portfolioItem->setResource(new Resource($command->ticker, $command->name));
 
         $this->portfolioRepository->save($portfolio);
 
-        return $portfolio;
+        return $portfolioItem;
     }
 }
