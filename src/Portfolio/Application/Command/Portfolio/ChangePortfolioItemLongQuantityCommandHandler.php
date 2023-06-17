@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Panda\Portfolio\Application\Command\Portfolio;
 
+use ApiPlatform\Validator\ValidatorInterface;
 use Panda\Core\Application\Command\CommandHandlerInterface;
 use Panda\Portfolio\Application\Exception\DefaultPortfolioNotFoundException;
 use Panda\Portfolio\Application\Exception\PortfolioItemWithTickerNotFoundException;
@@ -13,8 +14,10 @@ use Panda\Portfolio\Domain\Repository\PortfolioRepositoryInterface;
 
 final readonly class ChangePortfolioItemLongQuantityCommandHandler implements CommandHandlerInterface
 {
-    public function __construct(private PortfolioRepositoryInterface $portfolioRepository)
-    {
+    public function __construct(
+        private PortfolioRepositoryInterface $portfolioRepository,
+        private ValidatorInterface $validator,
+    ) {
     }
 
     public function __invoke(ChangePortfolioItemLongQuantityCommand $command): ?PortfolioInterface
@@ -37,6 +40,8 @@ final readonly class ChangePortfolioItemLongQuantityCommandHandler implements Co
         } else {
             $portfolioItem->removeLongQuantity(-$command->quantityAdjustment);
         }
+
+        $this->validator->validate($portfolio, ['groups' => ['panda:update']]);
 
         $this->portfolioRepository->save($portfolio);
 

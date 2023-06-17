@@ -16,7 +16,6 @@ use Panda\Trade\Infrastructure\ApiState\Processor\AssetProcessor;
 use Panda\Trade\Infrastructure\ApiState\Provider\AssetProvider;
 use Symfony\Component\Serializer\Annotation\Groups;
 use Symfony\Component\Uid\Uuid;
-use Symfony\Component\Validator\Constraints as Assert;
 
 #[ApiResource(
     shortName: 'Asset',
@@ -42,14 +41,10 @@ final class AssetResource
         public ?Uuid $id = null,
 
         #[ApiProperty(default: 'ACM')]
-        #[Assert\NotBlank(groups: self::WRITABLE_GROUPS)]
-        #[Assert\Length(max: 255, groups: self::WRITABLE_GROUPS)]
         #[Groups([...self::READABLE_GROUPS, ...self::WRITABLE_GROUPS])]
         public ?string $ticker = null,
 
         #[ApiProperty(default: 'Acme Corp.')]
-        #[Assert\NotBlank(groups: self::WRITABLE_GROUPS)]
-        #[Assert\Length(max: 255, groups: self::WRITABLE_GROUPS)]
         #[Groups([...self::READABLE_GROUPS, ...self::WRITABLE_GROUPS])]
         public ?string $name = null,
 

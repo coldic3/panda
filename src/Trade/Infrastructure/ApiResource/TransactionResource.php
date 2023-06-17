@@ -18,7 +18,6 @@ use Panda\Trade\Infrastructure\OpenApi\Filter\ConcludedAtFilter;
 use Panda\Trade\Infrastructure\OpenApi\Filter\OperationAssetFilter;
 use Symfony\Component\Serializer\Annotation\Groups;
 use Symfony\Component\Uid\Uuid;
-use Symfony\Component\Validator\Constraints as Assert;
 
 #[ApiResource(
     shortName: 'Transaction',
@@ -44,40 +43,22 @@ final class TransactionResource
         public ?Uuid $id = null,
 
         #[ApiProperty]
-        #[Assert\NotBlank(groups: ['create'])]
-        #[Assert\Choice(
-            choices: [
-                TransactionTypeEnum::ASK,
-                TransactionTypeEnum::BID,
-                TransactionTypeEnum::DEPOSIT,
-                TransactionTypeEnum::WITHDRAW,
-                TransactionTypeEnum::FEE,
-            ],
-            groups: ['create'],
-        )]
         #[Groups([self::READ_GROUP, self::CREATE_GROUP])]
         public ?TransactionTypeEnum $type = null,
 
         #[ApiProperty]
-        #[Assert\NotBlank(allowNull: true, groups: ['create'])]
-        #[Assert\Valid(groups: ['create'])]
         #[Groups([self::READ_GROUP, self::CREATE_GROUP])]
         public ?OperationResource $fromOperation = null,
 
         #[ApiProperty]
-        #[Assert\NotBlank(allowNull: true, groups: ['create'])]
-        #[Assert\Valid(groups: ['create'])]
         #[Groups([self::READ_GROUP, self::CREATE_GROUP])]
         public ?OperationResource $toOperation = null,
 
         #[ApiProperty]
-        #[Assert\NotNull(groups: ['create'])]
-        #[Assert\Valid(groups: ['create'])]
         #[Groups([self::READ_GROUP, self::CREATE_GROUP])]
         public ?array $adjustmentOperations = null,
 
         #[ApiProperty]
-        #[Assert\NotBlank(groups: ['create'])]
         #[Groups([self::READ_GROUP, self::CREATE_GROUP])]
         public ?\DateTimeInterface $concludedAt = null,
     ) {

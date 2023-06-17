@@ -2,6 +2,7 @@
 
 declare(strict_types=1);
 
+use ApiPlatform\Validator\ValidatorInterface;
 use Panda\Core\Application\Event\EventBusInterface;
 use Panda\Trade\Application\Command\Asset\CreateAssetCommandHandler;
 use Panda\Trade\Application\Command\Asset\DeleteAssetCommandHandler;
@@ -22,6 +23,7 @@ return static function (ContainerConfigurator $containerConfigurator): void {
             service(AssetRepositoryInterface::class),
             service(AssetFactoryInterface::class),
             service(EventBusInterface::class),
+            service(ValidatorInterface::class),
         ])
         ->tag('messenger.message_handler', [
             'bus' => 'command.bus',
@@ -31,6 +33,7 @@ return static function (ContainerConfigurator $containerConfigurator): void {
         ->args([
             service(AssetRepositoryInterface::class),
             service(EventBusInterface::class),
+            service(ValidatorInterface::class),
         ])
         ->tag('messenger.message_handler', [
             'bus' => 'command.bus',
@@ -47,6 +50,7 @@ return static function (ContainerConfigurator $containerConfigurator): void {
             service(TransactionRepositoryInterface::class),
             service(TransactionFactoryInterface::class),
             service(EventBusInterface::class),
+            service(ValidatorInterface::class),
         ])
         ->tag('messenger.message_handler', [
             'bus' => 'command.bus',

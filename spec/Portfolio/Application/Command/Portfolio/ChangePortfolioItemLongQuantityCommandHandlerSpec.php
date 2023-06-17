@@ -2,6 +2,7 @@
 
 namespace spec\Panda\Portfolio\Application\Command\Portfolio;
 
+use ApiPlatform\Validator\ValidatorInterface;
 use Doctrine\Common\Collections\ArrayCollection;
 use Panda\Core\Application\Command\CommandHandlerInterface;
 use Panda\Portfolio\Application\Command\Portfolio\ChangePortfolioItemLongQuantityCommand;
@@ -16,9 +17,11 @@ use PhpSpec\ObjectBehavior;
 
 class ChangePortfolioItemLongQuantityCommandHandlerSpec extends ObjectBehavior
 {
-    function let(PortfolioRepositoryInterface $portfolioRepository)
-    {
-        $this->beConstructedWith($portfolioRepository);
+    function let(
+        PortfolioRepositoryInterface $portfolioRepository,
+        ValidatorInterface $validator,
+    ) {
+        $this->beConstructedWith($portfolioRepository, $validator);
     }
 
     function it_is_change_portfolio_item_long_quantity_command_handler()
@@ -29,6 +32,7 @@ class ChangePortfolioItemLongQuantityCommandHandlerSpec extends ObjectBehavior
 
     function it_adds_long_quantity_to_already_created_portfolio_item(
         PortfolioRepositoryInterface $portfolioRepository,
+        ValidatorInterface $validator,
         PortfolioInterface $portfolio,
         PortfolioItemInterface $somePortfolioItem,
         PortfolioItemInterface $portfolioItemWeAreLookingFor,
@@ -57,6 +61,7 @@ class ChangePortfolioItemLongQuantityCommandHandlerSpec extends ObjectBehavior
 
         $portfolioItemWeAreLookingFor->addLongQuantity(10)->shouldBeCalledOnce();
 
+        $validator->validate($portfolio, ['groups' => ['panda:update']])->shouldBeCalledOnce();
         $portfolioRepository->save($portfolio)->shouldBeCalledOnce();
 
         $this(new ChangePortfolioItemLongQuantityCommand('ACM', 10));
@@ -64,6 +69,7 @@ class ChangePortfolioItemLongQuantityCommandHandlerSpec extends ObjectBehavior
 
     function it_removes_long_quantity_from_already_created_portfolio_item(
         PortfolioRepositoryInterface $portfolioRepository,
+        ValidatorInterface $validator,
         PortfolioInterface $portfolio,
         PortfolioItemInterface $somePortfolioItem,
         PortfolioItemInterface $portfolioItemWeAreLookingFor,
@@ -92,6 +98,7 @@ class ChangePortfolioItemLongQuantityCommandHandlerSpec extends ObjectBehavior
 
         $portfolioItemWeAreLookingFor->removeLongQuantity(10)->shouldBeCalledOnce();
 
+        $validator->validate($portfolio, ['groups' => ['panda:update']])->shouldBeCalledOnce();
         $portfolioRepository->save($portfolio)->shouldBeCalledOnce();
 
         $this(new ChangePortfolioItemLongQuantityCommand('ACM', -10));
@@ -107,6 +114,7 @@ class ChangePortfolioItemLongQuantityCommandHandlerSpec extends ObjectBehavior
 
     function it_throws_exception_if_portfolio_item_does_not_exist(
         PortfolioRepositoryInterface $portfolioRepository,
+        ValidatorInterface $validator,
         PortfolioInterface $portfolio,
         PortfolioItemInterface $somePortfolioItem,
         PortfolioItemInterface $someOtherPortfolioItem,
@@ -128,6 +136,7 @@ class ChangePortfolioItemLongQuantityCommandHandlerSpec extends ObjectBehavior
         $somePortfolioItemResource->getTicker()->willReturn('ABC');
         $someOtherPortfolioItemResource->getTicker()->willReturn('XYZ');
 
+        $validator->validate($portfolio, ['groups' => ['panda:update']])->shouldNotBeCalled();
         $portfolioRepository->save($portfolio)->shouldNotBeCalled();
 
         $this->shouldThrow(PortfolioItemWithTickerNotFoundException::class)

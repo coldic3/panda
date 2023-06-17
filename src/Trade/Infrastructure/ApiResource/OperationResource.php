@@ -10,7 +10,7 @@ use Panda\Trade\Domain\Model\Asset\AssetInterface;
 use Panda\Trade\Domain\Model\Transaction\OperationInterface;
 use Symfony\Component\Serializer\Annotation\Groups;
 use Symfony\Component\Uid\Uuid;
-use Symfony\Component\Validator\Constraints as Assert;
+use Webmozart\Assert\Assert;
 
 #[ApiResource(
     shortName: 'Operation',
@@ -25,13 +25,10 @@ final class OperationResource
         public ?Uuid $id = null,
 
         #[ApiProperty]
-        #[Assert\NotBlank(allowNull: true, groups: ['create'])]
         #[Groups([TransactionResource::READ_GROUP, TransactionResource::CREATE_GROUP])]
         public ?AssetResource $asset = null,
 
         #[ApiProperty]
-        #[Assert\NotBlank(groups: ['create'])]
-        #[Assert\Range(min: 1, groups: ['create'])]
         #[Groups([TransactionResource::READ_GROUP, TransactionResource::CREATE_GROUP])]
         public ?int $quantity = null,
     ) {
@@ -39,7 +36,7 @@ final class OperationResource
 
     public static function fromModel(OperationInterface $operation): OperationResource
     {
-        \Webmozart\Assert\Assert::isInstanceOf(
+        Assert::isInstanceOf(
             $asset = $operation->getAsset(),
             AssetInterface::class,
         );

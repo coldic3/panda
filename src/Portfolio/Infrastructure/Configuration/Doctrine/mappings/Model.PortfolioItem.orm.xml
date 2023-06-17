@@ -2,6 +2,10 @@
 
 <doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping">
     <entity name="Panda\Portfolio\Domain\Model\PortfolioItem" table="panda_portfolio_item">
+        <unique-constraints>
+            <unique-constraint columns="resource_ticker,portfolio_id" />
+        </unique-constraints>
+
         <id name="id" column="id" type="uuid" />
 
         <field name="longQuantity" column="long_quantity" type="integer" />
