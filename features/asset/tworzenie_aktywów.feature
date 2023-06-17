@@ -20,6 +20,15 @@ Potrzeba biznesowa: Tworzenie aktywów
         I aktywo zostało dodane do listy aktywów
 
     @api
+    Scenariusz: Tworzenie aktywa z już istniejącym tickerem
+        Zakładając, że posiadam aktywo "ACM" o nazwie "Acme Corporation"
+        Gdy tworzę nowe aktywo
+        I podaję ticker "ACM"
+        I podaję nazwę "Acme Corp."
+        I zatwierdzam wprowadzone dane
+        Wtedy dodawanie aktywa kończy się niepowodzeniem
+
+    @api
     Scenariusz: Tworzenie aktywa z pustymi danymi
         Gdy tworzę nowe aktywo
         I nie podaję żadnych danych

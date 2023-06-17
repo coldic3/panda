@@ -38,6 +38,26 @@ final class PostAssetTest extends ApiTestCase
     }
 
     /** @test */
+    function it_validates_for_ticker_duplication()
+    {
+        $fixtures = $this->loadFixturesFromFiles(['user.yaml', 'portfolio.yaml', 'asset.yaml']);
+
+        /** @var User $user */
+        $user = $fixtures['user_panda'];
+
+        $this->request(HttpMethodEnum::POST, '/assets', [
+            'ticker' => 'ACM',
+            'name' => 'Acme Corp.',
+        ], $this->generateAuthorizationHeader($user));
+
+        $this->assertResponse(
+            $this->client->getResponse(),
+            'asset/post/invalid_ticker_duplication',
+            Response::HTTP_UNPROCESSABLE_ENTITY
+        );
+    }
+
+    /** @test */
     function it_validates_for_empty_data()
     {
         $fixtures = $this->loadFixturesFromFiles(['user.yaml', 'portfolio.yaml']);
