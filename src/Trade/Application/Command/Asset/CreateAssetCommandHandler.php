@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Panda\Trade\Application\Command\Asset;
 
+use ApiPlatform\Validator\ValidatorInterface;
 use Panda\Core\Application\Command\CommandHandlerInterface;
 use Panda\Core\Application\Event\EventBusInterface;
 use Panda\Trade\Domain\Events\AssetCreatedEvent;
@@ -17,12 +18,15 @@ final readonly class CreateAssetCommandHandler implements CommandHandlerInterfac
         private AssetRepositoryInterface $assetRepository,
         private AssetFactoryInterface $assetFactory,
         private EventBusInterface $eventBus,
+        private ValidatorInterface $validator,
     ) {
     }
 
     public function __invoke(CreateAssetCommand $command): AssetInterface
     {
         $asset = $this->assetFactory->create($command->ticker, $command->name);
+
+        $this->validator->validate($asset, ['groups' => ['panda:create']]);
 
         $this->assetRepository->save($asset);
 

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<constraint-mapping
+    xmlns="http://symfony.com/schema/dic/constraint-mapping"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://symfony.com/schema/dic/constraint-mapping http://symfony.com/schema/dic/services/constraint-mapping-1.0.xsd"
+>
+    <class name="Panda\Trade\Domain\Model\Transaction\Operation">
+        <property name="asset">
+            <constraint name="NotBlank">
+                <option name="groups">
+                    <value>panda:create</value>
+                </option>
+            </constraint>
+        </property>
+        <property name="quantity">
+            <constraint name="NotBlank">
+                <option name="groups">
+                    <value>panda:create</value>
+                </option>
+            </constraint>
+            <constraint name="Range">
+                <option name="min">1</option>
+                <option name="groups">
+                    <value>panda:create</value>
+                </option>
+            </constraint>
+        </property>
+    </class>
+</constraint-mapping>

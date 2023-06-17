@@ -24,7 +24,23 @@ final class PostAssetTest extends ApiTestCase
     /** @test */
     function it_creates_an_asset()
     {
-        $fixtures = $this->loadFixturesFromFiles(['user.yaml', 'portfolio.yaml']);
+        $fixtures = $this->loadFixturesFromFiles(['user.yaml', 'asset_with_portfolio.yaml']);
+
+        /** @var User $user */
+        $user = $fixtures['user_panda'];
+
+        $this->request(HttpMethodEnum::POST, '/assets', [
+            'ticker' => 'EXT',
+            'name' => 'Extra Tower Inc.',
+        ], $this->generateAuthorizationHeader($user));
+
+        $this->assertResponse($this->client->getResponse(), 'asset/post/valid', Response::HTTP_CREATED);
+    }
+
+    /** @test */
+    function it_validates_for_ticker_duplication()
+    {
+        $fixtures = $this->loadFixturesFromFiles(['user.yaml', 'asset_with_portfolio.yaml']);
 
         /** @var User $user */
         $user = $fixtures['user_panda'];
@@ -34,13 +50,17 @@ final class PostAssetTest extends ApiTestCase
             'name' => 'Acme Corp.',
         ], $this->generateAuthorizationHeader($user));
 
-        $this->assertResponse($this->client->getResponse(), 'asset/post/valid', Response::HTTP_CREATED);
+        $this->assertResponse(
+            $this->client->getResponse(),
+            'asset/post/invalid_ticker_duplication',
+            Response::HTTP_UNPROCESSABLE_ENTITY
+        );
     }
 
     /** @test */
     function it_validates_for_empty_data()
     {
-        $fixtures = $this->loadFixturesFromFiles(['user.yaml', 'portfolio.yaml']);
+        $fixtures = $this->loadFixturesFromFiles(['user.yaml', 'asset_with_portfolio.yaml']);
 
         /** @var User $user */
         $user = $fixtures['user_panda'];
@@ -60,7 +80,7 @@ final class PostAssetTest extends ApiTestCase
     /** @test */
     function it_validates_for_no_data()
     {
-        $fixtures = $this->loadFixturesFromFiles(['user.yaml', 'portfolio.yaml']);
+        $fixtures = $this->loadFixturesFromFiles(['user.yaml', 'asset_with_portfolio.yaml']);
 
         /** @var User $user */
         $user = $fixtures['user_panda'];
@@ -79,7 +99,7 @@ final class PostAssetTest extends ApiTestCase
     /** @test */
     function it_validates_for_too_long_data()
     {
-        $fixtures = $this->loadFixturesFromFiles(['user.yaml', 'portfolio.yaml']);
+        $fixtures = $this->loadFixturesFromFiles(['user.yaml', 'asset_with_portfolio.yaml']);
 
         /** @var User $user */
         $user = $fixtures['user_panda'];

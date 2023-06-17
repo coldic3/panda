@@ -2,6 +2,7 @@
 
 namespace spec\Panda\Trade\Application\Command\Transaction;
 
+use ApiPlatform\Validator\ValidatorInterface;
 use Panda\Core\Application\Command\CommandHandlerInterface;
 use Panda\Core\Application\Event\EventBusInterface;
 use Panda\Trade\Application\Command\Transaction\CreateTransactionCommand;
@@ -21,8 +22,9 @@ class CreateTransactionCommandHandlerSpec extends ObjectBehavior
         TransactionRepositoryInterface $transactionRepository,
         TransactionFactoryInterface $transactionFactory,
         EventBusInterface $eventBus,
+        ValidatorInterface $validator,
     ) {
-        $this->beConstructedWith($transactionRepository, $transactionFactory, $eventBus);
+        $this->beConstructedWith($transactionRepository, $transactionFactory, $eventBus, $validator);
     }
 
     function it_is_create_transaction_command_handler()
@@ -35,6 +37,7 @@ class CreateTransactionCommandHandlerSpec extends ObjectBehavior
         TransactionRepositoryInterface $transactionRepository,
         TransactionFactoryInterface $transactionFactory,
         EventBusInterface $eventBus,
+        ValidatorInterface $validator,
         OperationInterface $fromOperation,
         OperationInterface $toOperation,
         TransactionInterface $transaction,
@@ -60,6 +63,7 @@ class CreateTransactionCommandHandlerSpec extends ObjectBehavior
 
         $transaction->getId()->willReturn($transactionId);
 
+        $validator->validate($transaction, ['groups' => ['panda:create']])->shouldBeCalledOnce();
         $transactionRepository->save($transaction)->shouldBeCalledOnce();
 
         $eventBus->dispatch(new TransactionCreatedEvent($transactionId->getWrappedObject()))->shouldBeCalledOnce();
@@ -71,6 +75,7 @@ class CreateTransactionCommandHandlerSpec extends ObjectBehavior
         TransactionRepositoryInterface $transactionRepository,
         TransactionFactoryInterface $transactionFactory,
         EventBusInterface $eventBus,
+        ValidatorInterface $validator,
         OperationInterface $fromOperation,
         OperationInterface $toOperation,
         TransactionInterface $transaction,
@@ -96,6 +101,7 @@ class CreateTransactionCommandHandlerSpec extends ObjectBehavior
 
         $transaction->getId()->willReturn($transactionId);
 
+        $validator->validate($transaction, ['groups' => ['panda:create']])->shouldBeCalledOnce();
         $transactionRepository->save($transaction)->shouldBeCalledOnce();
 
         $eventBus->dispatch(new TransactionCreatedEvent($transactionId->getWrappedObject()))->shouldBeCalledOnce();
@@ -107,6 +113,7 @@ class CreateTransactionCommandHandlerSpec extends ObjectBehavior
         TransactionRepositoryInterface $transactionRepository,
         TransactionFactoryInterface $transactionFactory,
         EventBusInterface $eventBus,
+        ValidatorInterface $validator,
         OperationInterface $toOperation,
         TransactionInterface $transaction,
         Uuid $transactionId,
@@ -130,6 +137,7 @@ class CreateTransactionCommandHandlerSpec extends ObjectBehavior
 
         $transaction->getId()->willReturn($transactionId);
 
+        $validator->validate($transaction, ['groups' => ['panda:create']])->shouldBeCalledOnce();
         $transactionRepository->save($transaction)->shouldBeCalledOnce();
 
         $eventBus->dispatch(new TransactionCreatedEvent($transactionId->getWrappedObject()))->shouldBeCalledOnce();
@@ -141,6 +149,7 @@ class CreateTransactionCommandHandlerSpec extends ObjectBehavior
         TransactionRepositoryInterface $transactionRepository,
         TransactionFactoryInterface $transactionFactory,
         EventBusInterface $eventBus,
+        ValidatorInterface $validator,
         OperationInterface $fromOperation,
         TransactionInterface $transaction,
         Uuid $transactionId,
@@ -164,6 +173,7 @@ class CreateTransactionCommandHandlerSpec extends ObjectBehavior
 
         $transaction->getId()->willReturn($transactionId);
 
+        $validator->validate($transaction, ['groups' => ['panda:create']])->shouldBeCalledOnce();
         $transactionRepository->save($transaction)->shouldBeCalledOnce();
 
         $eventBus->dispatch(new TransactionCreatedEvent($transactionId->getWrappedObject()))->shouldBeCalledOnce();
@@ -175,6 +185,7 @@ class CreateTransactionCommandHandlerSpec extends ObjectBehavior
         TransactionRepositoryInterface $transactionRepository,
         TransactionFactoryInterface $transactionFactory,
         EventBusInterface $eventBus,
+        ValidatorInterface $validator,
         TransactionInterface $transaction,
         Uuid $transactionId,
     ) {
@@ -196,6 +207,7 @@ class CreateTransactionCommandHandlerSpec extends ObjectBehavior
 
         $transaction->getId()->willReturn($transactionId);
 
+        $validator->validate($transaction, ['groups' => ['panda:create']])->shouldBeCalledOnce();
         $transactionRepository->save($transaction)->shouldBeCalledOnce();
 
         $eventBus->dispatch(new TransactionCreatedEvent($transactionId->getWrappedObject()))->shouldBeCalledOnce();

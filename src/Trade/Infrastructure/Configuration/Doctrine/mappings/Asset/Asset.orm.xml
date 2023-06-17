@@ -5,6 +5,10 @@
     xmlns:gedmo="http://gediminasm.org/schemas/orm/doctrine-extensions-mapping"
 >
     <entity name="Panda\Trade\Domain\Model\Asset\Asset" table="panda_asset">
+        <unique-constraints>
+            <unique-constraint columns="ticker,owner_id"/>
+        </unique-constraints>
+
         <id name="id" column="id" type="uuid" />
 
         <field name="ticker" column="ticker" length="255" />

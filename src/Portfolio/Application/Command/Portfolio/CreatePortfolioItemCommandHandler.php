@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Panda\Portfolio\Application\Command\Portfolio;
 
+use ApiPlatform\Validator\ValidatorInterface;
 use Panda\Core\Application\Command\CommandHandlerInterface;
 use Panda\Portfolio\Application\Exception\DefaultPortfolioNotFoundException;
 use Panda\Portfolio\Domain\Factory\PortfolioItemFactoryInterface;
@@ -15,6 +16,7 @@ final readonly class CreatePortfolioItemCommandHandler implements CommandHandler
     public function __construct(
         private PortfolioRepositoryInterface $portfolioRepository,
         private PortfolioItemFactoryInterface $portfolioItemFactory,
+        private ValidatorInterface $validator,
     ) {
     }
 
@@ -25,6 +27,8 @@ final readonly class CreatePortfolioItemCommandHandler implements CommandHandler
         }
 
         $portfolioItem = $this->portfolioItemFactory->create($command->ticker, $command->name, $portfolio);
+
+        $this->validator->validate($portfolio, ['groups' => ['panda:create']]);
 
         $this->portfolioRepository->save($portfolio);
 

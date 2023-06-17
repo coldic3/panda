@@ -1,0 +1,13 @@
+include:
+    - 'asset.yaml'
+
+Panda\Portfolio\Domain\Model\Portfolio:
+    portfolio_default:
+        __construct: ['Default Portfolio', true]
+        ownedBy: '@user_panda'
+        createdAt: <(new DateTimeImmutable())>
+        updatedAt: <(new DateTimeImmutable())>
+
+Panda\Portfolio\Domain\Model\PortfolioItem:
+    portfolio_default_item_1:
+        __factory: {'Panda\Tests\Fixture\Factory\PortfolioItemFactory::create': ['ACM', 'Acme Corp.', '@portfolio_default'] }

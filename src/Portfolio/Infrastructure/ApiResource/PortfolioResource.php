@@ -18,7 +18,6 @@ use Panda\Portfolio\Infrastructure\ApiState\Processor\PortfolioUpdateProcessor;
 use Panda\Portfolio\Infrastructure\ApiState\Provider\PortfolioProvider;
 use Symfony\Component\Serializer\Annotation\Groups;
 use Symfony\Component\Uid\Uuid;
-use Symfony\Component\Validator\Constraints as Assert;
 
 #[ApiResource(
     shortName: 'Portfolio',
@@ -58,8 +57,6 @@ final class PortfolioResource
         public ?Uuid $id = null,
 
         #[ApiProperty]
-        #[Assert\NotBlank(groups: ['create', 'update'])]
-        #[Assert\Length(max: 255, groups: ['create', 'update'])]
         #[Groups([self::READ_GROUP, self::CREATE_GROUP, self::UPDATE_GROUP])]
         public ?string $name = null,
 

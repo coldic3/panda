@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Panda\Trade\Application\Command\Transaction;
 
+use ApiPlatform\Validator\ValidatorInterface;
 use Panda\Core\Application\Command\CommandHandlerInterface;
 use Panda\Core\Application\Event\EventBusInterface;
 use Panda\Trade\Domain\Events\TransactionCreatedEvent;
@@ -19,6 +20,7 @@ final readonly class CreateTransactionCommandHandler implements CommandHandlerIn
         private TransactionRepositoryInterface $transactionRepository,
         private TransactionFactoryInterface $transactionFactory,
         private EventBusInterface $eventBus,
+        private ValidatorInterface $validator,
     ) {
     }
 
@@ -74,6 +76,8 @@ final readonly class CreateTransactionCommandHandler implements CommandHandlerIn
             default:
                 throw new \InvalidArgumentException('Invalid transaction type.');
         }
+
+        $this->validator->validate($transaction, ['groups' => ['panda:create']]);
 
         $this->transactionRepository->save($transaction);
 

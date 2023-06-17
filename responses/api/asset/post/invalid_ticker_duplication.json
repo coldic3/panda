@@ -1,0 +1,13 @@
+{
+  "@context": "/contexts/ConstraintViolationList",
+  "@type": "ConstraintViolationList",
+  "hydra:title": "An error occurred",
+  "hydra:description": "@string@",
+  "violations": [
+    {
+      "propertyPath": "ticker",
+      "message": "This value is already used.",
+      "code": "@uuid@"
+    }
+  ]
+}

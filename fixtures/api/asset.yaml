@@ -1,6 +1,5 @@
 include:
     - 'user.yaml'
-    - 'portfolio.yaml'
 
 Panda\Trade\Domain\Model\Asset\Asset:
     asset_acme:

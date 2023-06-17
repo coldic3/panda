@@ -2,6 +2,7 @@
 
 declare(strict_types=1);
 
+use ApiPlatform\Validator\ValidatorInterface;
 use Panda\Portfolio\Application\Command\Portfolio\ChangeDefaultPortfolioCommandHandler;
 use Panda\Portfolio\Application\Command\Portfolio\ChangePortfolioItemLongQuantityCommandHandler;
 use Panda\Portfolio\Application\Command\Portfolio\CreatePortfolioCommandHandler;
@@ -21,19 +22,26 @@ return static function (ContainerConfigurator $containerConfigurator): void {
         ->args([
             service(PortfolioRepositoryInterface::class),
             service(PortfolioFactoryInterface::class),
+            service(ValidatorInterface::class),
         ])
         ->tag('messenger.message_handler', [
             'bus' => 'command.bus',
         ]);
 
     $services->set(UpdatePortfolioCommandHandler::class)
-        ->args([service(PortfolioRepositoryInterface::class)])
+        ->args([
+            service(PortfolioRepositoryInterface::class),
+            service(ValidatorInterface::class),
+        ])
         ->tag('messenger.message_handler', [
             'bus' => 'command.bus',
         ]);
 
     $services->set(ChangeDefaultPortfolioCommandHandler::class)
-        ->args([service(PortfolioRepositoryInterface::class)])
+        ->args([
+            service(PortfolioRepositoryInterface::class),
+            service(ValidatorInterface::class),
+        ])
         ->tag('messenger.message_handler', [
             'bus' => 'command.bus',
         ]);
@@ -41,7 +49,7 @@ return static function (ContainerConfigurator $containerConfigurator): void {
     $services->set(ChangePortfolioItemLongQuantityCommandHandler::class)
         ->args([
             service(PortfolioRepositoryInterface::class),
-            service(PortfolioItemFactoryInterface::class),
+            service(ValidatorInterface::class),
         ])
         ->tag('messenger.message_handler', [
             'bus' => 'command.bus',
@@ -51,13 +59,17 @@ return static function (ContainerConfigurator $containerConfigurator): void {
         ->args([
             service(PortfolioRepositoryInterface::class),
             service(PortfolioItemFactoryInterface::class),
+            service(ValidatorInterface::class),
         ])
         ->tag('messenger.message_handler', [
             'bus' => 'command.bus',
         ]);
 
     $services->set(UpdatePortfolioItemCommandHandler::class)
-        ->args([service(PortfolioRepositoryInterface::class)])
+        ->args([
+            service(PortfolioRepositoryInterface::class),
+            service(ValidatorInterface::class),
+        ])
         ->tag('messenger.message_handler', [
             'bus' => 'command.bus',
         ]);
