@@ -2,8 +2,8 @@
   "@context": "/contexts/Asset",
   "@id": "/assets/@uuid@",
   "@type": "Asset",
-  "ticker": "ACM",
-  "name": "Acme Corp.",
+  "ticker": "EXT",
+  "name": "Extra Tower Inc.",
   "createdAt": "@datetime@",
   "updatedAt": "@datetime@"
 }

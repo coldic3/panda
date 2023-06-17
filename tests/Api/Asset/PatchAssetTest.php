@@ -31,7 +31,7 @@ final class PatchAssetTest extends ApiTestCase
     /** @test */
     function it_updates_an_asset()
     {
-        $fixtures = $this->loadFixturesFromFile('asset.yaml');
+        $fixtures = $this->loadFixturesFromFiles(['asset.yaml', 'asset_with_portfolio.yaml']);
 
         /** @var User $user */
         $user = $fixtures['user_panda'];

@@ -1,6 +1,7 @@
 include:
     - 'users.yaml'
     - 'asset.yaml'
+    - 'asset_with_portfolio.yaml'
 
 Panda\Trade\Domain\Model\Asset\Asset:
     asset_{1..3}:
