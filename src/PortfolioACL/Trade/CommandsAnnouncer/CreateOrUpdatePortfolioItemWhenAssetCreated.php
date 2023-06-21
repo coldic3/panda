@@ -40,6 +40,7 @@ final readonly class CreateOrUpdatePortfolioItemWhenAssetCreated
             $this->commandBus->dispatch(
                 new UpdatePortfolioItemCommand(
                     $asset->getTicker(),
+                    $asset->getTicker(),
                     $asset->getName(),
                 ),
             );

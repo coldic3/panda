@@ -19,15 +19,6 @@ Potrzeba biznesowa: Modyfikowanie aktywów
         Wtedy edycja aktywa kończy się sukcesem
         I aktywo zmienia swoją nazwę na "Acme Inc."
 
-#    FIXME: A separate action for changing ticker is needed. It is not possible to change ticker during a normal edit.
-#    @api
-#    Scenariusz: Zmiana tickera aktywa
-#        Gdy modyfikuję aktywo "ACM"
-#        I podaję ticker "ACME"
-#        I zatwierdzam wprowadzone dane
-#        Wtedy edycja aktywa kończy się sukcesem
-#        I aktywo zmienia swój ticker na "ACME"
-
     @api
     Scenariusz: Zmiana aktywa należącego do innego użytkownika
         Zakładając, że istnieje użytkownik "bear@example.com"

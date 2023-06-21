@@ -18,6 +18,7 @@ class AssetContext implements Context
 
     /**
      * @Transform /^aktywo "([^"]+)"$/
+     * @Transform /^aktywa "([^"]+)"$/
      * @Transform /^spółki "([^"]+)"$/
      * @Transform :asset
      * @Transform :fromAsset

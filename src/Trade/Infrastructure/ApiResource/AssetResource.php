@@ -12,6 +12,7 @@ use ApiPlatform\Metadata\GetCollection;
 use ApiPlatform\Metadata\Patch;
 use ApiPlatform\Metadata\Post;
 use Panda\Trade\Domain\Model\Asset\AssetInterface;
+use Panda\Trade\Infrastructure\ApiState\Processor\AssetChangeTickerProcessor;
 use Panda\Trade\Infrastructure\ApiState\Processor\AssetProcessor;
 use Panda\Trade\Infrastructure\ApiState\Provider\AssetProvider;
 use Symfony\Component\Serializer\Annotation\Groups;
@@ -24,36 +25,44 @@ use Symfony\Component\Uid\Uuid;
         new Get(),
         new Post(validationContext: ['groups' => ['create']]),
         new Patch(validationContext: ['groups' => ['update']]),
+        new Patch(
+            uriTemplate: '/assets/{id}/ticker',
+            denormalizationContext: ['groups' => [self::UPDATE_TICKER_GROUP]],
+            validationContext: ['groups' => ['update']],
+            processor: AssetChangeTickerProcessor::class,
+        ),
         new Delete(),
     ],
-    normalizationContext: ['groups' => self::READABLE_GROUPS],
-    denormalizationContext: ['groups' => self::WRITABLE_GROUPS],
+    normalizationContext: ['groups' => [self::READ_GROUP]],
+    denormalizationContext: ['groups' => [self::CREATE_GROUP, self::UPDATE_GROUP]],
     provider: AssetProvider::class,
     processor: AssetProcessor::class,
 )]
 final class AssetResource
 {
-    private const READABLE_GROUPS = ['read'];
-    private const WRITABLE_GROUPS = ['create', 'update'];
+    public const READ_GROUP = 'asset:read';
+    public const CREATE_GROUP = 'asset:create';
+    public const UPDATE_GROUP = 'asset:update';
+    public const UPDATE_TICKER_GROUP = 'asset:update:ticker';
 
     public function __construct(
         #[ApiProperty(readable: false, writable: false, identifier: true)]
         public ?Uuid $id = null,
 
         #[ApiProperty(default: 'ACM')]
-        #[Groups([...self::READABLE_GROUPS, ...self::WRITABLE_GROUPS])]
+        #[Groups([self::READ_GROUP, self::CREATE_GROUP, self::UPDATE_TICKER_GROUP])]
         public ?string $ticker = null,
 
         #[ApiProperty(default: 'Acme Corp.')]
-        #[Groups([...self::READABLE_GROUPS, ...self::WRITABLE_GROUPS])]
+        #[Groups([self::READ_GROUP, self::CREATE_GROUP, self::UPDATE_GROUP])]
         public ?string $name = null,
 
         #[ApiProperty(writable: false)]
-        #[Groups(self::READABLE_GROUPS)]
+        #[Groups([self::READ_GROUP])]
         public ?\DateTimeInterface $createdAt = null,
 
         #[ApiProperty(writable: false)]
-        #[Groups(self::READABLE_GROUPS)]
+        #[Groups([self::READ_GROUP])]
         public ?\DateTimeInterface $updatedAt = null,
     ) {
     }

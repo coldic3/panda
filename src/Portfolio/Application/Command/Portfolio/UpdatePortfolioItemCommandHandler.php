@@ -28,7 +28,7 @@ final readonly class UpdatePortfolioItemCommandHandler implements CommandHandler
 
         // FIXME [Performance] This is not optimal, we should use a query to get the portfolio item.
         $portfolioItem = $portfolio->getItems()->filter(
-            fn (PortfolioItemInterface $item) => $item->getResource()->getTicker() === $command->ticker,
+            fn (PortfolioItemInterface $item) => $item->getResource()->getTicker() === $command->previousTicker,
         )->first();
 
         if (false === $portfolioItem) {

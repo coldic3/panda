@@ -9,6 +9,7 @@ use Panda\Core\Application\Command\CommandInterface;
 final readonly class UpdatePortfolioItemCommand implements CommandInterface
 {
     public function __construct(
+        public string $previousTicker,
         public string $ticker,
         public string $name,
     ) {
