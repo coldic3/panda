@@ -11,6 +11,7 @@ use Panda\Portfolio\Application\Command\Portfolio\UpdatePortfolioCommandHandler;
 use Panda\Portfolio\Application\Command\Portfolio\UpdatePortfolioItemCommandHandler;
 use Panda\Portfolio\Domain\Factory\PortfolioFactoryInterface;
 use Panda\Portfolio\Domain\Factory\PortfolioItemFactoryInterface;
+use Panda\Portfolio\Domain\Repository\PortfolioItemRepositoryInterface;
 use Panda\Portfolio\Domain\Repository\PortfolioRepositoryInterface;
 use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
 use function Symfony\Component\DependencyInjection\Loader\Configurator\service;
@@ -49,6 +50,7 @@ return static function (ContainerConfigurator $containerConfigurator): void {
     $services->set(ChangePortfolioItemLongQuantityCommandHandler::class)
         ->args([
             service(PortfolioRepositoryInterface::class),
+            service(PortfolioItemRepositoryInterface::class),
             service(ValidatorInterface::class),
         ])
         ->tag('messenger.message_handler', [
@@ -68,6 +70,7 @@ return static function (ContainerConfigurator $containerConfigurator): void {
     $services->set(UpdatePortfolioItemCommandHandler::class)
         ->args([
             service(PortfolioRepositoryInterface::class),
+            service(PortfolioItemRepositoryInterface::class),
             service(ValidatorInterface::class),
         ])
         ->tag('messenger.message_handler', [

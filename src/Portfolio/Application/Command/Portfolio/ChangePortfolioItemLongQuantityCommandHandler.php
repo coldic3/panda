@@ -9,13 +9,14 @@ use Panda\Core\Application\Command\CommandHandlerInterface;
 use Panda\Portfolio\Application\Exception\DefaultPortfolioNotFoundException;
 use Panda\Portfolio\Application\Exception\PortfolioItemWithTickerNotFoundException;
 use Panda\Portfolio\Domain\Model\PortfolioInterface;
-use Panda\Portfolio\Domain\Model\PortfolioItemInterface;
+use Panda\Portfolio\Domain\Repository\PortfolioItemRepositoryInterface;
 use Panda\Portfolio\Domain\Repository\PortfolioRepositoryInterface;
 
 final readonly class ChangePortfolioItemLongQuantityCommandHandler implements CommandHandlerInterface
 {
     public function __construct(
         private PortfolioRepositoryInterface $portfolioRepository,
+        private PortfolioItemRepositoryInterface $portfolioItemRepository,
         private ValidatorInterface $validator,
     ) {
     }
@@ -26,13 +27,10 @@ final readonly class ChangePortfolioItemLongQuantityCommandHandler implements Co
             throw new DefaultPortfolioNotFoundException();
         }
 
-        // FIXME [Performance] This is not optimal, we should use a query to get the portfolio item.
-        $portfolioItem = $portfolio->getItems()->filter(
-            fn (PortfolioItemInterface $item) => $item->getResource()->getTicker() === $command->ticker,
-        )->first();
+        $portfolioItem = $this->portfolioItemRepository->findByTickerWithinPortfolio($command->ticker, $portfolio);
 
-        if (false === $portfolioItem) {
-            throw new PortfolioItemWithTickerNotFoundException($command->ticker);
+        if (null === $portfolioItem) {
+            throw new PortfolioItemWithTickerNotFoundException($command->ticker, $portfolio->getId()->toRfc4122());
         }
 
         if ($command->quantityAdjustment > 0) {

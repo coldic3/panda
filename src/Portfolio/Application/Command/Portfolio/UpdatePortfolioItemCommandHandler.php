@@ -9,6 +9,7 @@ use Panda\Core\Application\Command\CommandHandlerInterface;
 use Panda\Portfolio\Application\Exception\DefaultPortfolioNotFoundException;
 use Panda\Portfolio\Application\Exception\PortfolioItemWithTickerNotFoundException;
 use Panda\Portfolio\Domain\Model\PortfolioItemInterface;
+use Panda\Portfolio\Domain\Repository\PortfolioItemRepositoryInterface;
 use Panda\Portfolio\Domain\Repository\PortfolioRepositoryInterface;
 use Panda\Portfolio\Domain\ValueObject\Resource;
 
@@ -16,6 +17,7 @@ final readonly class UpdatePortfolioItemCommandHandler implements CommandHandler
 {
     public function __construct(
         private PortfolioRepositoryInterface $portfolioRepository,
+        private PortfolioItemRepositoryInterface $portfolioItemRepository,
         private ValidatorInterface $validator,
     ) {
     }
@@ -26,13 +28,13 @@ final readonly class UpdatePortfolioItemCommandHandler implements CommandHandler
             throw new DefaultPortfolioNotFoundException();
         }
 
-        // FIXME [Performance] This is not optimal, we should use a query to get the portfolio item.
-        $portfolioItem = $portfolio->getItems()->filter(
-            fn (PortfolioItemInterface $item) => $item->getResource()->getTicker() === $command->previousTicker,
-        )->first();
+        $portfolioItem = $this->portfolioItemRepository->findByTickerWithinPortfolio(
+            $command->previousTicker,
+            $portfolio,
+        );
 
-        if (false === $portfolioItem) {
-            throw new PortfolioItemWithTickerNotFoundException($command->ticker);
+        if (null === $portfolioItem) {
+            throw new PortfolioItemWithTickerNotFoundException($command->previousTicker, $portfolio->getId()->toRfc4122());
         }
 
         $portfolioItem->setResource(new Resource($command->ticker, $command->name));
