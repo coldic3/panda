@@ -8,11 +8,11 @@ use Panda\Core\Application\Command\CommandBusInterface;
 use Panda\Core\Application\Query\QueryBusInterface;
 use Panda\Portfolio\Application\Command\Portfolio\UpdatePortfolioItemCommand;
 use Panda\Trade\Application\Query\Asset\FindAssetQuery;
-use Panda\Trade\Domain\Events\AssetUpdatedEvent;
+use Panda\Trade\Domain\Events\AssetTickerChangedEvent;
 use Panda\Trade\Domain\Model\Asset\AssetInterface;
 use Webmozart\Assert\Assert;
 
-final readonly class UpdatePortfolioItemWhenAssetUpdated
+final readonly class UpdatePortfolioItemWhenAssetTickerChanged
 {
     public function __construct(
         private CommandBusInterface $commandBus,
@@ -20,7 +20,7 @@ final readonly class UpdatePortfolioItemWhenAssetUpdated
     ) {
     }
 
-    public function __invoke(AssetUpdatedEvent $event): void
+    public function __invoke(AssetTickerChangedEvent $event): void
     {
         Assert::isInstanceOf(
             $asset = $this->queryBus->ask(new FindAssetQuery($event->assetId)),
@@ -29,7 +29,7 @@ final readonly class UpdatePortfolioItemWhenAssetUpdated
 
         $this->commandBus->dispatch(
             new UpdatePortfolioItemCommand(
-                $asset->getTicker(),
+                $event->previousTicker,
                 $asset->getTicker(),
                 $asset->getName(),
             ),

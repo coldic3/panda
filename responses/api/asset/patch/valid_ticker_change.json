@@ -1,0 +1,9 @@
+{
+  "@context": "/contexts/Asset",
+  "@id": "/assets/@uuid@/ticker",
+  "@type": "Asset",
+  "ticker": "XYZ",
+  "name": "Acme Corp.",
+  "createdAt": "@datetime@",
+  "updatedAt": "@datetime@"
+}

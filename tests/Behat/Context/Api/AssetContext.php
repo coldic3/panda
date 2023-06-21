@@ -52,6 +52,18 @@ class AssetContext implements Context
     }
 
     /**
+     * @When /^zmieniam ticker (aktywa "[^"]+")$/
+     */
+    function i_change_ticker_of_the_asset(AssetInterface $asset)
+    {
+        $this->http->initialize(
+            HttpMethodEnum::PATCH,
+            sprintf('/assets/%s/ticker', $asset->getId()),
+            $this->clipboard->paste('token')
+        );
+    }
+
+    /**
      * @When /^usuwam (aktywo "[^"]+")$/
      */
     function i_delete_the_asset(AssetInterface $asset)
@@ -95,6 +107,7 @@ class AssetContext implements Context
 
     /**
      * @When podaję ticker :ticker
+     * @When podaję nowy ticker :ticker
      */
     function i_pass_a_ticker(string $ticker)
     {
@@ -128,6 +141,7 @@ class AssetContext implements Context
 
     /**
      * @Then edycja aktywa kończy się sukcesem
+     * @Then zmiana tickera kończy się sukcesem
      */
     function the_asset_modification_ends_with_a_success()
     {
@@ -198,8 +212,11 @@ class AssetContext implements Context
      */
     function the_asset_changes_its_ticker_to(string $ticker)
     {
+        $iri = $this->http->getResponse()->toArray()['@id'];
+        $baseIri = substr($iri, 0, strrpos($iri, '/'));
+
         /** @var AssetResource $resource */
-        $resource = $this->http->getResource();
+        $resource = $this->iriConverter->getResourceFromIri($baseIri);
 
         Assert::notNull($asset = $this->assetRepository->findById($resource->id));
         Assert::same($asset->getTicker(), $ticker);
