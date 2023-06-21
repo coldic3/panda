@@ -3,7 +3,6 @@
 namespace spec\Panda\Portfolio\Application\Command\Portfolio;
 
 use ApiPlatform\Validator\ValidatorInterface;
-use Doctrine\Common\Collections\ArrayCollection;
 use Panda\Core\Application\Command\CommandHandlerInterface;
 use Panda\Portfolio\Application\Command\Portfolio\ChangePortfolioItemLongQuantityCommand;
 use Panda\Portfolio\Application\Command\Portfolio\ChangePortfolioItemLongQuantityCommandHandler;
@@ -11,17 +10,19 @@ use Panda\Portfolio\Application\Exception\DefaultPortfolioNotFoundException;
 use Panda\Portfolio\Application\Exception\PortfolioItemWithTickerNotFoundException;
 use Panda\Portfolio\Domain\Model\PortfolioInterface;
 use Panda\Portfolio\Domain\Model\PortfolioItemInterface;
+use Panda\Portfolio\Domain\Repository\PortfolioItemRepositoryInterface;
 use Panda\Portfolio\Domain\Repository\PortfolioRepositoryInterface;
-use Panda\Portfolio\Domain\ValueObject\ResourceInterface;
 use PhpSpec\ObjectBehavior;
+use Symfony\Component\Uid\Uuid;
 
 class ChangePortfolioItemLongQuantityCommandHandlerSpec extends ObjectBehavior
 {
     function let(
         PortfolioRepositoryInterface $portfolioRepository,
+        PortfolioItemRepositoryInterface $portfolioItemRepository,
         ValidatorInterface $validator,
     ) {
-        $this->beConstructedWith($portfolioRepository, $validator);
+        $this->beConstructedWith($portfolioRepository, $portfolioItemRepository, $validator);
     }
 
     function it_is_change_portfolio_item_long_quantity_command_handler()
@@ -32,34 +33,18 @@ class ChangePortfolioItemLongQuantityCommandHandlerSpec extends ObjectBehavior
 
     function it_adds_long_quantity_to_already_created_portfolio_item(
         PortfolioRepositoryInterface $portfolioRepository,
+        PortfolioItemRepositoryInterface $portfolioItemRepository,
         ValidatorInterface $validator,
         PortfolioInterface $portfolio,
-        PortfolioItemInterface $somePortfolioItem,
-        PortfolioItemInterface $portfolioItemWeAreLookingFor,
-        PortfolioItemInterface $someOtherPortfolioItem,
-        ResourceInterface $somePortfolioItemResource,
-        ResourceInterface $portfolioItemWeAreLookingForResource,
-        ResourceInterface $someOtherPortfolioItemResource,
+        PortfolioItemInterface $portfolioItem,
     ) {
         $portfolioRepository->findDefault()->willReturn($portfolio);
 
-        $portfolio
-            ->getItems()
-            ->willReturn(new ArrayCollection([
-                $somePortfolioItem->getWrappedObject(),
-                $portfolioItemWeAreLookingFor->getWrappedObject(),
-                $someOtherPortfolioItem->getWrappedObject(),
-            ]));
+        $portfolioItemRepository
+            ->findByTickerWithinPortfolio('ACM', $portfolio)
+            ->willReturn($portfolioItem);
 
-        $somePortfolioItem->getResource()->willReturn($somePortfolioItemResource);
-        $portfolioItemWeAreLookingFor->getResource()->willReturn($portfolioItemWeAreLookingForResource);
-        $someOtherPortfolioItem->getResource()->willReturn($someOtherPortfolioItemResource);
-
-        $somePortfolioItemResource->getTicker()->willReturn('ABC');
-        $portfolioItemWeAreLookingForResource->getTicker()->willReturn('ACM');
-        $someOtherPortfolioItemResource->getTicker()->willReturn('XYZ');
-
-        $portfolioItemWeAreLookingFor->addLongQuantity(10)->shouldBeCalledOnce();
+        $portfolioItem->addLongQuantity(10)->shouldBeCalledOnce();
 
         $validator->validate($portfolio, ['groups' => ['panda:update']])->shouldBeCalledOnce();
         $portfolioRepository->save($portfolio)->shouldBeCalledOnce();
@@ -69,34 +54,18 @@ class ChangePortfolioItemLongQuantityCommandHandlerSpec extends ObjectBehavior
 
     function it_removes_long_quantity_from_already_created_portfolio_item(
         PortfolioRepositoryInterface $portfolioRepository,
+        PortfolioItemRepositoryInterface $portfolioItemRepository,
         ValidatorInterface $validator,
         PortfolioInterface $portfolio,
-        PortfolioItemInterface $somePortfolioItem,
-        PortfolioItemInterface $portfolioItemWeAreLookingFor,
-        PortfolioItemInterface $someOtherPortfolioItem,
-        ResourceInterface $somePortfolioItemResource,
-        ResourceInterface $portfolioItemWeAreLookingForResource,
-        ResourceInterface $someOtherPortfolioItemResource,
+        PortfolioItemInterface $portfolioItem,
     ) {
         $portfolioRepository->findDefault()->willReturn($portfolio);
 
-        $portfolio
-            ->getItems()
-            ->willReturn(new ArrayCollection([
-                $somePortfolioItem->getWrappedObject(),
-                $portfolioItemWeAreLookingFor->getWrappedObject(),
-                $someOtherPortfolioItem->getWrappedObject(),
-            ]));
+        $portfolioItemRepository
+            ->findByTickerWithinPortfolio('ACM', $portfolio)
+            ->willReturn($portfolioItem);
 
-        $somePortfolioItem->getResource()->willReturn($somePortfolioItemResource);
-        $portfolioItemWeAreLookingFor->getResource()->willReturn($portfolioItemWeAreLookingForResource);
-        $someOtherPortfolioItem->getResource()->willReturn($someOtherPortfolioItemResource);
-
-        $somePortfolioItemResource->getTicker()->willReturn('ABC');
-        $portfolioItemWeAreLookingForResource->getTicker()->willReturn('ACM');
-        $someOtherPortfolioItemResource->getTicker()->willReturn('XYZ');
-
-        $portfolioItemWeAreLookingFor->removeLongQuantity(10)->shouldBeCalledOnce();
+        $portfolioItem->removeLongQuantity(10)->shouldBeCalledOnce();
 
         $validator->validate($portfolio, ['groups' => ['panda:update']])->shouldBeCalledOnce();
         $portfolioRepository->save($portfolio)->shouldBeCalledOnce();
@@ -114,27 +83,17 @@ class ChangePortfolioItemLongQuantityCommandHandlerSpec extends ObjectBehavior
 
     function it_throws_exception_if_portfolio_item_does_not_exist(
         PortfolioRepositoryInterface $portfolioRepository,
+        PortfolioItemRepositoryInterface $portfolioItemRepository,
         ValidatorInterface $validator,
         PortfolioInterface $portfolio,
-        PortfolioItemInterface $somePortfolioItem,
-        PortfolioItemInterface $someOtherPortfolioItem,
-        ResourceInterface $somePortfolioItemResource,
-        ResourceInterface $someOtherPortfolioItemResource,
     ) {
         $portfolioRepository->findDefault()->willReturn($portfolio);
 
-        $portfolio
-            ->getItems()
-            ->willReturn(new ArrayCollection([
-                $somePortfolioItem->getWrappedObject(),
-                $someOtherPortfolioItem->getWrappedObject(),
-            ]));
+        $portfolioItemRepository
+            ->findByTickerWithinPortfolio('ACM', $portfolio)
+            ->willReturn(null);
 
-        $somePortfolioItem->getResource()->willReturn($somePortfolioItemResource);
-        $someOtherPortfolioItem->getResource()->willReturn($someOtherPortfolioItemResource);
-
-        $somePortfolioItemResource->getTicker()->willReturn('ABC');
-        $someOtherPortfolioItemResource->getTicker()->willReturn('XYZ');
+        $portfolio->getId()->willReturn(Uuid::v4());
 
         $validator->validate($portfolio, ['groups' => ['panda:update']])->shouldNotBeCalled();
         $portfolioRepository->save($portfolio)->shouldNotBeCalled();
