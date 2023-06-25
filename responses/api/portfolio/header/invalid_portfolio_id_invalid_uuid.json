@@ -1,0 +1,6 @@
+{
+  "@context": "/contexts/Error",
+  "@type": "hydra:Error",
+  "hydra:title": "An error occurred",
+  "hydra:description": "Portfolio with ID \"invalid-uuid\" not found."
+}

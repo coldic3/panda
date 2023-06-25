@@ -1,5 +1,6 @@
 imports:
     - { resource: ../../../../../*/Infrastructure/Configuration/ApiPlatform/mapping.yaml }
+    - { resource: ../../../../../*/Infrastructure/Configuration/ApiPlatform/exception.yaml }
 
 api_platform:
     title: PANDA API

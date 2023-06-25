@@ -1,0 +1,3 @@
+api_platform:
+    exception_to_status:
+        Panda\Portfolio\Application\Exception\PortfolioNotFoundException: 400
