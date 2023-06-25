@@ -1,0 +1,6 @@
+{
+  "@context": "/contexts/Error",
+  "@type": "hydra:Error",
+  "hydra:title": "An error occurred",
+  "hydra:description": "Portfolio with ID \"35af25e8-f19c-4db9-a0a1-f298573dad37\" not found."
+}

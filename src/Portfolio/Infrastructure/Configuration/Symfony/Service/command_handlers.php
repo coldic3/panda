@@ -9,6 +9,7 @@ use Panda\Portfolio\Application\Command\Portfolio\CreatePortfolioCommandHandler;
 use Panda\Portfolio\Application\Command\Portfolio\CreatePortfolioItemCommandHandler;
 use Panda\Portfolio\Application\Command\Portfolio\UpdatePortfolioCommandHandler;
 use Panda\Portfolio\Application\Command\Portfolio\UpdatePortfolioItemCommandHandler;
+use Panda\Portfolio\Application\Resolver\PortfolioResolverInterface;
 use Panda\Portfolio\Domain\Factory\PortfolioFactoryInterface;
 use Panda\Portfolio\Domain\Factory\PortfolioItemFactoryInterface;
 use Panda\Portfolio\Domain\Repository\PortfolioItemRepositoryInterface;
@@ -49,8 +50,8 @@ return static function (ContainerConfigurator $containerConfigurator): void {
 
     $services->set(ChangePortfolioItemLongQuantityCommandHandler::class)
         ->args([
-            service(PortfolioRepositoryInterface::class),
             service(PortfolioItemRepositoryInterface::class),
+            service(PortfolioResolverInterface::class),
             service(ValidatorInterface::class),
         ])
         ->tag('messenger.message_handler', [
@@ -59,8 +60,9 @@ return static function (ContainerConfigurator $containerConfigurator): void {
 
     $services->set(CreatePortfolioItemCommandHandler::class)
         ->args([
-            service(PortfolioRepositoryInterface::class),
+            service(PortfolioItemRepositoryInterface::class),
             service(PortfolioItemFactoryInterface::class),
+            service(PortfolioResolverInterface::class),
             service(ValidatorInterface::class),
         ])
         ->tag('messenger.message_handler', [
@@ -69,8 +71,8 @@ return static function (ContainerConfigurator $containerConfigurator): void {
 
     $services->set(UpdatePortfolioItemCommandHandler::class)
         ->args([
-            service(PortfolioRepositoryInterface::class),
             service(PortfolioItemRepositoryInterface::class),
+            service(PortfolioResolverInterface::class),
             service(ValidatorInterface::class),
         ])
         ->tag('messenger.message_handler', [

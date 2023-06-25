@@ -1,0 +1,9 @@
+{
+  "@context": "/contexts/Asset",
+  "@id": "/assets/@uuid@",
+  "@type": "Asset",
+  "ticker": "ABC",
+  "name": "Abrakadabra Inc.",
+  "createdAt": "@datetime@",
+  "updatedAt": "@datetime@"
+}
