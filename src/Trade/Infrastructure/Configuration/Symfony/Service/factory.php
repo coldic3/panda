@@ -5,6 +5,8 @@ declare(strict_types=1);
 use Panda\AccountOHS\Domain\Provider\AuthorizedUserProviderInterface;
 use Panda\Trade\Domain\Factory\AssetFactory;
 use Panda\Trade\Domain\Factory\AssetFactoryInterface;
+use Panda\Trade\Domain\Factory\ExchangeRateFactory;
+use Panda\Trade\Domain\Factory\ExchangeRateFactoryInterface;
 use Panda\Trade\Domain\Factory\OperationFactory;
 use Panda\Trade\Domain\Factory\OperationFactoryInterface;
 use Panda\Trade\Domain\Factory\TransactionFactory;
@@ -18,6 +20,9 @@ return static function (ContainerConfigurator $containerConfigurator): void {
     $services->set(AssetFactoryInterface::class)
         ->class(AssetFactory::class)
         ->args([service(AuthorizedUserProviderInterface::class)]);
+
+    $services->set(ExchangeRateFactoryInterface::class)
+        ->class(ExchangeRateFactory::class);
 
     $services->set(TransactionFactoryInterface::class)
         ->class(TransactionFactory::class)

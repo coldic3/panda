@@ -10,6 +10,7 @@ use Panda\Portfolio\Domain\Factory\PortfolioFactoryInterface;
 use Panda\Portfolio\Domain\Factory\PortfolioItemFactoryInterface;
 use Panda\Portfolio\Domain\Repository\PortfolioRepositoryInterface;
 use Panda\Tests\Behat\Context\Setup\AssetContext;
+use Panda\Tests\Behat\Context\Setup\ExchangeRateContext;
 use Panda\Tests\Behat\Context\Setup\PortfolioContext;
 use Panda\Tests\Behat\Context\Setup\TransactionContext;
 use Panda\Tests\Behat\Context\Setup\UserContext;
@@ -40,6 +41,9 @@ return static function (ContainerConfigurator $containerConfigurator): void {
             service(EntityManagerInterface::class),
             service(CommandBusInterface::class),
         ]);
+
+    $services->set(ExchangeRateContext::class)
+        ->args([service(CommandBusInterface::class)]);
 
     $services->set(TransactionContext::class)
         ->args([

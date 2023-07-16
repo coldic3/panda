@@ -22,6 +22,13 @@ final readonly class DoctrineQueryBuilder implements QueryBuilderInterface
         return $this;
     }
 
+    public function innerJoin(string $join, string $alias): self
+    {
+        $this->queryBuilder->innerJoin($join, $alias);
+
+        return $this;
+    }
+
     public function leftJoin(string $join, string $alias): self
     {
         $this->queryBuilder->leftJoin($join, $alias);

@@ -1,0 +1,10 @@
+{
+  "@context": "/contexts/ExchangeRate",
+  "@id": "/exchange_rates/@uuid@",
+  "@type": "ExchangeRate",
+  "baseAsset": "/assets/@uuid@",
+  "quoteAsset": "/assets/@uuid@",
+  "rate": "@number@",
+  "createdAt": "@datetime@",
+  "updatedAt": "@datetime@"
+}
