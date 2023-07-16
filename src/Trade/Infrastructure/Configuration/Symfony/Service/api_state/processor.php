@@ -7,6 +7,7 @@ use Panda\Core\Application\Query\QueryBusInterface;
 use Panda\Trade\Domain\Factory\OperationFactoryInterface;
 use Panda\Trade\Infrastructure\ApiState\Processor\AssetChangeTickerProcessor;
 use Panda\Trade\Infrastructure\ApiState\Processor\AssetProcessor;
+use Panda\Trade\Infrastructure\ApiState\Processor\ExchangeRateProcessor;
 use Panda\Trade\Infrastructure\ApiState\Processor\TransactionCreateProcessor;
 use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
 use function Symfony\Component\DependencyInjection\Loader\Configurator\service;
@@ -20,6 +21,11 @@ return static function (ContainerConfigurator $containerConfigurator): void {
         ->tag('api_platform.state_processor', ['priority' => 0]);
 
     $services->set(AssetChangeTickerProcessor::class)
+        ->args([service(CommandBusInterface::class)])
+        ->autoconfigure(false)
+        ->tag('api_platform.state_processor', ['priority' => 0]);
+
+    $services->set(ExchangeRateProcessor::class)
         ->args([service(CommandBusInterface::class)])
         ->autoconfigure(false)
         ->tag('api_platform.state_processor', ['priority' => 0]);

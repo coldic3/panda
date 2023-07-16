@@ -8,6 +8,8 @@ interface QueryBuilderInterface
 {
     public function addSelect(string ...$select): self;
 
+    public function innerJoin(string $join, string $alias): self;
+
     public function leftJoin(string $join, string $alias): self;
 
     public function andWhere(string $where): self;

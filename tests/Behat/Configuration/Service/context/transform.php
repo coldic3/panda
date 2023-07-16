@@ -6,6 +6,7 @@ use Doctrine\ORM\EntityManagerInterface;
 use Panda\Account\Domain\Repository\UserRepositoryInterface;
 use Panda\Tests\Behat\Context\Transform\AssetContext;
 use Panda\Tests\Behat\Context\Transform\DateTimeContext;
+use Panda\Tests\Behat\Context\Transform\ExchangeRateContext;
 use Panda\Tests\Behat\Context\Transform\PortfolioContext;
 use Panda\Tests\Behat\Context\Transform\TransactionContext;
 use Panda\Tests\Behat\Context\Transform\UserContext;
@@ -18,6 +19,9 @@ return static function (ContainerConfigurator $containerConfigurator): void {
     $services->defaults()->public();
 
     $services->set(AssetContext::class)
+        ->args([service(EntityManagerInterface::class)]);
+
+    $services->set(ExchangeRateContext::class)
         ->args([service(EntityManagerInterface::class)]);
 
     $services->set(PortfolioContext::class)

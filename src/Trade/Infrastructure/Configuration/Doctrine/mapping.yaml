@@ -7,6 +7,12 @@ doctrine:
                 dir: '%kernel.project_dir%/src/Trade/Infrastructure/Configuration/Doctrine/mappings/Asset'
                 prefix: 'Panda\Trade\Domain\Model\Asset'
                 alias: Asset
+            ExchangeRate:
+                is_bundle: false
+                type: xml
+                dir: '%kernel.project_dir%/src/Trade/Infrastructure/Configuration/Doctrine/mappings/ExchangeRate'
+                prefix: 'Panda\Trade\Domain\Model\ExchangeRate'
+                alias: ExchangeRate
             Transaction:
                 is_bundle: false
                 type: xml
