@@ -35,7 +35,7 @@ final class PortfolioItemResource
     {
         return new self(
             $portfolioItem->getId(),
-            ResourceRepresentation::fromModel($portfolioItem),
+            ResourceRepresentation::fromValueObject($portfolioItem->getResource()),
             QuantityRepresentation::fromModel($portfolioItem),
         );
     }

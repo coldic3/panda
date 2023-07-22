@@ -3,7 +3,7 @@ include:
 
 Panda\Portfolio\Domain\Model\Portfolio:
     portfolio_default:
-        __construct: ['Default Portfolio', true]
+        __factory: {'Panda\Tests\Fixture\Factory\PortfolioFactory::create': ['Default Portfolio', 'PLN', 'Polish Zloty', true] }
         ownedBy: '@user_panda'
         createdAt: <(new DateTimeImmutable())>
         updatedAt: <(new DateTimeImmutable())>

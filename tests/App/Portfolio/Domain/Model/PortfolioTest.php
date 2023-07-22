@@ -6,6 +6,7 @@ namespace Panda\Tests\App\Portfolio\Domain\Model;
 
 use Panda\Portfolio\Domain\Model\Portfolio;
 use Panda\Portfolio\Domain\Model\PortfolioItemInterface;
+use Panda\Portfolio\Domain\ValueObject\ResourceInterface;
 use PHPUnit\Framework\TestCase;
 use Prophecy\PhpUnit\ProphecyTrait;
 
@@ -16,7 +17,9 @@ final class PortfolioTest extends TestCase
     /** @test */
     function it_adds_items()
     {
-        $portfolio = new Portfolio('name');
+        $resource = $this->prophesize(ResourceInterface::class)->reveal();
+
+        $portfolio = new Portfolio('name', $resource);
         $firstItem = $this->prophesize(PortfolioItemInterface::class)->reveal();
         $secondItem = $this->prophesize(PortfolioItemInterface::class)->reveal();
 
@@ -29,7 +32,9 @@ final class PortfolioTest extends TestCase
     /** @test */
     function it_adds_items_with_no_duplicates()
     {
-        $portfolio = new Portfolio('name');
+        $resource = $this->prophesize(ResourceInterface::class)->reveal();
+
+        $portfolio = new Portfolio('name', $resource);
         $firstItem = $this->prophesize(PortfolioItemInterface::class)->reveal();
         $secondItem = $this->prophesize(PortfolioItemInterface::class)->reveal();
 
@@ -43,7 +48,9 @@ final class PortfolioTest extends TestCase
     /** @test */
     function it_removes_items()
     {
-        $portfolio = new Portfolio('name');
+        $resource = $this->prophesize(ResourceInterface::class)->reveal();
+
+        $portfolio = new Portfolio('name', $resource);
         $firstItem = $this->prophesize(PortfolioItemInterface::class)->reveal();
         $secondItem = $this->prophesize(PortfolioItemInterface::class)->reveal();
 

@@ -23,6 +23,8 @@ final readonly class CreatePortfolioCommandHandler implements CommandHandlerInte
     {
         $portfolio = $this->portfolioFactory->create(
             $command->name,
+            $command->mainResourceTicker,
+            $command->mainResourceName,
             !$this->portfolioRepository->defaultExists()
         );
 

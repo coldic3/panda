@@ -8,7 +8,10 @@ use Panda\Core\Application\Command\CommandInterface;
 
 final readonly class CreatePortfolioCommand implements CommandInterface
 {
-    public function __construct(public string $name)
-    {
+    public function __construct(
+        public string $name,
+        public string $mainResourceTicker,
+        public string $mainResourceName,
+    ) {
     }
 }

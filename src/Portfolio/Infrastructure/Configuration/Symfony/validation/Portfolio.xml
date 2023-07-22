@@ -21,5 +21,45 @@
                 </option>
             </constraint>
         </property>
+        <property name="mainResource">
+            <constraint name="Valid">
+                <option name="groups">
+                    <value>panda:create</value>
+                    <value>panda:update</value>
+                </option>
+            </constraint>
+        </property>
+    </class>
+    <class name="Panda\Portfolio\Domain\ValueObject\Resource">
+        <property name="ticker">
+            <constraint name="NotBlank">
+                <option name="groups">
+                    <value>panda:create</value>
+                    <value>panda:update</value>
+                </option>
+            </constraint>
+            <constraint name="Length">
+                <option name="max">255</option>
+                <option name="groups">
+                    <value>panda:create</value>
+                    <value>panda:update</value>
+                </option>
+            </constraint>
+        </property>
+        <property name="name">
+            <constraint name="NotBlank">
+                <option name="groups">
+                    <value>panda:create</value>
+                    <value>panda:update</value>
+                </option>
+            </constraint>
+            <constraint name="Length">
+                <option name="max">255</option>
+                <option name="groups">
+                    <value>panda:create</value>
+                    <value>panda:update</value>
+                </option>
+            </constraint>
+        </property>
     </class>
 </constraint-mapping>

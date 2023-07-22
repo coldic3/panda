@@ -36,10 +36,10 @@ class PortfolioContext implements Context
      * @Given posiadam już domyślny portfel :name
      * @Given posiadam domyślny portfel o nazwie :name
      */
-    function there_is_an_portfolio_with_name(string $name = 'Default Portfolio')
+    function there_is_an_portfolio_with_name(string $name = 'Default Portfolio', string $ticker = 'PLN')
     {
         Assert::isInstanceOf(
-            $portfolio = $this->commandBus->dispatch(new CreatePortfolioCommand($name)),
+            $portfolio = $this->commandBus->dispatch(new CreatePortfolioCommand($name, $ticker, $ticker)),
             PortfolioInterface::class,
         );
 

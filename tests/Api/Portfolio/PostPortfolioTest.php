@@ -8,13 +8,17 @@ use Panda\Tests\Api\ApiTestCase;
 use Panda\Tests\Util\HttpMethodEnum;
 use Symfony\Component\HttpFoundation\Response;
 
-final class PostAssetTest extends ApiTestCase
+final class PostPortfolioTest extends ApiTestCase
 {
     /** @test */
     function it_requires_to_be_authorized()
     {
         $this->request(HttpMethodEnum::POST, '/portfolios', [
             'name' => 'My Portfolio',
+            'mainResource' => [
+                'ticker' => 'PLN',
+                'name' => 'Polish Zloty',
+            ],
         ]);
 
         $this->assertUnauthorized($this->client->getResponse());
@@ -30,6 +34,10 @@ final class PostAssetTest extends ApiTestCase
 
         $this->request(HttpMethodEnum::POST, '/portfolios', [
             'name' => 'My Portfolio',
+            'mainResource' => [
+                'ticker' => 'PLN',
+                'name' => 'Polish Zloty',
+            ],
         ], $this->generateAuthorizationHeader($user));
 
         $this->assertResponse($this->client->getResponse(), 'portfolio/post/valid_first_portfolio', Response::HTTP_CREATED);
@@ -45,6 +53,10 @@ final class PostAssetTest extends ApiTestCase
 
         $this->request(HttpMethodEnum::POST, '/portfolios', [
             'name' => 'My Portfolio',
+            'mainResource' => [
+                'ticker' => 'PLN',
+                'name' => 'Polish Zloty',
+            ],
             'default' => false,
         ], $this->generateAuthorizationHeader($user));
 
@@ -61,11 +73,15 @@ final class PostAssetTest extends ApiTestCase
 
         $this->request(HttpMethodEnum::POST, '/portfolios', [
             'name' => '',
+            'mainResource' => [
+                'ticker' => '',
+                'name' => '',
+            ],
         ], $this->generateAuthorizationHeader($user));
 
         $this->assertResponse(
             $this->client->getResponse(),
-            'portfolio/_common/invalid_empty_data',
+            'portfolio/post/invalid_empty_data',
             Response::HTTP_UNPROCESSABLE_ENTITY
         );
     }
@@ -84,7 +100,7 @@ final class PostAssetTest extends ApiTestCase
 
         $this->assertResponse(
             $this->client->getResponse(),
-            'portfolio/_common/invalid_empty_data',
+            'portfolio/post/invalid_empty_data',
             Response::HTTP_UNPROCESSABLE_ENTITY
         );
     }
@@ -101,11 +117,15 @@ final class PostAssetTest extends ApiTestCase
 
         $this->request(HttpMethodEnum::POST, '/portfolios', [
             'name' => $faker->lexify(str_repeat('?', 256)),
+            'mainResource' => [
+                'ticker' => $faker->lexify(str_repeat('?', 256)),
+                'name' => $faker->lexify(str_repeat('?', 256)),
+            ],
         ], $this->generateAuthorizationHeader($user));
 
         $this->assertResponse(
             $this->client->getResponse(),
-            'portfolio/_common/invalid_too_long_data',
+            'portfolio/post/invalid_too_long_data',
             Response::HTTP_UNPROCESSABLE_ENTITY
         );
     }

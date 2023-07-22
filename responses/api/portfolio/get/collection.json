@@ -8,6 +8,10 @@
       "@id": "/portfolios/@uuid@",
       "@type": "Portfolio",
       "name": "Default Portfolio",
+      "mainResource": {
+        "ticker": "PLN",
+        "name": "Polish Zloty"
+      },
       "default": true,
       "items": [
         {
@@ -54,6 +58,10 @@
       "@id": "/portfolios/@uuid@",
       "@type": "Portfolio",
       "name": "Additional Portfolio",
+      "mainResource": {
+        "ticker": "USD",
+        "name": "US Dollar"
+      },
       "default": false,
       "items": [
         {

@@ -48,7 +48,7 @@ final class PatchPortfolioTest extends ApiTestCase
     }
 
     /** @test */
-    function it_ignores_a_default_property()
+    function it_ignores_not_editable_property()
     {
         $fixtures = $this->loadFixturesFromFile('portfolio.yaml');
 
@@ -61,6 +61,10 @@ final class PatchPortfolioTest extends ApiTestCase
 
         $this->request(HttpMethodEnum::PATCH, $uri, [
             'default' => false,
+            'mainResource' => [
+                'ticker' => 'PLN',
+                'name' => 'Polish Zloty',
+            ],
         ], $this->generateAuthorizationHeader($user));
 
         $this->assertResponse($this->client->getResponse(), 'portfolio/patch/nothing_changed', Response::HTTP_OK);
@@ -84,7 +88,7 @@ final class PatchPortfolioTest extends ApiTestCase
 
         $this->assertResponse(
             $this->client->getResponse(),
-            'portfolio/_common/invalid_empty_data',
+            'portfolio/patch/invalid_empty_data',
             Response::HTTP_UNPROCESSABLE_ENTITY,
         );
     }
@@ -109,7 +113,7 @@ final class PatchPortfolioTest extends ApiTestCase
 
         $this->assertResponse(
             $this->client->getResponse(),
-            'portfolio/_common/invalid_too_long_data',
+            'portfolio/patch/invalid_too_long_data',
             Response::HTTP_UNPROCESSABLE_ENTITY,
         );
     }

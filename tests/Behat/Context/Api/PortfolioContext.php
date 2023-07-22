@@ -83,6 +83,28 @@ class PortfolioContext implements Context
     }
 
     /**
+     * @When podaję ticker głównego aktywa :ticker
+     */
+    function i_pass_a_main_resource_tickr(string $ticker)
+    {
+        $mainResource = $this->http->getPayloadElement('mainResource') ?? [];
+        $mainResource['ticker'] = $ticker;
+
+        $this->http->addToPayload('mainResource', $mainResource);
+    }
+
+    /**
+     * @When podaję nazwę głównego aktywa :name
+     */
+    function i_pass_a_main_resource_name(string $name)
+    {
+        $mainResource = $this->http->getPayloadElement('mainResource') ?? [];
+        $mainResource['name'] = $name;
+
+        $this->http->addToPayload('mainResource', $mainResource);
+    }
+
+    /**
      * @When zatwierdzam wprowadzone dane
      */
     function i_submit_entered_data()

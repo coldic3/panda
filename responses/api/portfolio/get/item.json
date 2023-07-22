@@ -3,6 +3,10 @@
   "@id": "/portfolios/@uuid@",
   "@type": "Portfolio",
   "name": "Default Portfolio",
+  "mainResource": {
+    "ticker": "PLN",
+    "name": "Polish Zloty"
+  },
   "default": true,
   "items": [
     {
