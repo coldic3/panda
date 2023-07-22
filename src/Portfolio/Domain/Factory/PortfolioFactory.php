@@ -15,7 +15,7 @@ final readonly class PortfolioFactory implements PortfolioFactoryInterface
     {
     }
 
-    public function create(string $name, bool $default = false, ?OwnerInterface $owner = null): PortfolioInterface
+    public function create(string $name, bool $default = false, OwnerInterface $owner = null): PortfolioInterface
     {
         $portfolio = new Portfolio($name, $default);
 

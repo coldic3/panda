@@ -40,10 +40,10 @@ final class TransactionRepository extends DoctrineRepository implements Transact
 
     public function defaultQuery(
         OwnerInterface $owner,
-        ?string $fromOperationAssetId = null,
-        ?string $toOperationAssetId = null,
-        ?\DateTimeImmutable $afterConcludedAt = null,
-        ?\DateTimeImmutable $beforeConcludedAt = null,
+        string $fromOperationAssetId = null,
+        string $toOperationAssetId = null,
+        \DateTimeImmutable $afterConcludedAt = null,
+        \DateTimeImmutable $beforeConcludedAt = null,
     ): QueryInterface {
         return new Query\DefaultTransactionQuery(
             $owner,

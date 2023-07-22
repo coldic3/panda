@@ -9,5 +9,5 @@ use Panda\Trade\Domain\Model\Asset\AssetInterface;
 
 interface AssetFactoryInterface
 {
-    public function create(string $ticker, ?string $name = null, ?OwnerInterface $owner = null): AssetInterface;
+    public function create(string $ticker, string $name = null, OwnerInterface $owner = null): AssetInterface;
 }

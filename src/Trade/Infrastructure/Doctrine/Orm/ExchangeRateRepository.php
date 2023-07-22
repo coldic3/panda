@@ -81,7 +81,7 @@ final class ExchangeRateRepository extends DoctrineRepository implements Exchang
         }
     }
 
-    public function defaultQuery(OwnerInterface $owner, ?string $ticker = null): QueryInterface
+    public function defaultQuery(OwnerInterface $owner, string $ticker = null): QueryInterface
     {
         return new Query\DefaultExchangeRateQuery($owner, $ticker);
     }
