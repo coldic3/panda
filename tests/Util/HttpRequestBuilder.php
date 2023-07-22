@@ -22,7 +22,7 @@ final class HttpRequestBuilder
     ) {
     }
 
-    public function initialize(HttpMethodEnum $httpMethod, string $httpPath, ?string $authToken = null): void
+    public function initialize(HttpMethodEnum $httpMethod, string $httpPath, string $authToken = null): void
     {
         $this->httpMethod = $httpMethod;
         $this->httpPath = $httpPath;

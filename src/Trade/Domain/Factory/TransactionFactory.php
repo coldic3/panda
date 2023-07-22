@@ -23,7 +23,7 @@ final class TransactionFactory implements TransactionFactoryInterface
         OperationInterface $to,
         array $adjustments,
         \DateTimeInterface $concludedAt,
-        ?OwnerInterface $owner = null,
+        OwnerInterface $owner = null,
     ): TransactionInterface {
         $transaction = new Transaction(
             TransactionTypeEnum::ASK,
@@ -41,7 +41,7 @@ final class TransactionFactory implements TransactionFactoryInterface
         OperationInterface $to,
         array $adjustments,
         \DateTimeInterface $concludedAt,
-        ?OwnerInterface $owner = null,
+        OwnerInterface $owner = null,
     ): TransactionInterface {
         $transaction = new Transaction(
             TransactionTypeEnum::BID,
@@ -58,7 +58,7 @@ final class TransactionFactory implements TransactionFactoryInterface
         OperationInterface $to,
         array $adjustments,
         \DateTimeInterface $concludedAt,
-        ?OwnerInterface $owner = null,
+        OwnerInterface $owner = null,
     ): TransactionInterface {
         $transaction = new Transaction(
             TransactionTypeEnum::DEPOSIT,
@@ -75,7 +75,7 @@ final class TransactionFactory implements TransactionFactoryInterface
         OperationInterface $from,
         array $adjustments,
         \DateTimeInterface $concludedAt,
-        ?OwnerInterface $owner = null,
+        OwnerInterface $owner = null,
     ): TransactionInterface {
         $transaction = new Transaction(
             TransactionTypeEnum::WITHDRAW,
@@ -91,7 +91,7 @@ final class TransactionFactory implements TransactionFactoryInterface
     public function createFee(
         array $adjustments,
         \DateTimeInterface $concludedAt,
-        ?OwnerInterface $owner = null,
+        OwnerInterface $owner = null,
     ): TransactionInterface {
         Assert::notEmpty($adjustments);
 

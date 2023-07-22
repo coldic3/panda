@@ -9,5 +9,5 @@ use Panda\Portfolio\Domain\Model\PortfolioInterface;
 
 interface PortfolioFactoryInterface
 {
-    public function create(string $name, bool $default = false, ?OwnerInterface $owner = null): PortfolioInterface;
+    public function create(string $name, bool $default = false, OwnerInterface $owner = null): PortfolioInterface;
 }

@@ -23,5 +23,5 @@ interface ExchangeRateRepositoryInterface extends RepositoryInterface
 
     public function withBaseAndQuoteAssetsExists(AssetInterface $baseAsset, AssetInterface $quoteAsset): bool;
 
-    public function defaultQuery(OwnerInterface $owner, ?string $ticker = null): QueryInterface;
+    public function defaultQuery(OwnerInterface $owner, string $ticker = null): QueryInterface;
 }

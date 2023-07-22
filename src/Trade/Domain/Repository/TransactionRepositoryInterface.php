@@ -20,9 +20,9 @@ interface TransactionRepositoryInterface extends RepositoryInterface
 
     public function defaultQuery(
         OwnerInterface $owner,
-        ?string $fromOperationAssetId = null,
-        ?string $toOperationAssetId = null,
-        ?\DateTimeImmutable $afterConcludedAt = null,
-        ?\DateTimeImmutable $beforeConcludedAt = null,
+        string $fromOperationAssetId = null,
+        string $toOperationAssetId = null,
+        \DateTimeImmutable $afterConcludedAt = null,
+        \DateTimeImmutable $beforeConcludedAt = null,
     ): QueryInterface;
 }

@@ -8,5 +8,5 @@ use Panda\Account\Domain\Model\UserInterface;
 
 interface UserFactoryInterface
 {
-    public function create(string $email, ?string $password = null): UserInterface;
+    public function create(string $email, string $password = null): UserInterface;
 }

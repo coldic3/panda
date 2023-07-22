@@ -16,6 +16,7 @@ final class DoctrinePaginator implements PaginatorInterface
         private readonly Paginator $paginator
     ) {
         $query = $paginator->getQuery();
+        /** @var int|null $firstResult */
         $firstResult = $query->getFirstResult();
         $maxResults = $query->getMaxResults();
 
