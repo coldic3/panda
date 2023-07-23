@@ -5,12 +5,12 @@
   "hydra:description": "@string@",
   "violations": [
     {
-      "propertyPath": "baseAsset",
+      "propertyPath": "baseResourceTicker",
       "message": "This value should not be blank.",
       "code": "@uuid@"
     },
     {
-      "propertyPath": "quoteAsset",
+      "propertyPath": "quoteResourceTicker",
       "message": "This value should not be blank.",
       "code": "@uuid@"
     },

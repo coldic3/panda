@@ -1,0 +1,40 @@
+{
+  "@context": "/contexts/ExchangeRate",
+  "@id": "/exchange_rates",
+  "@type": "hydra:Collection",
+  "hydra:totalItems": 1,
+  "hydra:member": [
+    {
+      "@id": "/exchange_rates/@uuid@",
+      "@type": "ExchangeRate",
+      "baseResourceTicker": "ACM",
+      "quoteResourceTicker": "TCK1",
+      "rate": "@number@",
+      "createdAt": "@datetime@",
+      "updatedAt": "@datetime@"
+    }
+  ],
+  "hydra:view": {
+    "@id": "/exchange_rates?baseResourceTicker=ACM&quoteResourceTicker=TCK1",
+    "@type": "hydra:PartialCollectionView"
+  },
+  "hydra:search": {
+    "@type": "hydra:IriTemplate",
+    "hydra:template": "/exchange_rates{?baseResourceTicker,quoteResourceTicker}",
+    "hydra:variableRepresentation": "BasicRepresentation",
+    "hydra:mapping": [
+      {
+        "@type": "IriTemplateMapping",
+        "variable": "baseResourceTicker",
+        "property": "baseResourceTicker",
+        "required": false
+      },
+      {
+        "@type": "IriTemplateMapping",
+        "variable": "quoteResourceTicker",
+        "property": "quoteResourceTicker",
+        "required": false
+      }
+    ]
+  }
+}

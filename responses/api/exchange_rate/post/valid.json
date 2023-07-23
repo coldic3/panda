@@ -2,8 +2,8 @@
   "@context": "/contexts/ExchangeRate",
   "@id": "/exchange_rates/@uuid@",
   "@type": "ExchangeRate",
-  "baseAsset": "/assets/@uuid@",
-  "quoteAsset": "/assets/@uuid@",
+  "baseResourceTicker": "ACM",
+  "quoteResourceTicker": "TCK1",
   "rate": "@number@",
   "createdAt": "@datetime@",
   "updatedAt": "@datetime@"

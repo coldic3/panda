@@ -21,8 +21,8 @@ final class PostExchangeRateTest extends ApiTestCase
         $anotherAsset = $fixtures['asset_1'];
 
         $this->request(HttpMethodEnum::POST, '/exchange_rates', [
-            'baseAsset' => sprintf('/assets/%s', $acmeAsset->getId()->toRfc4122()),
-            'quoteAsset' => sprintf('/assets/%s', $anotherAsset->getId()->toRfc4122()),
+            'baseResourceTicker' => $acmeAsset->getTicker(),
+            'quoteResourceTicker' => $anotherAsset->getTicker(),
             'rate' => 1.18,
         ]);
 
@@ -42,8 +42,8 @@ final class PostExchangeRateTest extends ApiTestCase
         $anotherAsset = $fixtures['asset_1'];
 
         $this->request(HttpMethodEnum::POST, '/exchange_rates', [
-            'baseAsset' => sprintf('/assets/%s', $acmeAsset->getId()->toRfc4122()),
-            'quoteAsset' => sprintf('/assets/%s', $anotherAsset->getId()->toRfc4122()),
+            'baseResourceTicker' => $acmeAsset->getTicker(),
+            'quoteResourceTicker' => $anotherAsset->getTicker(),
             'rate' => 1.18,
         ], $this->generateAuthorizationHeader($user));
 
@@ -82,8 +82,8 @@ final class PostExchangeRateTest extends ApiTestCase
         $anotherAsset = $fixtures['asset_1'];
 
         $this->request(HttpMethodEnum::POST, '/exchange_rates', [
-            'baseAsset' => sprintf('/assets/%s', $acmeAsset->getId()->toRfc4122()),
-            'quoteAsset' => sprintf('/assets/%s', $anotherAsset->getId()->toRfc4122()),
+            'baseResourceTicker' => $acmeAsset->getTicker(),
+            'quoteResourceTicker' => $anotherAsset->getTicker(),
             'rate' => -1.18,
         ], $this->generateAuthorizationHeader($user));
 

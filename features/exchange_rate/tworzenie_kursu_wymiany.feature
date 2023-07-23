@@ -15,8 +15,8 @@ Potrzeba biznesowa: Tworzenie kursu wymiany
     @api
     Scenariusz: Tworzenie kursu wymiany
         Gdy tworzę nowy kurs wymiany
-        I wybieram aktywo bazowe "USD"
-        I wybieram aktywo kwotowane "PLN"
+        I wybieram ticker bazowy "USD"
+        I wybieram ticker kwotowany "PLN"
         I wybieram kurs 4.06
         I zatwierdzam wprowadzone dane
         Wtedy dodawanie kursu wymiany kończy się sukcesem
@@ -27,8 +27,8 @@ Potrzeba biznesowa: Tworzenie kursu wymiany
     Scenariusz: Tworzenie kursu wymiany dla aktywów, które już posiadają kurs wymiany
         Zakładając, że istnieje kurs wymiany "USD/PLN" na poziomie 4.06
         Gdy tworzę nowy kurs wymiany
-        I wybieram aktywo bazowe "USD"
-        I wybieram aktywo kwotowane "PLN"
+        I wybieram ticker bazowy "USD"
+        I wybieram ticker kwotowany "PLN"
         I wybieram kurs 4.73
         I zatwierdzam wprowadzone dane
         Wtedy dodawanie kursu wymiany kończy się niepowodzeniem
@@ -38,8 +38,8 @@ Potrzeba biznesowa: Tworzenie kursu wymiany
     Scenariusz: Tworzenie odwrotnego kursu wymiany wobec kursu dla aktywów, które już posiadają kurs wymiany
         Zakładając, że istnieje kurs wymiany "USD/PLN" na poziomie 4.06
         Gdy tworzę nowy kurs wymiany
-        I wybieram aktywo bazowe "PLN"
-        I wybieram aktywo kwotowane "USD"
+        I wybieram ticker bazowy "PLN"
+        I wybieram ticker kwotowany "USD"
         I wybieram kurs 0.2463
         I zatwierdzam wprowadzone dane
         Wtedy dodawanie kursu wymiany kończy się niepowodzeniem

@@ -1,20 +1,20 @@
 include:
     - 'assets.yaml'
 
-Panda\Trade\Domain\Model\ExchangeRate\ExchangeRate:
+Panda\Exchange\Domain\Model\ExchangeRate:
     exchange_rate_acme_1:
-        __construct: ['@asset_acme', '@asset_1', '<randomFloat(2, 0, 3)>'] 
+        __construct: ['@asset_acme->ticker', '@asset_1->ticker', '<randomFloat(2, 0, 3)>'] 
         createdAt: <(new DateTimeImmutable())>
         updatedAt: <(new DateTimeImmutable())>
     exchange_rate_acme_2:
-        __construct: ['@asset_acme', '@asset_2', '<randomFloat(2, 0, 3)>']
+        __construct: ['@asset_acme->ticker', '@asset_2->ticker', '<randomFloat(2, 0, 3)>']
         createdAt: <(new DateTimeImmutable())>
         updatedAt: <(new DateTimeImmutable())>
     exchange_rate_acme_3:
-        __construct: ['@asset_acme', '@asset_3', '<randomFloat(2, 0, 3)>']
+        __construct: ['@asset_acme->ticker', '@asset_3->ticker', '<randomFloat(2, 0, 3)>']
         createdAt: <(new DateTimeImmutable())>
         updatedAt: <(new DateTimeImmutable())>
     exchange_rate_acme_4:
-        __construct: ['@asset_acme', '@asset_4', '<randomFloat(2, 0, 3)>']
+        __construct: ['@asset_acme->ticker', '@asset_4->ticker', '<randomFloat(2, 0, 3)>']
         createdAt: <(new DateTimeImmutable())>
         updatedAt: <(new DateTimeImmutable())>

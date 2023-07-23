@@ -3,10 +3,10 @@
 namespace Panda\Tests\Api\ExchangeRate;
 
 use Panda\Account\Domain\Model\User;
+use Panda\Exchange\Domain\Model\ExchangeRate;
 use Panda\Tests\Api\ApiTestCase;
 use Panda\Tests\Util\HttpMethodEnum;
 use Panda\Trade\Domain\Model\Asset\Asset;
-use Panda\Trade\Domain\Model\ExchangeRate\ExchangeRate;
 use Symfony\Component\HttpFoundation\Response;
 
 final class GetExchangeRateTest extends ApiTestCase
@@ -50,16 +50,20 @@ final class GetExchangeRateTest extends ApiTestCase
 
         /** @var User $user */
         $user = $fixtures['user_panda'];
-        /** @var Asset $baseAsset */
-        $baseAsset = $fixtures['asset_acme'];
-        /** @var Asset $quoteAsset */
-        $quoteAsset = $fixtures['asset_1'];
+        /** @var Asset $baseResourceTicker */
+        $baseResourceTicker = $fixtures['asset_acme'];
+        /** @var Asset $quoteResourceTicker */
+        $quoteResourceTicker = $fixtures['asset_1'];
 
-        $uri = sprintf('/exchange_rates/%s/%s', $baseAsset->getId(), $quoteAsset->getId());
+        $uri = sprintf(
+            '/exchange_rates?baseResourceTicker=%s&quoteResourceTicker=%s',
+            $baseResourceTicker->getTicker(),
+            $quoteResourceTicker->getTicker(),
+        );
 
         $this->request(HttpMethodEnum::GET, $uri, [], $this->generateAuthorizationHeader($user));
 
-        $this->assertResponse($this->client->getResponse(), 'exchange_rate/get/item_by_base_and_quote_assets', Response::HTTP_OK);
+        $this->assertResponse($this->client->getResponse(), 'exchange_rate/get/collection_by_base_and_quote_assets', Response::HTTP_OK);
     }
 
     /** @test */

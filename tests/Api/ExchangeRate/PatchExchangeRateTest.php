@@ -3,9 +3,9 @@
 namespace Panda\Tests\Api\ExchangeRate;
 
 use Panda\Account\Domain\Model\User;
+use Panda\Exchange\Domain\Model\ExchangeRate;
 use Panda\Tests\Api\ApiTestCase;
 use Panda\Tests\Util\HttpMethodEnum;
-use Panda\Trade\Domain\Model\ExchangeRate\ExchangeRate;
 use Symfony\Component\HttpFoundation\Response;
 
 final class PatchExchangeRateTest extends ApiTestCase
