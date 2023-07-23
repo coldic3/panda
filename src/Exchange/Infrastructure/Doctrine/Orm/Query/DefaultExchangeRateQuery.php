@@ -14,8 +14,8 @@ final readonly class DefaultExchangeRateQuery implements QueryInterface
     use QueryBuilderAwareTrait;
 
     public function __construct(
-        private ?string $baseResourceTicker = null,
-        private ?string $quoteResourceTicker = null,
+        private ?string $baseTicker = null,
+        private ?string $quoteTicker = null,
     ) {
     }
 
@@ -24,14 +24,14 @@ final readonly class DefaultExchangeRateQuery implements QueryInterface
         $queryBuilder = $this->queryBuilder
             ->addOrderBy($alias.'.updatedAt', SortDirectionEnum::DESC);
 
-        if (null !== $this->baseResourceTicker) {
-            $queryBuilder->andWhere($alias.'.baseResourceTicker = :baseResourceTicker');
-            $queryBuilder->setParameter('baseResourceTicker', $this->baseResourceTicker);
+        if (null !== $this->baseTicker) {
+            $queryBuilder->andWhere($alias.'.baseTicker = :baseTicker');
+            $queryBuilder->setParameter('baseTicker', $this->baseTicker);
         }
 
-        if (null !== $this->quoteResourceTicker) {
-            $queryBuilder->andWhere($alias.'.quoteResourceTicker = :quoteResourceTicker');
-            $queryBuilder->setParameter('quoteResourceTicker', $this->quoteResourceTicker);
+        if (null !== $this->quoteTicker) {
+            $queryBuilder->andWhere($alias.'.quoteTicker = :quoteTicker');
+            $queryBuilder->setParameter('quoteTicker', $this->quoteTicker);
         }
 
         return $queryBuilder;

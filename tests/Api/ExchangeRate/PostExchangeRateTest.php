@@ -21,8 +21,8 @@ final class PostExchangeRateTest extends ApiTestCase
         $anotherAsset = $fixtures['asset_1'];
 
         $this->request(HttpMethodEnum::POST, '/exchange_rates', [
-            'baseResourceTicker' => $acmeAsset->getTicker(),
-            'quoteResourceTicker' => $anotherAsset->getTicker(),
+            'baseTicker' => $acmeAsset->getTicker(),
+            'quoteTicker' => $anotherAsset->getTicker(),
             'rate' => 1.18,
         ]);
 
@@ -42,8 +42,8 @@ final class PostExchangeRateTest extends ApiTestCase
         $anotherAsset = $fixtures['asset_1'];
 
         $this->request(HttpMethodEnum::POST, '/exchange_rates', [
-            'baseResourceTicker' => $acmeAsset->getTicker(),
-            'quoteResourceTicker' => $anotherAsset->getTicker(),
+            'baseTicker' => $acmeAsset->getTicker(),
+            'quoteTicker' => $anotherAsset->getTicker(),
             'rate' => 1.18,
         ], $this->generateAuthorizationHeader($user));
 
@@ -82,8 +82,8 @@ final class PostExchangeRateTest extends ApiTestCase
         $anotherAsset = $fixtures['asset_1'];
 
         $this->request(HttpMethodEnum::POST, '/exchange_rates', [
-            'baseResourceTicker' => $acmeAsset->getTicker(),
-            'quoteResourceTicker' => $anotherAsset->getTicker(),
+            'baseTicker' => $acmeAsset->getTicker(),
+            'quoteTicker' => $anotherAsset->getTicker(),
             'rate' => -1.18,
         ], $this->generateAuthorizationHeader($user));
 
@@ -107,8 +107,8 @@ final class PostExchangeRateTest extends ApiTestCase
         $anotherAsset = $fixtures['asset_1'];
 
         $this->request(HttpMethodEnum::POST, '/exchange_rates', [
-            'baseResourceTicker' => $acmeAsset->getTicker(),
-            'quoteResourceTicker' => $anotherAsset->getTicker(),
+            'baseTicker' => $acmeAsset->getTicker(),
+            'quoteTicker' => $anotherAsset->getTicker(),
             'rate' => 0,
         ], $this->generateAuthorizationHeader($user));
 

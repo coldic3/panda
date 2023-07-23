@@ -15,13 +15,13 @@ final class BaseQuoteResourcesFilter implements FilterInterface
     public function getDescription(string $resourceClass): array
     {
         return [
-            'baseResourceTicker' => [
-                'property' => 'baseResourceTicker',
+            'baseTicker' => [
+                'property' => 'baseTicker',
                 'type' => Type::BUILTIN_TYPE_STRING,
                 'required' => false,
             ],
-            'quoteResourceTicker' => [
-                'property' => 'quoteResourceTicker',
+            'quoteTicker' => [
+                'property' => 'quoteTicker',
                 'type' => Type::BUILTIN_TYPE_STRING,
                 'required' => false,
             ],

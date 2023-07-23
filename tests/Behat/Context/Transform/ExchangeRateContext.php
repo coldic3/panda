@@ -30,8 +30,8 @@ class ExchangeRateContext implements Context
             $exchangeRate = $this->entityManager
                 ->getRepository(ExchangeRate::class)
                 ->findOneBy([
-                    'baseResourceTicker' => $baseTicker,
-                    'quoteResourceTicker' => $quoteTicker,
+                    'baseTicker' => $baseTicker,
+                    'quoteTicker' => $quoteTicker,
                 ]),
             ExchangeRateInterface::class
         );

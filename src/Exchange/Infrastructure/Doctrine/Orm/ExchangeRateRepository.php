@@ -39,17 +39,17 @@ final class ExchangeRateRepository extends DoctrineRepository implements Exchang
         return $this->em->find(self::ENTITY_CLASS, $id);
     }
 
-    public function findByBaseAndQuoteResources(string $baseResourceTicker, string $quoteResourceTicker): ?ExchangeRateInterface
+    public function findByBaseAndQuoteResources(string $baseTicker, string $quoteTicker): ?ExchangeRateInterface
     {
         try {
             $result = $this->em
                 ->createQueryBuilder()
                 ->select('o')
                 ->from(self::ENTITY_CLASS, 'o')
-                ->where('o.baseResourceTicker = :baseResourceTicker')
-                ->andWhere('o.quoteResourceTicker = :quoteResourceTicker')
-                ->setParameter('baseResourceTicker', $baseResourceTicker)
-                ->setParameter('quoteResourceTicker', $quoteResourceTicker)
+                ->where('o.baseTicker = :baseTicker')
+                ->andWhere('o.quoteTicker = :quoteTicker')
+                ->setParameter('baseTicker', $baseTicker)
+                ->setParameter('quoteTicker', $quoteTicker)
                 ->getQuery()
                 ->getSingleResult();
         } catch (NoResultException) {
@@ -61,17 +61,17 @@ final class ExchangeRateRepository extends DoctrineRepository implements Exchang
         return $result;
     }
 
-    public function withBaseAndQuoteResourcesExist(string $baseResourceTicker, string $quoteResourceTicker): bool
+    public function withBaseAndQuoteResourcesExist(string $baseTicker, string $quoteTicker): bool
     {
         try {
             return (bool) $this->em
                 ->createQueryBuilder()
                 ->select('COUNT(o.id)')
                 ->from(self::ENTITY_CLASS, 'o')
-                ->where('o.baseResourceTicker = :baseResourceTicker')
-                ->andWhere('o.quoteResourceTicker = :quoteResourceTicker')
-                ->setParameter('baseResourceTicker', $baseResourceTicker)
-                ->setParameter('quoteResourceTicker', $quoteResourceTicker)
+                ->where('o.baseTicker = :baseTicker')
+                ->andWhere('o.quoteTicker = :quoteTicker')
+                ->setParameter('baseTicker', $baseTicker)
+                ->setParameter('quoteTicker', $quoteTicker)
                 ->getQuery()
                 ->getSingleScalarResult();
         } catch (NoResultException) {
@@ -79,8 +79,8 @@ final class ExchangeRateRepository extends DoctrineRepository implements Exchang
         }
     }
 
-    public function defaultQuery(string $baseResourceTicker = null, string $quoteResourceTicker = null): QueryInterface
+    public function defaultQuery(string $baseTicker = null, string $quoteTicker = null): QueryInterface
     {
-        return new Query\DefaultExchangeRateQuery($baseResourceTicker, $quoteResourceTicker);
+        return new Query\DefaultExchangeRateQuery($baseTicker, $quoteTicker);
     }
 }

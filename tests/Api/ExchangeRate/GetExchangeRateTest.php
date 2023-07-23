@@ -50,15 +50,15 @@ final class GetExchangeRateTest extends ApiTestCase
 
         /** @var User $user */
         $user = $fixtures['user_panda'];
-        /** @var Asset $baseResourceTicker */
-        $baseResourceTicker = $fixtures['asset_acme'];
-        /** @var Asset $quoteResourceTicker */
-        $quoteResourceTicker = $fixtures['asset_1'];
+        /** @var Asset $baseTicker */
+        $baseTicker = $fixtures['asset_acme'];
+        /** @var Asset $quoteTicker */
+        $quoteTicker = $fixtures['asset_1'];
 
         $uri = sprintf(
-            '/exchange_rates?baseResourceTicker=%s&quoteResourceTicker=%s',
-            $baseResourceTicker->getTicker(),
-            $quoteResourceTicker->getTicker(),
+            '/exchange_rates?baseTicker=%s&quoteTicker=%s',
+            $baseTicker->getTicker(),
+            $quoteTicker->getTicker(),
         );
 
         $this->request(HttpMethodEnum::GET, $uri, [], $this->generateAuthorizationHeader($user));

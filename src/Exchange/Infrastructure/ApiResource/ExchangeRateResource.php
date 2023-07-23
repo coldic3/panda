@@ -46,12 +46,12 @@ final class ExchangeRateResource
         #[ApiProperty]
         #[Assert\NotBlank(groups: ['panda:create'])]
         #[Groups([self::READ_GROUP, self::CREATE_GROUP])]
-        public ?string $baseResourceTicker = null,
+        public ?string $baseTicker = null,
 
         #[ApiProperty]
         #[Assert\NotBlank(groups: ['panda:create'])]
         #[Groups([self::READ_GROUP, self::CREATE_GROUP])]
-        public ?string $quoteResourceTicker = null,
+        public ?string $quoteTicker = null,
 
         #[ApiProperty]
         #[Assert\NotBlank(groups: ['panda:create', 'panda:update'])]
@@ -72,8 +72,8 @@ final class ExchangeRateResource
     {
         return new self(
             $exchangeRate->getId(),
-            $exchangeRate->getBaseResourceTicker(),
-            $exchangeRate->getQuoteResourceTicker(),
+            $exchangeRate->getBaseTicker(),
+            $exchangeRate->getQuoteTicker(),
             $exchangeRate->getRate(),
             $exchangeRate->getCreatedAt(),
             $exchangeRate->getUpdatedAt(),

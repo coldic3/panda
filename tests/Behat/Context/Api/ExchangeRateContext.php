@@ -70,7 +70,7 @@ class ExchangeRateContext implements Context
      */
     function i_enter_base_ticker(string $ticker)
     {
-        $this->http->addToPayload('baseResourceTicker', $ticker);
+        $this->http->addToPayload('baseTicker', $ticker);
     }
 
     /**
@@ -78,7 +78,7 @@ class ExchangeRateContext implements Context
      */
     function i_enter_quote_ticker(string $ticker)
     {
-        $this->http->addToPayload('quoteResourceTicker', $ticker);
+        $this->http->addToPayload('quoteTicker', $ticker);
     }
 
     /**
@@ -106,7 +106,7 @@ class ExchangeRateContext implements Context
         $this->http->initialize(
             HttpMethodEnum::GET,
             sprintf(
-                '/exchange_rates?baseResourceTicker=%s&quoteResourceTicker=%s',
+                '/exchange_rates?baseTicker=%s&quoteTicker=%s',
                 $baseQuote['base'],
                 $baseQuote['quote']
             ),
@@ -190,8 +190,8 @@ class ExchangeRateContext implements Context
         $violations = $response['violations'] ?? [];
         $actualViolatedPropertiesWithCount = array_count_values(array_column($violations, 'propertyPath'));
 
-        Assert::keyExists($actualViolatedPropertiesWithCount, 'baseResourceTicker');
-        Assert::same($actualViolatedPropertiesWithCount['baseResourceTicker'], 1);
+        Assert::keyExists($actualViolatedPropertiesWithCount, 'baseTicker');
+        Assert::same($actualViolatedPropertiesWithCount['baseTicker'], 1);
     }
 
     /**
@@ -203,8 +203,8 @@ class ExchangeRateContext implements Context
 
         Assert::notNull(
             $this->entityManager->getRepository(ExchangeRate::class)->findOneBy([
-                'baseResourceTicker' => $response['baseResourceTicker'],
-                'quoteResourceTicker' => $response['quoteResourceTicker'],
+                'baseTicker' => $response['baseTicker'],
+                'quoteTicker' => $response['quoteTicker'],
                 'rate' => $response['rate'],
             ])
         );
@@ -220,8 +220,8 @@ class ExchangeRateContext implements Context
 
         Assert::notNull(
             $this->entityManager->getRepository(ExchangeRate::class)->findOneBy([
-                'baseResourceTicker' => $response['quoteResourceTicker'],
-                'quoteResourceTicker' => $response['baseResourceTicker'],
+                'baseTicker' => $response['quoteTicker'],
+                'quoteTicker' => $response['baseTicker'],
                 'rate' => $rate,
             ])
         );

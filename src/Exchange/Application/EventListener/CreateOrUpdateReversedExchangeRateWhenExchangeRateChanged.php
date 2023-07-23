@@ -28,8 +28,8 @@ final readonly class CreateOrUpdateReversedExchangeRateWhenExchangeRateChanged
         );
 
         $reversedExchangeRate = $this->exchangeRateRepository->findByBaseAndQuoteResources(
-            $createdExchangeRate->getQuoteResourceTicker(),
-            $createdExchangeRate->getBaseResourceTicker(),
+            $createdExchangeRate->getQuoteTicker(),
+            $createdExchangeRate->getBaseTicker(),
         );
 
         $reversedRate = round(1 / $createdExchangeRate->getRate(), ExchangeRateInterface::RATE_PRECISION);
@@ -44,8 +44,8 @@ final readonly class CreateOrUpdateReversedExchangeRateWhenExchangeRateChanged
 
         $this->commandBus->dispatch(
             new CreateReversedExchangeRateCommand(
-                $createdExchangeRate->getQuoteResourceTicker(),
-                $createdExchangeRate->getBaseResourceTicker(),
+                $createdExchangeRate->getQuoteTicker(),
+                $createdExchangeRate->getBaseTicker(),
                 $reversedRate,
             )
         );

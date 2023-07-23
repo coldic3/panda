@@ -11,9 +11,9 @@ interface ExchangeRateInterface extends IdentifiableInterface, TimestampableInte
 {
     public const RATE_PRECISION = 4;
 
-    public function getBaseResourceTicker(): string;
+    public function getBaseTicker(): string;
 
-    public function getQuoteResourceTicker(): string;
+    public function getQuoteTicker(): string;
 
     public function getRate(): float;
 

@@ -17,9 +17,9 @@ interface ExchangeRateRepositoryInterface extends RepositoryInterface
 
     public function findById(Uuid $id): ?ExchangeRateInterface;
 
-    public function findByBaseAndQuoteResources(string $baseResourceTicker, string $quoteResourceTicker): ?ExchangeRateInterface;
+    public function findByBaseAndQuoteResources(string $baseTicker, string $quoteTicker): ?ExchangeRateInterface;
 
-    public function withBaseAndQuoteResourcesExist(string $baseResourceTicker, string $quoteResourceTicker): bool;
+    public function withBaseAndQuoteResourcesExist(string $baseTicker, string $quoteTicker): bool;
 
-    public function defaultQuery(string $baseResourceTicker = null, string $quoteResourceTicker = null): QueryInterface;
+    public function defaultQuery(string $baseTicker = null, string $quoteTicker = null): QueryInterface;
 }

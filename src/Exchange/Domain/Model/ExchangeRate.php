@@ -14,8 +14,8 @@ class ExchangeRate implements ExchangeRateInterface
     private Uuid $id;
 
     public function __construct(
-        private readonly string $baseResourceTicker,
-        private readonly string $quoteResourceTicker,
+        private readonly string $baseTicker,
+        private readonly string $quoteTicker,
         private float $rate,
     ) {
         $this->id = Uuid::v4();
@@ -26,14 +26,14 @@ class ExchangeRate implements ExchangeRateInterface
         return $this->id;
     }
 
-    public function getBaseResourceTicker(): string
+    public function getBaseTicker(): string
     {
-        return $this->baseResourceTicker;
+        return $this->baseTicker;
     }
 
-    public function getQuoteResourceTicker(): string
+    public function getQuoteTicker(): string
     {
-        return $this->quoteResourceTicker;
+        return $this->quoteTicker;
     }
 
     public function getRate(): float

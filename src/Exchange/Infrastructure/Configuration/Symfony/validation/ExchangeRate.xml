@@ -8,14 +8,14 @@
     <class name="Panda\Exchange\Domain\Model\ExchangeRate">
         <constraint name="Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity">
             <option name="fields">
-                <value>baseResourceTicker</value>
-                <value>quoteResourceTicker</value>
+                <value>baseTicker</value>
+                <value>quoteTicker</value>
             </option>
             <option name="groups">
                 <value>panda:create</value>
             </option>
         </constraint>
-        <property name="baseResourceTicker">
+        <property name="baseTicker">
             <constraint name="NotBlank">
                 <option name="groups">
                     <value>panda:create</value>
@@ -28,7 +28,7 @@
                 </option>
             </constraint>
         </property>
-        <property name="quoteResourceTicker">
+        <property name="quoteTicker">
             <constraint name="NotBlank">
                 <option name="groups">
                     <value>panda:create</value>

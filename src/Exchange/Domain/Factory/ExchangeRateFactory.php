@@ -9,8 +9,8 @@ use Panda\Exchange\Domain\Model\ExchangeRateInterface;
 
 final class ExchangeRateFactory implements ExchangeRateFactoryInterface
 {
-    public function create(string $baseResourceTicker, string $quoteResourceTicker, float $rate): ExchangeRateInterface
+    public function create(string $baseTicker, string $quoteTicker, float $rate): ExchangeRateInterface
     {
-        return new ExchangeRate($baseResourceTicker, $quoteResourceTicker, $rate);
+        return new ExchangeRate($baseTicker, $quoteTicker, $rate);
     }
 }

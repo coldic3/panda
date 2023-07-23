@@ -17,8 +17,8 @@ final readonly class FindExchangeRatesQueryHandler implements QueryHandlerInterf
     public function __invoke(FindExchangeRatesQuery $query): ?CollectionIteratorInterface
     {
         $exchangeRateQuery = $this->exchangeRateRepository->defaultQuery(
-            $query->baseResourceTicker,
-            $query->quoteResourceTicker,
+            $query->baseTicker,
+            $query->quoteTicker,
         );
 
         if (null !== $query->page && null !== $query->itemsPerPage) {

@@ -25,7 +25,7 @@ final readonly class CreateExchangeRateCommandHandler implements CommandHandlerI
 
     public function __invoke(CreateExchangeRateCommand|CreateReversedExchangeRateCommand $command): ExchangeRateInterface
     {
-        $exchangeRate = $this->exchangeRateFactory->create($command->baseResourceTicker, $command->quoteResourceTicker, $command->rate);
+        $exchangeRate = $this->exchangeRateFactory->create($command->baseTicker, $command->quoteTicker, $command->rate);
 
         $this->validator->validate($exchangeRate, ['groups' => ['panda:create']]);
 

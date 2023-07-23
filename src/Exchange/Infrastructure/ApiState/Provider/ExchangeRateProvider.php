@@ -41,17 +41,17 @@ final readonly class ExchangeRateProvider implements ProviderInterface
             $limit = $this->pagination->getLimit($operation, $context);
         }
 
-        $baseResourceTicker = isset($context['filters']['baseResourceTicker'])
-            ? (string) $context['filters']['baseResourceTicker']
+        $baseTicker = isset($context['filters']['baseTicker'])
+            ? (string) $context['filters']['baseTicker']
             : null;
-        $quoteResourceTicker = isset($context['filters']['quoteResourceTicker'])
-            ? (string) $context['filters']['quoteResourceTicker']
+        $quoteTicker = isset($context['filters']['quoteTicker'])
+            ? (string) $context['filters']['quoteTicker']
             : null;
 
         /** @var DoctrineCollectionIterator<ExchangeRate> $models */
         $models = $this->queryBus->ask(new FindExchangeRatesQuery(
-            $baseResourceTicker,
-            $quoteResourceTicker,
+            $baseTicker,
+            $quoteTicker,
             $offset,
             $limit,
         ));

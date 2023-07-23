@@ -34,8 +34,8 @@ final readonly class ExchangeRateProcessor implements ProcessorInterface
 
         $command = !isset($uriVariables['id'])
             ? new CreateExchangeRateCommand(
-                (string) $data->baseResourceTicker,
-                (string) $data->quoteResourceTicker,
+                (string) $data->baseTicker,
+                (string) $data->quoteTicker,
                 (float) $data->rate,
             )
             : new UpdateExchangeRateCommand($uriVariables['id'], (float) $data->rate);

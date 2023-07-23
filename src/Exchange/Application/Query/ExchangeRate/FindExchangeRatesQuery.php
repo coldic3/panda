@@ -9,8 +9,8 @@ use Panda\Core\Application\Query\QueryInterface;
 final readonly class FindExchangeRatesQuery implements QueryInterface
 {
     public function __construct(
-        public ?string $baseResourceTicker = null,
-        public ?string $quoteResourceTicker = null,
+        public ?string $baseTicker = null,
+        public ?string $quoteTicker = null,
         public ?int $page = null,
         public ?int $itemsPerPage = null,
     ) {

@@ -6,13 +6,13 @@
 >
     <entity name="Panda\Exchange\Domain\Model\ExchangeRate" table="panda_exchange_rate">
         <unique-constraints>
-            <unique-constraint columns="base_resource_ticker,quote_resource_ticker"/>
+            <unique-constraint columns="base_ticker,quote_ticker"/>
         </unique-constraints>
 
         <id name="id" column="id" type="uuid" />
 
-        <field name="baseResourceTicker" column="base_resource_ticker" length="255" />
-        <field name="quoteResourceTicker" column="quote_resource_ticker" length="255" />
+        <field name="baseTicker" column="base_ticker" length="255" />
+        <field name="quoteTicker" column="quote_ticker" length="255" />
         <field name="rate" column="rate" type="float" />
 
         <field name="createdAt" column="created_at" type="datetime"><gedmo:timestampable on="create"/></field>

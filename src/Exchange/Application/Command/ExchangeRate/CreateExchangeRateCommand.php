@@ -9,8 +9,8 @@ use Panda\Core\Application\Command\CommandInterface;
 final readonly class CreateExchangeRateCommand implements CommandInterface
 {
     public function __construct(
-        public string $baseResourceTicker,
-        public string $quoteResourceTicker,
+        public string $baseTicker,
+        public string $quoteTicker,
         public float $rate,
     ) {
     }
