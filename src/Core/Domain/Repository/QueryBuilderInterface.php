@@ -14,8 +14,6 @@ interface QueryBuilderInterface
 
     public function andWhere(string $where): self;
 
-    public function andNestedWhere(array $conditions): self;
-
     public function addOrderBy(string $sort, SortDirectionEnum $direction = SortDirectionEnum::ASC): self;
 
     public function setParameter(string $key, mixed $value): self;
