@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<constraint-mapping
+    xmlns="http://symfony.com/schema/dic/constraint-mapping"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://symfony.com/schema/dic/constraint-mapping http://symfony.com/schema/dic/services/constraint-mapping-1.0.xsd"
+>
+    <class name="Panda\Exchange\Domain\Model\ExchangeRateLive">
+        <constraint name="Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity">
+            <option name="fields">
+                <value>baseTicker</value>
+                <value>quoteTicker</value>
+            </option>
+            <option name="groups">
+                <value>panda:create</value>
+            </option>
+        </constraint>
+        <property name="baseTicker">
+            <constraint name="NotBlank">
+                <option name="groups">
+                    <value>panda:create</value>
+                </option>
+            </constraint>
+            <constraint name="Length">
+                <option name="max">255</option>
+                <option name="groups">
+                    <value>panda:create</value>
+                </option>
+            </constraint>
+        </property>
+        <property name="quoteTicker">
+            <constraint name="NotBlank">
+                <option name="groups">
+                    <value>panda:create</value>
+                </option>
+            </constraint>
+            <constraint name="Length">
+                <option name="max">255</option>
+                <option name="groups">
+                    <value>panda:create</value>
+                </option>
+            </constraint>
+        </property>
+        <property name="rate">
+            <constraint name="NotBlank">
+                <option name="groups">
+                    <value>panda:create</value>
+                    <value>panda:update</value>
+                </option>
+            </constraint>
+            <constraint name="Positive">
+                <option name="groups">
+                    <value>panda:create</value>
+                    <value>panda:update</value>
+                </option>
+            </constraint>
+        </property>
+    </class>
+</constraint-mapping>

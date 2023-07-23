@@ -6,7 +6,7 @@ namespace Panda\Tests\Behat\Context\Setup;
 
 use Behat\Behat\Context\Context;
 use Panda\Core\Application\Command\CommandBusInterface;
-use Panda\Exchange\Application\Command\ExchangeRate\CreateExchangeRateCommand;
+use Panda\Exchange\Application\Command\ExchangeRateLive\CreateExchangeRateLiveCommand;
 
 class ExchangeRateContext implements Context
 {
@@ -19,6 +19,6 @@ class ExchangeRateContext implements Context
      */
     function there_is_an_exchange_rate(array $baseQuote, float $rate)
     {
-        $this->commandBus->dispatch(new CreateExchangeRateCommand($baseQuote['base'], $baseQuote['quote'], $rate));
+        $this->commandBus->dispatch(new CreateExchangeRateLiveCommand($baseQuote['base'], $baseQuote['quote'], $rate));
     }
 }

@@ -1,0 +1,16 @@
+default:
+    suites:
+        api_exchange_rate_live:
+            contexts:
+                - Panda\Tests\Behat\Context\Hook\ClipboardContext
+                - Panda\Tests\Behat\Context\Hook\DoctrineOrmContext
+                - Panda\Tests\Behat\Context\Setup\AssetContext
+                - Panda\Tests\Behat\Context\Setup\ExchangeRateContext
+                - Panda\Tests\Behat\Context\Setup\PortfolioContext
+                - Panda\Tests\Behat\Context\Setup\UserContext
+                - Panda\Tests\Behat\Context\Api\ExchangeRateContext
+                - Panda\Tests\Behat\Context\Transform\AssetContext
+                - Panda\Tests\Behat\Context\Transform\ExchangeRateContext
+                - Panda\Tests\Behat\Context\Transform\UserContext
+            filters:
+                tags: "@api&&@exchange_rate_live"

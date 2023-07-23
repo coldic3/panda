@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<doctrine-mapping
+    xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping"
+    xmlns:gedmo="http://gediminasm.org/schemas/orm/doctrine-extensions-mapping"
+>
+    <entity name="Panda\Exchange\Domain\Model\ExchangeRateLive" table="panda_exchange_rate_live">
+        <unique-constraints>
+            <unique-constraint columns="base_ticker,quote_ticker"/>
+        </unique-constraints>
+
+        <id name="id" column="id" type="uuid" />
+
+        <field name="baseTicker" column="base_ticker" length="255" />
+        <field name="quoteTicker" column="quote_ticker" length="255" />
+        <field name="rate" column="rate" type="float" />
+
+        <field name="createdAt" column="created_at" type="datetime"><gedmo:timestampable on="create"/></field>
+        <field name="updatedAt" column="updated_at" type="datetime"><gedmo:timestampable on="update"/></field>
+    </entity>
+</doctrine-mapping>

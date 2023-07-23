@@ -4,21 +4,21 @@ declare(strict_types=1);
 
 use ApiPlatform\Validator\ValidatorInterface;
 use Panda\Core\Application\Event\EventBusInterface;
-use Panda\Exchange\Application\Command\ExchangeRate\CreateExchangeRateCommandHandler;
-use Panda\Exchange\Application\Command\ExchangeRate\DeleteExchangeRateCommandHandler;
-use Panda\Exchange\Application\Command\ExchangeRate\UpdateExchangeRateCommandHandler;
-use Panda\Exchange\Domain\Factory\ExchangeRateFactoryInterface;
-use Panda\Exchange\Domain\Repository\ExchangeRateRepositoryInterface;
+use Panda\Exchange\Application\Command\ExchangeRateLive\CreateExchangeRateLiveCommandHandler;
+use Panda\Exchange\Application\Command\ExchangeRateLive\DeleteExchangeRateLiveCommandHandler;
+use Panda\Exchange\Application\Command\ExchangeRateLive\UpdateExchangeRateLiveCommandHandler;
+use Panda\Exchange\Domain\Factory\ExchangeRateLiveFactoryInterface;
+use Panda\Exchange\Domain\Repository\ExchangeRateLiveRepositoryInterface;
 use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
 use function Symfony\Component\DependencyInjection\Loader\Configurator\service;
 
 return static function (ContainerConfigurator $containerConfigurator): void {
     $services = $containerConfigurator->services();
 
-    $services->set(CreateExchangeRateCommandHandler::class)
+    $services->set(CreateExchangeRateLiveCommandHandler::class)
         ->args([
-            service(ExchangeRateRepositoryInterface::class),
-            service(ExchangeRateFactoryInterface::class),
+            service(ExchangeRateLiveRepositoryInterface::class),
+            service(ExchangeRateLiveFactoryInterface::class),
             service(EventBusInterface::class),
             service(ValidatorInterface::class),
         ])
@@ -26,9 +26,9 @@ return static function (ContainerConfigurator $containerConfigurator): void {
             'bus' => 'command.bus',
         ]);
 
-    $services->set(UpdateExchangeRateCommandHandler::class)
+    $services->set(UpdateExchangeRateLiveCommandHandler::class)
         ->args([
-            service(ExchangeRateRepositoryInterface::class),
+            service(ExchangeRateLiveRepositoryInterface::class),
             service(EventBusInterface::class),
             service(ValidatorInterface::class),
         ])
@@ -36,8 +36,8 @@ return static function (ContainerConfigurator $containerConfigurator): void {
             'bus' => 'command.bus',
         ]);
 
-    $services->set(DeleteExchangeRateCommandHandler::class)
-        ->args([service(ExchangeRateRepositoryInterface::class)])
+    $services->set(DeleteExchangeRateLiveCommandHandler::class)
+        ->args([service(ExchangeRateLiveRepositoryInterface::class)])
         ->tag('messenger.message_handler', [
             'bus' => 'command.bus',
         ]);

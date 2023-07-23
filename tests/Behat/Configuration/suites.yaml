@@ -1,7 +1,7 @@
 imports:
     - Suite/api/asset.yaml
     - Suite/api/auth.yaml
-    - Suite/api/exchange_rate.yaml
+    - Suite/api/exchange_rate_live.yaml
     - Suite/api/portfolio.yaml
     - Suite/api/transaction.yaml
     - Suite/api/user.yaml

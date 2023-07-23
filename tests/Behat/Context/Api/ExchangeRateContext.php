@@ -8,8 +8,8 @@ use ApiPlatform\Api\IriConverterInterface;
 use ApiPlatform\Exception\ItemNotFoundException;
 use Behat\Behat\Context\Context;
 use Doctrine\ORM\EntityManagerInterface;
-use Panda\Exchange\Domain\Model\ExchangeRate;
-use Panda\Exchange\Domain\Model\ExchangeRateInterface;
+use Panda\Exchange\Domain\Model\ExchangeRateLive;
+use Panda\Exchange\Domain\Model\ExchangeRateLiveInterface;
 use Panda\Tests\Behat\Context\Util\EnableClipboardTrait;
 use Panda\Tests\Util\HttpMethodEnum;
 use Panda\Tests\Util\HttpRequestBuilder;
@@ -34,7 +34,7 @@ class ExchangeRateContext implements Context
     {
         $this->http->initialize(
             HttpMethodEnum::POST,
-            '/exchange_rates',
+            '/exchange_rate_lives',
             $this->clipboard->paste('token')
         );
     }
@@ -42,11 +42,11 @@ class ExchangeRateContext implements Context
     /**
      * @When /^modyfikuję kurs wymiany dla pary ("([^"]+\/[^"]+)")$/
      */
-    function i_edit_the_exchange_rate(ExchangeRateInterface $exchangeRate)
+    function i_edit_the_exchange_rate(ExchangeRateLiveInterface $exchangeRateLive)
     {
         $this->http->initialize(
             HttpMethodEnum::PATCH,
-            sprintf('/exchange_rates/%s', $exchangeRate->getId()),
+            sprintf('/exchange_rate_lives/%s', $exchangeRateLive->getId()),
             $this->clipboard->paste('token'),
         );
     }
@@ -54,11 +54,11 @@ class ExchangeRateContext implements Context
     /**
      * @When /^usuwam kurs wymiany dla pary ("([^"]+\/[^"]+)")$/
      */
-    function i_delete_exchange_rate(ExchangeRateInterface $exchangeRate)
+    function i_delete_exchange_rate(ExchangeRateLiveInterface $exchangeRateLive)
     {
         $this->http->initialize(
             HttpMethodEnum::DELETE,
-            sprintf('/exchange_rates/%s', $exchangeRate->getId()),
+            sprintf('/exchange_rate_lives/%s', $exchangeRateLive->getId()),
             $this->clipboard->paste('token'),
         );
 
@@ -106,7 +106,7 @@ class ExchangeRateContext implements Context
         $this->http->initialize(
             HttpMethodEnum::GET,
             sprintf(
-                '/exchange_rates?baseTicker=%s&quoteTicker=%s',
+                '/exchange_rate_lives?baseTicker=%s&quoteTicker=%s',
                 $baseQuote['base'],
                 $baseQuote['quote']
             ),
@@ -202,7 +202,7 @@ class ExchangeRateContext implements Context
         $response = $this->http->getResponse()->toArray();
 
         Assert::notNull(
-            $this->entityManager->getRepository(ExchangeRate::class)->findOneBy([
+            $this->entityManager->getRepository(ExchangeRateLive::class)->findOneBy([
                 'baseTicker' => $response['baseTicker'],
                 'quoteTicker' => $response['quoteTicker'],
                 'rate' => $response['rate'],
@@ -219,7 +219,7 @@ class ExchangeRateContext implements Context
         $response = $this->http->getResponse()->toArray();
 
         Assert::notNull(
-            $this->entityManager->getRepository(ExchangeRate::class)->findOneBy([
+            $this->entityManager->getRepository(ExchangeRateLive::class)->findOneBy([
                 'baseTicker' => $response['quoteTicker'],
                 'quoteTicker' => $response['baseTicker'],
                 'rate' => $rate,

@@ -6,8 +6,8 @@ namespace Panda\Tests\Behat\Context\Transform;
 
 use Behat\Behat\Context\Context;
 use Doctrine\ORM\EntityManagerInterface;
-use Panda\Exchange\Domain\Model\ExchangeRate;
-use Panda\Exchange\Domain\Model\ExchangeRateInterface;
+use Panda\Exchange\Domain\Model\ExchangeRateLive;
+use Panda\Exchange\Domain\Model\ExchangeRateLiveInterface;
 use Webmozart\Assert\Assert;
 
 class ExchangeRateContext implements Context
@@ -19,7 +19,7 @@ class ExchangeRateContext implements Context
     /**
      * @Transform /^"([^"]+\/[^"]+)"$/
      */
-    public function exchangeRate(string $baseQuote): ExchangeRateInterface
+    public function exchangeRate(string $baseQuote): ExchangeRateLiveInterface
     {
         $tickers = explode('/', $baseQuote);
         Assert::count($tickers, 2);
@@ -27,16 +27,16 @@ class ExchangeRateContext implements Context
         Assert::notNull($quoteTicker = $tickers[1] ?? null);
 
         Assert::isInstanceOf(
-            $exchangeRate = $this->entityManager
-                ->getRepository(ExchangeRate::class)
+            $exchangeRateLive = $this->entityManager
+                ->getRepository(ExchangeRateLive::class)
                 ->findOneBy([
                     'baseTicker' => $baseTicker,
                     'quoteTicker' => $quoteTicker,
                 ]),
-            ExchangeRateInterface::class
+            ExchangeRateLiveInterface::class
         );
 
-        return $exchangeRate;
+        return $exchangeRateLive;
     }
 
     /**
