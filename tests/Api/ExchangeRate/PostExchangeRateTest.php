@@ -89,7 +89,32 @@ final class PostExchangeRateTest extends ApiTestCase
 
         $this->assertResponse(
             $this->client->getResponse(),
-            'exchange_rate/post/invalid_negative_rate',
+            'exchange_rate/post/invalid_negative_or_zero_rate',
+            Response::HTTP_UNPROCESSABLE_ENTITY
+        );
+    }
+
+    /** @test */
+    function it_validates_for_zero_rates()
+    {
+        $fixtures = $this->loadFixturesFromFile('assets.yaml');
+
+        /** @var User $user */
+        $user = $fixtures['user_panda'];
+        /** @var Asset $acmeAsset */
+        $acmeAsset = $fixtures['asset_acme'];
+        /** @var Asset $anotherAsset */
+        $anotherAsset = $fixtures['asset_1'];
+
+        $this->request(HttpMethodEnum::POST, '/exchange_rates', [
+            'baseResourceTicker' => $acmeAsset->getTicker(),
+            'quoteResourceTicker' => $anotherAsset->getTicker(),
+            'rate' => 0,
+        ], $this->generateAuthorizationHeader($user));
+
+        $this->assertResponse(
+            $this->client->getResponse(),
+            'exchange_rate/post/invalid_negative_or_zero_rate',
             Response::HTTP_UNPROCESSABLE_ENTITY
         );
     }

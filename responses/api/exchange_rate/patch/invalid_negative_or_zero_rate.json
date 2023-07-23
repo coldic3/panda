@@ -6,7 +6,7 @@
   "violations": [
     {
       "propertyPath": "rate",
-      "message": "This value should be either positive or zero.",
+      "message": "This value should be positive.",
       "code": "@uuid@"
     }
   ]

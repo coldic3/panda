@@ -87,7 +87,30 @@ final class PatchExchangeRateTest extends ApiTestCase
 
         $this->assertResponse(
             $this->client->getResponse(),
-            'exchange_rate/patch/invalid_negative_rate',
+            'exchange_rate/patch/invalid_negative_or_zero_rate',
+            Response::HTTP_UNPROCESSABLE_ENTITY,
+        );
+    }
+
+    /** @test */
+    function it_validates_for_zero_rate()
+    {
+        $fixtures = $this->loadFixturesFromFile('exchange_rates.yaml');
+
+        /** @var User $user */
+        $user = $fixtures['user_panda'];
+        /** @var ExchangeRate $exchangeRate */
+        $exchangeRate = $fixtures['exchange_rate_acme_1'];
+
+        $uri = sprintf('/exchange_rates/%s', $exchangeRate->getId());
+
+        $this->request(HttpMethodEnum::PATCH, $uri, [
+            'rate' => 0,
+        ], $this->generateAuthorizationHeader($user));
+
+        $this->assertResponse(
+            $this->client->getResponse(),
+            'exchange_rate/patch/invalid_negative_or_zero_rate',
             Response::HTTP_UNPROCESSABLE_ENTITY,
         );
     }
