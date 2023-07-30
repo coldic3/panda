@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<doctrine-mapping
+    xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping"
+    xmlns:gedmo="http://gediminasm.org/schemas/orm/doctrine-extensions-mapping"
+>
+    <entity name="Panda\Exchange\Domain\Model\ExchangeRateLive" table="panda_exchange_rate_live">
+        <unique-constraints>
+            <unique-constraint columns="base_ticker,quote_ticker"/>
+        </unique-constraints>
+
+        <field name="createdAt" column="created_at" type="datetime"><gedmo:timestampable on="create"/></field>
+        <field name="updatedAt" column="updated_at" type="datetime"><gedmo:timestampable on="update"/></field>
+
+        <many-to-one field="owner" target-entity="Panda\AccountOHS\Domain\Model\Owner\OwnerInterface">
+            <join-column name="owner_id" nullable="false" />
+        </many-to-one>
+    </entity>
+</doctrine-mapping>

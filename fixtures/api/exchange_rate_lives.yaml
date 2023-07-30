@@ -1,0 +1,24 @@
+include:
+    - 'assets.yaml'
+
+Panda\Exchange\Domain\Model\ExchangeRateLive:
+    exchange_rate_live_acme_1:
+        __construct: ['@asset_acme->ticker', '@asset_1->ticker', '<randomFloat(2, 0, 3)>']
+        ownedBy: '@user_panda'
+        createdAt: <(new DateTimeImmutable())>
+        updatedAt: <(new DateTimeImmutable())>
+    exchange_rate_live_acme_2:
+        __construct: ['@asset_acme->ticker', '@asset_2->ticker', '<randomFloat(2, 0, 3)>']
+        ownedBy: '@user_panda'
+        createdAt: <(new DateTimeImmutable())>
+        updatedAt: <(new DateTimeImmutable())>
+    exchange_rate_live_acme_3:
+        __construct: ['@asset_acme->ticker', '@asset_3->ticker', '<randomFloat(2, 0, 3)>']
+        ownedBy: '@user_panda'
+        createdAt: <(new DateTimeImmutable())>
+        updatedAt: <(new DateTimeImmutable())>
+    exchange_rate_live_acme_4:
+        __construct: ['@asset_acme->ticker', '@asset_4->ticker', '<randomFloat(2, 0, 3)>']
+        ownedBy: '@user_panda'
+        createdAt: <(new DateTimeImmutable())>
+        updatedAt: <(new DateTimeImmutable())>

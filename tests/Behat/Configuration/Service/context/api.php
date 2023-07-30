@@ -8,6 +8,7 @@ use Panda\Account\Domain\Repository\UserRepositoryInterface;
 use Panda\Tests\Behat\Context\Api\AssetContext;
 use Panda\Tests\Behat\Context\Api\AuthContext;
 use Panda\Tests\Behat\Context\Api\ExchangeRateContext;
+use Panda\Tests\Behat\Context\Api\ExchangeRateLogContext;
 use Panda\Tests\Behat\Context\Api\PortfolioContext;
 use Panda\Tests\Behat\Context\Api\TransactionContext;
 use Panda\Tests\Behat\Context\Api\UserContext;
@@ -38,6 +39,13 @@ return static function (ContainerConfigurator $containerConfigurator): void {
         ]);
 
     $services->set(ExchangeRateContext::class)
+        ->args([
+            service(HttpRequestBuilder::class),
+            service(IriConverterInterface::class),
+            service(EntityManagerInterface::class),
+        ]);
+
+    $services->set(ExchangeRateLogContext::class)
         ->args([
             service(HttpRequestBuilder::class),
             service(IriConverterInterface::class),

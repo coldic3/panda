@@ -1,0 +1,10 @@
+include:
+    - 'user.yaml'
+
+Panda\Exchange\Domain\Model\ExchangeRateLog:
+    exchange_rate_log_usd_pln_{1..5}:
+        __factory: {'Panda\Tests\Fixture\Factory\ExchangeRateLogFactory::createWorkingDayLog': ['USD', 'PLN', '<randomFloat(2, 0, 3)>', '2023-07-10', <current()>] }
+        ownedBy: '@user_panda'
+    exchange_rate_log_cny_eur_{1..10}:
+        __factory: {'Panda\Tests\Fixture\Factory\ExchangeRateLogFactory::createWorkingDayLog': ['CNY', 'EUR', '<randomFloat(2, 0, 3)>', '2023-07-12', <current()>] }
+        ownedBy: '@user_panda'

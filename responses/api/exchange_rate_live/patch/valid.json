@@ -1,0 +1,10 @@
+{
+  "@context": "/contexts/ExchangeRateLive",
+  "@id": "/exchange_rate_lives/@uuid@",
+  "@type": "ExchangeRateLive",
+  "baseTicker": "ACM",
+  "quoteTicker": "TCK1",
+  "rate": "@number@",
+  "createdAt": "@datetime@",
+  "updatedAt": "@datetime@"
+}

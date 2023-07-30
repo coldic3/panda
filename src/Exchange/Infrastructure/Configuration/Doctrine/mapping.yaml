@@ -1,0 +1,9 @@
+doctrine:
+    orm:
+        mappings:
+            ExchangeRateLive:
+                is_bundle: false
+                type: xml
+                dir: '%kernel.project_dir%/src/Exchange/Infrastructure/Configuration/Doctrine/mappings'
+                prefix: 'Panda\Exchange\Domain\Model'
+                alias: ExchangeRateLive

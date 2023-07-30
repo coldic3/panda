@@ -1,0 +1,23 @@
+{
+  "@context": "/contexts/ConstraintViolationList",
+  "@type": "ConstraintViolationList",
+  "hydra:title": "An error occurred",
+  "hydra:description": "@string@",
+  "violations": [
+    {
+      "propertyPath": "baseTicker",
+      "message": "This value should not be blank.",
+      "code": "@uuid@"
+    },
+    {
+      "propertyPath": "quoteTicker",
+      "message": "This value should not be blank.",
+      "code": "@uuid@"
+    },
+    {
+      "propertyPath": "rate",
+      "message": "This value should not be blank.",
+      "code": "@uuid@"
+    }
+  ]
+}

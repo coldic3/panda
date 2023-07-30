@@ -1,0 +1,18 @@
+{
+  "@context": "/contexts/ConstraintViolationList",
+  "@type": "ConstraintViolationList",
+  "hydra:title": "An error occurred",
+  "hydra:description": "@string@",
+  "violations": [
+    {
+      "propertyPath": "startedAt",
+      "message": "The \"2023-07-09 00:00:00\" datetime cannot be overlapped with existing ExchangeRateLog identified by \"@uuid@\".",
+      "code": "@uuid@"
+    },
+    {
+      "propertyPath": "endedAt",
+      "message": "The \"2023-07-13 23:59:59\" datetime cannot be overlapped with existing ExchangeRateLog identified by \"@uuid@\".",
+      "code": "@uuid@"
+    }
+  ]
+}

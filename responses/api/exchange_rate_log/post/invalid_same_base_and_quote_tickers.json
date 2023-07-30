@@ -1,0 +1,13 @@
+{
+  "@context": "/contexts/ConstraintViolationList",
+  "@type": "ConstraintViolationList",
+  "hydra:title": "An error occurred",
+  "hydra:description": "@string@",
+  "violations": [
+    {
+      "propertyPath": "baseTicker",
+      "message": "This field should have a different value than \"quoteTicker\" field.",
+      "code": "@uuid@"
+    }
+  ]
+}

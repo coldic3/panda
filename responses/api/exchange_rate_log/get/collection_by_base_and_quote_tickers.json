@@ -1,0 +1,76 @@
+{
+  "@context": "/contexts/ExchangeRateLog",
+  "@id": "/exchange_rate_logs",
+  "@type": "hydra:Collection",
+  "hydra:totalItems": 5,
+  "hydra:member": [
+    {
+      "@id": "/exchange_rate_logs/@uuid@",
+      "@type": "ExchangeRateLog",
+      "baseTicker": "USD",
+      "quoteTicker": "PLN",
+      "rate": "@number@",
+      "startedAt": "2023-07-17T00:00:00+00:00",
+      "endedAt": "2023-07-17T23:59:59+00:00"
+    },
+    {
+      "@id": "/exchange_rate_logs/@uuid@",
+      "@type": "ExchangeRateLog",
+      "baseTicker": "USD",
+      "quoteTicker": "PLN",
+      "rate": "@number@",
+      "startedAt": "2023-07-14T00:00:00+00:00",
+      "endedAt": "2023-07-14T23:59:59+00:00"
+    },
+    {
+      "@id": "/exchange_rate_logs/@uuid@",
+      "@type": "ExchangeRateLog",
+      "baseTicker": "USD",
+      "quoteTicker": "PLN",
+      "rate": "@number@",
+      "startedAt": "2023-07-13T00:00:00+00:00",
+      "endedAt": "2023-07-13T23:59:59+00:00"
+    },
+    {
+      "@id": "/exchange_rate_logs/@uuid@",
+      "@type": "ExchangeRateLog",
+      "baseTicker": "USD",
+      "quoteTicker": "PLN",
+      "rate": "@number@",
+      "startedAt": "2023-07-12T00:00:00+00:00",
+      "endedAt": "2023-07-12T23:59:59+00:00"
+    },
+    {
+      "@id": "/exchange_rate_logs/@uuid@",
+      "@type": "ExchangeRateLog",
+      "baseTicker": "USD",
+      "quoteTicker": "PLN",
+      "rate": "@number@",
+      "startedAt": "2023-07-11T00:00:00+00:00",
+      "endedAt": "2023-07-11T23:59:59+00:00"
+    }
+  ],
+  "hydra:view": {
+    "@id": "/exchange_rate_logs?baseTicker=USD&quoteTicker=PLN",
+    "@type": "hydra:PartialCollectionView"
+  },
+  "hydra:search": {
+    "@type": "hydra:IriTemplate",
+    "hydra:template": "/exchange_rate_logs{?baseTicker,quoteTicker}",
+    "hydra:variableRepresentation": "BasicRepresentation",
+    "hydra:mapping": [
+      {
+        "@type": "IriTemplateMapping",
+        "variable": "baseTicker",
+        "property": "baseTicker",
+        "required": false
+      },
+      {
+        "@type": "IriTemplateMapping",
+        "variable": "quoteTicker",
+        "property": "quoteTicker",
+        "required": false
+      }
+    ]
+  }
+}

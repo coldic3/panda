@@ -8,13 +8,11 @@ use ApiPlatform\Api\IriConverterInterface;
 use ApiPlatform\Exception\ItemNotFoundException;
 use Behat\Behat\Context\Context;
 use Doctrine\ORM\EntityManagerInterface;
+use Panda\Exchange\Domain\Model\ExchangeRateLive;
+use Panda\Exchange\Domain\Model\ExchangeRateLiveInterface;
 use Panda\Tests\Behat\Context\Util\EnableClipboardTrait;
 use Panda\Tests\Util\HttpMethodEnum;
 use Panda\Tests\Util\HttpRequestBuilder;
-use Panda\Trade\Domain\Model\Asset\AssetInterface;
-use Panda\Trade\Domain\Model\ExchangeRate\ExchangeRate;
-use Panda\Trade\Domain\Model\ExchangeRate\ExchangeRateInterface;
-use Panda\Trade\Infrastructure\ApiResource\AssetResource;
 use Symfony\Component\HttpFoundation\Response;
 use Webmozart\Assert\Assert;
 
@@ -36,7 +34,7 @@ class ExchangeRateContext implements Context
     {
         $this->http->initialize(
             HttpMethodEnum::POST,
-            '/exchange_rates',
+            '/exchange_rate_lives',
             $this->clipboard->paste('token')
         );
     }
@@ -44,11 +42,11 @@ class ExchangeRateContext implements Context
     /**
      * @When /^modyfikuję kurs wymiany dla pary ("([^"]+\/[^"]+)")$/
      */
-    function i_edit_the_exchange_rate(ExchangeRateInterface $exchangeRate)
+    function i_edit_the_exchange_rate(ExchangeRateLiveInterface $exchangeRateLive)
     {
         $this->http->initialize(
             HttpMethodEnum::PATCH,
-            sprintf('/exchange_rates/%s', $exchangeRate->getId()),
+            sprintf('/exchange_rate_lives/%s', $exchangeRateLive->getId()),
             $this->clipboard->paste('token'),
         );
     }
@@ -56,11 +54,11 @@ class ExchangeRateContext implements Context
     /**
      * @When /^usuwam kurs wymiany dla pary ("([^"]+\/[^"]+)")$/
      */
-    function i_delete_exchange_rate(ExchangeRateInterface $exchangeRate)
+    function i_delete_exchange_rate(ExchangeRateLiveInterface $exchangeRateLive)
     {
         $this->http->initialize(
             HttpMethodEnum::DELETE,
-            sprintf('/exchange_rates/%s', $exchangeRate->getId()),
+            sprintf('/exchange_rate_lives/%s', $exchangeRateLive->getId()),
             $this->clipboard->paste('token'),
         );
 
@@ -68,19 +66,19 @@ class ExchangeRateContext implements Context
     }
 
     /**
-     * @When wybieram aktywo bazowe :asset
+     * @When wybieram ticker bazowy :ticker
      */
-    function i_enter_base_asset(AssetInterface $asset)
+    function i_enter_base_ticker(string $ticker)
     {
-        $this->http->addToPayload('baseAsset', $this->iriConverter->getIriFromResource(AssetResource::fromModel($asset)));
+        $this->http->addToPayload('baseTicker', $ticker);
     }
 
     /**
-     * @When wybieram aktywo kwotowane :asset
+     * @When wybieram ticker kwotowany :ticker
      */
-    function i_enter_quote_asset(AssetInterface $asset)
+    function i_enter_quote_ticker(string $ticker)
     {
-        $this->http->addToPayload('quoteAsset', $this->iriConverter->getIriFromResource(AssetResource::fromModel($asset)));
+        $this->http->addToPayload('quoteTicker', $ticker);
     }
 
     /**
@@ -107,7 +105,11 @@ class ExchangeRateContext implements Context
     {
         $this->http->initialize(
             HttpMethodEnum::GET,
-            sprintf('/exchange_rates/%s/%s', $baseQuote['baseId'], $baseQuote['quoteId']),
+            sprintf(
+                '/exchange_rate_lives?baseTicker=%s&quoteTicker=%s',
+                $baseQuote['base'],
+                $baseQuote['quote']
+            ),
             $this->clipboard->paste('token'),
         );
 
@@ -138,6 +140,10 @@ class ExchangeRateContext implements Context
     function i_see_exchange_rate_is(float $rate)
     {
         $response = json_decode($this->http->getResponse()->getContent(false), true);
+
+        if (isset($response['hydra:member'][0])) {
+            $response = $response['hydra:member'][0];
+        }
 
         Assert::keyExists($response, 'rate');
         Assert::same((float) $response['rate'], $rate);
@@ -184,8 +190,8 @@ class ExchangeRateContext implements Context
         $violations = $response['violations'] ?? [];
         $actualViolatedPropertiesWithCount = array_count_values(array_column($violations, 'propertyPath'));
 
-        Assert::keyExists($actualViolatedPropertiesWithCount, 'baseAsset');
-        Assert::same($actualViolatedPropertiesWithCount['baseAsset'], 1);
+        Assert::keyExists($actualViolatedPropertiesWithCount, 'baseTicker');
+        Assert::same($actualViolatedPropertiesWithCount['baseTicker'], 1);
     }
 
     /**
@@ -193,20 +199,13 @@ class ExchangeRateContext implements Context
      */
     function the_exchange_rate_has_been_added()
     {
-        Assert::isInstanceOf(
-            $baseAssetResource = $this->iriConverter->getResourceFromIri($this->http->getResponse()->toArray()['baseAsset']),
-            AssetResource::class,
-        );
-        Assert::isInstanceOf(
-            $quoteAssetResource = $this->iriConverter->getResourceFromIri($this->http->getResponse()->toArray()['quoteAsset']),
-            AssetResource::class,
-        );
+        $response = $this->http->getResponse()->toArray();
 
         Assert::notNull(
-            $this->entityManager->getRepository(ExchangeRate::class)->findOneBy([
-                'baseAsset' => $baseAssetResource->id,
-                'quoteAsset' => $quoteAssetResource->id,
-                'rate' => $this->http->getResponse()->toArray()['rate'],
+            $this->entityManager->getRepository(ExchangeRateLive::class)->findOneBy([
+                'baseTicker' => $response['baseTicker'],
+                'quoteTicker' => $response['quoteTicker'],
+                'rate' => $response['rate'],
             ])
         );
     }
@@ -217,19 +216,12 @@ class ExchangeRateContext implements Context
      */
     function reversed_exchange_rate_has_been_added(float $rate)
     {
-        Assert::isInstanceOf(
-            $baseAssetResource = $this->iriConverter->getResourceFromIri($this->http->getResponse()->toArray()['baseAsset']),
-            AssetResource::class,
-        );
-        Assert::isInstanceOf(
-            $quoteAssetResource = $this->iriConverter->getResourceFromIri($this->http->getResponse()->toArray()['quoteAsset']),
-            AssetResource::class,
-        );
+        $response = $this->http->getResponse()->toArray();
 
         Assert::notNull(
-            $this->entityManager->getRepository(ExchangeRate::class)->findOneBy([
-                'baseAsset' => $quoteAssetResource->id,
-                'quoteAsset' => $baseAssetResource->id,
+            $this->entityManager->getRepository(ExchangeRateLive::class)->findOneBy([
+                'baseTicker' => $response['quoteTicker'],
+                'quoteTicker' => $response['baseTicker'],
                 'rate' => $rate,
             ])
         );
