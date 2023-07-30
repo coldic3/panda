@@ -23,6 +23,14 @@ final class BoundedContextsSeparationTest
             ->classes(...$this->findBoundedContextsExcept(['Account', 'AccountOHS', ...self::COUPLING_ALLOWED]));
     }
 
+    public function test_exchange_bounded_context_does_not_depend_on_other_bounded_contexts(): Rule
+    {
+        return PHPat::rule()
+            ->classes($this->getBoundedContextClassNamespace('Exchange'))
+            ->shouldNotDependOn()
+            ->classes(...$this->findBoundedContextsExcept(['Exchange', ...self::COUPLING_ALLOWED]));
+    }
+
     public function test_portfolio_bounded_context_does_not_depend_on_other_bounded_contexts(): Rule
     {
         return PHPat::rule()
