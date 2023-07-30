@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Panda\Exchange\Application\EventListener;
 
+use Panda\AccountOHS\Domain\Provider\AuthorizedUserProviderInterface;
 use Panda\Core\Application\Command\CommandBusInterface;
 use Panda\Exchange\Application\Command\ExchangeRateLive\CreateReversedExchangeRateLiveCommand;
 use Panda\Exchange\Application\Command\ExchangeRateLive\UpdateReversedExchangeRateLiveCommand;
@@ -16,6 +17,7 @@ use Webmozart\Assert\Assert;
 final readonly class CreateOrUpdateReversedExchangeRateLiveWhenExchangeRateLiveChanged
 {
     public function __construct(
+        private AuthorizedUserProviderInterface $authorizedUserProvider,
         private ExchangeRateLiveRepositoryInterface $exchangeRateRepository,
         private CommandBusInterface $commandBus,
     ) {
@@ -28,6 +30,7 @@ final readonly class CreateOrUpdateReversedExchangeRateLiveWhenExchangeRateLiveC
         );
 
         $reversedExchangeRate = $this->exchangeRateRepository->findByBaseAndQuoteResources(
+            $this->authorizedUserProvider->provide(),
             $createdExchangeRate->getQuoteTicker(),
             $createdExchangeRate->getBaseTicker(),
         );

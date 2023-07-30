@@ -2,6 +2,7 @@
 
 declare(strict_types=1);
 
+use Panda\AccountOHS\Domain\Provider\AuthorizedUserProviderInterface;
 use Panda\Exchange\Application\Query\ExchangeRateLive\FindExchangeRateLiveQueryHandler;
 use Panda\Exchange\Application\Query\ExchangeRateLive\FindExchangeRateLivesQueryHandler;
 use Panda\Exchange\Application\Query\ExchangeRateLog\FindExchangeRateLogQueryHandler;
@@ -21,7 +22,10 @@ return static function (ContainerConfigurator $containerConfigurator): void {
         ]);
 
     $services->set(FindExchangeRateLivesQueryHandler::class)
-        ->args([service(ExchangeRateLiveRepositoryInterface::class)])
+        ->args([
+            service(AuthorizedUserProviderInterface::class),
+            service(ExchangeRateLiveRepositoryInterface::class),
+        ])
         ->tag('messenger.message_handler', [
             'bus' => 'query.bus',
         ]);
@@ -33,7 +37,10 @@ return static function (ContainerConfigurator $containerConfigurator): void {
         ]);
 
     $services->set(FindExchangeRateLogsQueryHandler::class)
-        ->args([service(ExchangeRateLogRepositoryInterface::class)])
+        ->args([
+            service(AuthorizedUserProviderInterface::class),
+            service(ExchangeRateLogRepositoryInterface::class),
+        ])
         ->tag('messenger.message_handler', [
             'bus' => 'query.bus',
         ]);

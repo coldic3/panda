@@ -6,6 +6,7 @@ namespace Panda\Exchange\Infrastructure\Doctrine\Orm;
 
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\NoResultException;
+use Panda\AccountOHS\Domain\Model\Owner\OwnerInterface;
 use Panda\Core\Domain\Repository\QueryInterface;
 use Panda\Core\Infrastructure\Doctrine\Orm\DoctrineRepository;
 use Panda\Exchange\Domain\Model\ExchangeRateLog;
@@ -40,6 +41,7 @@ final class ExchangeRateLogRepository extends DoctrineRepository implements Exch
     }
 
     public function findInDatetimeRange(
+        OwnerInterface $owner,
         string $baseTicker,
         string $quoteTicker,
         \DateTimeInterface $fromDatetime,
@@ -51,12 +53,14 @@ final class ExchangeRateLogRepository extends DoctrineRepository implements Exch
             $result = $queryBuilder
                 ->select('o')
                 ->from(self::ENTITY_CLASS, 'o')
-                ->where('o.baseTicker = :baseTicker AND o.quoteTicker = :quoteTicker')
+                ->where('o.owner = :owner')
+                ->andWhere('o.baseTicker = :baseTicker AND o.quoteTicker = :quoteTicker')
                 ->andWhere($queryBuilder->expr()->orX(
                     ':fromDatetime >= o.startedAt AND :fromDatetime <= o.endedAt',
                     ':toDatetime >= o.startedAt AND :toDatetime <= o.endedAt',
                     ':fromDatetime <= o.startedAt AND :toDatetime >= o.endedAt',
                 ))
+                ->setParameter('owner', $owner)
                 ->setParameter('baseTicker', $baseTicker)
                 ->setParameter('quoteTicker', $quoteTicker)
                 ->setParameter('fromDatetime', $fromDatetime)
@@ -74,12 +78,12 @@ final class ExchangeRateLogRepository extends DoctrineRepository implements Exch
     }
 
     public function defaultQuery(
+        OwnerInterface $owner,
         string $baseTicker = null,
         string $quoteTicker = null,
-        \DateTimeInterface $startedAt = null,
-        \DateTimeInterface $endedAt = null
+        \DateTimeInterface $fromDatetime = null,
+        \DateTimeInterface $toDatetime = null
     ): QueryInterface {
-        // TODO: Add startedAt and endedAt filters!
-        return new Query\DefaultExchangeRateLogQuery($baseTicker, $quoteTicker);
+        return new Query\DefaultExchangeRateLogQuery($owner, $baseTicker, $quoteTicker, $fromDatetime, $toDatetime);
     }
 }

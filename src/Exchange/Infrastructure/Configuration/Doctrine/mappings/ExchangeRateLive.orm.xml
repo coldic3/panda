@@ -11,5 +11,9 @@
 
         <field name="createdAt" column="created_at" type="datetime"><gedmo:timestampable on="create"/></field>
         <field name="updatedAt" column="updated_at" type="datetime"><gedmo:timestampable on="update"/></field>
+
+        <many-to-one field="owner" target-entity="Panda\AccountOHS\Domain\Model\Owner\OwnerInterface">
+            <join-column name="owner_id" nullable="false" />
+        </many-to-one>
     </entity>
 </doctrine-mapping>

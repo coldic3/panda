@@ -4,8 +4,12 @@ declare(strict_types=1);
 
 namespace Panda\Exchange\Domain\Model;
 
+use Panda\AccountOHS\Domain\Model\Owner\OwnerInterface;
+
 class ExchangeRateLog extends ExchangeRate implements ExchangeRateLogInterface
 {
+    private ?OwnerInterface $owner = null;
+
     public function __construct(
         string $baseTicker,
         string $quoteTicker,
@@ -24,5 +28,15 @@ class ExchangeRateLog extends ExchangeRate implements ExchangeRateLogInterface
     public function getEndedAt(): \DateTimeInterface
     {
         return $this->endedAt;
+    }
+
+    public function getOwnedBy(): ?OwnerInterface
+    {
+        return $this->owner;
+    }
+
+    public function setOwnedBy(OwnerInterface $owner): void
+    {
+        $this->owner = $owner;
     }
 }

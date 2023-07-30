@@ -4,5 +4,9 @@
     <entity name="Panda\Exchange\Domain\Model\ExchangeRateLog" table="panda_exchange_rate_log">
         <field name="startedAt" column="started_at" type="datetime" />
         <field name="endedAt" column="ended_at" type="datetime" />
+
+        <many-to-one field="owner" target-entity="Panda\AccountOHS\Domain\Model\Owner\OwnerInterface">
+            <join-column name="owner_id" nullable="false" />
+        </many-to-one>
     </entity>
 </doctrine-mapping>

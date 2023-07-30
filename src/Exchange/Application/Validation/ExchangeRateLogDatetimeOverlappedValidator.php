@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Panda\Exchange\Application\Validation;
 
+use Panda\AccountOHS\Domain\Provider\AuthorizedUserProviderInterface;
 use Panda\Exchange\Domain\Model\ExchangeRateLogInterface;
 use Panda\Exchange\Domain\Repository\ExchangeRateLogRepositoryInterface;
 use Symfony\Component\Validator\Constraint;
@@ -14,6 +15,7 @@ use Symfony\Component\Validator\Exception\UnexpectedValueException;
 final class ExchangeRateLogDatetimeOverlappedValidator extends ConstraintValidator
 {
     public function __construct(
+        private readonly AuthorizedUserProviderInterface $authorizedUserProvider,
         private readonly ExchangeRateLogRepositoryInterface $exchangeRateLogRepository,
     ) {
     }
@@ -29,6 +31,7 @@ final class ExchangeRateLogDatetimeOverlappedValidator extends ConstraintValidat
         }
 
         $existingExchangeRateLog = $this->exchangeRateLogRepository->findInDatetimeRange(
+            $this->authorizedUserProvider->provide(),
             $value->getBaseTicker(),
             $value->getQuoteTicker(),
             $value->getStartedAt(),

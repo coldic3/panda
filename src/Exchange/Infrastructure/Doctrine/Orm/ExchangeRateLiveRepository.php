@@ -6,6 +6,7 @@ namespace Panda\Exchange\Infrastructure\Doctrine\Orm;
 
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\NoResultException;
+use Panda\AccountOHS\Domain\Model\Owner\OwnerInterface;
 use Panda\Core\Domain\Repository\QueryInterface;
 use Panda\Core\Infrastructure\Doctrine\Orm\DoctrineRepository;
 use Panda\Exchange\Domain\Model\ExchangeRateLive;
@@ -39,15 +40,20 @@ final class ExchangeRateLiveRepository extends DoctrineRepository implements Exc
         return $this->em->find(self::ENTITY_CLASS, $id);
     }
 
-    public function findByBaseAndQuoteResources(string $baseTicker, string $quoteTicker): ?ExchangeRateLiveInterface
-    {
+    public function findByBaseAndQuoteResources(
+        OwnerInterface $owner,
+        string $baseTicker,
+        string $quoteTicker
+    ): ?ExchangeRateLiveInterface {
         try {
             $result = $this->em
                 ->createQueryBuilder()
                 ->select('o')
                 ->from(self::ENTITY_CLASS, 'o')
-                ->where('o.baseTicker = :baseTicker')
+                ->where('o.owner = :owner')
+                ->andWhere('o.baseTicker = :baseTicker')
                 ->andWhere('o.quoteTicker = :quoteTicker')
+                ->setParameter('owner', $owner)
                 ->setParameter('baseTicker', $baseTicker)
                 ->setParameter('quoteTicker', $quoteTicker)
                 ->getQuery()
@@ -61,15 +67,17 @@ final class ExchangeRateLiveRepository extends DoctrineRepository implements Exc
         return $result;
     }
 
-    public function withBaseAndQuoteResourcesExist(string $baseTicker, string $quoteTicker): bool
+    public function withBaseAndQuoteResourcesExist(OwnerInterface $owner, string $baseTicker, string $quoteTicker): bool
     {
         try {
             return (bool) $this->em
                 ->createQueryBuilder()
                 ->select('COUNT(o.id)')
                 ->from(self::ENTITY_CLASS, 'o')
-                ->where('o.baseTicker = :baseTicker')
+                ->where('o.owner = :owner')
+                ->andWhere('o.baseTicker = :baseTicker')
                 ->andWhere('o.quoteTicker = :quoteTicker')
+                ->setParameter('owner', $owner)
                 ->setParameter('baseTicker', $baseTicker)
                 ->setParameter('quoteTicker', $quoteTicker)
                 ->getQuery()
@@ -79,8 +87,11 @@ final class ExchangeRateLiveRepository extends DoctrineRepository implements Exc
         }
     }
 
-    public function defaultQuery(string $baseTicker = null, string $quoteTicker = null): QueryInterface
-    {
-        return new Query\DefaultExchangeRateLiveQuery($baseTicker, $quoteTicker);
+    public function defaultQuery(
+        OwnerInterface $owner,
+        string $baseTicker = null,
+        string $quoteTicker = null
+    ): QueryInterface {
+        return new Query\DefaultExchangeRateLiveQuery($owner, $baseTicker, $quoteTicker);
     }
 }

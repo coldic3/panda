@@ -2,6 +2,7 @@
 
 declare(strict_types=1);
 
+use Panda\AccountOHS\Domain\Provider\AuthorizedUserProviderInterface;
 use Panda\Core\Application\Command\CommandBusInterface;
 use Panda\Exchange\Application\EventListener\CreateOrUpdateReversedExchangeRateLiveWhenExchangeRateLiveChanged;
 use Panda\Exchange\Domain\Repository\ExchangeRateLiveRepositoryInterface;
@@ -13,6 +14,7 @@ return static function (ContainerConfigurator $containerConfigurator): void {
 
     $services->set(CreateOrUpdateReversedExchangeRateLiveWhenExchangeRateLiveChanged::class)
         ->args([
+            service(AuthorizedUserProviderInterface::class),
             service(ExchangeRateLiveRepositoryInterface::class),
             service(CommandBusInterface::class),
         ])
