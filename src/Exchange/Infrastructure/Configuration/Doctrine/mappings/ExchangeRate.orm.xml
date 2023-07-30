@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping">
+    <mapped-superclass name="Panda\Exchange\Domain\Model\ExchangeRate">
+        <id name="id" column="id" type="uuid" />
+
+        <field name="baseTicker" column="base_ticker" length="255" />
+        <field name="quoteTicker" column="quote_ticker" length="255" />
+        <field name="rate" column="rate" type="float" />
+    </mapped-superclass>
+</doctrine-mapping>

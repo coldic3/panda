@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<constraint-mapping
+    xmlns="http://symfony.com/schema/dic/constraint-mapping"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://symfony.com/schema/dic/constraint-mapping http://symfony.com/schema/dic/services/constraint-mapping-1.0.xsd"
+>
+    <class name="Panda\Exchange\Domain\Model\ExchangeRateLog">
+        <constraint name="Panda\Core\Application\Validation\DifferentValue">
+            <option name="firstField">baseTicker</option>
+            <option name="secondField">quoteTicker</option>
+            <option name="groups">
+                <value>panda:create</value>
+            </option>
+        </constraint>
+        <constraint name="Panda\Exchange\Application\Validation\ExchangeRateLogDatetimeOverlapped">
+            <option name="groups">
+                <value>panda:create</value>
+            </option>
+        </constraint>
+        <property name="startedAt">
+            <constraint name="NotBlank">
+                <option name="groups">
+                    <value>panda:create</value>
+                </option>
+            </constraint>
+        </property>
+        <property name="endedAt">
+            <constraint name="NotBlank">
+                <option name="groups">
+                    <value>panda:create</value>
+                </option>
+            </constraint>
+            <constraint name="GreaterThan">
+                <option name="propertyPath">startedAt</option>
+                <option name="groups">
+                    <value>panda:create</value>
+                </option>
+            </constraint>
+        </property>
+    </class>
+</constraint-mapping>

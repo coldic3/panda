@@ -15,45 +15,5 @@
                 <value>panda:create</value>
             </option>
         </constraint>
-        <property name="baseTicker">
-            <constraint name="NotBlank">
-                <option name="groups">
-                    <value>panda:create</value>
-                </option>
-            </constraint>
-            <constraint name="Length">
-                <option name="max">255</option>
-                <option name="groups">
-                    <value>panda:create</value>
-                </option>
-            </constraint>
-        </property>
-        <property name="quoteTicker">
-            <constraint name="NotBlank">
-                <option name="groups">
-                    <value>panda:create</value>
-                </option>
-            </constraint>
-            <constraint name="Length">
-                <option name="max">255</option>
-                <option name="groups">
-                    <value>panda:create</value>
-                </option>
-            </constraint>
-        </property>
-        <property name="rate">
-            <constraint name="NotBlank">
-                <option name="groups">
-                    <value>panda:create</value>
-                    <value>panda:update</value>
-                </option>
-            </constraint>
-            <constraint name="Positive">
-                <option name="groups">
-                    <value>panda:create</value>
-                    <value>panda:update</value>
-                </option>
-            </constraint>
-        </property>
     </class>
 </constraint-mapping>

@@ -9,7 +9,7 @@ use Panda\Exchange\Application\Command\ExchangeRateLive\CreateReversedExchangeRa
 use Panda\Exchange\Application\Command\ExchangeRateLive\UpdateReversedExchangeRateLiveCommand;
 use Panda\Exchange\Domain\Event\ExchangeRateLiveCreatedEvent;
 use Panda\Exchange\Domain\Event\ExchangeRateLiveUpdatedEvent;
-use Panda\Exchange\Domain\Model\ExchangeRateLiveInterface;
+use Panda\Exchange\Domain\Model\ExchangeRateInterface;
 use Panda\Exchange\Domain\Repository\ExchangeRateLiveRepositoryInterface;
 use Webmozart\Assert\Assert;
 
@@ -32,7 +32,7 @@ final readonly class CreateOrUpdateReversedExchangeRateLiveWhenExchangeRateLiveC
             $createdExchangeRate->getBaseTicker(),
         );
 
-        $reversedRate = round(1 / $createdExchangeRate->getRate(), ExchangeRateLiveInterface::RATE_PRECISION);
+        $reversedRate = round(1 / $createdExchangeRate->getRate(), ExchangeRateInterface::RATE_PRECISION);
 
         if (null !== $reversedExchangeRate) {
             $this->commandBus->dispatch(

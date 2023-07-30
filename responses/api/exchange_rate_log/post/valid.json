@@ -1,0 +1,10 @@
+{
+  "@context": "/contexts/ExchangeRateLog",
+  "@id": "/exchange_rate_logs/@uuid@",
+  "@type": "ExchangeRateLog",
+  "baseTicker": "USD",
+  "quoteTicker": "PLN",
+  "rate": 3.99,
+  "startedAt": "@datetime@",
+  "endedAt": "@datetime@"
+}

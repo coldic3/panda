@@ -1,0 +1,14 @@
+default:
+    suites:
+        api_exchange_rate_log:
+            contexts:
+                - Panda\Tests\Behat\Context\Hook\ClipboardContext
+                - Panda\Tests\Behat\Context\Hook\DoctrineOrmContext
+                - Panda\Tests\Behat\Context\Setup\ExchangeRateLogContext
+                - Panda\Tests\Behat\Context\Setup\UserContext
+                - Panda\Tests\Behat\Context\Api\ExchangeRateLogContext
+                - Panda\Tests\Behat\Context\Transform\ExchangeRateContext
+                - Panda\Tests\Behat\Context\Transform\DateTimeContext
+                - Panda\Tests\Behat\Context\Transform\UserContext
+            filters:
+                tags: "@api&&@exchange_rate_log"
