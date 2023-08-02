@@ -13,7 +13,7 @@ final class PostTransactionTest extends ApiTestCase
     /** @test */
     function it_requires_to_be_authorized()
     {
-        $fixtures = $this->loadFixturesFromFile('assets.yaml');
+        $fixtures = $this->loadFixturesFromFile('transaction_ready_assets.yaml');
 
         /** @var AssetInterface $firstAsset */
         $firstAsset = $fixtures['asset_1'];
@@ -36,7 +36,7 @@ final class PostTransactionTest extends ApiTestCase
                     'quantity' => 1,
                 ],
             ],
-            'concludedAt' => '2023-04-24T16:31:57.860Z',
+            'concludedAt' => '2023-07-10T16:31:57.860Z',
         ]);
 
         $this->assertUnauthorized($this->client->getResponse());
@@ -45,7 +45,7 @@ final class PostTransactionTest extends ApiTestCase
     /** @test */
     function it_creates_an_ask_transaction()
     {
-        $fixtures = $this->loadFixturesFromFile('assets.yaml');
+        $fixtures = $this->loadFixturesFromFile('transaction_ready_assets.yaml');
 
         /** @var User $user */
         $user = $fixtures['user_panda'];
@@ -70,7 +70,7 @@ final class PostTransactionTest extends ApiTestCase
                     'quantity' => 1,
                 ],
             ],
-            'concludedAt' => '2023-04-24T16:31:57.860Z',
+            'concludedAt' => '2023-07-10T16:31:57.860Z',
         ], $this->generateAuthorizationHeader($user));
 
         $this->assertResponse($this->client->getResponse(), 'transaction/post/valid_ask', Response::HTTP_CREATED);
@@ -79,7 +79,7 @@ final class PostTransactionTest extends ApiTestCase
     /** @test */
     function it_creates_a_bid_transaction()
     {
-        $fixtures = $this->loadFixturesFromFile('assets.yaml');
+        $fixtures = $this->loadFixturesFromFile('transaction_ready_assets.yaml');
 
         /** @var User $user */
         $user = $fixtures['user_panda'];
@@ -104,7 +104,7 @@ final class PostTransactionTest extends ApiTestCase
                     'quantity' => 1,
                 ],
             ],
-            'concludedAt' => '2023-04-24T16:31:57.860Z',
+            'concludedAt' => '2023-07-10T16:31:57.860Z',
         ], $this->generateAuthorizationHeader($user));
 
         $this->assertResponse($this->client->getResponse(), 'transaction/post/valid_bid', Response::HTTP_CREATED);
@@ -113,7 +113,7 @@ final class PostTransactionTest extends ApiTestCase
     /** @test */
     function it_creates_a_deposit_transaction()
     {
-        $fixtures = $this->loadFixturesFromFile('assets.yaml');
+        $fixtures = $this->loadFixturesFromFile('transaction_ready_assets.yaml');
 
         /** @var User $user */
         $user = $fixtures['user_panda'];
@@ -132,7 +132,7 @@ final class PostTransactionTest extends ApiTestCase
                     'quantity' => 1,
                 ],
             ],
-            'concludedAt' => '2023-04-24T16:31:57.860Z',
+            'concludedAt' => '2023-07-10T16:31:57.860Z',
         ], $this->generateAuthorizationHeader($user));
 
         $this->assertResponse($this->client->getResponse(), 'transaction/post/valid_deposit', Response::HTTP_CREATED);
@@ -141,7 +141,7 @@ final class PostTransactionTest extends ApiTestCase
     /** @test */
     function it_creates_a_withdraw_transaction()
     {
-        $fixtures = $this->loadFixturesFromFile('assets.yaml');
+        $fixtures = $this->loadFixturesFromFile('transaction_ready_assets.yaml');
 
         /** @var User $user */
         $user = $fixtures['user_panda'];
@@ -160,7 +160,7 @@ final class PostTransactionTest extends ApiTestCase
                     'quantity' => 1,
                 ],
             ],
-            'concludedAt' => '2023-04-24T16:31:57.860Z',
+            'concludedAt' => '2023-07-10T16:31:57.860Z',
         ], $this->generateAuthorizationHeader($user));
 
         $this->assertResponse($this->client->getResponse(), 'transaction/post/valid_withdraw', Response::HTTP_CREATED);
@@ -169,7 +169,7 @@ final class PostTransactionTest extends ApiTestCase
     /** @test */
     function it_creates_a_fee_transaction()
     {
-        $fixtures = $this->loadFixturesFromFile('assets.yaml');
+        $fixtures = $this->loadFixturesFromFile('transaction_ready_assets.yaml');
 
         /** @var User $user */
         $user = $fixtures['user_panda'];
@@ -184,7 +184,7 @@ final class PostTransactionTest extends ApiTestCase
                     'quantity' => 2,
                 ],
             ],
-            'concludedAt' => '2023-04-24T16:31:57.860Z',
+            'concludedAt' => '2023-07-10T16:31:57.860Z',
         ], $this->generateAuthorizationHeader($user));
 
         $this->assertResponse($this->client->getResponse(), 'transaction/post/valid_fee', Response::HTTP_CREATED);
@@ -193,7 +193,7 @@ final class PostTransactionTest extends ApiTestCase
     /** @test */
     function it_allows_many_adjustment_operations()
     {
-        $fixtures = $this->loadFixturesFromFile('assets.yaml');
+        $fixtures = $this->loadFixturesFromFile('transaction_ready_assets.yaml');
 
         /** @var User $user */
         $user = $fixtures['user_panda'];
@@ -222,7 +222,7 @@ final class PostTransactionTest extends ApiTestCase
                     'quantity' => 1,
                 ],
             ],
-            'concludedAt' => '2023-04-24T16:31:57.860Z',
+            'concludedAt' => '2023-07-10T16:31:57.860Z',
         ], $this->generateAuthorizationHeader($user));
 
         $this->assertResponse(
@@ -235,7 +235,7 @@ final class PostTransactionTest extends ApiTestCase
     /** @test */
     function it_validates_for_mismatch_adjustments_operations()
     {
-        $fixtures = $this->loadFixturesFromFile('assets.yaml');
+        $fixtures = $this->loadFixturesFromFile('transaction_ready_assets.yaml');
 
         /** @var User $user */
         $user = $fixtures['user_panda'];
@@ -262,7 +262,7 @@ final class PostTransactionTest extends ApiTestCase
                     'quantity' => 1,
                 ],
             ],
-            'concludedAt' => '2023-04-24T16:31:57.860Z',
+            'concludedAt' => '2023-07-10T16:31:57.860Z',
         ], $this->generateAuthorizationHeader($user));
 
         $this->assertResponse(
@@ -275,7 +275,7 @@ final class PostTransactionTest extends ApiTestCase
     /** @test */
     function it_validates_for_same_operations()
     {
-        $fixtures = $this->loadFixturesFromFile('assets.yaml');
+        $fixtures = $this->loadFixturesFromFile('transaction_ready_assets.yaml');
 
         /** @var User $user */
         $user = $fixtures['user_panda'];
@@ -298,7 +298,7 @@ final class PostTransactionTest extends ApiTestCase
                     'quantity' => 1,
                 ],
             ],
-            'concludedAt' => '2023-04-24T16:31:57.860Z',
+            'concludedAt' => '2023-07-10T16:31:57.860Z',
         ], $this->generateAuthorizationHeader($user));
 
         $this->assertResponse(
@@ -311,7 +311,7 @@ final class PostTransactionTest extends ApiTestCase
     /** @test */
     function it_validates_for_negative_quantity()
     {
-        $fixtures = $this->loadFixturesFromFile('assets.yaml');
+        $fixtures = $this->loadFixturesFromFile('transaction_ready_assets.yaml');
 
         /** @var User $user */
         $user = $fixtures['user_panda'];
@@ -336,7 +336,7 @@ final class PostTransactionTest extends ApiTestCase
                     'quantity' => -1,
                 ],
             ],
-            'concludedAt' => '2023-04-24T16:31:57.860Z',
+            'concludedAt' => '2023-07-10T16:31:57.860Z',
         ], $this->generateAuthorizationHeader($user));
 
         $this->assertResponse(

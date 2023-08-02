@@ -139,11 +139,11 @@ class TransactionContext implements Context
     }
 
     /**
-     * @When podaję datę oraz czas zawarcia transakcji
+     * @When podaję datę oraz czas zawarcia transakcji :datetime
      */
-    function i_pass_concluded_datetime()
+    function i_pass_concluded_datetime(\DateTimeImmutable $datetime)
     {
-        $this->http->addToPayload('concludedAt', '2023-04-03T21:16:43+00:00');
+        $this->http->addToPayload('concludedAt', $datetime->format(\DateTimeInterface::RFC3339_EXTENDED));
     }
 
     /**

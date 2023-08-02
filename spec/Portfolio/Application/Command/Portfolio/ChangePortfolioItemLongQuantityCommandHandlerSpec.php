@@ -7,10 +7,10 @@ use Panda\Core\Application\Command\CommandHandlerInterface;
 use Panda\Portfolio\Application\Command\Portfolio\ChangePortfolioItemLongQuantityCommand;
 use Panda\Portfolio\Application\Command\Portfolio\ChangePortfolioItemLongQuantityCommandHandler;
 use Panda\Portfolio\Application\Exception\PortfolioItemWithTickerNotFoundException;
-use Panda\Portfolio\Application\Resolver\PortfolioResolverInterface;
 use Panda\Portfolio\Domain\Model\PortfolioInterface;
 use Panda\Portfolio\Domain\Model\PortfolioItemInterface;
 use Panda\Portfolio\Domain\Repository\PortfolioItemRepositoryInterface;
+use Panda\PortfolioOHS\Application\Resolver\PortfolioResolverInterface;
 use PhpSpec\ObjectBehavior;
 use Symfony\Component\Uid\Uuid;
 

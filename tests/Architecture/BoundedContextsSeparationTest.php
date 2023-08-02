@@ -36,7 +36,7 @@ final class BoundedContextsSeparationTest
         return PHPat::rule()
             ->classes($this->getBoundedContextClassNamespace('Portfolio'))
             ->shouldNotDependOn()
-            ->classes(...$this->findBoundedContextsExcept(['Portfolio', 'AccountOHS', ...self::COUPLING_ALLOWED]));
+            ->classes(...$this->findBoundedContextsExcept(['Portfolio', 'PortfolioOHS', 'AccountOHS', ...self::COUPLING_ALLOWED]));
     }
 
     public function test_trade_bounded_context_does_not_depend_on_other_bounded_contexts(): Rule

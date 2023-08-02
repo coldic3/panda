@@ -8,7 +8,7 @@ Potrzeba biznesowa: Przeglądanie transakcji
 
     Założenia:
         * jestem zalogowany jako "panda@example.com"
-        * posiadam portfel inwestycyjny
+        * posiadam portfel inwestycyjny w walucie "PLN"
         * posiadam aktywo "PLN" o nazwie "Polski Złoty"
         * posiadam aktywo "ACM" o nazwie "ACME Inc."
         * posiadam aktywo "EXT" o nazwie "Example Tech"

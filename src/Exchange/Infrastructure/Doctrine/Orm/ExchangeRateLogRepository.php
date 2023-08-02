@@ -77,6 +77,37 @@ final class ExchangeRateLogRepository extends DoctrineRepository implements Exch
         return $result;
     }
 
+    public function findByDatetime(
+        OwnerInterface $owner,
+        string $baseTicker,
+        string $quoteTicker,
+        \DateTimeInterface $datetime,
+    ): ?ExchangeRateLogInterface {
+        $queryBuilder = $this->em->createQueryBuilder();
+
+        try {
+            $result = $queryBuilder
+                ->select('o')
+                ->from(self::ENTITY_CLASS, 'o')
+                ->where('o.owner = :owner')
+                ->andWhere('o.baseTicker = :baseTicker AND o.quoteTicker = :quoteTicker')
+                ->andWhere(':datetime >= o.startedAt AND :datetime <= o.endedAt')
+                ->setParameter('owner', $owner)
+                ->setParameter('baseTicker', $baseTicker)
+                ->setParameter('quoteTicker', $quoteTicker)
+                ->setParameter('datetime', $datetime)
+                ->getQuery()
+                ->setMaxResults(1)
+                ->getSingleResult();
+        } catch (NoResultException) {
+            return null;
+        }
+
+        Assert::isInstanceOf($result, ExchangeRateLogInterface::class);
+
+        return $result;
+    }
+
     public function defaultQuery(
         OwnerInterface $owner,
         string $baseTicker = null,

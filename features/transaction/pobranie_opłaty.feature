@@ -8,7 +8,7 @@ Potrzeba biznesowa: Pobranie opłaty
 
     Założenia:
         * jestem zalogowany jako "panda@example.com"
-        * posiadam portfel inwestycyjny
+        * posiadam portfel inwestycyjny w walucie "PLN"
         * posiadam 1000 PLN w portfelu inwestycyjnym
         * posiadam 10 akcji spółki "ACM" o nazwie "Acme Corporation"
 
@@ -17,7 +17,7 @@ Potrzeba biznesowa: Pobranie opłaty
         Gdy rozpoczynam nową transakcję
         I wybieram typ transakcji "fee"
         I dodaję opłatę w wysokości 456.74 PLN
-        I podaję datę oraz czas zawarcia transakcji
+        I podaję datę oraz czas zawarcia transakcji "2023-04-03 21:16:43"
         I zatwierdzam transakcję
         Wtedy transakcja kończy się sukcesem
         I posiadam teraz 543.26 PLN w portfelu inwestycyjnym
