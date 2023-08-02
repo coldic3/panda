@@ -8,6 +8,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Panda\AccountOHS\Domain\Model\Owner\OwnerInterface;
 use Panda\Core\Domain\Model\TimestampableTrait;
+use Panda\Portfolio\Domain\ValueObject\ResourceInterface;
 use Symfony\Component\Uid\Uuid;
 
 class Portfolio implements PortfolioInterface
@@ -20,8 +21,11 @@ class Portfolio implements PortfolioInterface
     /** @var Collection<array-key, PortfolioItemInterface> */
     private Collection $items;
 
-    public function __construct(private string $name, private bool $default = false)
-    {
+    public function __construct(
+        private string $name,
+        private ResourceInterface $mainResource,
+        private bool $default = true,
+    ) {
         $this->id = Uuid::v4();
 
         $this->items = new ArrayCollection();
@@ -50,6 +54,11 @@ class Portfolio implements PortfolioInterface
     public function setDefault(bool $default): void
     {
         $this->default = $default;
+    }
+
+    public function getMainResource(): ResourceInterface
+    {
+        return $this->mainResource;
     }
 
     public function getItems(): Collection

@@ -8,7 +8,7 @@ Potrzeba biznesowa: Zdeponowanie aktywów
 
     Założenia:
         * jestem zalogowany jako "panda@example.com"
-        * posiadam portfel inwestycyjny
+        * posiadam portfel inwestycyjny w walucie "PLN"
         * posiadam aktywo "ACM" o nazwie "Acme Corporation"
         * posiadam 1000 PLN w portfelu inwestycyjnym
 
@@ -18,7 +18,7 @@ Potrzeba biznesowa: Zdeponowanie aktywów
         I wybieram typ transakcji "deposit"
         I wybieram do zdeponowania 3500 PLN
         I za transakcję płacę 27.11 PLN prowizji
-        I podaję datę oraz czas zawarcia transakcji
+        I podaję datę oraz czas zawarcia transakcji "2023-04-03 21:16:43"
         I zatwierdzam transakcję
         Wtedy transakcja kończy się sukcesem
         I widzę, że zdeponowałem 3472.89 PLN brutto oraz 3500 PLN netto

@@ -23,7 +23,11 @@ final readonly class PortfolioCreateProcessor implements ProcessorInterface
         /** @var PortfolioResource $data */
         Assert::isInstanceOf($data, PortfolioResource::class);
 
-        $command = new CreatePortfolioCommand((string) $data->name);
+        $command = new CreatePortfolioCommand(
+            (string) $data->name,
+            (string) $data->mainResource?->ticker,
+            (string) $data->mainResource?->name
+        );
 
         /** @var PortfolioInterface $model */
         $model = $this->commandBus->dispatch($command);

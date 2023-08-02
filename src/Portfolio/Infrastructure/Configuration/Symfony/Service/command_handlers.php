@@ -9,11 +9,11 @@ use Panda\Portfolio\Application\Command\Portfolio\CreatePortfolioCommandHandler;
 use Panda\Portfolio\Application\Command\Portfolio\CreatePortfolioItemCommandHandler;
 use Panda\Portfolio\Application\Command\Portfolio\UpdatePortfolioCommandHandler;
 use Panda\Portfolio\Application\Command\Portfolio\UpdatePortfolioItemCommandHandler;
-use Panda\Portfolio\Application\Resolver\PortfolioResolverInterface;
 use Panda\Portfolio\Domain\Factory\PortfolioFactoryInterface;
 use Panda\Portfolio\Domain\Factory\PortfolioItemFactoryInterface;
 use Panda\Portfolio\Domain\Repository\PortfolioItemRepositoryInterface;
 use Panda\Portfolio\Domain\Repository\PortfolioRepositoryInterface;
+use Panda\PortfolioOHS\Application\Resolver\PortfolioResolverInterface;
 use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
 use function Symfony\Component\DependencyInjection\Loader\Configurator\service;
 

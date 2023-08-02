@@ -60,6 +60,10 @@ final class PortfolioResource
         #[Groups([self::READ_GROUP, self::CREATE_GROUP, self::UPDATE_GROUP])]
         public ?string $name = null,
 
+        #[ApiProperty(writable: false, genId: false)]
+        #[Groups([PortfolioResource::READ_GROUP, self::CREATE_GROUP])]
+        public ?ResourceRepresentation $mainResource = null,
+
         #[ApiProperty(writable: false)]
         #[Groups([self::READ_GROUP])]
         public ?bool $default = null,
@@ -88,6 +92,7 @@ final class PortfolioResource
         return new self(
             $portfolio->getId(),
             $portfolio->getName(),
+            ResourceRepresentation::fromValueObject($portfolio->getMainResource()),
             $portfolio->isDefault(),
             $portfolio->getItems()->map(
                 fn (PortfolioItemInterface $item) => PortfolioItemResource::fromModel($item)

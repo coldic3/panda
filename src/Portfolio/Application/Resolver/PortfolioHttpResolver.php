@@ -7,6 +7,7 @@ namespace Panda\Portfolio\Application\Resolver;
 use Panda\Portfolio\Application\Exception\PortfolioNotFoundException;
 use Panda\Portfolio\Domain\Model\PortfolioInterface;
 use Panda\Portfolio\Domain\Repository\PortfolioRepositoryInterface;
+use Panda\PortfolioOHS\Application\Resolver\PortfolioResolverInterface;
 use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\Uid\Uuid;
 

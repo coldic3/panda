@@ -23,7 +23,14 @@ interface ExchangeRateLogRepositoryInterface extends RepositoryInterface
         string $baseTicker,
         string $quoteTicker,
         \DateTimeInterface $fromDatetime,
-        \DateTimeInterface $toDatetime
+        \DateTimeInterface $toDatetime,
+    ): ?ExchangeRateLogInterface;
+
+    public function findByDatetime(
+        OwnerInterface $owner,
+        string $baseTicker,
+        string $quoteTicker,
+        \DateTimeInterface $datetime,
     ): ?ExchangeRateLogInterface;
 
     public function defaultQuery(

@@ -3,6 +3,10 @@
   "@id": "/portfolios/@uuid@",
   "@type": "Portfolio",
   "name": "My Portfolio",
+  "mainResource": {
+    "ticker": "PLN",
+    "name": "Polish Zloty"
+  },
   "default": true,
   "items": [],
   "createdAt": "@datetime@",

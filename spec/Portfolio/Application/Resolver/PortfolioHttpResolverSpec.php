@@ -4,9 +4,9 @@ namespace spec\Panda\Portfolio\Application\Resolver;
 
 use Panda\Portfolio\Application\Exception\PortfolioNotFoundException;
 use Panda\Portfolio\Application\Resolver\PortfolioHttpResolver;
-use Panda\Portfolio\Application\Resolver\PortfolioResolverInterface;
 use Panda\Portfolio\Domain\Model\PortfolioInterface;
 use Panda\Portfolio\Domain\Repository\PortfolioRepositoryInterface;
+use Panda\PortfolioOHS\Application\Resolver\PortfolioResolverInterface;
 use PhpSpec\ObjectBehavior;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\RequestStack;

@@ -3,6 +3,10 @@
   "@id": "/portfolios/@uuid@",
   "@type": "Portfolio",
   "name": "Additional Portfolio",
+  "mainResource": {
+    "ticker": "USD",
+    "name": "US Dollar"
+  },
   "default": false,
   "items": [
     {

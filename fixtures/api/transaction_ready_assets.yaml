@@ -1,0 +1,7 @@
+include:
+    - 'assets.yaml'
+
+Panda\Exchange\Domain\Model\ExchangeRateLog:
+    exchange_rate_log_pln_asset_{1..6}:
+        __factory: {'Panda\Tests\Fixture\Factory\ExchangeRateLogFactory::createWorkingDayLog': ['PLN', '@asset_<current()>->ticker', '<randomFloat(2, 0, 3)>', '2023-07-10', 0] }
+        ownedBy: '@user_panda'

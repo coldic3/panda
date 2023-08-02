@@ -8,7 +8,7 @@ Potrzeba biznesowa: Wycofanie aktywów
 
     Założenia:
         * jestem zalogowany jako "panda@example.com"
-        * posiadam portfel inwestycyjny
+        * posiadam portfel inwestycyjny w walucie "PLN"
         * posiadam 1000 PLN w portfelu inwestycyjnym
 
     @api
@@ -17,7 +17,7 @@ Potrzeba biznesowa: Wycofanie aktywów
         I wybieram typ transakcji "withdraw"
         I wybieram do wypłaty 900 PLN
         I za transakcję płacę 0.99 PLN prowizji
-        I podaję datę oraz czas zawarcia transakcji
+        I podaję datę oraz czas zawarcia transakcji "2023-04-03 21:16:43"
         I zatwierdzam transakcję
         Wtedy transakcja kończy się sukcesem
         I widzę, że wycofałem aktywa o kwocie 900 PLN brutto oraz 899.01 PLN netto

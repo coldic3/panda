@@ -1,0 +1,3 @@
+api_platform:
+    exception_to_status:
+        Panda\Exchange\Application\Exception\ExchangeRateLogForBaseQuoteAndDatetimeNotFoundException: 400

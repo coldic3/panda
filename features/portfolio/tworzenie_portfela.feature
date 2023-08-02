@@ -13,6 +13,8 @@ Potrzeba biznesowa: Tworzenie portfela
     Scenariusz: Tworzenie pierwszego portfela
         Gdy tworzę nowy portfel
         I podaję nazwę "Inwestycje długoterminowe"
+        I podaję ticker głównego aktywa "PLN"
+        I podaję nazwę głównego aktywa "Polski złoty"
         I zatwierdzam wprowadzone dane
         Wtedy dodawanie portfela kończy się sukcesem
         I widzę, że portfel jest portfelem domyślnym
@@ -22,6 +24,8 @@ Potrzeba biznesowa: Tworzenie portfela
         Zakładając, że posiadam już domyślny portfel "Inwestycje długoterminowe"
         Gdy tworzę nowy portfel
         I podaję nazwę "Inwestycje krótkoterminowe"
+        I podaję ticker głównego aktywa "PLN"
+        I podaję nazwę głównego aktywa "Polski złoty"
         I zatwierdzam wprowadzone dane
         Wtedy dodawanie portfela kończy się sukcesem
         I widzę, że portfel nie jest portfelem domyślnym

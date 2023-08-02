@@ -7,9 +7,9 @@ namespace Panda\Portfolio\Application\Command\Portfolio;
 use ApiPlatform\Validator\ValidatorInterface;
 use Panda\Core\Application\Command\CommandHandlerInterface;
 use Panda\Portfolio\Application\Exception\PortfolioItemWithTickerNotFoundException;
-use Panda\Portfolio\Application\Resolver\PortfolioResolverInterface;
 use Panda\Portfolio\Domain\Model\PortfolioItemInterface;
 use Panda\Portfolio\Domain\Repository\PortfolioItemRepositoryInterface;
+use Panda\PortfolioOHS\Application\Resolver\PortfolioResolverInterface;
 
 final readonly class ChangePortfolioItemLongQuantityCommandHandler implements CommandHandlerInterface
 {

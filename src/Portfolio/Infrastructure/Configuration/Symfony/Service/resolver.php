@@ -3,8 +3,8 @@
 declare(strict_types=1);
 
 use Panda\Portfolio\Application\Resolver\PortfolioHttpResolver;
-use Panda\Portfolio\Application\Resolver\PortfolioResolverInterface;
 use Panda\Portfolio\Domain\Repository\PortfolioRepositoryInterface;
+use Panda\PortfolioOHS\Application\Resolver\PortfolioResolverInterface;
 use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
 use function Symfony\Component\DependencyInjection\Loader\Configurator\service;
 
