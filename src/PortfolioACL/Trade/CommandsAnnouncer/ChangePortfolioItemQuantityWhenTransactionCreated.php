@@ -8,7 +8,7 @@ use Panda\Core\Application\Command\CommandBusInterface;
 use Panda\Core\Application\Query\QueryBusInterface;
 use Panda\Portfolio\Application\Command\Portfolio\ChangePortfolioItemLongQuantityCommand;
 use Panda\Trade\Application\Query\Transaction\FindTransactionQuery;
-use Panda\Trade\Domain\Events\TransactionCreatedEvent;
+use Panda\Trade\Domain\Event\TransactionCreatedEvent;
 use Panda\Trade\Domain\Model\Transaction\TransactionInterface;
 use Webmozart\Assert\Assert;
 

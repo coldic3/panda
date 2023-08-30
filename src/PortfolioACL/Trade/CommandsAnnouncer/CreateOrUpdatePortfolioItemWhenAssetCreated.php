@@ -10,7 +10,7 @@ use Panda\Portfolio\Application\Command\Portfolio\CreatePortfolioItemCommand;
 use Panda\Portfolio\Application\Command\Portfolio\UpdatePortfolioItemCommand;
 use Panda\Portfolio\Application\Exception\PortfolioItemWithTickerNotFoundException;
 use Panda\Trade\Application\Query\Asset\FindAssetQuery;
-use Panda\Trade\Domain\Events\AssetCreatedEvent;
+use Panda\Trade\Domain\Event\AssetCreatedEvent;
 use Panda\Trade\Domain\Model\Asset\AssetInterface;
 use Webmozart\Assert\Assert;
 
