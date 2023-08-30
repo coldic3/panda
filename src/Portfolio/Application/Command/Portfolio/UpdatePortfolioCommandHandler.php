@@ -6,7 +6,7 @@ namespace Panda\Portfolio\Application\Command\Portfolio;
 
 use ApiPlatform\Validator\ValidatorInterface;
 use Panda\Core\Application\Command\CommandHandlerInterface;
-use Panda\Portfolio\Domain\Model\PortfolioInterface;
+use Panda\Portfolio\Domain\Model\Portfolio\PortfolioInterface;
 use Panda\Portfolio\Domain\Repository\PortfolioRepositoryInterface;
 use Webmozart\Assert\Assert;
 

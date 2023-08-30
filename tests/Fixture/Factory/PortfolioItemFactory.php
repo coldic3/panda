@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Panda\Tests\Fixture\Factory;
 
-use Panda\Portfolio\Domain\Model\PortfolioInterface;
-use Panda\Portfolio\Domain\Model\PortfolioItem;
+use Panda\Portfolio\Domain\Model\Portfolio\PortfolioInterface;
+use Panda\Portfolio\Domain\Model\Portfolio\PortfolioItem;
 use Panda\Portfolio\Domain\ValueObject\Resource;
 
 final class PortfolioItemFactory

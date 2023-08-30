@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Panda\Portfolio\Domain\Model;
+namespace Panda\Portfolio\Domain\Model\Portfolio;
 
 use Panda\Core\Domain\Model\TimestampableTrait;
 use Panda\Portfolio\Domain\Exception\NegativeQuantityException;

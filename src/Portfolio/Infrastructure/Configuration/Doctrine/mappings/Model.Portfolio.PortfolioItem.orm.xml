@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping">
-    <entity name="Panda\Portfolio\Domain\Model\PortfolioItem" table="panda_portfolio_item">
+    <entity name="Panda\Portfolio\Domain\Model\Portfolio\PortfolioItem" table="panda_portfolio_item">
         <unique-constraints>
             <unique-constraint columns="resource_ticker,portfolio_id" />
         </unique-constraints>
@@ -13,7 +13,7 @@
 
         <embedded name="resource" class="Panda\Portfolio\Domain\ValueObject\Resource" />
 
-        <many-to-one field="portfolio" target-entity="Panda\Portfolio\Domain\Model\Portfolio" inversed-by="items">
+        <many-to-one field="portfolio" target-entity="Panda\Portfolio\Domain\Model\Portfolio\Portfolio" inversed-by="items">
             <join-column name="portfolio_id" nullable="false" />
         </many-to-one>
     </entity>

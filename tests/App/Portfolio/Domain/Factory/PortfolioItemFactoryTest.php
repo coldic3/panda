@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Panda\Tests\App\Portfolio\Domain\Factory;
 
 use Panda\Portfolio\Domain\Factory\PortfolioItemFactory;
-use Panda\Portfolio\Domain\Model\PortfolioInterface;
+use Panda\Portfolio\Domain\Model\Portfolio\PortfolioInterface;
 use PHPUnit\Framework\TestCase;
 use Prophecy\PhpUnit\ProphecyTrait;
 use Webmozart\Assert\Assert;

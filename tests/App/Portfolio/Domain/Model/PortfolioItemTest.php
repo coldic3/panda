@@ -6,8 +6,8 @@ namespace Panda\Tests\App\Portfolio\Domain\Model;
 
 use Panda\Portfolio\Domain\Exception\NegativeQuantityException;
 use Panda\Portfolio\Domain\Exception\NegativeTotalQuantityException;
-use Panda\Portfolio\Domain\Model\PortfolioInterface;
-use Panda\Portfolio\Domain\Model\PortfolioItem;
+use Panda\Portfolio\Domain\Model\Portfolio\PortfolioInterface;
+use Panda\Portfolio\Domain\Model\Portfolio\PortfolioItem;
 use Panda\Portfolio\Domain\ValueObject\ResourceInterface;
 use PHPUnit\Framework\TestCase;
 use Prophecy\PhpUnit\ProphecyTrait;
