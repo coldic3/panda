@@ -7,7 +7,7 @@ use Panda\Core\Application\Command\CommandHandlerInterface;
 use Panda\Core\Application\Event\EventBusInterface;
 use Panda\Trade\Application\Command\Transaction\CreateTransactionCommand;
 use Panda\Trade\Application\Command\Transaction\CreateTransactionCommandHandler;
-use Panda\Trade\Domain\Events\TransactionCreatedEvent;
+use Panda\Trade\Domain\Event\TransactionCreatedEvent;
 use Panda\Trade\Domain\Factory\TransactionFactoryInterface;
 use Panda\Trade\Domain\Model\Transaction\OperationInterface;
 use Panda\Trade\Domain\Model\Transaction\TransactionInterface;

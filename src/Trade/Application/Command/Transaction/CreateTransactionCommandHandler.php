@@ -7,7 +7,7 @@ namespace Panda\Trade\Application\Command\Transaction;
 use ApiPlatform\Validator\ValidatorInterface;
 use Panda\Core\Application\Command\CommandHandlerInterface;
 use Panda\Core\Application\Event\EventBusInterface;
-use Panda\Trade\Domain\Events\TransactionCreatedEvent;
+use Panda\Trade\Domain\Event\TransactionCreatedEvent;
 use Panda\Trade\Domain\Factory\TransactionFactoryInterface;
 use Panda\Trade\Domain\Model\Transaction\TransactionInterface;
 use Panda\Trade\Domain\Repository\TransactionRepositoryInterface;

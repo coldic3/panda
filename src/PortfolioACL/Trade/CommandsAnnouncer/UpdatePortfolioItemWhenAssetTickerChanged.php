@@ -8,7 +8,7 @@ use Panda\Core\Application\Command\CommandBusInterface;
 use Panda\Core\Application\Query\QueryBusInterface;
 use Panda\Portfolio\Application\Command\Portfolio\UpdatePortfolioItemCommand;
 use Panda\Trade\Application\Query\Asset\FindAssetQuery;
-use Panda\Trade\Domain\Events\AssetTickerChangedEvent;
+use Panda\Trade\Domain\Event\AssetTickerChangedEvent;
 use Panda\Trade\Domain\Model\Asset\AssetInterface;
 use Webmozart\Assert\Assert;
 

@@ -9,7 +9,7 @@ use Panda\Exchange\Application\Exception\ExchangeRateLogForBaseQuoteAndDatetimeN
 use Panda\Exchange\Application\Query\ExchangeRateLog\FindExchangeRateLogByBaseQuoteTickersAndDatetimeQuery;
 use Panda\PortfolioOHS\Application\Resolver\PortfolioResolverInterface;
 use Panda\Trade\Application\Query\Transaction\FindTransactionQuery;
-use Panda\Trade\Domain\Events\TransactionCreatedEvent;
+use Panda\Trade\Domain\Event\TransactionCreatedEvent;
 use Panda\Trade\Domain\Model\Transaction\TransactionInterface;
 use Webmozart\Assert\Assert;
 

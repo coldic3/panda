@@ -7,7 +7,7 @@ namespace Panda\Trade\Application\Command\Asset;
 use ApiPlatform\Validator\ValidatorInterface;
 use Panda\Core\Application\Command\CommandHandlerInterface;
 use Panda\Core\Application\Event\EventBusInterface;
-use Panda\Trade\Domain\Events\AssetUpdatedEvent;
+use Panda\Trade\Domain\Event\AssetUpdatedEvent;
 use Panda\Trade\Domain\Model\Asset\AssetInterface;
 use Panda\Trade\Domain\Repository\AssetRepositoryInterface;
 use Webmozart\Assert\Assert;
