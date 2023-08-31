@@ -14,8 +14,6 @@ interface ReportFactoryInterface
         string $name,
         string $entryType,
         array $entryConfiguration,
-        string $fileStorage,
-        string $fileName,
         PortfolioInterface $portfolio,
     ): ReportInterface;
 }

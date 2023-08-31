@@ -16,14 +16,11 @@ final readonly class ReportFactory implements ReportFactoryInterface
         string $name,
         string $entryType,
         array $entryConfiguration,
-        string $fileStorage,
-        string $fileName,
         PortfolioInterface $portfolio,
     ): ReportInterface {
         return new Report(
             $name,
             new ReportEntry($entryType, $entryConfiguration),
-            new ReportFile($fileStorage, $fileName),
             $portfolio,
         );
     }

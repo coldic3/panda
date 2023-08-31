@@ -6,6 +6,7 @@ namespace Panda\Portfolio\Domain\Model\Report;
 
 use Panda\Core\Domain\Model\TimestampableTrait;
 use Panda\Portfolio\Domain\Model\Portfolio\PortfolioInterface;
+use Panda\Portfolio\Domain\ValueObject\NullReportFile;
 use Panda\Portfolio\Domain\ValueObject\ReportEntryInterface;
 use Panda\Portfolio\Domain\ValueObject\ReportFileInterface;
 use Symfony\Component\Uid\Uuid;
@@ -15,16 +16,17 @@ final class Report implements ReportInterface
     use TimestampableTrait;
 
     private Uuid $id;
+    private ReportFileInterface $file;
     private ?\DateTimeInterface $startedAt = null;
     private ?\DateTimeInterface $endedAt = null;
 
     public function __construct(
         private string $name,
         private ReportEntryInterface $entry,
-        private ReportFileInterface $file,
         private PortfolioInterface $portfolio,
     ) {
         $this->id = Uuid::v4();
+        $this->file = new NullReportFile();
     }
 
     public function getId(): Uuid
