@@ -8,7 +8,6 @@ use Panda\Portfolio\Domain\Model\Portfolio\PortfolioInterface;
 use Panda\Portfolio\Domain\Model\Report\Report;
 use Panda\Portfolio\Domain\Model\Report\ReportInterface;
 use Panda\Portfolio\Domain\ValueObject\ReportEntry;
-use Panda\Portfolio\Domain\ValueObject\ReportFile;
 
 final readonly class ReportFactory implements ReportFactoryInterface
 {

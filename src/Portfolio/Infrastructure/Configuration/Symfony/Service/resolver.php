@@ -3,6 +3,8 @@
 declare(strict_types=1);
 
 use Panda\Portfolio\Application\Resolver\PortfolioHttpResolver;
+use Panda\Portfolio\Application\Resolver\ReportGeneratorResolver;
+use Panda\Portfolio\Application\Resolver\ReportGeneratorResolverInterface;
 use Panda\Portfolio\Domain\Repository\PortfolioRepositoryInterface;
 use Panda\PortfolioOHS\Application\Resolver\PortfolioResolverInterface;
 use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
@@ -17,4 +19,8 @@ return static function (ContainerConfigurator $containerConfigurator): void {
             service('request_stack'),
             service(PortfolioRepositoryInterface::class),
         ]);
+
+    $services->set(ReportGeneratorResolverInterface::class)
+        ->class(ReportGeneratorResolver::class)
+        ->args([service('service_container')]);
 };
