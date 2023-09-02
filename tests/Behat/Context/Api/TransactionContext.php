@@ -203,10 +203,9 @@ class TransactionContext implements Context
     }
 
     /**
-     * @Then na :position pozycji jest transakcja zakupu :toQuantity akcji spółki :toAsset za :fromQuantity akcję spółki :fromAsset
-     * @Then na :position pozycji jest transakcja zakupu :toQuantity akcji spółki :toAsset za :fromQuantity :fromAsset
+     * @Then na :position pozycji jest transakcja zakupu :toQuantity akcji spółki :toAsset za :fromPreciseQuantity :fromAsset
      */
-    function at_position_there_is_an_ask_transaction(string $position, int $toQuantity, AssetInterface $toAsset, int $fromQuantity, AssetInterface $fromAsset)
+    function at_position_there_is_an_ask_transaction_currency(string $position, int $toQuantity, AssetInterface $toAsset, int $fromPreciseQuantity, AssetInterface $fromAsset)
     {
         $response = json_decode($this->http->getResponse()->getContent(false), true);
         $indexMap = array_flip(self::POSITIONS);
@@ -215,15 +214,23 @@ class TransactionContext implements Context
 
         Assert::same($item['type'], 'ask');
         Assert::same($item['fromOperation']['asset'], $this->iriConverter->getIriFromResource(AssetResource::fromModel($fromAsset)));
-        Assert::same($item['fromOperation']['quantity'], $fromQuantity);
+        Assert::same($item['fromOperation']['quantity'], $fromPreciseQuantity);
         Assert::same($item['toOperation']['asset'], $this->iriConverter->getIriFromResource(AssetResource::fromModel($toAsset)));
         Assert::same($item['toOperation']['quantity'], $toQuantity);
     }
 
     /**
-     * @Then na :position pozycji jest transakcja wypłaty :quantity :asset
+     * @Then na :position pozycji jest transakcja zakupu :toQuantity akcji spółki :toAsset za :fromQuantity akcję spółki :fromAsset
      */
-    function at_position_there_is_a_withdraw_transaction(string $position, int $quantity, AssetInterface $asset)
+    function at_position_there_is_an_ask_transaction_asset(string $position, int $toQuantity, AssetInterface $toAsset, int $fromQuantity, AssetInterface $fromAsset)
+    {
+        $this->at_position_there_is_an_ask_transaction_currency($position, $toQuantity, $toAsset, $fromQuantity, $fromAsset);
+    }
+
+    /**
+     * @Then na :position pozycji jest transakcja wypłaty :preciseQuantity :asset
+     */
+    function at_position_there_is_a_withdraw_transaction(string $position, int $preciseQuantity, AssetInterface $asset)
     {
         $response = json_decode($this->http->getResponse()->getContent(false), true);
         $indexMap = array_flip(self::POSITIONS);
@@ -232,13 +239,13 @@ class TransactionContext implements Context
 
         Assert::same($item['type'], 'withdraw');
         Assert::same($item['fromOperation']['asset'], $this->iriConverter->getIriFromResource(AssetResource::fromModel($asset)));
-        Assert::same($item['fromOperation']['quantity'], $quantity);
+        Assert::same($item['fromOperation']['quantity'], $preciseQuantity);
     }
 
     /**
-     * @Then na :position pozycji jest transakcja depozytu :quantity :asset
+     * @Then na :position pozycji jest transakcja depozytu :preciseQuantity :asset
      */
-    function at_position_there_is_a_deposit_transaction(string $position, int $quantity, AssetInterface $asset)
+    function at_position_there_is_a_deposit_transaction(string $position, int $preciseQuantity, AssetInterface $asset)
     {
         $response = json_decode($this->http->getResponse()->getContent(false), true);
         $indexMap = array_flip(self::POSITIONS);
@@ -247,13 +254,13 @@ class TransactionContext implements Context
 
         Assert::same($item['type'], 'deposit');
         Assert::same($item['toOperation']['asset'], $this->iriConverter->getIriFromResource(AssetResource::fromModel($asset)));
-        Assert::same($item['toOperation']['quantity'], $quantity);
+        Assert::same($item['toOperation']['quantity'], $preciseQuantity);
     }
 
     /**
-     * @Then na :position pozycji jest transakcja pobrania opłaty :quantity :asset
+     * @Then na :position pozycji jest transakcja pobrania opłaty :preciseQuantity :asset
      */
-    function at_position_there_is_a_fee_transaction(string $position, int $quantity, AssetInterface $asset)
+    function at_position_there_is_a_fee_transaction(string $position, int $preciseQuantity, AssetInterface $asset)
     {
         $response = json_decode($this->http->getResponse()->getContent(false), true);
         $indexMap = array_flip(self::POSITIONS);
@@ -262,13 +269,13 @@ class TransactionContext implements Context
 
         Assert::same($item['type'], 'fee');
         Assert::same($item['adjustmentOperations'][0]['asset'], $this->iriConverter->getIriFromResource(AssetResource::fromModel($asset)));
-        Assert::same($item['adjustmentOperations'][0]['quantity'], $quantity);
+        Assert::same($item['adjustmentOperations'][0]['quantity'], $preciseQuantity);
     }
 
     /**
-     * @Then na :position pozycji jest transakcja sprzedaży :fromQuantity akcji spółki :fromAsset za :toQuantity :toAsset
+     * @Then na :position pozycji jest transakcja sprzedaży :fromQuantity akcji spółki :fromAsset za :toPreciseQuantity :toAsset
      */
-    function at_position_there_is_a_bid_transaction(string $position, int $fromQuantity, AssetInterface $fromAsset, int $toQuantity, AssetInterface $toAsset)
+    function at_position_there_is_a_bid_transaction(string $position, int $fromQuantity, AssetInterface $fromAsset, int $toPreciseQuantity, AssetInterface $toAsset)
     {
         $response = json_decode($this->http->getResponse()->getContent(false), true);
         $indexMap = array_flip(self::POSITIONS);
@@ -279,7 +286,7 @@ class TransactionContext implements Context
         Assert::same($item['fromOperation']['asset'], $this->iriConverter->getIriFromResource(AssetResource::fromModel($fromAsset)));
         Assert::same($item['fromOperation']['quantity'], $fromQuantity);
         Assert::same($item['toOperation']['asset'], $this->iriConverter->getIriFromResource(AssetResource::fromModel($toAsset)));
-        Assert::same($item['toOperation']['quantity'], $toQuantity);
+        Assert::same($item['toOperation']['quantity'], $toPreciseQuantity);
     }
 
     /**
@@ -293,13 +300,13 @@ class TransactionContext implements Context
     }
 
     /**
-     * @Then za tę transakcję zapłacono :quantity :asset prowizji
+     * @Then za tę transakcję zapłacono :preciseQuantity :asset prowizji
      */
-    function this_transaction_cost_provision(int $quantity, AssetInterface $asset)
+    function this_transaction_cost_provision(int $preciseQuantity, AssetInterface $asset)
     {
         $item = $this->clipboard->paste('lastTransaction');
 
         Assert::same($item['adjustmentOperations'][0]['asset'], $this->iriConverter->getIriFromResource(AssetResource::fromModel($asset)));
-        Assert::same($item['adjustmentOperations'][0]['quantity'], $quantity);
+        Assert::same($item['adjustmentOperations'][0]['quantity'], $preciseQuantity);
     }
 }
