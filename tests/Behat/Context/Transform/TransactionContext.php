@@ -23,9 +23,17 @@ class TransactionContext implements Context
 
     /**
      * @Transform :preciseQuantity
+     * @Transform :fromPreciseQuantity
+     * @Transform :toPreciseQuantity
+     * @Transform :adjustmentPreciseQuantity
      */
     public function money(float $preciseQuantity): int
     {
         return (int) ($preciseQuantity * self::PRECISION);
+    }
+
+    private function isDecimal(float $number): bool
+    {
+        return floor($number) !== $number;
     }
 }

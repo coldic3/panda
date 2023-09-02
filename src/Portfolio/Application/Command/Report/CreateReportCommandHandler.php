@@ -6,6 +6,8 @@ namespace Panda\Portfolio\Application\Command\Report;
 
 use ApiPlatform\Validator\ValidatorInterface;
 use Panda\Core\Application\Command\CommandHandlerInterface;
+use Panda\Core\Application\Event\EventBusInterface;
+use Panda\Portfolio\Domain\Event\ReportCreatedEvent;
 use Panda\Portfolio\Domain\Factory\ReportFactoryInterface;
 use Panda\Portfolio\Domain\Model\Report\ReportInterface;
 use Panda\Portfolio\Domain\Repository\PortfolioRepositoryInterface;
@@ -19,6 +21,7 @@ final readonly class CreateReportCommandHandler implements CommandHandlerInterfa
         private ReportFactoryInterface $reportFactory,
         private ValidatorInterface $validator,
         private PortfolioRepositoryInterface $portfolioRepository,
+        private EventBusInterface $eventBus,
     ) {
     }
 
@@ -37,6 +40,8 @@ final readonly class CreateReportCommandHandler implements CommandHandlerInterfa
         $this->validator->validate($report, ['groups' => ['panda:create']]);
 
         $this->reportRepository->save($report);
+
+        $this->eventBus->dispatch(new ReportCreatedEvent($report->getId()));
 
         return $report;
     }

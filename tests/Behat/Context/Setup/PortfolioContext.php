@@ -36,6 +36,7 @@ class PortfolioContext implements Context
      * @Given posiadam już domyślny portfel :name
      * @Given posiadam domyślny portfel o nazwie :name
      * @Given posiadam portfel inwestycyjny w walucie :ticker
+     * @Given posiadam portfel inwestycyjny o nazwie :name w walucie :ticker
      */
     function there_is_an_portfolio_with_name(string $name = 'Default Portfolio', string $ticker = 'PLN')
     {

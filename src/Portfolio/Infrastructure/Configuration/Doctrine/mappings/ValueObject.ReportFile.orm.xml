@@ -2,7 +2,7 @@
 
 <doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping">
     <embeddable name="Panda\Portfolio\Domain\ValueObject\ReportFile">
-        <field name="storage" column="storage" length="255" />
-        <field name="filename" column="filename" length="255" />
+        <field name="storage" column="storage" length="255" nullable="true" />
+        <field name="filename" column="filename" length="255" nullable="true" />
     </embeddable>
 </doctrine-mapping>

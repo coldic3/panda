@@ -29,6 +29,7 @@ final readonly class GenerateReportCommandHandler implements CommandHandlerInter
         $generator = $this->reportGeneratorResolver->resolve($report);
         $reportFile = $generator->generate($report);
 
+        $report->setEndedAt(new \DateTimeImmutable());
         $report->setFile($reportFile);
 
         $this->reportRepository->save($report);

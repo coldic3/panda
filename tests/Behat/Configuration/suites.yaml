@@ -4,5 +4,6 @@ imports:
     - Suite/api/exchange_rate_live.yaml
     - Suite/api/exchange_rate_log.yaml
     - Suite/api/portfolio.yaml
+    - Suite/api/report.yaml
     - Suite/api/transaction.yaml
     - Suite/api/user.yaml

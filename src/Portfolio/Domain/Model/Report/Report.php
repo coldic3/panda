@@ -59,6 +59,11 @@ final class Report implements ReportInterface
         $this->file = $file;
     }
 
+    public function getPortfolio(): PortfolioInterface
+    {
+        return $this->portfolio;
+    }
+
     public function getStartedAt(): ?\DateTimeInterface
     {
         return $this->startedAt;
@@ -77,10 +82,5 @@ final class Report implements ReportInterface
     public function setEndedAt(\DateTimeInterface $endedAt): void
     {
         $this->endedAt = $endedAt;
-    }
-
-    public function getPortfolio(): PortfolioInterface
-    {
-        return $this->portfolio;
     }
 }

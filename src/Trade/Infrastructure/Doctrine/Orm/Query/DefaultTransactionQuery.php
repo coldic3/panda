@@ -20,6 +20,8 @@ final readonly class DefaultTransactionQuery implements QueryInterface
         private ?string $toOperationAssetId = null,
         private ?\DateTimeImmutable $afterConcludedAt = null,
         private ?\DateTimeImmutable $beforeConcludedAt = null,
+        private bool $afterConcludedAtInclusive = false,
+        private bool $beforeConcludedAtInclusive = false,
     ) {
     }
 
@@ -54,7 +56,7 @@ final readonly class DefaultTransactionQuery implements QueryInterface
 
         if (null !== $this->afterConcludedAt) {
             $queryBuilder = $queryBuilder
-                ->andWhere($alias.'.concludedAt > :afterConcludedAt')
+                ->andWhere(sprintf('%s.concludedAt %s :afterConcludedAt', $alias, $this->afterConcludedAtInclusive ? '>=' : '>'))
                 ->setParameter(
                     'afterConcludedAt',
                     $this->afterConcludedAt->format(\DateTimeInterface::ATOM)
@@ -63,7 +65,7 @@ final readonly class DefaultTransactionQuery implements QueryInterface
 
         if (null !== $this->beforeConcludedAt) {
             $queryBuilder = $queryBuilder
-                ->andWhere($alias.'.concludedAt < :beforeConcludedAt')
+                ->andWhere(sprintf('%s.concludedAt %s :beforeConcludedAt', $alias, $this->beforeConcludedAtInclusive ? '<=' : '<'))
                 ->setParameter(
                     'beforeConcludedAt',
                     $this->beforeConcludedAt->format(\DateTimeInterface::ATOM)

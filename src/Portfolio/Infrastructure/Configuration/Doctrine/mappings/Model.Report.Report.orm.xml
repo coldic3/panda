@@ -8,8 +8,8 @@
         <id name="id" column="id" type="uuid" />
 
         <field name="name" column="name" length="255" />
-        <field name="startedAt" column="started_at" type="datetime" />
-        <field name="endedAt" column="ended_at" type="datetime" />
+        <field name="startedAt" column="started_at" type="datetime" nullable="true" />
+        <field name="endedAt" column="ended_at" type="datetime" nullable="true" />
 
         <embedded name="entry" class="Panda\Portfolio\Domain\ValueObject\ReportEntry" />
         <embedded name="file" class="Panda\Portfolio\Domain\ValueObject\ReportFile" />

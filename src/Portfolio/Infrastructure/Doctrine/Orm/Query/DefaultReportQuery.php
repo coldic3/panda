@@ -20,7 +20,7 @@ final readonly class DefaultReportQuery implements QueryInterface
     public function buildQuery(string $alias): QueryBuilderInterface
     {
         return $this->queryBuilder
-            ->addSelect('portfolio', 'owner')
+            ->addSelect('portfolio')
             ->leftJoin($alias.'.portfolio', 'portfolio')
             ->andWhere('portfolio.owner = :owner')
             ->setParameter('owner', $this->owner);

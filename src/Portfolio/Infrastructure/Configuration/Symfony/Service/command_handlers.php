@@ -91,6 +91,7 @@ return static function (ContainerConfigurator $containerConfigurator): void {
             service(ReportFactoryInterface::class),
             service(ValidatorInterface::class),
             service(PortfolioRepositoryInterface::class),
+            service(EventBusInterface::class),
         ])
         ->tag('messenger.message_handler', [
             'bus' => 'command.bus',

@@ -44,13 +44,17 @@ final class TransactionRepository extends DoctrineRepository implements Transact
         string $toOperationAssetId = null,
         \DateTimeImmutable $afterConcludedAt = null,
         \DateTimeImmutable $beforeConcludedAt = null,
+        bool $afterConcludedAtInclusive = false,
+        bool $beforeConcludedAtInclusive = false,
     ): QueryInterface {
         return new Query\DefaultTransactionQuery(
             $owner,
             $fromOperationAssetId,
             $toOperationAssetId,
             $afterConcludedAt,
-            $beforeConcludedAt
+            $beforeConcludedAt,
+            $afterConcludedAtInclusive,
+            $beforeConcludedAtInclusive,
         );
     }
 

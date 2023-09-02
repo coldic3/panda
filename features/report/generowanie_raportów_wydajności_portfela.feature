@@ -1,5 +1,6 @@
 # language: pl
 
+@report
 Potrzeba biznesowa: Generowanie raportów wydajności portfela
     W celu zbadania wydajności portfela inwestycyjnego
     Jako użytkownik
@@ -7,7 +8,7 @@ Potrzeba biznesowa: Generowanie raportów wydajności portfela
 
     Założenia:
         * jestem zalogowany jako "panda@example.com"
-        * posiadam portfel inwestycyjny w walucie "PLN"
+        * posiadam portfel inwestycyjny o nazwie "Mój portfel" w walucie "PLN"
         * posiadam aktywo "PLN" o nazwie "Polski Złoty"
         * posiadam aktywo "ACM" o nazwie "ACME Inc."
         * posiadam aktywo "EXT" o nazwie "Example Tech"
@@ -20,23 +21,48 @@ Potrzeba biznesowa: Generowanie raportów wydajności portfela
         * kupiłem 1 akcję spółki "EXT" w dniu "2023-04-27 11:00:00" za 1 akcję spółki "ACM"
         * kurs dla pary "PLN/ACM" w dniu "2023-02-19" wyniósł 4567.4881
         * kurs dla pary "PLN/EXT" w dniu "2023-02-19" wyniósł 1458.01
+        * kurs dla pary "PLN/ACM" w dniu "2023-04-05" wyniósł 4951.5701
+        * kurs dla pary "PLN/EXT" w dniu "2023-04-05" wyniósł 1460.3858
         * kurs dla pary "PLN/ACM" w dniu "2023-04-07" wyniósł 4981.9457
         * kurs dla pary "PLN/EXT" w dniu "2023-04-07" wyniósł 1451.799
         * kurs dla pary "PLN/ACM" w dniu "2023-04-30" wyniósł 4394.487
         * kurs dla pary "PLN/EXT" w dniu "2023-04-30" wyniósł 1227.5
 
     @api
-    Scenariusz: Generowanie raportu wydajności portfela z wartością początkową
-        Gdy generuję raport wydajności w portfelu dla przedziału dat od "2023-04-07 14:00:00" do "2023-04-30 23:59:59"
+    Scenariusz: Generowanie raportu wydajności portfela z ujemną stopą zwrotu
+        Gdy konfiguruję raport
+        I podaję nazwę raportu "Testowy raport wydajności portfela"
+        I podaję portfel "Mój portfel"
+        I podaję typ raportu "performance"
+        I podaję przedział dat od "2023-04-07 14:02:00" do "2023-04-30 23:59:59"
+        I zatwierdzam wprowadzone dane
         Wtedy otrzymuję raport wydajności
         I raport wydajności zawiera:
-            | wartość początkowa | wartość końcowa | zysk/strata | stopa zwrotu |
-            | 109758             | 40915           | -68843      | -62.7%       |
+            | initial value | final value | profit/loss | rate of return |
+            | 109758        | 43853       | -65905      | -60.05%        |
+
+    @api
+    Scenariusz: Generowanie raportu wydajności portfela z dodatnią stopą zwrotu
+        Gdy konfiguruję raport
+        I podaję nazwę raportu "Testowy raport wydajności portfela"
+        I podaję portfel "Mój portfel"
+        I podaję typ raportu "performance"
+        I podaję przedział dat od "2023-04-05 00:00:00" do "2023-04-07 14:02:00"
+        I zatwierdzam wprowadzone dane
+        Wtedy otrzymuję raport wydajności
+        I raport wydajności zawiera:
+            | initial value | final value | profit/loss | rate of return |
+            | 103342        | 109454      | 6112        | 5.91%          |
 
     @api
     Scenariusz: Generowanie raportu wydajności portfela bez wartości początkowej
-        Gdy generuję raport wydajności w portfelu dla przedziału dat od "2023-02-19 00:00:00" do "2023-04-30 23:59:59"
+        Gdy konfiguruję raport
+        I podaję nazwę raportu "Testowy raport wydajności portfela"
+        I podaję portfel "Mój portfel"
+        I podaję typ raportu "performance"
+        I podaję przedział dat od "2023-02-19 00:00:00" do "2023-04-30 23:59:59"
+        I zatwierdzam wprowadzone dane
         Wtedy otrzymuję raport wydajności
         I raport wydajności zawiera:
-            | wartość początkowa | wartość końcowa | zysk/strata | stopa zwrotu |
-            | 0                  | 40915           | 40915       | 4091.5%      |
+            | initial value | final value | profit/loss | rate of return |
+            | 0             | 40915       | 40915       | N/A            |

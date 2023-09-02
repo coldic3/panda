@@ -20,6 +20,8 @@ use Webmozart\Assert\Assert;
 final readonly class PerformanceReportGenerator implements ReportGeneratorInterface
 {
     public const TYPE = 'performance';
+    private const NOT_APPLICABLE = 'N/A';
+    private const RATE_TO_RETURN_PRECISION = 2;
 
     public function __construct(
         private string $projectDir,
@@ -72,18 +74,25 @@ final readonly class PerformanceReportGenerator implements ReportGeneratorInterf
                 owner: $owner,
                 afterConcludedAt: $fromDatetime,
                 beforeConcludedAt: $toDatetime,
+                afterConcludedAtInclusive: true,
+                beforeConcludedAtInclusive: true,
             )
         );
 
-        $finalValueOfResources = $this->computeValueOfResources(
+        $finalValueOfResources = $initialValueOfResources + $this->computeValueOfResources(
             $finalValueTransactions,
             $owner,
             $portfolio->getMainResource()->getTicker(),
             $toDatetime,
         );
 
-        $profitLoss = $initialValueOfResources - $finalValueOfResources;
-        $rateToReturn = (int) round($profitLoss / $initialValueOfResources * 100);
+        $profitLoss = $finalValueOfResources - $initialValueOfResources;
+        $rateToReturn = 0 === $initialValueOfResources
+            ? self::NOT_APPLICABLE
+            : sprintf(
+                '%.2f%%',
+                round($profitLoss / $initialValueOfResources * 100, self::RATE_TO_RETURN_PRECISION)
+            );
 
         $csvFilePath = sprintf('%s/private/reports/%s', $this->projectDir, $reportFile->getFilename());
 
@@ -130,33 +139,60 @@ final readonly class PerformanceReportGenerator implements ReportGeneratorInterf
         foreach ($transactions as $transaction) {
             $fromOperation = $transaction->getFromOperation();
             $toOperation = $transaction->getToOperation();
+            $adjustmentOperations = $transaction->getAdjustmentOperations();
 
             if (null !== $fromOperation) {
                 $ticker = $fromOperation->getAsset()->getTicker();
 
-                $exchangeRate = $this->exchangeRateLogRepository->findByDatetime(
-                    $owner,
-                    $mainTicker,
-                    $ticker,
-                    $datetime,
-                );
-                Assert::notNull($exchangeRate);
+                if ($ticker === $mainTicker) {
+                    $valueOfResources -= $fromOperation->getQuantity();
+                } else {
+                    $exchangeRate = $this->exchangeRateLogRepository->findByDatetime(
+                        $owner,
+                        $mainTicker,
+                        $ticker,
+                        $datetime,
+                    );
+                    Assert::notNull($exchangeRate);
 
-                $valueOfResources -= $fromOperation->getQuantity() * $exchangeRate->getRate();
+                    $valueOfResources -= $fromOperation->getQuantity() * $exchangeRate->getRate();
+                }
             }
 
             if (null !== $toOperation) {
                 $ticker = $toOperation->getAsset()->getTicker();
 
-                $exchangeRate = $this->exchangeRateLogRepository->findByDatetime(
-                    $owner,
-                    $mainTicker,
-                    $ticker,
-                    $datetime,
-                );
-                Assert::notNull($exchangeRate);
+                if ($ticker === $mainTicker) {
+                    $valueOfResources += $toOperation->getQuantity();
+                } else {
+                    $exchangeRate = $this->exchangeRateLogRepository->findByDatetime(
+                        $owner,
+                        $mainTicker,
+                        $ticker,
+                        $datetime,
+                    );
+                    Assert::notNull($exchangeRate);
 
-                $valueOfResources += $toOperation->getQuantity() * $exchangeRate->getRate();
+                    $valueOfResources += $toOperation->getQuantity() * $exchangeRate->getRate();
+                }
+            }
+
+            foreach ($adjustmentOperations as $adjustmentOperation) {
+                $ticker = $adjustmentOperation->getAsset()->getTicker();
+
+                if ($ticker === $mainTicker) {
+                    $valueOfResources -= $adjustmentOperation->getQuantity();
+                } else {
+                    $exchangeRate = $this->exchangeRateLogRepository->findByDatetime(
+                        $owner,
+                        $mainTicker,
+                        $ticker,
+                        $datetime,
+                    );
+                    Assert::notNull($exchangeRate);
+
+                    $valueOfResources -= $adjustmentOperation->getQuantity() * $exchangeRate->getRate();
+                }
             }
         }
 

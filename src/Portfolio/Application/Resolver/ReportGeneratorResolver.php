@@ -18,6 +18,7 @@ final readonly class ReportGeneratorResolver implements ReportGeneratorResolverI
 
     public function resolve(ReportInterface $report): ReportGeneratorInterface
     {
+        // FIXME: Use tagged iterator instead of switch
         switch ($report->getEntry()->getType()) {
             case PerformanceReportGenerator::TYPE:
                 /** @var PerformanceReportGenerator $generator */
