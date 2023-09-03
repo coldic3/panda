@@ -72,13 +72,27 @@ class ReportContext implements Context
     /**
      * @When podaję przedział dat od :fromDatetime do :toDatetime
      */
-    function i_specify_report_entry_configuration(\DateTimeImmutable $fromDatetime, \DateTimeImmutable $toDatetime)
+    function i_specify_report_entry_configuration_datetime_range(\DateTimeImmutable $fromDatetime, \DateTimeImmutable $toDatetime)
     {
         $entry = $this->http->getPayloadElement('entry') ?? [];
 
         $entry['configuration'] = [
             'fromDatetime' => $fromDatetime->format('Y-m-d H:i:s'),
             'toDatetime' => $toDatetime->format('Y-m-d H:i:s'),
+        ];
+
+        $this->http->addToPayload('entry', $entry);
+    }
+
+    /**
+     * @When podaję datę :datetime
+     */
+    function i_specify_report_entry_configuration_datetime(\DateTimeImmutable $datetime)
+    {
+        $entry = $this->http->getPayloadElement('entry') ?? [];
+
+        $entry['configuration'] = [
+            'datetime' => $datetime->format('Y-m-d H:i:s'),
         ];
 
         $this->http->addToPayload('entry', $entry);
@@ -94,6 +108,7 @@ class ReportContext implements Context
 
     /**
      * @Then otrzymuję raport wydajności
+     * @Then otrzymuję raport udziału aktywów
      */
     function the_report_creation_ends_with_a_success()
     {
@@ -110,7 +125,7 @@ class ReportContext implements Context
     /**
      * @Then raport wydajności zawiera:
      */
-    function the_report_contains(TableNode $table)
+    function the_performance_report_contains(TableNode $table)
     {
         $response = $this->http->getResponse();
         $content = json_decode($response->getContent(false), true);
@@ -130,6 +145,34 @@ class ReportContext implements Context
             Assert::same($row['final value'], $csvRow[1]);
             Assert::same($row['profit/loss'], $csvRow[2]);
             Assert::same($row['rate of return'], $csvRow[3]);
+        }
+
+        fclose($handle);
+    }
+
+    /**
+     * @Then raport udziału aktywów zawiera:
+     */
+    function the_allocation_report_contains(TableNode $table)
+    {
+        $response = $this->http->getResponse();
+        $content = json_decode($response->getContent(false), true);
+        $reportFilename = $content['file']['filename'];
+
+        $csvFilePath = sprintf('%s/private/reports/%s', $this->projectDir, $reportFilename);
+
+        $handle = fopen($csvFilePath, 'r');
+        Assert::notFalse($handle);
+
+        Assert::same(fgetcsv($handle), ['ticker', 'quantity', 'value', 'share']);
+
+        foreach ($table as $row) {
+            $csvRow = fgetcsv($handle);
+
+            Assert::same($row['ticker'], $csvRow[0]);
+            Assert::same($row['quantity'], $csvRow[1]);
+            Assert::same($row['value'], $csvRow[2]);
+            Assert::same($row['share'], $csvRow[3]);
         }
 
         fclose($handle);

@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Panda\Portfolio\Application\Resolver;
 
 use Panda\Portfolio\Domain\Model\Report\ReportInterface;
+use Panda\Portfolio\Domain\ReportGenerator\AllocationReportGenerator;
 use Panda\Portfolio\Domain\ReportGenerator\PerformanceReportGenerator;
 use Panda\Portfolio\Domain\ReportGenerator\ReportGeneratorInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
@@ -23,6 +24,12 @@ final readonly class ReportGeneratorResolver implements ReportGeneratorResolverI
             case PerformanceReportGenerator::TYPE:
                 /** @var PerformanceReportGenerator $generator */
                 $generator = $this->container->get(PerformanceReportGenerator::class);
+                Assert::isInstanceOf($generator, ReportGeneratorInterface::class);
+
+                return $generator;
+            case AllocationReportGenerator::TYPE:
+                /** @var AllocationReportGenerator $generator */
+                $generator = $this->container->get(AllocationReportGenerator::class);
                 Assert::isInstanceOf($generator, ReportGeneratorInterface::class);
 
                 return $generator;

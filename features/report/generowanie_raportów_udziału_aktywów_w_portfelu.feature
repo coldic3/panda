@@ -1,5 +1,6 @@
 # language: pl
 
+@report
 Potrzeba biznesowa: Generowanie raportów udziału aktywów w portfelu
     W celu zapoznania się z udziałem aktywów w portfelu inwestycyjnym
     Jako użytkownik
@@ -7,7 +8,7 @@ Potrzeba biznesowa: Generowanie raportów udziału aktywów w portfelu
 
     Założenia:
         * jestem zalogowany jako "panda@example.com"
-        * posiadam portfel inwestycyjny w walucie "PLN"
+        * posiadam portfel inwestycyjny o nazwie "Mój portfel" w walucie "PLN"
         * posiadam aktywo "PLN" o nazwie "Polski Złoty"
         * posiadam aktywo "ACM" o nazwie "ACME Inc."
         * posiadam aktywo "EXT" o nazwie "Example Tech"
@@ -23,23 +24,31 @@ Potrzeba biznesowa: Generowanie raportów udziału aktywów w portfelu
         * kurs dla pary "PLN/ACM" w dniu "2023-04-28" wyniósł 8411.47
         * kurs dla pary "PLN/EXT" w dniu "2023-04-28" wyniósł 14538.3853
 
+    @api
+    Scenariusz: Generowanie raportu udziału aktywów w portfelu
+        Gdy konfiguruję raport
+        I podaję nazwę raportu "Testowy raport udziału aktywów w portfelu"
+        I podaję portfel "Mój portfel"
+        I podaję typ raportu "allocation"
+        I podaję datę "2023-04-28 15:00:00"
+        I zatwierdzam wprowadzone dane
+        Wtedy otrzymuję raport udziału aktywów
+        I raport udziału aktywów zawiera:
+            | ticker | quantity | value  | share  |
+            | ACM    | 4        | 33646  | 20.58% |
+            | EXT    | 8        | 116307 | 71.15% |
+            | PLN    | 13517    | 13517  | 8.27%  |
 
     @api
     Scenariusz: Generowanie raportu udziału aktywów w portfelu
-        Gdy generuję raport udziału aktywów w portfelu na dzień "2023-04-28 15:00:00"
+        Gdy konfiguruję raport
+        I podaję nazwę raportu "Testowy raport udziału aktywów w portfelu"
+        I podaję portfel "Mój portfel"
+        I podaję typ raportu "allocation"
+        I podaję datę "2023-04-07 14:09:59"
+        I zatwierdzam wprowadzone dane
         Wtedy otrzymuję raport udziału aktywów
         I raport udziału aktywów zawiera:
-            | ticker | nazwa        | ilość | wartość aktywa | udział w portfelu |
-            | PLN    | Polski Złoty | 13517 | 13517          | 8.27%             |
-            | ACM    | Acme Inc.    | 4     | 33646          | 20.58%            |
-            | EXT    | Example Tech | 8     | 116307         | 71.15%            |
-
-    @api
-    Scenariusz: Generowanie raportu udziału aktywów w portfelu
-        Gdy generuję raport udziału aktywów w portfelu na dzień "2023-04-07 14:09:59"
-        Wtedy otrzymuję raport udziału aktywów
-        I raport udziału aktywów zawiera:
-            | ticker | name         | ilość | wartość aktywa | udział w portfelu |
-            | PLN    | Polski Złoty | 84848 | 84848          | 68%               |
-            | ACM    | Acme Inc.    | 5     | 39891          | 32%               |
-            | EXT    | Example Tech | 0     | 0              | 0%                |
+            | ticker | quantity | value  | share  |
+            | ACM    | 5        | 39891  | 31.98% |
+            | PLN    | 84848    | 84848  | 68.02% |
