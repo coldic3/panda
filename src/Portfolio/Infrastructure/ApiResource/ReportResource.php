@@ -45,7 +45,7 @@ use Symfony\Component\Uid\Uuid;
         ),
         new Post(
             validationContext: ['groups' => ['create']],
-            processor: ReportCreateProcessor::class
+            processor: ReportCreateProcessor::class,
         ),
     ],
     normalizationContext: ['groups' => [self::READ_GROUP], 'skip_null_values' => false],
