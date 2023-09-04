@@ -18,7 +18,8 @@ return static function (ContainerConfigurator $containerConfigurator): void {
             '%kernel.project_dir%',
             service(TransactionRepositoryInterface::class),
             service(ExchangeRateLogRepositoryInterface::class),
-        ]);
+        ])
+        ->tag('panda.portfolio.report_generator');
 
     $services->set(AllocationReportGenerator::class)
         ->public()
@@ -26,5 +27,6 @@ return static function (ContainerConfigurator $containerConfigurator): void {
             '%kernel.project_dir%',
             service(TransactionRepositoryInterface::class),
             service(ExchangeRateLogRepositoryInterface::class),
-        ]);
+        ])
+        ->tag('panda.portfolio.report_generator');
 };

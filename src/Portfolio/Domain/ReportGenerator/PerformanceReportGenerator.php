@@ -30,6 +30,11 @@ final readonly class PerformanceReportGenerator implements ReportGeneratorInterf
     ) {
     }
 
+    public function supports(ReportInterface $report): bool
+    {
+        return self::TYPE === $report->getEntry()->getType();
+    }
+
     public function generate(ReportInterface $report): ReportFileInterface
     {
         $portfolio = $report->getPortfolio();

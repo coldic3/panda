@@ -29,6 +29,11 @@ final readonly class AllocationReportGenerator implements ReportGeneratorInterfa
     ) {
     }
 
+    public function supports(ReportInterface $report): bool
+    {
+        return self::TYPE === $report->getEntry()->getType();
+    }
+
     public function generate(ReportInterface $report): ReportFileInterface
     {
         $portfolio = $report->getPortfolio();

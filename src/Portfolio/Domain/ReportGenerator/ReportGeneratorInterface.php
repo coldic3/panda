@@ -10,4 +10,6 @@ use Panda\Portfolio\Domain\ValueObject\ReportFileInterface;
 interface ReportGeneratorInterface
 {
     public function generate(ReportInterface $report): ReportFileInterface;
+
+    public function supports(ReportInterface $report): bool;
 }
