@@ -9,6 +9,7 @@ use ApiPlatform\Metadata\ApiResource;
 use ApiPlatform\Metadata\Get;
 use ApiPlatform\Metadata\GetCollection;
 use ApiPlatform\Metadata\Post;
+use Panda\Portfolio\Application\Action\DownloadReportAction;
 use Panda\Portfolio\Domain\Model\Report\ReportInterface;
 use Panda\Portfolio\Infrastructure\ApiState\Processor\ReportCreateProcessor;
 use Panda\Portfolio\Infrastructure\ApiState\Provider\ReportProvider;
@@ -20,6 +21,28 @@ use Symfony\Component\Uid\Uuid;
     operations: [
         new GetCollection(),
         new Get(),
+        new Get(
+            uriTemplate: '/reports/{id}/download',
+            formats: ['csv' => ['text/csv']],
+            controller: DownloadReportAction::class,
+            openapiContext: [
+                'summary' => 'Downloads a report.',
+                'description' => 'Downloads a report.',
+                'responses' => [
+                    '200' => [
+                        'description' => 'Report file',
+                        'content' => [
+                            'text/csv' => [
+                                'schema' => [
+                                    'type' => 'string',
+                                    'format' => 'binary',
+                                ],
+                            ],
+                        ],
+                    ],
+                ],
+            ],
+        ),
         new Post(
             validationContext: ['groups' => ['create']],
             processor: ReportCreateProcessor::class
