@@ -11,7 +11,7 @@ use Panda\Portfolio\Domain\ValueObject\ReportEntryInterface;
 use Panda\Portfolio\Domain\ValueObject\ReportFileInterface;
 use Symfony\Component\Uid\Uuid;
 
-final class Report implements ReportInterface
+class Report implements ReportInterface
 {
     use TimestampableTrait;
 
