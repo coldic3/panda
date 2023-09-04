@@ -1,0 +1,22 @@
+{
+    # Debug
+    {$CADDY_DEBUG}
+}
+
+{$SERVER_NAME}
+
+log
+
+route {
+    root * /srv/app/public
+    vulcain
+
+    # Add links to the API docs if not set explicitly (e.g. the PWA)
+    header ?Link: `</docs.jsonld>; rel="http://www.w3.org/ns/hydra/core#apiDocumentation"`
+    # Disable Topics tracking if not enabled explicitly: https://github.com/jkarlin/topics
+    header ?Permissions-Policy "browsing-topics=()"
+
+    php_fastcgi unix//var/run/php/php-fpm.sock
+    encode zstd gzip
+    file_server
+}
