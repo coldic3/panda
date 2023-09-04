@@ -4,7 +4,7 @@ namespace Panda\Tests\Api\Portfolio;
 
 use Faker;
 use Panda\Account\Domain\Model\User;
-use Panda\Portfolio\Domain\Model\Portfolio;
+use Panda\Portfolio\Domain\Model\Portfolio\Portfolio;
 use Panda\Tests\Api\ApiTestCase;
 use Panda\Tests\Util\HttpMethodEnum;
 use Symfony\Component\HttpFoundation\Response;

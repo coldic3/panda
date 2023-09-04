@@ -1,7 +1,7 @@
 include:
     - 'user.yaml'
 
-Panda\Portfolio\Domain\Model\Portfolio:
+Panda\Portfolio\Domain\Model\Portfolio\Portfolio:
     portfolio_default:
         __factory: {'Panda\Tests\Fixture\Factory\PortfolioFactory::create': ['Default Portfolio', 'PLN', 'Polish Zloty', true] } 
         ownedBy: '@user_panda'
@@ -13,7 +13,7 @@ Panda\Portfolio\Domain\Model\Portfolio:
         createdAt: <(new DateTimeImmutable())>
         updatedAt: <(new DateTimeImmutable())>
 
-Panda\Portfolio\Domain\Model\PortfolioItem:
+Panda\Portfolio\Domain\Model\Portfolio\PortfolioItem:
     portfolio_default_item_1:
         __factory: {'Panda\Tests\Fixture\Factory\PortfolioItemFactory::create': ['ACM', 'Acme Corp.', '@portfolio_default'] }
     portfolio_default_item_2:

@@ -10,6 +10,8 @@ class DateTimeContext implements Context
 {
     /**
      * @Transform :datetime
+     * @Transform :fromDatetime
+     * @Transform :toDatetime
      */
     public function datetime(string $datetime): \DateTimeImmutable
     {

@@ -10,6 +10,7 @@ use Panda\Tests\Behat\Context\Api\AuthContext;
 use Panda\Tests\Behat\Context\Api\ExchangeRateContext;
 use Panda\Tests\Behat\Context\Api\ExchangeRateLogContext;
 use Panda\Tests\Behat\Context\Api\PortfolioContext;
+use Panda\Tests\Behat\Context\Api\ReportContext;
 use Panda\Tests\Behat\Context\Api\TransactionContext;
 use Panda\Tests\Behat\Context\Api\UserContext;
 use Panda\Tests\Util\HttpRequestBuilder;
@@ -63,5 +64,12 @@ return static function (ContainerConfigurator $containerConfigurator): void {
         ->args([
             service(HttpRequestBuilder::class),
             service(IriConverterInterface::class),
+        ]);
+
+    $services->set(ReportContext::class)
+        ->args([
+            service(HttpRequestBuilder::class),
+            service(IriConverterInterface::class),
+            '%kernel.project_dir%',
         ]);
 };

@@ -8,7 +8,7 @@ use ApiPlatform\Metadata\Operation;
 use ApiPlatform\State\ProcessorInterface;
 use Panda\Core\Application\Command\CommandBusInterface;
 use Panda\Portfolio\Application\Command\Portfolio\ChangeDefaultPortfolioCommand;
-use Panda\Portfolio\Domain\Model\PortfolioInterface;
+use Panda\Portfolio\Domain\Model\Portfolio\PortfolioInterface;
 use Panda\Portfolio\Infrastructure\ApiResource\PortfolioResource;
 use Webmozart\Assert\Assert;
 

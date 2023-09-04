@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Panda\Portfolio\Domain\Factory;
 
-use Panda\Portfolio\Domain\Model\PortfolioInterface;
-use Panda\Portfolio\Domain\Model\PortfolioItemInterface;
+use Panda\Portfolio\Domain\Model\Portfolio\PortfolioInterface;
+use Panda\Portfolio\Domain\Model\Portfolio\PortfolioItemInterface;
 
 interface PortfolioItemFactoryInterface
 {

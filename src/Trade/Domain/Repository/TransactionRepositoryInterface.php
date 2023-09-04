@@ -24,5 +24,7 @@ interface TransactionRepositoryInterface extends RepositoryInterface
         string $toOperationAssetId = null,
         \DateTimeImmutable $afterConcludedAt = null,
         \DateTimeImmutable $beforeConcludedAt = null,
+        bool $afterConcludedAtInclusive = false,
+        bool $beforeConcludedAtInclusive = false,
     ): QueryInterface;
 }

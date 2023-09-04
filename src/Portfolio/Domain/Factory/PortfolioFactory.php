@@ -6,8 +6,8 @@ namespace Panda\Portfolio\Domain\Factory;
 
 use Panda\AccountOHS\Domain\Model\Owner\OwnerInterface;
 use Panda\AccountOHS\Domain\Provider\AuthorizedUserProviderInterface;
-use Panda\Portfolio\Domain\Model\Portfolio;
-use Panda\Portfolio\Domain\Model\PortfolioInterface;
+use Panda\Portfolio\Domain\Model\Portfolio\Portfolio;
+use Panda\Portfolio\Domain\Model\Portfolio\PortfolioInterface;
 use Panda\Portfolio\Domain\ValueObject\Resource;
 
 final readonly class PortfolioFactory implements PortfolioFactoryInterface

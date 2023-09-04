@@ -13,7 +13,7 @@ use Panda\Core\Infrastructure\ApiState\Pagination\Paginator;
 use Panda\Core\Infrastructure\Doctrine\Orm\DoctrineCollectionIterator;
 use Panda\Portfolio\Application\Query\Portfolio\FindPortfolioQuery;
 use Panda\Portfolio\Application\Query\Portfolio\FindPortfoliosQuery;
-use Panda\Portfolio\Domain\Model\Portfolio;
+use Panda\Portfolio\Domain\Model\Portfolio\Portfolio;
 use Panda\Portfolio\Infrastructure\ApiResource\PortfolioResource;
 use Symfony\Component\Uid\Uuid;
 

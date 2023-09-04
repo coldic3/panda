@@ -10,8 +10,8 @@ use Panda\Core\Application\Command\CommandBusInterface;
 use Panda\Portfolio\Application\Command\Portfolio\CreatePortfolioCommand;
 use Panda\Portfolio\Domain\Factory\PortfolioFactoryInterface;
 use Panda\Portfolio\Domain\Factory\PortfolioItemFactoryInterface;
-use Panda\Portfolio\Domain\Model\PortfolioInterface;
-use Panda\Portfolio\Domain\Model\PortfolioItemInterface;
+use Panda\Portfolio\Domain\Model\Portfolio\PortfolioInterface;
+use Panda\Portfolio\Domain\Model\Portfolio\PortfolioItemInterface;
 use Panda\Portfolio\Domain\Repository\PortfolioRepositoryInterface;
 use Panda\Tests\Behat\Context\Util\EnableClipboardTrait;
 use Webmozart\Assert\Assert;
@@ -36,6 +36,7 @@ class PortfolioContext implements Context
      * @Given posiadam już domyślny portfel :name
      * @Given posiadam domyślny portfel o nazwie :name
      * @Given posiadam portfel inwestycyjny w walucie :ticker
+     * @Given posiadam portfel inwestycyjny o nazwie :name w walucie :ticker
      */
     function there_is_an_portfolio_with_name(string $name = 'Default Portfolio', string $ticker = 'PLN')
     {

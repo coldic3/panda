@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Panda\Portfolio\Domain\Model;
+namespace Panda\Portfolio\Domain\Model\Portfolio;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;

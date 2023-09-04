@@ -6,9 +6,9 @@ namespace Panda\Portfolio\Infrastructure\Doctrine\Orm;
 
 use Doctrine\ORM\EntityManagerInterface;
 use Panda\Core\Infrastructure\Doctrine\Orm\DoctrineRepository;
-use Panda\Portfolio\Domain\Model\PortfolioInterface;
-use Panda\Portfolio\Domain\Model\PortfolioItem;
-use Panda\Portfolio\Domain\Model\PortfolioItemInterface;
+use Panda\Portfolio\Domain\Model\Portfolio\PortfolioInterface;
+use Panda\Portfolio\Domain\Model\Portfolio\PortfolioItem;
+use Panda\Portfolio\Domain\Model\Portfolio\PortfolioItemInterface;
 use Panda\Portfolio\Domain\Repository\PortfolioItemRepositoryInterface;
 use Webmozart\Assert\Assert;
 

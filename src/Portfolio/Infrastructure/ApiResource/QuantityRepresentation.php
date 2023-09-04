@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Panda\Portfolio\Infrastructure\ApiResource;
 
 use ApiPlatform\Metadata\ApiProperty;
-use Panda\Portfolio\Domain\Model\PortfolioItemInterface;
+use Panda\Portfolio\Domain\Model\Portfolio\PortfolioItemInterface;
 use Symfony\Component\Serializer\Annotation\Groups;
 
 final class QuantityRepresentation

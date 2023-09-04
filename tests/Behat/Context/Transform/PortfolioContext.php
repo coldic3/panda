@@ -6,8 +6,8 @@ namespace Panda\Tests\Behat\Context\Transform;
 
 use Behat\Behat\Context\Context;
 use Doctrine\ORM\EntityManagerInterface;
-use Panda\Portfolio\Domain\Model\Portfolio;
-use Panda\Portfolio\Domain\Model\PortfolioInterface;
+use Panda\Portfolio\Domain\Model\Portfolio\Portfolio;
+use Panda\Portfolio\Domain\Model\Portfolio\PortfolioInterface;
 use Webmozart\Assert\Assert;
 
 class PortfolioContext implements Context

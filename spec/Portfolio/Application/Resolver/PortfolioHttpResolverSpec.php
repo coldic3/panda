@@ -4,7 +4,7 @@ namespace spec\Panda\Portfolio\Application\Resolver;
 
 use Panda\Portfolio\Application\Exception\PortfolioNotFoundException;
 use Panda\Portfolio\Application\Resolver\PortfolioHttpResolver;
-use Panda\Portfolio\Domain\Model\PortfolioInterface;
+use Panda\Portfolio\Domain\Model\Portfolio\PortfolioInterface;
 use Panda\Portfolio\Domain\Repository\PortfolioRepositoryInterface;
 use Panda\PortfolioOHS\Application\Resolver\PortfolioResolverInterface;
 use PhpSpec\ObjectBehavior;

@@ -15,7 +15,7 @@ Panda\Trade\Domain\Model\Asset\Asset:
         createdAt: <dateTimeBetween('-200 days', 'now')>
         updatedAt: <dateTimeBetween($createdAt, 'now')>
 
-Panda\Portfolio\Domain\Model\PortfolioItem:
+Panda\Portfolio\Domain\Model\Portfolio\PortfolioItem:
     portfolio_item_{1..6}:
         __factory: {'Panda\Tests\Fixture\Factory\PortfolioItemFactory::create': [TCK<current()>, <company()>, '@portfolio_default'] }
         addLongQuantity: 300

@@ -22,11 +22,11 @@ class TransactionContext implements Context
     }
 
     /**
-     * @Given zdeponowałem :quantity :asset w dniu :datetime
+     * @Given zdeponowałem :preciseQuantity :asset w dniu :datetime
      */
-    function i_deposit_at(int $quantity, AssetInterface $asset, \DateTimeImmutable $datetime)
+    function i_deposit_at(int $preciseQuantity, AssetInterface $asset, \DateTimeImmutable $datetime)
     {
-        $operation = $this->operationFactory->create($asset, $quantity);
+        $operation = $this->operationFactory->create($asset, $preciseQuantity);
         $transaction = $this->transactionFactory->createDeposit($operation, [], $datetime);
 
         $this->transactionRepository->save($transaction);
@@ -34,17 +34,17 @@ class TransactionContext implements Context
     }
 
     /**
-     * @Given wypłaciłem z platformy inwestycyjnej :quantity :asset w dniu :datetime płacąc przy tym :adjustmentQuantity :adjustmentAsset prowizji
+     * @Given wypłaciłem z platformy inwestycyjnej :preciseQuantity :asset w dniu :datetime płacąc przy tym :adjustmentPreciseQuantity :adjustmentAsset prowizji
      */
     function i_withdraw_at(
-        int $quantity,
+        int $preciseQuantity,
         AssetInterface $asset,
         \DateTimeImmutable $datetime,
-        int $adjustmentQuantity,
+        int $adjustmentPreciseQuantity,
         AssetInterface $adjustmentAsset
     ) {
-        $operation = $this->operationFactory->create($asset, $quantity);
-        $adjustmentOperation = $this->operationFactory->create($adjustmentAsset, $adjustmentQuantity);
+        $operation = $this->operationFactory->create($asset, $preciseQuantity);
+        $adjustmentOperation = $this->operationFactory->create($adjustmentAsset, $adjustmentPreciseQuantity);
         $transaction = $this->transactionFactory->createWithdraw($operation, [$adjustmentOperation], $datetime);
 
         $this->transactionRepository->save($transaction);
@@ -52,17 +52,16 @@ class TransactionContext implements Context
     }
 
     /**
-     * @Given kupiłem :toQuantity akcji spółki :toAsset w dniu :datetime za :fromQuantity :fromAsset
-     * @Given kupiłem :toQuantity akcję spółki :toAsset w dniu :datetime za :fromQuantity akcję spółki :fromAsset
+     * @Given kupiłem :toQuantity akcji spółki :toAsset w dniu :datetime za :fromPreciseQuantity :fromAsset
      */
-    function i_ask_at(
+    function i_ask_at_currency(
         int $toQuantity,
         AssetInterface $toAsset,
         \DateTimeImmutable $datetime,
-        int $fromQuantity,
+        int $fromPreciseQuantity,
         AssetInterface $fromAsset,
     ) {
-        $fromOperation = $this->operationFactory->create($fromAsset, $fromQuantity);
+        $fromOperation = $this->operationFactory->create($fromAsset, $fromPreciseQuantity);
         $toOperation = $this->operationFactory->create($toAsset, $toQuantity);
         $transaction = $this->transactionFactory->createAsk($fromOperation, $toOperation, [], $datetime);
 
@@ -71,20 +70,33 @@ class TransactionContext implements Context
     }
 
     /**
-     * @Given sprzedałem :fromQuantity akcji spółki :fromAsset w dniu :datetime za :toQuantity :toAsset płacąc przy tym :adjustmentQuantity :adjustmentAsset prowizji
+     * @Given kupiłem :toQuantity akcję spółki :toAsset w dniu :datetime za :fromQuantity akcję spółki :fromAsset
+     */
+    function i_ask_at_asset(
+        int $toQuantity,
+        AssetInterface $toAsset,
+        \DateTimeImmutable $datetime,
+        int $fromQuantity,
+        AssetInterface $fromAsset,
+    ) {
+        $this->i_ask_at_currency($toQuantity, $toAsset, $datetime, $fromQuantity, $fromAsset);
+    }
+
+    /**
+     * @Given sprzedałem :fromQuantity akcji spółki :fromAsset w dniu :datetime za :toPreciseQuantity :toAsset płacąc przy tym :adjustmentPreciseQuantity :adjustmentAsset prowizji
      */
     function i_bid_at(
         int $fromQuantity,
         AssetInterface $fromAsset,
         \DateTimeImmutable $datetime,
-        int $toQuantity,
+        int $toPreciseQuantity,
         AssetInterface $toAsset,
-        int $adjustmentQuantity,
+        int $adjustmentPreciseQuantity,
         AssetInterface $adjustmentAsset,
     ) {
         $fromOperation = $this->operationFactory->create($fromAsset, $fromQuantity);
-        $toOperation = $this->operationFactory->create($toAsset, $toQuantity);
-        $adjustmentOperation = $this->operationFactory->create($adjustmentAsset, $adjustmentQuantity);
+        $toOperation = $this->operationFactory->create($toAsset, $toPreciseQuantity);
+        $adjustmentOperation = $this->operationFactory->create($adjustmentAsset, $adjustmentPreciseQuantity);
         $transaction = $this->transactionFactory->createBid(
             $fromOperation,
             $toOperation,
@@ -97,11 +109,11 @@ class TransactionContext implements Context
     }
 
     /**
-     * @Given platforma inwestycyjna pobrała opłatę w wysokości :quantity :asset w dniu :datetime
+     * @Given platforma inwestycyjna pobrała opłatę w wysokości :preciseQuantity :asset w dniu :datetime
      */
-    function i_pay_fee_at(int $quantity, AssetInterface $asset, \DateTimeImmutable $datetime)
+    function i_pay_fee_at(int $preciseQuantity, AssetInterface $asset, \DateTimeImmutable $datetime)
     {
-        $operation = $this->operationFactory->create($asset, $quantity);
+        $operation = $this->operationFactory->create($asset, $preciseQuantity);
         $transaction = $this->transactionFactory->createFee([$operation], $datetime);
 
         $this->transactionRepository->save($transaction);

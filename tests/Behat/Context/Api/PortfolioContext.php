@@ -6,7 +6,7 @@ namespace Panda\Tests\Behat\Context\Api;
 
 use ApiPlatform\Api\IriConverterInterface;
 use Behat\Behat\Context\Context;
-use Panda\Portfolio\Domain\Model\PortfolioInterface;
+use Panda\Portfolio\Domain\Model\Portfolio\PortfolioInterface;
 use Panda\Portfolio\Infrastructure\ApiResource\PortfolioResource;
 use Panda\Tests\Behat\Context\Util\EnableClipboardTrait;
 use Panda\Tests\Util\HttpMethodEnum;

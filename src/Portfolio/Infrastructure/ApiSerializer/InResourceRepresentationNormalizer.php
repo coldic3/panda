@@ -5,6 +5,8 @@ declare(strict_types=1);
 namespace Panda\Portfolio\Infrastructure\ApiSerializer;
 
 use Panda\Portfolio\Infrastructure\ApiResource\QuantityRepresentation;
+use Panda\Portfolio\Infrastructure\ApiResource\ReportEntryRepresentation;
+use Panda\Portfolio\Infrastructure\ApiResource\ReportFileRepresentation;
 use Panda\Portfolio\Infrastructure\ApiResource\ResourceRepresentation;
 use Symfony\Component\Serializer\Normalizer\NormalizerAwareInterface;
 use Symfony\Component\Serializer\Normalizer\NormalizerAwareTrait;
@@ -41,6 +43,11 @@ final class InResourceRepresentationNormalizer implements NormalizerInterface, N
             return false;
         }
 
-        return $data instanceof ResourceRepresentation || $data instanceof QuantityRepresentation;
+        return
+            $data instanceof ResourceRepresentation
+            || $data instanceof QuantityRepresentation
+            || $data instanceof ReportEntryRepresentation
+            || $data instanceof ReportFileRepresentation
+        ;
     }
 }

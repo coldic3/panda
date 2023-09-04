@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Panda\Tests\App\Portfolio\Domain\Model;
 
-use Panda\Portfolio\Domain\Model\Portfolio;
-use Panda\Portfolio\Domain\Model\PortfolioItemInterface;
+use Panda\Portfolio\Domain\Model\Portfolio\Portfolio;
+use Panda\Portfolio\Domain\Model\Portfolio\PortfolioItemInterface;
 use Panda\Portfolio\Domain\ValueObject\ResourceInterface;
 use PHPUnit\Framework\TestCase;
 use Prophecy\PhpUnit\ProphecyTrait;
