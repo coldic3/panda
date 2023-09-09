@@ -1,10 +1,18 @@
+> ⚠️ **WORK IN PROGRESS**
+
 # PANDA API
 Portfolio Arrangement: Nest of Digitalized Assets
 
 ## Installation with Docker 🐋
-
 > **_NOTE:_** The installation assumes that you have [Docker](https://docs.docker.com/get-docker/)
 > and [Docker Compose](https://docs.docker.com/compose/install/) installed on your machine.
+
+### Quick
+```sh
+make install
+```
+
+### Step by step
 
 1. Clone the repo:
    ```sh
