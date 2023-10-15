@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace Panda\Portfolio\Application\Resolver;
 
 use Panda\Portfolio\Application\Exception\NoMatchingReportGeneratorFoundException;
+use Panda\Portfolio\Application\ReportGenerator\ReportGeneratorInterface;
 use Panda\Portfolio\Domain\Model\Report\ReportInterface;
-use Panda\Portfolio\Domain\ReportGenerator\ReportGeneratorInterface;
 use Webmozart\Assert\Assert;
 
 final readonly class ReportGeneratorResolver implements ReportGeneratorResolverInterface

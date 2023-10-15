@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace Panda\Portfolio\Infrastructure\ApiResource;
 
 use ApiPlatform\Metadata\ApiProperty;
-use Panda\Portfolio\Domain\ReportGenerator\AllocationReportGenerator;
-use Panda\Portfolio\Domain\ReportGenerator\PerformanceReportGenerator;
+use Panda\Portfolio\Application\ReportGenerator\AllocationReportGenerator;
+use Panda\Portfolio\Application\ReportGenerator\PerformanceReportGenerator;
 use Panda\Portfolio\Domain\ValueObject\ReportEntryInterface;
 use Symfony\Component\Serializer\Annotation\Groups;
 

@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Panda\Portfolio\Application\Resolver;
 
+use Panda\Portfolio\Application\ReportGenerator\ReportGeneratorInterface;
 use Panda\Portfolio\Domain\Model\Report\ReportInterface;
-use Panda\Portfolio\Domain\ReportGenerator\ReportGeneratorInterface;
 
 interface ReportGeneratorResolverInterface
 {
