@@ -1,0 +1,9 @@
+doctrine:
+    orm:
+        mappings:
+            Report:
+                is_bundle: false
+                type: xml
+                dir: '%kernel.project_dir%/src/Report/Infrastructure/Configuration/Doctrine/mappings'
+                prefix: 'Panda\Report\Domain'
+                alias: Report

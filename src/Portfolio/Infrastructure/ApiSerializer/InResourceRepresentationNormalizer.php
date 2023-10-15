@@ -5,9 +5,9 @@ declare(strict_types=1);
 namespace Panda\Portfolio\Infrastructure\ApiSerializer;
 
 use Panda\Portfolio\Infrastructure\ApiResource\QuantityRepresentation;
-use Panda\Portfolio\Infrastructure\ApiResource\ReportEntryRepresentation;
-use Panda\Portfolio\Infrastructure\ApiResource\ReportFileRepresentation;
 use Panda\Portfolio\Infrastructure\ApiResource\ResourceRepresentation;
+use Panda\Report\Infrastructure\ApiResource\ReportEntryRepresentation;
+use Panda\Report\Infrastructure\ApiResource\ReportFileRepresentation;
 use Symfony\Component\Serializer\Normalizer\NormalizerAwareInterface;
 use Symfony\Component\Serializer\Normalizer\NormalizerAwareTrait;
 use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
