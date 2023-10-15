@@ -6,6 +6,8 @@ namespace Panda\Portfolio\Domain\ValueObject;
 
 readonly class ReportFile implements ReportFileInterface
 {
+    public const LOCAL_STORAGE = 'local';
+
     public function __construct(private ?string $storage, private ?string $filename)
     {
     }

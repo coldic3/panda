@@ -7,8 +7,8 @@ namespace Panda\Portfolio\Infrastructure\OpenApi\Factory;
 use ApiPlatform\OpenApi\Factory\OpenApiFactoryInterface;
 use ApiPlatform\OpenApi\Model\MediaType;
 use ApiPlatform\OpenApi\OpenApi;
-use Panda\Portfolio\Domain\ReportGenerator\AllocationReportGenerator;
-use Panda\Portfolio\Domain\ReportGenerator\PerformanceReportGenerator;
+use Panda\Portfolio\Application\ReportGenerator\AllocationReportGenerator;
+use Panda\Portfolio\Application\ReportGenerator\PerformanceReportGenerator;
 
 final readonly class ReportVariousExamplesOpenApiFactory implements OpenApiFactoryInterface
 {

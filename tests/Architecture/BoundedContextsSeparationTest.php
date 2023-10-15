@@ -36,7 +36,10 @@ final class BoundedContextsSeparationTest
         return PHPat::rule()
             ->classes($this->getBoundedContextClassNamespace('Portfolio'))
             // FIXME: the below excluding is because of the report generation PoC, should be moved to separate BC
-            ->excluding(Selector::namespace('Panda\Portfolio\Domain\ReportGenerator'))
+            ->excluding(
+                Selector::namespace('Panda\Portfolio\Application\ReportGenerator'),
+                Selector::namespace('Panda\Portfolio\Domain\Calculator'),
+            )
             ->shouldNotDependOn()
             ->classes(...$this->findBoundedContextsExcept(['Portfolio', 'PortfolioOHS', 'AccountOHS', ...self::COUPLING_ALLOWED]));
     }
