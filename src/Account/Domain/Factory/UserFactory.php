@@ -14,7 +14,7 @@ final readonly class UserFactory implements UserFactoryInterface
     {
     }
 
-    public function create(string $email, string $password = null): UserInterface
+    public function create(string $email, ?string $password = null): UserInterface
     {
         $user = new User($email);
 

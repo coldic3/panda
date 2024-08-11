@@ -110,10 +110,10 @@ final class ExchangeRateLogRepository extends DoctrineRepository implements Exch
 
     public function defaultQuery(
         OwnerInterface $owner,
-        string $baseTicker = null,
-        string $quoteTicker = null,
-        \DateTimeInterface $fromDatetime = null,
-        \DateTimeInterface $toDatetime = null
+        ?string $baseTicker = null,
+        ?string $quoteTicker = null,
+        ?\DateTimeInterface $fromDatetime = null,
+        ?\DateTimeInterface $toDatetime = null
     ): QueryInterface {
         return new Query\DefaultExchangeRateLogQuery($owner, $baseTicker, $quoteTicker, $fromDatetime, $toDatetime);
     }

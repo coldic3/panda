@@ -21,7 +21,7 @@ final class InResourceRepresentationNormalizer implements NormalizerInterface, N
     /**
      * @param object $object
      */
-    public function normalize(mixed $object, string $format = null, array $context = []): mixed
+    public function normalize(mixed $object, ?string $format = null, array $context = []): mixed
     {
         $context[get_class($object).self::ALREADY_CALLED_SUFFIX] = true;
 
@@ -37,7 +37,7 @@ final class InResourceRepresentationNormalizer implements NormalizerInterface, N
         return $normalized;
     }
 
-    public function supportsNormalization(mixed $data, string $format = null, array $context = []): bool
+    public function supportsNormalization(mixed $data, ?string $format = null, array $context = []): bool
     {
         if (is_object($data) && isset($context[get_class($data).self::ALREADY_CALLED_SUFFIX])) {
             return false;
@@ -50,4 +50,14 @@ final class InResourceRepresentationNormalizer implements NormalizerInterface, N
             || $data instanceof ReportFileRepresentation
         ;
     }
+
+//    public function getSupportedTypes(?string $format): array
+//    {
+//        return [
+//            ResourceRepresentation::class => true,
+//            QuantityRepresentation::class => true,
+//            ReportEntryRepresentation::class => true,
+//            ReportFileRepresentation::class => true,
+//        ];
+//    }
 }

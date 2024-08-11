@@ -40,6 +40,6 @@ final class ReportRepository extends DoctrineRepository implements ReportReposit
 
     public function defaultQuery(OwnerInterface $owner): QueryInterface
     {
-        return new \Panda\Report\Infrastructure\Doctrine\Orm\Query\DefaultReportQuery($owner);
+        return new Query\DefaultReportQuery($owner);
     }
 }

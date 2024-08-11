@@ -3,10 +3,11 @@
 <!-- https://phpunit.readthedocs.io/en/latest/configuration.html -->
 <phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:noNamespaceSchemaLocation="vendor/phpunit/phpunit/phpunit.xsd"
+         backupGlobals="false"
          colors="true"
          bootstrap="tests/bootstrap.php"
+         convertDeprecationsToExceptions="false"
          defaultTestSuite="all"
-         cacheDirectory=".phpunit.cache"
 >
     <php>
         <ini name="display_errors" value="1" />
@@ -28,17 +29,23 @@
             <directory>tests/Api</directory>
             <directory>tests/App</directory>
         </testsuite>
+
         <testsuite name="contract">
             <directory>tests/Api</directory>
         </testsuite>
+
         <testsuite name="unit">
             <directory>tests/App</directory>
         </testsuite>
     </testsuites>
 
-    <source>
+    <coverage processUncoveredFiles="true">
         <include>
-            <directory>src</directory>
+            <directory suffix=".php">src</directory>
         </include>
-    </source>
+    </coverage>
+
+    <listeners>
+        <listener class="Symfony\Bridge\PhpUnit\SymfonyTestsListener" />
+    </listeners>
 </phpunit>

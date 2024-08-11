@@ -21,7 +21,7 @@ final readonly class ExchangeRateLogFactory implements ExchangeRateLogFactoryInt
         float $rate,
         \DateTimeInterface $startedAt,
         \DateTimeInterface $endedAt,
-        OwnerInterface $owner = null,
+        ?OwnerInterface $owner = null,
     ): ExchangeRateLogInterface {
         $exchangeRateLog = new ExchangeRateLog($baseTicker, $quoteTicker, $rate, $startedAt, $endedAt);
 

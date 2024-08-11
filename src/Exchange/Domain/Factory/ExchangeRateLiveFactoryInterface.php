@@ -13,6 +13,6 @@ interface ExchangeRateLiveFactoryInterface
         string $baseTicker,
         string $quoteTicker,
         float $rate,
-        OwnerInterface $owner = null,
+        ?OwnerInterface $owner = null,
     ): ExchangeRateLiveInterface;
 }

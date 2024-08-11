@@ -6,7 +6,7 @@ namespace Panda\Portfolio\Application\Exception;
 
 final class PortfolioNotFoundException extends \Exception
 {
-    public function __construct(string $portfolioId = null)
+    public function __construct(?string $portfolioId = null)
     {
         parent::__construct(
             null === $portfolioId

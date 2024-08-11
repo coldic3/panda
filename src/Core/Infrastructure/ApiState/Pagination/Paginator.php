@@ -56,8 +56,6 @@ final readonly class Paginator implements PaginatorInterface, \IteratorAggregate
     public function getIterator(): \Traversable
     {
         /**
-         * @psalm-suppress InvalidArgument
-         *
          * @phpstan-ignore-next-line
          */
         return new \ArrayIterator($this->items);

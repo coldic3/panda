@@ -35,9 +35,9 @@ interface ExchangeRateLogRepositoryInterface extends RepositoryInterface
 
     public function defaultQuery(
         OwnerInterface $owner,
-        string $baseTicker = null,
-        string $quoteTicker = null,
-        \DateTimeInterface $fromDatetime = null,
-        \DateTimeInterface $toDatetime = null,
+        ?string $baseTicker = null,
+        ?string $quoteTicker = null,
+        ?\DateTimeInterface $fromDatetime = null,
+        ?\DateTimeInterface $toDatetime = null,
     ): QueryInterface;
 }

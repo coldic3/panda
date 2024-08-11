@@ -23,11 +23,9 @@ final readonly class MessengerEventBus implements EventBusInterface
             $this->eventBus->dispatch($event);
         } catch (HandlerFailedException $e) {
             /**
-             * @psalm-suppress InvalidThrow
-             *
              * @phpstan-ignore-next-line
              */
-            throw current($e->getNestedExceptions());
+            throw current($e->getWrappedExceptions());
         } catch (ValidationFailedException $e) {
             throw new MessengerViolationFailedCompoundException($e);
         }

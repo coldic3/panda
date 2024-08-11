@@ -115,8 +115,8 @@ class DoctrinePaginatorSpec extends ObjectBehavior
         Paginator $paginator,
         EntityManagerInterface $entityManager,
         Configuration $configuration,
-        int|null $firstResult,
-        int|null $maxResults,
+        ?int $firstResult,
+        ?int $maxResults,
     ): void {
         $entityManager->getConfiguration()->willReturn($configuration);
 

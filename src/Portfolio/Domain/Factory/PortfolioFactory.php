@@ -21,7 +21,7 @@ final readonly class PortfolioFactory implements PortfolioFactoryInterface
         string $mainResourceTicker,
         string $mainResourceName,
         bool $default = false,
-        OwnerInterface $owner = null
+        ?OwnerInterface $owner = null
     ): PortfolioInterface {
         $portfolio = new Portfolio($name, new Resource($mainResourceTicker, $mainResourceName), $default);
 

@@ -32,7 +32,7 @@ interface ExchangeRateLiveRepositoryInterface extends RepositoryInterface
 
     public function defaultQuery(
         OwnerInterface $owner,
-        string $baseTicker = null,
-        string $quoteTicker = null,
+        ?string $baseTicker = null,
+        ?string $quoteTicker = null,
     ): QueryInterface;
 }

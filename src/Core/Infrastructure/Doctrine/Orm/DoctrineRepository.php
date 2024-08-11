@@ -24,12 +24,12 @@ abstract class DoctrineRepository implements RepositoryInterface
     ) {
     }
 
-    public function collection(QueryInterface $query = null): CollectionIteratorInterface
+    public function collection(?QueryInterface $query = null): CollectionIteratorInterface
     {
         return (new DoctrineCollectionIterator($this->prepareQueryBuilder($query)))->withoutPagination();
     }
 
-    public function pagination(QueryInterface $query = null, int $page = null, int $itemsPerPage = null): CollectionIteratorInterface
+    public function pagination(?QueryInterface $query = null, ?int $page = null, ?int $itemsPerPage = null): CollectionIteratorInterface
     {
         Assert::notNull($page);
         Assert::notNull($itemsPerPage);
@@ -37,7 +37,7 @@ abstract class DoctrineRepository implements RepositoryInterface
         return (new DoctrineCollectionIterator($this->prepareQueryBuilder($query)))->withPagination($page, $itemsPerPage);
     }
 
-    public function item(QueryInterface $query = null): ?object
+    public function item(?QueryInterface $query = null): ?object
     {
         $item = $this->prepareQueryBuilder($query)->limit(1)->getQuery()->getOneOrNullResult();
 
@@ -50,7 +50,7 @@ abstract class DoctrineRepository implements RepositoryInterface
         return $item;
     }
 
-    protected function prepareQueryBuilder(QueryInterface $query = null): DoctrineQueryBuilder
+    protected function prepareQueryBuilder(?QueryInterface $query = null): DoctrineQueryBuilder
     {
         $queryBuilder = $this->em->createQueryBuilder()
             ->select($this->alias)

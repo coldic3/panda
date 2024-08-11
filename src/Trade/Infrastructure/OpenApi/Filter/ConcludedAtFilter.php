@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Panda\Trade\Infrastructure\OpenApi\Filter;
 
-use ApiPlatform\Api\FilterInterface;
+use ApiPlatform\Metadata\FilterInterface;
 
 final class ConcludedAtFilter implements FilterInterface
 {
