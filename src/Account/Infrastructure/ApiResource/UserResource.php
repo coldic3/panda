@@ -8,6 +8,7 @@ use ApiPlatform\Metadata\ApiProperty;
 use ApiPlatform\Metadata\ApiResource;
 use ApiPlatform\Metadata\Get;
 use ApiPlatform\Metadata\Post;
+use ApiPlatform\OpenApi\Model\Operation as OpenApiOperation;
 use Panda\Account\Domain\Model\UserInterface;
 use Panda\Account\Infrastructure\ApiState\Processor\UserCreateProcessor;
 use Panda\Account\Infrastructure\ApiState\Provider\UserProvider;
@@ -20,13 +21,13 @@ use Symfony\Component\Validator\Constraints as Assert;
     operations: [
         new Get(provider: UserProvider::class),
         new Post(
-            openapiContext: [
-                'responses' => [
+            openapi: new OpenApiOperation(
+                responses: [
                     '204' => ['description' => 'User created or already exists'],
                     '400' => ['description' => 'Invalid input'],
                     '422' => ['description' => 'Unprocessable entity'],
                 ],
-            ],
+            ),
             validationContext: ['groups' => self::WRITABLE_GROUPS],
             output: false,
             processor: UserCreateProcessor::class,

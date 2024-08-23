@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Panda\Portfolio\Infrastructure\ApiSerializer;
+namespace Panda\Report\Infrastructure\ApiSerializer;
 
-use Panda\Portfolio\Infrastructure\ApiResource\QuantityRepresentation;
-use Panda\Portfolio\Infrastructure\ApiResource\ResourceRepresentation;
+use Panda\Report\Infrastructure\ApiResource\ReportEntryRepresentation;
+use Panda\Report\Infrastructure\ApiResource\ReportFileRepresentation;
 use Symfony\Component\Serializer\Normalizer\NormalizerAwareInterface;
 use Symfony\Component\Serializer\Normalizer\NormalizerAwareTrait;
 use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
@@ -42,8 +42,8 @@ final class InResourceRepresentationNormalizer implements NormalizerInterface, N
         }
 
         return
-            $data instanceof ResourceRepresentation
-            || $data instanceof QuantityRepresentation
+            $data instanceof ReportEntryRepresentation
+            || $data instanceof ReportFileRepresentation
         ;
     }
 
@@ -53,8 +53,8 @@ final class InResourceRepresentationNormalizer implements NormalizerInterface, N
     public function getSupportedTypes(?string $format): array
     {
         return [
-            ResourceRepresentation::class => false,
-            QuantityRepresentation::class => false,
+            ReportEntryRepresentation::class => false,
+            ReportFileRepresentation::class => false,
         ];
     }
 }

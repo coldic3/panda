@@ -16,7 +16,17 @@ class DoctrinePaginatorSpec extends ObjectBehavior
         EntityManagerInterface $entityManager,
         Configuration $configuration,
     ) {
-        $this->constructPaginator($paginator, $entityManager, $configuration, 0, 10);
+        $entityManager->getConfiguration()->willReturn($configuration);
+
+        $query = new Query($entityManager->getWrappedObject());
+
+        // Query::firstResult is set to 0 by default. It is not possible to set it to null.
+        $query->setFirstResult(0);
+        $query->setMaxResults(10);
+
+        $paginator->getQuery()->willReturn($query)->shouldBeCalledOnce();
+
+        $this->beConstructedWith($paginator);
 
         $this->shouldHaveType(DoctrinePaginator::class);
     }
@@ -41,7 +51,17 @@ class DoctrinePaginatorSpec extends ObjectBehavior
         EntityManagerInterface $entityManager,
         Configuration $configuration,
     ) {
-        $this->constructPaginator($paginator, $entityManager, $configuration, 190, 20);
+        $entityManager->getConfiguration()->willReturn($configuration);
+
+        $query = new Query($entityManager->getWrappedObject());
+
+        // Query::firstResult is set to 0 by default. It is not possible to set it to null.
+        $query->setFirstResult(190);
+        $query->setMaxResults(20);
+
+        $paginator->getQuery()->willReturn($query)->shouldBeCalledOnce();
+
+        $this->beConstructedWith($paginator);
 
         $this->getCurrentPage()->shouldReturn(10);
     }
@@ -51,7 +71,17 @@ class DoctrinePaginatorSpec extends ObjectBehavior
         EntityManagerInterface $entityManager,
         Configuration $configuration,
     ) {
-        $this->constructPaginator($paginator, $entityManager, $configuration, 0, 10);
+        $entityManager->getConfiguration()->willReturn($configuration);
+
+        $query = new Query($entityManager->getWrappedObject());
+
+        // Query::firstResult is set to 0 by default. It is not possible to set it to null.
+        $query->setFirstResult(0);
+        $query->setMaxResults(10);
+
+        $paginator->getQuery()->willReturn($query)->shouldBeCalledOnce();
+
+        $this->beConstructedWith($paginator);
 
         $this->getCurrentPage()->shouldReturn(1);
     }
@@ -61,7 +91,17 @@ class DoctrinePaginatorSpec extends ObjectBehavior
         EntityManagerInterface $entityManager,
         Configuration $configuration,
     ) {
-        $this->constructPaginator($paginator, $entityManager, $configuration, 200, 10);
+        $entityManager->getConfiguration()->willReturn($configuration);
+
+        $query = new Query($entityManager->getWrappedObject());
+
+        // Query::firstResult is set to 0 by default. It is not possible to set it to null.
+        $query->setFirstResult(200);
+        $query->setMaxResults(10);
+
+        $paginator->getQuery()->willReturn($query)->shouldBeCalledOnce();
+
+        $this->beConstructedWith($paginator);
 
         $this->getCurrentPage()->shouldReturn(21);
     }
@@ -73,7 +113,17 @@ class DoctrinePaginatorSpec extends ObjectBehavior
     ) {
         $paginator->count()->willReturn(40);
 
-        $this->constructPaginator($paginator, $entityManager, $configuration, 150, 20);
+        $entityManager->getConfiguration()->willReturn($configuration);
+
+        $query = new Query($entityManager->getWrappedObject());
+
+        // Query::firstResult is set to 0 by default. It is not possible to set it to null.
+        $query->setFirstResult(150);
+        $query->setMaxResults(20);
+
+        $paginator->getQuery()->willReturn($query)->shouldBeCalledOnce();
+
+        $this->beConstructedWith($paginator);
 
         $this->getLastPage()->shouldReturn(2);
     }
@@ -85,7 +135,17 @@ class DoctrinePaginatorSpec extends ObjectBehavior
     ) {
         $paginator->count()->willReturn(45);
 
-        $this->constructPaginator($paginator, $entityManager, $configuration, 150, 20);
+        $entityManager->getConfiguration()->willReturn($configuration);
+
+        $query = new Query($entityManager->getWrappedObject());
+
+        // Query::firstResult is set to 0 by default. It is not possible to set it to null.
+        $query->setFirstResult(150);
+        $query->setMaxResults(20);
+
+        $paginator->getQuery()->willReturn($query)->shouldBeCalledOnce();
+
+        $this->beConstructedWith($paginator);
 
         $this->getLastPage()->shouldReturn(3);
     }
@@ -97,7 +157,17 @@ class DoctrinePaginatorSpec extends ObjectBehavior
     ) {
         $paginator->count()->willReturn(45);
 
-        $this->constructPaginator($paginator, $entityManager, $configuration, 150, -20);
+        $entityManager->getConfiguration()->willReturn($configuration);
+
+        $query = new Query($entityManager->getWrappedObject());
+
+        // Query::firstResult is set to 0 by default. It is not possible to set it to null.
+        $query->setFirstResult(150);
+        $query->setMaxResults(-20);
+
+        $paginator->getQuery()->willReturn($query)->shouldBeCalledOnce();
+
+        $this->beConstructedWith($paginator);
         $this->getLastPage()->shouldReturn(1);
     }
 
@@ -106,28 +176,18 @@ class DoctrinePaginatorSpec extends ObjectBehavior
         EntityManagerInterface $entityManager,
         Configuration $configuration,
     ) {
-        $this->constructPaginator($paginator, $entityManager, $configuration, 10, 0);
-
-        $this->getLastPage()->shouldReturn(1);
-    }
-
-    private function constructPaginator(
-        Paginator $paginator,
-        EntityManagerInterface $entityManager,
-        Configuration $configuration,
-        ?int $firstResult,
-        ?int $maxResults,
-    ): void {
         $entityManager->getConfiguration()->willReturn($configuration);
 
         $query = new Query($entityManager->getWrappedObject());
 
         // Query::firstResult is set to 0 by default. It is not possible to set it to null.
-        $query->setFirstResult($firstResult);
-        $query->setMaxResults($maxResults);
+        $query->setFirstResult(10);
+        $query->setMaxResults(0);
 
         $paginator->getQuery()->willReturn($query)->shouldBeCalledOnce();
 
         $this->beConstructedWith($paginator);
+
+        $this->getLastPage()->shouldReturn(1);
     }
 }

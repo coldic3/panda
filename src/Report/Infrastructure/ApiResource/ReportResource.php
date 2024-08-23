@@ -9,6 +9,7 @@ use ApiPlatform\Metadata\ApiResource;
 use ApiPlatform\Metadata\Get;
 use ApiPlatform\Metadata\GetCollection;
 use ApiPlatform\Metadata\Post;
+use ApiPlatform\OpenApi\Model\Operation as OpenApiOperation;
 use Panda\Portfolio\Infrastructure\ApiResource\PortfolioResource;
 use Panda\Report\Application\Action\DownloadReportAction;
 use Panda\Report\Domain\Model\Report\ReportInterface;
@@ -26,10 +27,8 @@ use Symfony\Component\Uid\Uuid;
             uriTemplate: '/reports/{id}/download',
             formats: ['csv' => ['text/csv']],
             controller: DownloadReportAction::class,
-            openapiContext: [
-                'summary' => 'Downloads a report.',
-                'description' => 'Downloads a report.',
-                'responses' => [
+            openapi: new OpenApiOperation(
+                responses: [
                     '200' => [
                         'description' => 'Report file',
                         'content' => [
@@ -42,7 +41,9 @@ use Symfony\Component\Uid\Uuid;
                         ],
                     ],
                 ],
-            ],
+                summary: 'Downloads a report.',
+                description: 'Downloads a report.',
+            ),
         ),
         new Post(
             validationContext: ['groups' => ['create']],

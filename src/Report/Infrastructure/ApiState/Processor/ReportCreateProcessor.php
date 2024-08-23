@@ -19,7 +19,7 @@ final readonly class ReportCreateProcessor implements ProcessorInterface
     {
     }
 
-    public function process($data, Operation $operation, array $uriVariables = [], array $context = [])
+    public function process($data, Operation $operation, array $uriVariables = [], array $context = []): ReportResource
     {
         /** @var ReportResource $data */
         Assert::isInstanceOf($data, ReportResource::class);
