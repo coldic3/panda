@@ -51,13 +51,13 @@ final class InResourceRepresentationNormalizer implements NormalizerInterface, N
         ;
     }
 
-//    public function getSupportedTypes(?string $format): array
-//    {
-//        return [
-//            ResourceRepresentation::class => true,
-//            QuantityRepresentation::class => true,
-//            ReportEntryRepresentation::class => true,
-//            ReportFileRepresentation::class => true,
-//        ];
-//    }
+    //    public function getSupportedTypes(?string $format): array
+    //    {
+    //        return [
+    //            ResourceRepresentation::class => true,
+    //            QuantityRepresentation::class => true,
+    //            ReportEntryRepresentation::class => true,
+    //            ReportFileRepresentation::class => true,
+    //        ];
+    //    }
 }

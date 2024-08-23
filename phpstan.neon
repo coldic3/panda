@@ -5,10 +5,6 @@ parameters:
     excludePaths:
         - src/Core/Infrastructure/Symfony/Kernel.php
     ignoreErrors:
-        - '/^Method Panda\\\w+\\Infrastructure\\ApiState\\Processor\\\w+Processor::process\(\) has no return type specified\.$/'
-        - '/^Method Panda\\\w+\\Infrastructure\\ApiState\\Processor\\\w+Processor::process\(\) has parameter \$(context|uriVariables) with no value type specified in iterable type array\.$/'
-        - '/^Method Panda\\\w+\\Infrastructure\\ApiState\\Processor\\\w+Processor::process\(\) has parameter \$data with no type specified\.$/'
-        - '/^Method Panda\\\w+\\Infrastructure\\ApiState\\Provider\\\w+Provider::provide\(\) has parameter \$(context|uriVariables) with no value type specified in iterable type array\.$/'
         - '/^Method Panda\\\w+\\Infrastructure\\ApiSerializer\\\w+Normalizer::normalize\(\) has parameter \$context with no value type specified in iterable type array\.$/'
         - '/^Method Panda\\\w+\\Infrastructure\\ApiSerializer\\\w+Normalizer::supportsNormalization\(\) has parameter \$context with no value type specified in iterable type array\.$/'
         - '/^Method Panda\\\w+\\Infrastructure\\ApiSerializer\\\w+Normalizer::normalize\(\) return type has no value type specified in iterable type array\.$/'
@@ -18,8 +14,8 @@ parameters:
         -
             message: '/^Generator expects value type object, mixed given\.$/'
             path: src/Core/Infrastructure/Doctrine/Orm/DoctrineCollectionIterator.php
-
-    checkGenericClassInNonGenericObjectType: false
+        -
+            identifier: missingType.generics
 
 services:
     -

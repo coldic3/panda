@@ -16,6 +16,7 @@ use Panda\Portfolio\Application\Query\Portfolio\FindPortfoliosQuery;
 use Panda\Portfolio\Domain\Model\Portfolio\Portfolio;
 use Panda\Portfolio\Infrastructure\ApiResource\PortfolioResource;
 use Symfony\Component\Uid\Uuid;
+use Webmozart\Assert\Assert;
 
 final readonly class PortfolioProvider implements ProviderInterface
 {
@@ -31,7 +32,9 @@ final readonly class PortfolioProvider implements ProviderInterface
     public function provide(Operation $operation, array $uriVariables = [], array $context = []): object|array|null
     {
         if (!$operation instanceof CollectionOperationInterface) {
-            return $this->provideItem($uriVariables['id']);
+            Assert::isInstanceOf($id = $uriVariables['id'] ?? null, Uuid::class);
+
+            return $this->provideItem($id);
         }
 
         $offset = $limit = null;

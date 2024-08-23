@@ -24,10 +24,7 @@ final readonly class DownloadReportAction
 
     public function __invoke(Request $request): Response
     {
-        Assert::notNull(
-            /** @var string|null $id */
-            $id = $request->get('id')
-        );
+        Assert::string($id = $request->get('id'));
 
         $report = $this->reportRepository->findById(Uuid::fromString($id));
 

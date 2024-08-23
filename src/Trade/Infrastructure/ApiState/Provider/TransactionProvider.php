@@ -16,6 +16,7 @@ use Panda\Trade\Application\Query\Transaction\FindTransactionsQuery;
 use Panda\Trade\Domain\Model\Transaction\Transaction;
 use Panda\Trade\Infrastructure\ApiResource\TransactionResource;
 use Symfony\Component\Uid\Uuid;
+use Webmozart\Assert\Assert;
 
 final readonly class TransactionProvider implements ProviderInterface
 {
@@ -31,7 +32,9 @@ final readonly class TransactionProvider implements ProviderInterface
     public function provide(Operation $operation, array $uriVariables = [], array $context = []): object|array|null
     {
         if (!$operation instanceof CollectionOperationInterface) {
-            return $this->provideItem($uriVariables['id']);
+            Assert::isInstanceOf($id = $uriVariables['id'] ?? null, Uuid::class);
+
+            return $this->provideItem($id);
         }
 
         $offset = $limit = null;
@@ -43,16 +46,20 @@ final readonly class TransactionProvider implements ProviderInterface
 
         $afterConcludedAt = \DateTimeImmutable::createFromFormat(
             'U',
+            /** @phpstan-ignore-next-line false positive */
             (string) ($context['filters']['concludedAt']['after'] ?? null)
         );
         $beforeConcludedAt = \DateTimeImmutable::createFromFormat(
             'U',
+            /** @phpstan-ignore-next-line false positive */
             (string) ($context['filters']['concludedAt']['before'] ?? null)
         );
 
         /** @var DoctrineCollectionIterator<Transaction> $models */
         $models = $this->queryBus->ask(new FindTransactionsQuery(
+            /** @phpstan-ignore-next-line false positive */
             $context['filters']['fromOperation.asset.id'] ?? null,
+            /** @phpstan-ignore-next-line false positive */
             $context['filters']['toOperation.asset.id'] ?? null,
             false === $afterConcludedAt ? null : $afterConcludedAt,
             false === $beforeConcludedAt ? null : $beforeConcludedAt,

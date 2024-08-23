@@ -12,6 +12,7 @@ use Panda\Exchange\Application\Command\ExchangeRateLog\CreateExchangeRateLogComm
 use Panda\Exchange\Application\Command\ExchangeRateLog\DeleteExchangeRateLogCommand;
 use Panda\Exchange\Domain\Model\ExchangeRateLogInterface;
 use Panda\Exchange\Infrastructure\ApiResource\ExchangeRateLogResource;
+use Symfony\Component\Uid\Uuid;
 use Webmozart\Assert\Assert;
 
 final readonly class ExchangeRateLogProcessor implements ProcessorInterface
@@ -26,7 +27,9 @@ final readonly class ExchangeRateLogProcessor implements ProcessorInterface
         Assert::isInstanceOf($data, ExchangeRateLogResource::class);
 
         if ($operation instanceof DeleteOperationInterface) {
-            $this->commandBus->dispatch(new DeleteExchangeRateLogCommand($uriVariables['id']));
+            Assert::isInstanceOf($id = $uriVariables['id'] ?? null, Uuid::class);
+
+            $this->commandBus->dispatch(new DeleteExchangeRateLogCommand($id));
 
             return null;
         }

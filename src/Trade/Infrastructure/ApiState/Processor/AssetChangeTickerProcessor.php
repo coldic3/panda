@@ -10,6 +10,7 @@ use Panda\Core\Application\Command\CommandBusInterface;
 use Panda\Trade\Application\Command\Asset\ChangeAssetTickerCommand;
 use Panda\Trade\Domain\Model\Asset\AssetInterface;
 use Panda\Trade\Infrastructure\ApiResource\AssetResource;
+use Symfony\Component\Uid\Uuid;
 use Webmozart\Assert\Assert;
 
 final readonly class AssetChangeTickerProcessor implements ProcessorInterface
@@ -24,8 +25,9 @@ final readonly class AssetChangeTickerProcessor implements ProcessorInterface
         /** @var AssetResource $data */
         Assert::isInstanceOf($data, AssetResource::class);
         Assert::notNull($data->ticker);
+        Assert::isInstanceOf($id = $uriVariables['id'] ?? null, Uuid::class);
 
-        $command = new ChangeAssetTickerCommand($uriVariables['id'], $data->ticker);
+        $command = new ChangeAssetTickerCommand($id, $data->ticker);
 
         /** @var AssetInterface $model */
         $model = $this->commandBus->dispatch($command);
