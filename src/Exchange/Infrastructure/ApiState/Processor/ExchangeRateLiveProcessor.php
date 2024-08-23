@@ -13,6 +13,7 @@ use Panda\Exchange\Application\Command\ExchangeRateLive\DeleteExchangeRateLiveCo
 use Panda\Exchange\Application\Command\ExchangeRateLive\UpdateExchangeRateLiveCommand;
 use Panda\Exchange\Domain\Model\ExchangeRateLiveInterface;
 use Panda\Exchange\Infrastructure\ApiResource\ExchangeRateLiveResource;
+use Symfony\Component\Uid\Uuid;
 use Webmozart\Assert\Assert;
 
 final readonly class ExchangeRateLiveProcessor implements ProcessorInterface
@@ -27,18 +28,22 @@ final readonly class ExchangeRateLiveProcessor implements ProcessorInterface
         Assert::isInstanceOf($data, ExchangeRateLiveResource::class);
 
         if ($operation instanceof DeleteOperationInterface) {
-            $this->commandBus->dispatch(new DeleteExchangeRateLiveCommand($uriVariables['id']));
+            Assert::isInstanceOf($id = $uriVariables['id'] ?? null, Uuid::class);
+
+            $this->commandBus->dispatch(new DeleteExchangeRateLiveCommand($id));
 
             return null;
         }
 
-        $command = !isset($uriVariables['id'])
+        Assert::nullOrIsInstanceOf($id = $uriVariables['id'] ?? null, Uuid::class);
+
+        $command = null === $id
             ? new CreateExchangeRateLiveCommand(
                 (string) $data->baseTicker,
                 (string) $data->quoteTicker,
                 (float) $data->rate,
             )
-            : new UpdateExchangeRateLiveCommand($uriVariables['id'], (float) $data->rate);
+            : new UpdateExchangeRateLiveCommand($id, (float) $data->rate);
 
         /** @var ExchangeRateLiveInterface $model */
         $model = $this->commandBus->dispatch($command);

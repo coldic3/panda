@@ -16,6 +16,7 @@ use Panda\Report\Application\Query\Report\FindReportsQuery;
 use Panda\Report\Domain\Model\Report\Report;
 use Panda\Report\Infrastructure\ApiResource\ReportResource;
 use Symfony\Component\Uid\Uuid;
+use Webmozart\Assert\Assert;
 
 final readonly class ReportProvider implements ProviderInterface
 {
@@ -31,7 +32,9 @@ final readonly class ReportProvider implements ProviderInterface
     public function provide(Operation $operation, array $uriVariables = [], array $context = []): object|array|null
     {
         if (!$operation instanceof CollectionOperationInterface) {
-            return $this->provideItem($uriVariables['id']);
+            Assert::isInstanceOf($id = $uriVariables['id'] ?? null, Uuid::class);
+
+            return $this->provideItem($id);
         }
 
         $offset = $limit = null;

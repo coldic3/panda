@@ -10,6 +10,7 @@ use Panda\Core\Application\Command\CommandBusInterface;
 use Panda\Portfolio\Application\Command\Portfolio\UpdatePortfolioCommand;
 use Panda\Portfolio\Domain\Model\Portfolio\PortfolioInterface;
 use Panda\Portfolio\Infrastructure\ApiResource\PortfolioResource;
+use Symfony\Component\Uid\Uuid;
 use Webmozart\Assert\Assert;
 
 final readonly class PortfolioUpdateProcessor implements ProcessorInterface
@@ -18,12 +19,13 @@ final readonly class PortfolioUpdateProcessor implements ProcessorInterface
     {
     }
 
-    public function process($data, Operation $operation, array $uriVariables = [], array $context = [])
+    public function process($data, Operation $operation, array $uriVariables = [], array $context = []): PortfolioResource
     {
         /** @var PortfolioResource $data */
         Assert::isInstanceOf($data, PortfolioResource::class);
+        Assert::isInstanceOf($id = $uriVariables['id'] ?? null, Uuid::class);
 
-        $command = new UpdatePortfolioCommand($uriVariables['id'], (string) $data->name);
+        $command = new UpdatePortfolioCommand($id, (string) $data->name);
 
         /** @var PortfolioInterface $model */
         $model = $this->commandBus->dispatch($command);

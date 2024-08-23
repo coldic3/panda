@@ -19,7 +19,7 @@ final readonly class ExchangeRateLiveFactory implements ExchangeRateLiveFactoryI
         string $baseTicker,
         string $quoteTicker,
         float $rate,
-        OwnerInterface $owner = null,
+        ?OwnerInterface $owner = null,
     ): ExchangeRateLiveInterface {
         $exchangeRateLive = new ExchangeRateLive($baseTicker, $quoteTicker, $rate);
 

@@ -15,7 +15,7 @@ final class AssetFactory implements AssetFactoryInterface
     {
     }
 
-    public function create(string $ticker, string $name = null, OwnerInterface $owner = null): AssetInterface
+    public function create(string $ticker, ?string $name = null, ?OwnerInterface $owner = null): AssetInterface
     {
         if (null === $name) {
             $name = $ticker;

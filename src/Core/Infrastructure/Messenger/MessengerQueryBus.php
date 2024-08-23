@@ -25,11 +25,9 @@ final class MessengerQueryBus implements QueryBusInterface
             return $this->handle($query, [new ValidationStamp(['panda'])]);
         } catch (HandlerFailedException $e) {
             /**
-             * @psalm-suppress InvalidThrow
-             *
              * @phpstan-ignore-next-line
              */
-            throw current($e->getNestedExceptions());
+            throw current($e->getWrappedExceptions());
         }
     }
 }

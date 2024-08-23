@@ -18,7 +18,7 @@ interface TransactionFactoryInterface
         OperationInterface $to,
         array $adjustments,
         \DateTimeInterface $concludedAt,
-        OwnerInterface $owner = null,
+        ?OwnerInterface $owner = null,
     ): TransactionInterface;
 
     /**
@@ -29,7 +29,7 @@ interface TransactionFactoryInterface
         OperationInterface $to,
         array $adjustments,
         \DateTimeInterface $concludedAt,
-        OwnerInterface $owner = null,
+        ?OwnerInterface $owner = null,
     ): TransactionInterface;
 
     /**
@@ -39,7 +39,7 @@ interface TransactionFactoryInterface
         OperationInterface $to,
         array $adjustments,
         \DateTimeInterface $concludedAt,
-        OwnerInterface $owner = null,
+        ?OwnerInterface $owner = null,
     ): TransactionInterface;
 
     /**
@@ -49,7 +49,7 @@ interface TransactionFactoryInterface
         OperationInterface $from,
         array $adjustments,
         \DateTimeInterface $concludedAt,
-        OwnerInterface $owner = null,
+        ?OwnerInterface $owner = null,
     ): TransactionInterface;
 
     /**
@@ -58,6 +58,6 @@ interface TransactionFactoryInterface
     public function createFee(
         array $adjustments,
         \DateTimeInterface $concludedAt,
-        OwnerInterface $owner = null,
+        ?OwnerInterface $owner = null,
     ): TransactionInterface;
 }

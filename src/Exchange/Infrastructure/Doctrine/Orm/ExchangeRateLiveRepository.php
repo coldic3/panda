@@ -89,8 +89,8 @@ final class ExchangeRateLiveRepository extends DoctrineRepository implements Exc
 
     public function defaultQuery(
         OwnerInterface $owner,
-        string $baseTicker = null,
-        string $quoteTicker = null
+        ?string $baseTicker = null,
+        ?string $quoteTicker = null
     ): QueryInterface {
         return new Query\DefaultExchangeRateLiveQuery($owner, $baseTicker, $quoteTicker);
     }

@@ -28,7 +28,7 @@ final readonly class TransactionCreateProcessor implements ProcessorInterface
     ) {
     }
 
-    public function process($data, Operation $operation, array $uriVariables = [], array $context = [])
+    public function process($data, Operation $operation, array $uriVariables = [], array $context = []): TransactionResource
     {
         /** @var TransactionResource $data */
         Assert::isInstanceOf($data, TransactionResource::class);

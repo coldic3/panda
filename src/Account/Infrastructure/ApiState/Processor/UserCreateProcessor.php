@@ -19,7 +19,7 @@ final readonly class UserCreateProcessor implements ProcessorInterface
     ) {
     }
 
-    public function process($data, Operation $operation, array $uriVariables = [], array $context = [])
+    public function process($data, Operation $operation, array $uriVariables = [], array $context = []): UserResource
     {
         Assert::isInstanceOf($data, UserResource::class);
 

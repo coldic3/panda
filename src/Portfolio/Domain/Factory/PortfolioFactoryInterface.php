@@ -14,6 +14,6 @@ interface PortfolioFactoryInterface
         string $mainResourceTicker,
         string $mainResourceName,
         bool $default = false,
-        OwnerInterface $owner = null
+        ?OwnerInterface $owner = null
     ): PortfolioInterface;
 }

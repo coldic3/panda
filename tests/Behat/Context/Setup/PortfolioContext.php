@@ -52,7 +52,7 @@ class PortfolioContext implements Context
      * @Given /^posiadam (\d+) ([^"]+) w portfelu inwestycyjnym$/
      * @Given /^posiadam (\d+) akcji spółki "([^"]+)" o nazwie "([^"]+)"$/
      */
-    function there_is_an_asset_with_ticker_and_name_and_long_quantity(float $quantity, string $ticker, string $name = null)
+    function there_is_an_asset_with_ticker_and_name_and_long_quantity(float $quantity, string $ticker, ?string $name = null)
     {
         $this->assetContext->there_is_an_asset_with_ticker_and_name($ticker, $name ?? $ticker);
 

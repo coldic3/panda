@@ -18,7 +18,7 @@ final readonly class PortfolioCreateProcessor implements ProcessorInterface
     {
     }
 
-    public function process($data, Operation $operation, array $uriVariables = [], array $context = [])
+    public function process($data, Operation $operation, array $uriVariables = [], array $context = []): PortfolioResource
     {
         /** @var PortfolioResource $data */
         Assert::isInstanceOf($data, PortfolioResource::class);

@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Panda\Exchange\Infrastructure\OpenApi\Filter;
 
-use ApiPlatform\Api\FilterInterface;
+use ApiPlatform\Metadata\FilterInterface;
 use Symfony\Component\PropertyInfo\Type;
 
 final class BaseQuoteResourcesFilter implements FilterInterface

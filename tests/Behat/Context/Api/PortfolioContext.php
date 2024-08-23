@@ -143,7 +143,7 @@ class PortfolioContext implements Context
      * @Then widzę, że portfel nie jest portfelem domyślnym
      * @Then /^widzę, że (portfel "[^"]+") nie jest już portfelem domyślnym$/
      */
-    function i_see_portfolio_is_not_a_default_one(PortfolioInterface $portfolio = null)
+    function i_see_portfolio_is_not_a_default_one(?PortfolioInterface $portfolio = null)
     {
         if (null !== $portfolio) {
             Assert::false($portfolio->isDefault());

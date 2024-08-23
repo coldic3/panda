@@ -13,7 +13,7 @@ final class PostgresGenerateSchemaListener
     {
         $schemaManager = $args->getEntityManager()->getConnection()->createSchemaManager();
 
-        if (!$schemaManager instanceof PostgreSqlSchemaManager) {
+        if (!$schemaManager instanceof PostgreSQLSchemaManager) {
             return;
         }
 

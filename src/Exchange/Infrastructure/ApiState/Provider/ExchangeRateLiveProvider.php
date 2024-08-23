@@ -16,6 +16,7 @@ use Panda\Exchange\Application\Query\ExchangeRateLive\FindExchangeRateLivesQuery
 use Panda\Exchange\Domain\Model\ExchangeRateLive;
 use Panda\Exchange\Infrastructure\ApiResource\ExchangeRateLiveResource;
 use Symfony\Component\Uid\Uuid;
+use Webmozart\Assert\Assert;
 
 final readonly class ExchangeRateLiveProvider implements ProviderInterface
 {
@@ -31,7 +32,9 @@ final readonly class ExchangeRateLiveProvider implements ProviderInterface
     public function provide(Operation $operation, array $uriVariables = [], array $context = []): object|array|null
     {
         if (!$operation instanceof CollectionOperationInterface) {
-            return $this->provideItem($uriVariables['id']);
+            Assert::isInstanceOf($id = $uriVariables['id'] ?? null, Uuid::class);
+
+            return $this->provideItem($id);
         }
 
         $offset = $limit = null;
@@ -41,10 +44,14 @@ final readonly class ExchangeRateLiveProvider implements ProviderInterface
             $limit = $this->pagination->getLimit($operation, $context);
         }
 
+        /** @phpstan-ignore-next-line false positive */
         $baseTicker = isset($context['filters']['baseTicker'])
+            /** @phpstan-ignore-next-line false positive */
             ? (string) $context['filters']['baseTicker']
             : null;
+        /** @phpstan-ignore-next-line false positive */
         $quoteTicker = isset($context['filters']['quoteTicker'])
+            /** @phpstan-ignore-next-line false positive */
             ? (string) $context['filters']['quoteTicker']
             : null;
 

@@ -1,6 +1,6 @@
 kernel:
     resource: ../../../../Core/Infrastructure/Symfony/Kernel.php
-    type: annotation
+    type: attribute
 
 app:
     resource: ../../../../*/Infrastructure/Configuration/Symfony/Route/*

@@ -27,11 +27,9 @@ final class MessengerCommandBus implements CommandBusInterface
             return $this->handle($command, [new ValidationStamp(['panda'])]);
         } catch (HandlerFailedException $e) {
             /**
-             * @psalm-suppress InvalidThrow
-             *
              * @phpstan-ignore-next-line
              */
-            throw current($e->getNestedExceptions());
+            throw current($e->getWrappedExceptions());
         } catch (ValidationFailedException $e) {
             throw new MessengerViolationFailedCompoundException($e);
         }

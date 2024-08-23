@@ -15,6 +15,6 @@ interface ExchangeRateLogFactoryInterface
         float $rate,
         \DateTimeInterface $startedAt,
         \DateTimeInterface $endedAt,
-        OwnerInterface $owner = null,
+        ?OwnerInterface $owner = null,
     ): ExchangeRateLogInterface;
 }

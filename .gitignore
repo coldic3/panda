@@ -6,6 +6,7 @@
 /vendor/
 /.php-cs-fixer.php
 /.php-cs-fixer.cache
+/.phpunit.cache
 /phpunit.xml
 /.phpunit.result.cache
 /behat.yaml

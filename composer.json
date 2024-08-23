@@ -16,27 +16,29 @@
         "lexik/jwt-authentication-bundle": "^2.18",
         "nelmio/cors-bundle": "^2.2",
         "phpstan/phpdoc-parser": "^1.16",
-        "symfony/asset": "6.2.*",
-        "symfony/console": "6.2.*",
-        "symfony/dotenv": "6.2.*",
-        "symfony/expression-language": "6.2.*",
+        "stof/doctrine-extensions-bundle": "^1.12",
+        "symfony/asset": "^6.4",
+        "symfony/console": "^6.4",
+        "symfony/dotenv": "^6.4",
+        "symfony/expression-language": "^6.4",
         "symfony/flex": "^2.2",
-        "symfony/framework-bundle": "6.2.*",
-        "symfony/messenger": "6.2.*",
-        "symfony/mime": "6.2.*",
+        "symfony/framework-bundle": "^6.4",
+        "symfony/messenger": "^6.4",
+        "symfony/mime": "^6.4",
         "symfony/monolog-bundle": "^3.8",
-        "symfony/property-access": "6.2.*",
-        "symfony/property-info": "6.2.*",
-        "symfony/runtime": "6.2.*",
-        "symfony/security-bundle": "6.2.*",
-        "symfony/serializer": "6.2.*",
-        "symfony/twig-bundle": "6.2.*",
-        "symfony/uid": "6.2.*",
-        "symfony/validator": "6.2.*",
-        "symfony/yaml": "6.2.*"
+        "symfony/property-access": "^6.4",
+        "symfony/property-info": "^6.4",
+        "symfony/runtime": "^6.4",
+        "symfony/security-bundle": "^6.4",
+        "symfony/serializer": "^6.4",
+        "symfony/string": "^6.4",
+        "symfony/twig-bundle": "^6.4",
+        "symfony/uid": "^6.4",
+        "symfony/validator": "^6.4",
+        "symfony/yaml": "^6.4"
     },
     "require-dev": {
-        "api-platform/schema-generator": "^4.0",
+        "api-platform/schema-generator": "^5.0",
         "behat/behat": "^3.12",
         "friends-of-behat/symfony-extension": "^2.0",
         "friendsofphp/php-cs-fixer": "^3.16",
@@ -47,16 +49,15 @@
         "phpspec/prophecy-phpunit": "^2.0",
         "phpstan/extension-installer": "^1.2",
         "phpstan/phpstan": "^1.9",
-        "symfony/browser-kit": "6.2.*",
-        "symfony/css-selector": "6.2.*",
-        "symfony/debug-bundle": "6.2.*",
-        "symfony/http-client": "6.2.*",
+        "symfony/browser-kit": "^6.4",
+        "symfony/css-selector": "^6.4",
+        "symfony/debug-bundle": "^6.4",
+        "symfony/http-client": "^6.4",
         "symfony/maker-bundle": "^1.44",
-        "symfony/phpunit-bridge": "6.2.*",
-        "symfony/stopwatch": "6.2.*",
-        "symfony/var-dumper": "6.2.*",
-        "symfony/web-profiler-bundle": "6.2.*",
-        "vimeo/psalm": "^4.29"
+        "symfony/phpunit-bridge": "^6.4",
+        "symfony/stopwatch": "^6.4",
+        "symfony/var-dumper": "^6.4",
+        "symfony/web-profiler-bundle": "^6.4"
     },
     "config": {
         "optimize-autoloader": true,
@@ -107,7 +108,6 @@
             "vendor/bin/php-cs-fixer fix --dry-run --config=.php-cs-fixer.test.dist.php"
         ],
         "static-analyze:phpstan": ["vendor/bin/phpstan analyse"],
-        "static-analyze:psalm": ["vendor/bin/psalm"],
         "test:unit": ["vendor/bin/phpunit --testsuite unit"],
         "test:contract": ["vendor/bin/phpunit --testsuite contract"],
         "test:behavioral": [
@@ -125,7 +125,7 @@
     "extra": {
         "symfony": {
             "allow-contrib": false,
-            "require": "6.2.*"
+            "require": "^6.4"
         }
     }
 }
