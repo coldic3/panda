@@ -34,16 +34,6 @@ class User implements UserInterface
         $this->email = $email;
     }
 
-    public function getUserIdentifier(): string
-    {
-        return $this->email;
-    }
-
-    public function getRoles(): array
-    {
-        return ['ROLE_USER'];
-    }
-
     public function getPassword(): ?string
     {
         return $this->password;
@@ -52,10 +42,6 @@ class User implements UserInterface
     public function setPassword(string $password): void
     {
         $this->password = $password;
-    }
-
-    public function eraseCredentials(): void
-    {
     }
 
     public function compare(OwnerInterface $owner): bool

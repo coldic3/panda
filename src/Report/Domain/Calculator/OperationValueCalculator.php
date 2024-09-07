@@ -7,8 +7,8 @@ namespace Panda\Report\Domain\Calculator;
 use Panda\AccountOHS\Domain\Model\Owner\OwnerInterface;
 use Panda\Exchange\Domain\Repository\ExchangeRateLogRepositoryInterface;
 use Panda\Portfolio\Domain\Model\Portfolio\PortfolioInterface;
+use Panda\Report\Domain\Exception\ExchangeRateLogNotFoundException;
 use Panda\Trade\Domain\Model\Transaction\OperationInterface;
-use Webmozart\Assert\Assert;
 
 final readonly class OperationValueCalculator implements OperationValueCalculatorInterface
 {
@@ -35,7 +35,10 @@ final readonly class OperationValueCalculator implements OperationValueCalculato
             $ticker,
             $datetime,
         );
-        Assert::notNull($exchangeRate);
+
+        if (null === $exchangeRate) {
+            throw new ExchangeRateLogNotFoundException(sprintf('Exchange rate log for %s datetime not found.', $datetime->format('Y-m-d H:i:s')));
+        }
 
         return $operation->getQuantity() * $exchangeRate->getRate();
     }

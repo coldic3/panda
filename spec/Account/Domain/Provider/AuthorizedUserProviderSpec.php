@@ -4,7 +4,7 @@ namespace spec\Panda\Account\Domain\Provider;
 
 use Panda\Account\Domain\Exception\AuthorizedUserNotFoundException;
 use Panda\Account\Domain\Model\UserInterface;
-use Panda\Account\Domain\Provider\AuthorizedUserProvider;
+use Panda\Account\Infrastructure\Symfony\Security\AuthorizedUserProvider;
 use Panda\AccountOHS\Domain\Provider\AuthorizedUserProviderInterface;
 use PhpSpec\ObjectBehavior;
 use Symfony\Bundle\SecurityBundle\Security;
