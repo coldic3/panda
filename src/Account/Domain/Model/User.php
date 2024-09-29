@@ -10,11 +10,11 @@ class User implements UserInterface
 {
     use TimestampableTrait;
 
-    private readonly Uuid $id;
+    protected readonly Uuid $id;
 
-    private ?string $password = null;
+    protected ?string $password = null;
 
-    public function __construct(private string $email)
+    public function __construct(protected string $email)
     {
         $this->id = Uuid::v4();
     }

@@ -9,9 +9,9 @@ namespace Panda\Core\Domain\Model;
  */
 trait TimestampableTrait
 {
-    private ?\DateTimeInterface $createdAt = null;
+    protected ?\DateTimeInterface $createdAt = null;
 
-    private ?\DateTimeInterface $updatedAt = null;
+    protected ?\DateTimeInterface $updatedAt = null;
 
     public function getCreatedAt(): ?\DateTimeInterface
     {

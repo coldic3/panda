@@ -6,7 +6,7 @@ namespace Panda\Tests\Api;
 
 use ApiTestCase\JsonApiTestCase;
 use Lexik\Bundle\JWTAuthenticationBundle\Encoder\JWTEncoderInterface;
-use Panda\Account\Domain\Model\UserInterface;
+use Panda\Account\Infrastructure\Symfony\Security\UserInterface;
 use Panda\Tests\Util\HttpMethodEnum;
 use Symfony\Component\HttpFoundation\Response;
 
