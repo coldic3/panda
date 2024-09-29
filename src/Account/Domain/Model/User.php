@@ -10,11 +10,11 @@ class User implements UserInterface
 {
     use TimestampableTrait;
 
-    private readonly Uuid $id;
+    protected readonly Uuid $id;
 
-    private ?string $password = null;
+    protected ?string $password = null;
 
-    public function __construct(private string $email)
+    public function __construct(protected string $email)
     {
         $this->id = Uuid::v4();
     }
@@ -34,16 +34,6 @@ class User implements UserInterface
         $this->email = $email;
     }
 
-    public function getUserIdentifier(): string
-    {
-        return $this->email;
-    }
-
-    public function getRoles(): array
-    {
-        return ['ROLE_USER'];
-    }
-
     public function getPassword(): ?string
     {
         return $this->password;
@@ -52,10 +42,6 @@ class User implements UserInterface
     public function setPassword(string $password): void
     {
         $this->password = $password;
-    }
-
-    public function eraseCredentials(): void
-    {
     }
 
     public function compare(OwnerInterface $owner): bool

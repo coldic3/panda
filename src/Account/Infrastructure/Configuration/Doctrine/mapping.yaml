@@ -1,9 +1,9 @@
 doctrine:
     orm:
         mappings:
-            Account:
+            DomainAccount:
                 is_bundle: false
                 type: xml
                 dir: '%kernel.project_dir%/src/Account/Infrastructure/Configuration/Doctrine/mappings'
-                prefix: 'Panda\Account\Domain\Model'
+                prefix: 'Panda\Account'
                 alias: Account

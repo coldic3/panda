@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-use Panda\Account\Domain\Provider\AuthorizedUserProvider;
+use Panda\Account\Infrastructure\Symfony\Security\AuthorizedUserProvider;
 use Panda\AccountOHS\Domain\Provider\AuthorizedUserProviderInterface;
 use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
 use function Symfony\Component\DependencyInjection\Loader\Configurator\service;

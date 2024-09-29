@@ -4,11 +4,14 @@ declare(strict_types=1);
 
 namespace Panda\Tests\Architecture;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use PHPat\Selector\Selector;
 use PHPat\Test\Builder\Rule;
 use PHPat\Test\PHPat;
 use Symfony\Component\Finder\Finder;
 use Symfony\Component\Finder\SplFileInfo;
+use Symfony\Component\Uid\Uuid;
 
 final class LayersSeparationTest
 {
@@ -26,19 +29,31 @@ final class LayersSeparationTest
             ->classes(...$this->applicationLayerSelectors, ...$this->infrastructureLayerSelectors);
     }
 
-    public function test_domain_does_not_depend_on_doctrine(): Rule
+    public function test_domain_does_not_depend_on_vendor(): Rule
     {
         $this->findAllLayers();
 
         return PHPat::rule()
             ->classes(...$this->domainLayerSelectors)
-            ->shouldNotDependOn()
-            ->classes(Selector::namespace('Doctrine'))
+            ->canOnlyDependOn()
+            ->classes(
+                Selector::namespace('Panda'),
 
-            // FIXME: requires too much effort to get rid of these dependencies for now
-            ->excluding(
-                Selector::classname('Doctrine\Common\Collections\ArrayCollection'),
-                Selector::classname('Doctrine\Common\Collections\Collection'),
+                // Allowed 3rd party classes
+                Selector::classname(Uuid::class),
+                Selector::classname(Collection::class),
+                Selector::classname(ArrayCollection::class),
+
+                // PHP root namespace
+                Selector::classname(\BackedEnum::class),
+                Selector::classname(\Countable::class),
+                Selector::classname(\DateTimeImmutable::class),
+                Selector::classname(\DateTimeInterface::class),
+                Selector::classname(\Exception::class),
+                Selector::classname(\InvalidArgumentException::class),
+                Selector::classname(\Iterator::class),
+                Selector::classname(\IteratorAggregate::class),
+                Selector::classname(\Throwable::class),
             );
     }
 

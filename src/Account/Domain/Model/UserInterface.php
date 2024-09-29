@@ -6,14 +6,14 @@ namespace Panda\Account\Domain\Model;
 
 use Panda\AccountOHS\Domain\Model\Owner\OwnerInterface;
 use Panda\Core\Domain\Model\TimestampableInterface;
-use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
-use Symfony\Component\Security\Core\User\UserInterface as SymfonyUserInterface;
 
-interface UserInterface extends TimestampableInterface, OwnerInterface, SymfonyUserInterface, PasswordAuthenticatedUserInterface
+interface UserInterface extends TimestampableInterface, OwnerInterface
 {
     public function getEmail(): string;
 
     public function setEmail(string $email): void;
+
+    public function getPassword(): ?string;
 
     public function setPassword(string $password): void;
 }

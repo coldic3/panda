@@ -5,10 +5,10 @@ declare(strict_types=1);
 namespace Panda\Tests\App\Account\Domain\Factory;
 
 use Panda\Account\Domain\Factory\UserFactory;
+use Panda\Account\Domain\Hasher\UserPasswordHasherInterface;
 use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
 use Prophecy\PhpUnit\ProphecyTrait;
-use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Webmozart\Assert\Assert;
 
 final class UserFactoryTest extends TestCase

@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Panda\Account\Domain\Factory;
 
+use Panda\Account\Domain\Hasher\UserPasswordHasherInterface;
 use Panda\Account\Domain\Model\User;
 use Panda\Account\Domain\Model\UserInterface;
-use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
 final readonly class UserFactory implements UserFactoryInterface
 {

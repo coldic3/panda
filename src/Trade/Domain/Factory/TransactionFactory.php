@@ -6,11 +6,11 @@ namespace Panda\Trade\Domain\Factory;
 
 use Panda\AccountOHS\Domain\Model\Owner\OwnerInterface;
 use Panda\AccountOHS\Domain\Provider\AuthorizedUserProviderInterface;
+use Panda\Trade\Domain\Exception\EmptyAdjustmentsException;
 use Panda\Trade\Domain\Model\Transaction\OperationInterface;
 use Panda\Trade\Domain\Model\Transaction\Transaction;
 use Panda\Trade\Domain\Model\Transaction\TransactionInterface;
 use Panda\Trade\Domain\ValueObject\TransactionTypeEnum;
-use Webmozart\Assert\Assert;
 
 final class TransactionFactory implements TransactionFactoryInterface
 {
@@ -93,7 +93,9 @@ final class TransactionFactory implements TransactionFactoryInterface
         \DateTimeInterface $concludedAt,
         ?OwnerInterface $owner = null,
     ): TransactionInterface {
-        Assert::notEmpty($adjustments);
+        if ([] === $adjustments) {
+            throw new EmptyAdjustmentsException();
+        }
 
         $transaction = new Transaction(
             TransactionTypeEnum::FEE,
