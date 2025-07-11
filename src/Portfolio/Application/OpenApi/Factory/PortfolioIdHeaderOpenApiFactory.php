@@ -28,7 +28,7 @@ final class PortfolioIdHeaderOpenApiFactory implements OpenApiFactoryInterface
          */
         foreach ($openApi->getPaths()->getPaths() as $path => $methods) {
             $openApi->getPaths()->addPath($path, $methods->withParameters(array_merge(
-                $methods->getParameters(),
+                $methods->getParameters() ?? [],
                 [new Parameter(
                     name: 'X-Portfolio-Id',
                     in: 'header',

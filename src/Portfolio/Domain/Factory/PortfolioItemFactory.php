@@ -14,7 +14,7 @@ final class PortfolioItemFactory implements PortfolioItemFactoryInterface
     public function create(
         string $resourceTicker,
         string $resourceName,
-        PortfolioInterface $portfolio
+        PortfolioInterface $portfolio,
     ): PortfolioItemInterface {
         return new PortfolioItem(new Resource($resourceTicker, $resourceName), $portfolio);
     }

@@ -42,6 +42,10 @@ final readonly class ReportVariousExamplesOpenApiFactory implements OpenApiFacto
 
         $content = $requestBody->getContent();
 
+        if (null === $content || !isset($content['application/ld+json'])) {
+            return $openApi;
+        }
+
         /** @var MediaType $mediaType */
         $mediaType = $content['application/ld+json'];
 
@@ -75,7 +79,7 @@ final readonly class ReportVariousExamplesOpenApiFactory implements OpenApiFacto
 
         $path = $path->withPost(
             $post->withRequestBody(
-                $requestBody->withContent($content)
+                $requestBody->withContent(new \ArrayObject($content))
             )
         );
 

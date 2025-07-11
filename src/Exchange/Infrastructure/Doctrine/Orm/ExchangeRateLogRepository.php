@@ -113,7 +113,7 @@ final class ExchangeRateLogRepository extends DoctrineRepository implements Exch
         ?string $baseTicker = null,
         ?string $quoteTicker = null,
         ?\DateTimeInterface $fromDatetime = null,
-        ?\DateTimeInterface $toDatetime = null
+        ?\DateTimeInterface $toDatetime = null,
     ): QueryInterface {
         return new Query\DefaultExchangeRateLogQuery($owner, $baseTicker, $quoteTicker, $fromDatetime, $toDatetime);
     }

@@ -41,7 +41,7 @@ class TransactionContext implements Context
         AssetInterface $asset,
         \DateTimeImmutable $datetime,
         int $adjustmentPreciseQuantity,
-        AssetInterface $adjustmentAsset
+        AssetInterface $adjustmentAsset,
     ) {
         $operation = $this->operationFactory->create($asset, $preciseQuantity);
         $adjustmentOperation = $this->operationFactory->create($adjustmentAsset, $adjustmentPreciseQuantity);

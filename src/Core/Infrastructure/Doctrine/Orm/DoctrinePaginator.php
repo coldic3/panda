@@ -13,7 +13,7 @@ final class DoctrinePaginator implements PaginatorInterface
     private int $maxResults;
 
     public function __construct(
-        private readonly Paginator $paginator
+        private readonly Paginator $paginator,
     ) {
         $query = $paginator->getQuery();
         /** @var int|null $firstResult */

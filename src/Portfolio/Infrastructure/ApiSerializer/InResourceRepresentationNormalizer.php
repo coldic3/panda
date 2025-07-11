@@ -21,7 +21,7 @@ final class InResourceRepresentationNormalizer implements NormalizerInterface, N
         if (!is_object($data)) {
             throw new \InvalidArgumentException('Expected object, got '.gettype($data));
         }
-        
+
         $context[get_class($data).self::ALREADY_CALLED_SUFFIX] = true;
 
         $normalized = $this->normalizer->normalize($data, $format, $context);

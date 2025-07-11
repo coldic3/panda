@@ -21,7 +21,7 @@ interface ExchangeRateLiveRepositoryInterface extends RepositoryInterface
     public function findByBaseAndQuoteResources(
         OwnerInterface $owner,
         string $baseTicker,
-        string $quoteTicker
+        string $quoteTicker,
     ): ?ExchangeRateLiveInterface;
 
     public function withBaseAndQuoteResourcesExist(
