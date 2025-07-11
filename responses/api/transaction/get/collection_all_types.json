@@ -1,9 +1,9 @@
 {
   "@context": "/contexts/Transaction",
   "@id": "/transactions",
-  "@type": "hydra:Collection",
-  "hydra:totalItems": 5,
-  "hydra:member": [
+  "@type": "Collection",
+  "totalItems": 5,
+  "member": [
     {
       "@id": "/transactions/@uuid@",
       "@type": "Transaction",
@@ -111,11 +111,11 @@
       "concludedAt": "@datetime@"
     }
   ],
-  "hydra:search": {
-    "@type": "hydra:IriTemplate",
-    "hydra:template": "/transactions{?concludedAt[after],concludedAt[before],fromOperation.asset.id,toOperation.asset.id}",
-    "hydra:variableRepresentation": "BasicRepresentation",
-    "hydra:mapping": [
+  "search": {
+    "@type": "IriTemplate",
+    "template": "/transactions{?concludedAt[after],concludedAt[before],fromOperation.asset.id,toOperation.asset.id}",
+    "variableRepresentation": "BasicRepresentation",
+    "mapping": [
       {
         "@type": "IriTemplateMapping",
         "variable": "concludedAt[after]",

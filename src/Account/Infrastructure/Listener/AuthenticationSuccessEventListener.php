@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Panda\Account\Infrastructure\Listener;
 
-use ApiPlatform\Api\IriConverterInterface;
+use ApiPlatform\Metadata\IriConverterInterface;
 use Lexik\Bundle\JWTAuthenticationBundle\Event\AuthenticationSuccessEvent;
 use Panda\Account\Domain\Model\UserInterface;
 use Panda\Account\Infrastructure\ApiResource\UserResource;

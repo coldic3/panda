@@ -1,6 +1,10 @@
 {
-    "@context": "/contexts/Error",
-    "@type": "hydra:Error",
-    "hydra:title": "An error occurred",
-    "hydra:description": "The adjustment operations must match the from and to operations."
+  "@context": "/contexts/Error",
+  "@type": "Error",
+  "@id": "/errors/422",
+  "status": 422,
+  "type": "/errors/422",
+  "description": "@string@",
+  "title": "An error occurred",
+  "detail": "The adjustment operations must match the from and to operations."
 }

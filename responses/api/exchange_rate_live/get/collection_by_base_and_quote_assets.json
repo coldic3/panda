@@ -1,9 +1,9 @@
 {
   "@context": "/contexts/ExchangeRateLive",
   "@id": "/exchange_rate_lives",
-  "@type": "hydra:Collection",
-  "hydra:totalItems": 1,
-  "hydra:member": [
+  "@type": "Collection",
+  "totalItems": 1,
+  "member": [
     {
       "@id": "/exchange_rate_lives/@uuid@",
       "@type": "ExchangeRateLive",
@@ -14,15 +14,15 @@
       "updatedAt": "@datetime@"
     }
   ],
-  "hydra:view": {
+  "view": {
     "@id": "/exchange_rate_lives?baseTicker=ACM&quoteTicker=TCK1",
-    "@type": "hydra:PartialCollectionView"
+    "@type": "PartialCollectionView"
   },
-  "hydra:search": {
-    "@type": "hydra:IriTemplate",
-    "hydra:template": "/exchange_rate_lives{?baseTicker,quoteTicker}",
-    "hydra:variableRepresentation": "BasicRepresentation",
-    "hydra:mapping": [
+  "search": {
+    "@type": "IriTemplate",
+    "template": "/exchange_rate_lives{?baseTicker,quoteTicker}",
+    "variableRepresentation": "BasicRepresentation",
+    "mapping": [
       {
         "@type": "IriTemplateMapping",
         "variable": "baseTicker",

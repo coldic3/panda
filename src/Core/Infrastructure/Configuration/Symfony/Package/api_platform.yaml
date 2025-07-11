@@ -7,7 +7,6 @@ api_platform:
     version: dev
     show_webby: false
     use_symfony_listeners: false
-    keep_legacy_inflector: false
     patch_formats:
         json: ['application/merge-patch+json']
     formats:

@@ -2,7 +2,7 @@
 
 namespace spec\Panda\Account\Infrastructure\Listener;
 
-use ApiPlatform\Api\IriConverterInterface;
+use ApiPlatform\Metadata\IriConverterInterface;
 use Lexik\Bundle\JWTAuthenticationBundle\Event\AuthenticationSuccessEvent;
 use Panda\Account\Domain\Model\User;
 use Panda\Account\Infrastructure\ApiResource\UserResource;

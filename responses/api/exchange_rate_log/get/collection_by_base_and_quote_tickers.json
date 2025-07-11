@@ -1,9 +1,9 @@
 {
   "@context": "/contexts/ExchangeRateLog",
   "@id": "/exchange_rate_logs",
-  "@type": "hydra:Collection",
-  "hydra:totalItems": 5,
-  "hydra:member": [
+  "@type": "Collection",
+  "totalItems": 5,
+  "member": [
     {
       "@id": "/exchange_rate_logs/@uuid@",
       "@type": "ExchangeRateLog",
@@ -50,15 +50,15 @@
       "endedAt": "2023-07-11T23:59:59+00:00"
     }
   ],
-  "hydra:view": {
+  "view": {
     "@id": "/exchange_rate_logs?baseTicker=USD&quoteTicker=PLN",
-    "@type": "hydra:PartialCollectionView"
+    "@type": "PartialCollectionView"
   },
-  "hydra:search": {
-    "@type": "hydra:IriTemplate",
-    "hydra:template": "/exchange_rate_logs{?baseTicker,quoteTicker}",
-    "hydra:variableRepresentation": "BasicRepresentation",
-    "hydra:mapping": [
+  "search": {
+    "@type": "IriTemplate",
+    "template": "/exchange_rate_logs{?baseTicker,quoteTicker}",
+    "variableRepresentation": "BasicRepresentation",
+    "mapping": [
       {
         "@type": "IriTemplateMapping",
         "variable": "baseTicker",
