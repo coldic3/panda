@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Panda\Core\Application\Validation;
 
+use Symfony\Component\Validator\Attribute\HasNamedArguments;
 use Symfony\Component\Validator\Constraint;
 
 final class DifferentValue extends Constraint
@@ -12,6 +13,7 @@ final class DifferentValue extends Constraint
 
     public string $message = 'This field should have a different value than {{ field }} field.';
 
+    #[HasNamedArguments]
     public function __construct(
         mixed $options = null,
         ?array $groups = null,
