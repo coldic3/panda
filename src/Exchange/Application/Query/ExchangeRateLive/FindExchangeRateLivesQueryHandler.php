@@ -13,7 +13,7 @@ final readonly class FindExchangeRateLivesQueryHandler implements QueryHandlerIn
 {
     public function __construct(
         private AuthorizedUserProviderInterface $authorizedUserProvider,
-        private ExchangeRateLiveRepositoryInterface $exchangeRateRepository
+        private ExchangeRateLiveRepositoryInterface $exchangeRateRepository,
     ) {
     }
 

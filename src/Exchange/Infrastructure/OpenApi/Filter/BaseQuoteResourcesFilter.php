@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Panda\Exchange\Infrastructure\OpenApi\Filter;
 
 use ApiPlatform\Metadata\FilterInterface;
-use Symfony\Component\PropertyInfo\Type;
+use Symfony\Component\TypeInfo\TypeIdentifier;
 
 final class BaseQuoteResourcesFilter implements FilterInterface
 {
@@ -17,12 +17,12 @@ final class BaseQuoteResourcesFilter implements FilterInterface
         return [
             'baseTicker' => [
                 'property' => 'baseTicker',
-                'type' => Type::BUILTIN_TYPE_STRING,
+                'type' => TypeIdentifier::STRING->value,
                 'required' => false,
             ],
             'quoteTicker' => [
                 'property' => 'quoteTicker',
-                'type' => Type::BUILTIN_TYPE_STRING,
+                'type' => TypeIdentifier::STRING->value,
                 'required' => false,
             ],
         ];

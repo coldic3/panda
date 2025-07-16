@@ -10,4 +10,4 @@ services:
     Panda\Tests\Util\HttpRequestBuilder:
         arguments:
             - '@test.api_platform.client'
-            - '@ApiPlatform\Api\IriConverterInterface'
+            - '@ApiPlatform\Metadata\IriConverterInterface'

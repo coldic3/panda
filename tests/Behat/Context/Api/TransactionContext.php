@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Panda\Tests\Behat\Context\Api;
 
-use ApiPlatform\Api\IriConverterInterface;
+use ApiPlatform\Metadata\IriConverterInterface;
 use Behat\Behat\Context\Context;
 use Doctrine\ORM\EntityManagerInterface;
 use Panda\Portfolio\Domain\Model\Portfolio\PortfolioInterface;
@@ -199,7 +199,7 @@ class TransactionContext implements Context
     {
         $response = json_decode($this->http->getResponse()->getContent(false), true);
 
-        Assert::same($response['hydra:totalItems'], $count);
+        Assert::same($response['totalItems'], $count);
     }
 
     /**
@@ -209,7 +209,7 @@ class TransactionContext implements Context
     {
         $response = json_decode($this->http->getResponse()->getContent(false), true);
         $indexMap = array_flip(self::POSITIONS);
-        $item = $response['hydra:member'][$indexMap[$position]];
+        $item = $response['member'][$indexMap[$position]];
         $this->clipboard->copy('lastTransaction', $item);
 
         Assert::same($item['type'], 'ask');
@@ -234,7 +234,7 @@ class TransactionContext implements Context
     {
         $response = json_decode($this->http->getResponse()->getContent(false), true);
         $indexMap = array_flip(self::POSITIONS);
-        $item = $response['hydra:member'][$indexMap[$position]];
+        $item = $response['member'][$indexMap[$position]];
         $this->clipboard->copy('lastTransaction', $item);
 
         Assert::same($item['type'], 'withdraw');
@@ -249,7 +249,7 @@ class TransactionContext implements Context
     {
         $response = json_decode($this->http->getResponse()->getContent(false), true);
         $indexMap = array_flip(self::POSITIONS);
-        $item = $response['hydra:member'][$indexMap[$position]];
+        $item = $response['member'][$indexMap[$position]];
         $this->clipboard->copy('lastTransaction', $item);
 
         Assert::same($item['type'], 'deposit');
@@ -264,7 +264,7 @@ class TransactionContext implements Context
     {
         $response = json_decode($this->http->getResponse()->getContent(false), true);
         $indexMap = array_flip(self::POSITIONS);
-        $item = $response['hydra:member'][$indexMap[$position]];
+        $item = $response['member'][$indexMap[$position]];
         $this->clipboard->copy('lastTransaction', $item);
 
         Assert::same($item['type'], 'fee');
@@ -279,7 +279,7 @@ class TransactionContext implements Context
     {
         $response = json_decode($this->http->getResponse()->getContent(false), true);
         $indexMap = array_flip(self::POSITIONS);
-        $item = $response['hydra:member'][$indexMap[$position]];
+        $item = $response['member'][$indexMap[$position]];
         $this->clipboard->copy('lastTransaction', $item);
 
         Assert::same($item['type'], 'bid');

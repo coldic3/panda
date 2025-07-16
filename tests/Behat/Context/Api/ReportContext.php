@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Panda\Tests\Behat\Context\Api;
 
-use ApiPlatform\Api\IriConverterInterface;
+use ApiPlatform\Metadata\IriConverterInterface;
 use Behat\Behat\Context\Context;
 use Behat\Gherkin\Node\TableNode;
 use Panda\Portfolio\Domain\Model\Portfolio\PortfolioInterface;

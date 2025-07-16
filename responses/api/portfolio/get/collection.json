@@ -1,9 +1,9 @@
 {
   "@context": "/contexts/Portfolio",
   "@id": "/portfolios",
-  "@type": "hydra:Collection",
-  "hydra:totalItems": 2,
-  "hydra:member": [
+  "@type": "Collection",
+  "totalItems": 2,
+  "member": [
     {
       "@id": "/portfolios/@uuid@",
       "@type": "Portfolio",

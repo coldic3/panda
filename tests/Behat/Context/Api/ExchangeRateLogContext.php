@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Panda\Tests\Behat\Context\Api;
 
-use ApiPlatform\Api\IriConverterInterface;
+use ApiPlatform\Metadata\IriConverterInterface;
 use Behat\Behat\Context\Context;
 use Doctrine\ORM\EntityManagerInterface;
 use Panda\Exchange\Domain\Model\ExchangeRateLog;
@@ -225,7 +225,7 @@ class ExchangeRateLogContext implements Context
     {
         $response = json_decode($this->http->getResponse()->getContent(false), true);
 
-        Assert::same($response['hydra:totalItems'], $count);
+        Assert::same($response['totalItems'], $count);
     }
 
     /**
@@ -234,7 +234,7 @@ class ExchangeRateLogContext implements Context
     function at_first_position_there_is_an_exchange_rate_log(\DateTimeImmutable $datetime, float $rate)
     {
         $response = json_decode($this->http->getResponse()->getContent(false), true);
-        $item = $response['hydra:member'][0];
+        $item = $response['member'][0];
 
         Assert::same((new \DateTimeImmutable($item['startedAt']))->format('Y-m-d H:i:s'), $datetime->format('Y-m-d 00:00:00'));
         Assert::same((new \DateTimeImmutable($item['endedAt']))->format('Y-m-d H:i:s'), $datetime->format('Y-m-d 23:59:59'));
@@ -247,7 +247,7 @@ class ExchangeRateLogContext implements Context
     function at_last_position_there_is_an_exchange_rate_log(\DateTimeImmutable $datetime, float $rate)
     {
         $response = json_decode($this->http->getResponse()->getContent(false), true);
-        $item = $response['hydra:member'][count($response['hydra:member']) - 1];
+        $item = $response['member'][count($response['member']) - 1];
 
         Assert::same((new \DateTimeImmutable($item['startedAt']))->format('Y-m-d H:i:s'), $datetime->format('Y-m-d 00:00:00'));
         Assert::same((new \DateTimeImmutable($item['endedAt']))->format('Y-m-d H:i:s'), $datetime->format('Y-m-d 23:59:59'));

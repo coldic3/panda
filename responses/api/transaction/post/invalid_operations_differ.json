@@ -1,6 +1,10 @@
 {
   "@context": "/contexts/Error",
-  "@type": "hydra:Error",
-  "hydra:title": "An error occurred",
-  "hydra:description": "The from and to operations must not belong to the same asset."
+  "@type": "Error",
+  "@id": "/errors/422",
+  "status": 422,
+  "type": "/errors/422",
+  "description": "@string@",
+  "title": "An error occurred",
+  "detail": "The from and to operations must not belong to the same asset."
 }

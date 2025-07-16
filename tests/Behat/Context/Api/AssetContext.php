@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Panda\Tests\Behat\Context\Api;
 
-use ApiPlatform\Api\IriConverterInterface;
-use ApiPlatform\Exception\ItemNotFoundException;
+use ApiPlatform\Metadata\Exception\ItemNotFoundException;
+use ApiPlatform\Metadata\IriConverterInterface;
 use Behat\Behat\Context\Context;
 use Panda\Tests\Behat\Context\Util\EnableClipboardTrait;
 use Panda\Tests\Util\HttpMethodEnum;

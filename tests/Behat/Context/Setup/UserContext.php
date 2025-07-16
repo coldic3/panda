@@ -7,7 +7,7 @@ namespace Panda\Tests\Behat\Context\Setup;
 use Behat\Behat\Context\Context;
 use Doctrine\ORM\EntityManagerInterface;
 use Lexik\Bundle\JWTAuthenticationBundle\Encoder\JWTEncoderInterface;
-use Lexik\Bundle\JWTAuthenticationBundle\Security\Authentication\Token\JWTUserToken;
+use Lexik\Bundle\JWTAuthenticationBundle\Security\Authenticator\Token\JWTPostAuthenticationToken;
 use Panda\Account\Domain\Factory\UserFactoryInterface;
 use Panda\Account\Domain\Repository\UserRepositoryInterface;
 use Panda\Tests\Behat\Context\Util\EnableClipboardTrait;
@@ -53,7 +53,7 @@ class UserContext implements Context
             'roles' => $user->getRoles(),
         ]);
 
-        $this->tokenStorage->setToken(new JWTUserToken($user->getRoles(), $user, $token));
+        $this->tokenStorage->setToken(new JWTPostAuthenticationToken($user, 'main', $user->getRoles(), $token));
 
         $this->clipboard->copy('authUser', $user);
         $this->clipboard->copy('token', $token);

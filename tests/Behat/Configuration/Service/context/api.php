@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-use ApiPlatform\Api\IriConverterInterface;
+use ApiPlatform\Metadata\IriConverterInterface;
 use Doctrine\ORM\EntityManagerInterface;
 use Panda\Account\Domain\Repository\UserRepositoryInterface;
 use Panda\Tests\Behat\Context\Api\AssetContext;

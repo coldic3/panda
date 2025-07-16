@@ -43,7 +43,7 @@ final class ExchangeRateLiveRepository extends DoctrineRepository implements Exc
     public function findByBaseAndQuoteResources(
         OwnerInterface $owner,
         string $baseTicker,
-        string $quoteTicker
+        string $quoteTicker,
     ): ?ExchangeRateLiveInterface {
         try {
             $result = $this->em
@@ -90,7 +90,7 @@ final class ExchangeRateLiveRepository extends DoctrineRepository implements Exc
     public function defaultQuery(
         OwnerInterface $owner,
         ?string $baseTicker = null,
-        ?string $quoteTicker = null
+        ?string $quoteTicker = null,
     ): QueryInterface {
         return new Query\DefaultExchangeRateLiveQuery($owner, $baseTicker, $quoteTicker);
     }

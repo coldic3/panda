@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Panda\Tests\Behat\Context\Api;
 
-use ApiPlatform\Api\IriConverterInterface;
-use ApiPlatform\Exception\ItemNotFoundException;
+use ApiPlatform\Metadata\Exception\ItemNotFoundException;
+use ApiPlatform\Metadata\IriConverterInterface;
 use Behat\Behat\Context\Context;
 use Doctrine\ORM\EntityManagerInterface;
 use Panda\Exchange\Domain\Model\ExchangeRateLive;
@@ -141,8 +141,8 @@ class ExchangeRateContext implements Context
     {
         $response = json_decode($this->http->getResponse()->getContent(false), true);
 
-        if (isset($response['hydra:member'][0])) {
-            $response = $response['hydra:member'][0];
+        if (isset($response['member'][0])) {
+            $response = $response['member'][0];
         }
 
         Assert::keyExists($response, 'rate');

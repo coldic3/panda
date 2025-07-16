@@ -16,6 +16,9 @@ framework:
         
     annotations:
         enabled: false
+        
+    property_info:
+        with_constructor_extractor: false
 
 when@test:
     framework:

@@ -1,12 +1,16 @@
 {
-  "@context": "/contexts/ConstraintViolationList",
-  "@type": "ConstraintViolationList",
-  "hydra:title": "An error occurred",
-  "hydra:description": "@string@",
+  "@context": "/contexts/ConstraintViolation",
+  "@type": "ConstraintViolation",
+  "@id": "/validation_errors/@uuid@",
+  "status": 422,
+  "detail": "@string@",
+  "type": "/validation_errors/@uuid@",
+  "title": "An error occurred",
+  "description": "@string@",
   "violations": [
     {
       "propertyPath": "endedAt",
-      "message": "This value should be greater than Jul 26, 2023, 11:59 PM.",
+      "message": "This value should be greater than Jul 26, 2023, 11:59 PM.",
       "code": "@uuid@"
     }
   ]

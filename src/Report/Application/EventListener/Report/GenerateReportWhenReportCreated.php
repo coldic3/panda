@@ -15,7 +15,7 @@ final readonly class GenerateReportWhenReportCreated
 {
     public function __construct(
         private ReportRepositoryInterface $reportRepository,
-        private CommandBusInterface $commandBus
+        private CommandBusInterface $commandBus,
     ) {
     }
 

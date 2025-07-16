@@ -1,9 +1,9 @@
 {
   "@context": "/contexts/Asset",
   "@id": "/assets",
-  "@type": "hydra:Collection",
-  "hydra:totalItems": 4,
-  "hydra:member": [
+  "@type": "Collection",
+  "totalItems": 4,
+  "member": [
     {
       "@id": "/assets/@uuid@",
       "@type": "Asset",

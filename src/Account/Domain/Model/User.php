@@ -34,8 +34,15 @@ class User implements UserInterface
         $this->email = $email;
     }
 
+    /**
+     * @return non-empty-string
+     */
     public function getUserIdentifier(): string
     {
+        if (empty($this->email)) {
+            throw new \LogicException('User email cannot be empty.');
+        }
+
         return $this->email;
     }
 

@@ -1,8 +1,12 @@
 {
-  "@context": "/contexts/ConstraintViolationList",
-  "@type": "ConstraintViolationList",
-  "hydra:title": "An error occurred",
-  "hydra:description": "@string@",
+  "@context": "/contexts/ConstraintViolation",
+  "@type": "ConstraintViolation",
+  "@id": "/validation_errors/@string@",
+  "status": 422,
+  "detail": "@string@",
+  "type": "/validation_errors/@string@",
+  "title": "An error occurred",
+  "description": "@string@",
   "violations": [
     {
       "propertyPath": "ticker",

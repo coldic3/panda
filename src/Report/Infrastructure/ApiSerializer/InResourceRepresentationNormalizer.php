@@ -16,14 +16,15 @@ final class InResourceRepresentationNormalizer implements NormalizerInterface, N
 
     private const ALREADY_CALLED_SUFFIX = 'IN_RESOURCE_REPRESENTATION_NORMALIZER_ALREADY_CALLED';
 
-    /**
-     * @param object $object
-     */
-    public function normalize(mixed $object, ?string $format = null, array $context = []): mixed
+    public function normalize(mixed $data, ?string $format = null, array $context = []): \ArrayObject|array|string|int|float|bool|null
     {
-        $context[get_class($object).self::ALREADY_CALLED_SUFFIX] = true;
+        if (!is_object($data)) {
+            throw new \InvalidArgumentException('Expected object, got '.gettype($data));
+        }
 
-        $normalized = $this->normalizer->normalize($object, $format, $context);
+        $context[get_class($data).self::ALREADY_CALLED_SUFFIX] = true;
+
+        $normalized = $this->normalizer->normalize($data, $format, $context);
 
         if (!is_array($normalized)) {
             return $normalized;

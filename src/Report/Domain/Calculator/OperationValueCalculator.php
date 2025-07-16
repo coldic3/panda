@@ -20,7 +20,7 @@ final readonly class OperationValueCalculator implements OperationValueCalculato
         OperationInterface $operation,
         PortfolioInterface $portfolio,
         OwnerInterface $owner,
-        \DateTimeImmutable $datetime
+        \DateTimeImmutable $datetime,
     ): float {
         $mainTicker = $portfolio->getMainResource()->getTicker();
         $ticker = $operation->getAsset()->getTicker();

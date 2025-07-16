@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Panda\Trade\Infrastructure\OpenApi\Filter;
 
 use ApiPlatform\Metadata\FilterInterface;
-use Symfony\Component\PropertyInfo\Type;
+use Symfony\Component\TypeInfo\TypeIdentifier;
 
 final class OperationAssetFilter implements FilterInterface
 {
@@ -17,12 +17,12 @@ final class OperationAssetFilter implements FilterInterface
         return [
             'fromOperation.asset.id' => [
                 'property' => 'fromOperation.asset.id',
-                'type' => Type::BUILTIN_TYPE_STRING,
+                'type' => TypeIdentifier::STRING->value,
                 'required' => false,
             ],
             'toOperation.asset.id' => [
                 'property' => 'toOperation.asset.id',
-                'type' => Type::BUILTIN_TYPE_STRING,
+                'type' => TypeIdentifier::STRING->value,
                 'required' => false,
             ],
         ];

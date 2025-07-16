@@ -12,6 +12,6 @@ interface PortfolioItemFactoryInterface
     public function create(
         string $resourceTicker,
         string $resourceName,
-        PortfolioInterface $portfolio
+        PortfolioInterface $portfolio,
     ): PortfolioItemInterface;
 }

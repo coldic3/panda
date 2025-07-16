@@ -62,7 +62,7 @@ final readonly class CalculatePerformanceReportData implements CalculatePerforma
         iterable $transactions,
         OwnerInterface $owner,
         PortfolioInterface $portfolio,
-        \DateTimeImmutable $datetime
+        \DateTimeImmutable $datetime,
     ): int {
         $valueOfResources = .0;
 

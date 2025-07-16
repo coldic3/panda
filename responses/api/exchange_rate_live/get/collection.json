@@ -1,9 +1,9 @@
 {
   "@context": "/contexts/ExchangeRateLive",
   "@id": "/exchange_rate_lives",
-  "@type": "hydra:Collection",
-  "hydra:totalItems": 4,
-  "hydra:member": [
+  "@type": "Collection",
+  "totalItems": 4,
+  "member": [
     {
       "@id": "/exchange_rate_lives/@uuid@",
       "@type": "ExchangeRateLive",
@@ -41,11 +41,11 @@
       "updatedAt": "@datetime@"
     }
   ],
-  "hydra:search": {
-    "@type": "hydra:IriTemplate",
-    "hydra:template": "/exchange_rate_lives{?baseTicker,quoteTicker}",
-    "hydra:variableRepresentation": "BasicRepresentation",
-    "hydra:mapping": [
+  "search": {
+    "@type": "IriTemplate",
+    "template": "/exchange_rate_lives{?baseTicker,quoteTicker}",
+    "variableRepresentation": "BasicRepresentation",
+    "mapping": [
       {
         "@type": "IriTemplateMapping",
         "variable": "baseTicker",
